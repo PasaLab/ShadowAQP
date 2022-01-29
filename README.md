@@ -100,4 +100,5 @@ Training configuration files  is under `/config/train`.An example is given below
 ## Copyright
 
 The code is available for research purpose only.
+
 For commercial usage, please contact PASA Lab@Nanjing University(gurong@nju.edu.cn).
