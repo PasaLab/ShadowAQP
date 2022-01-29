@@ -1,0 +1,18 @@
+{
+  "name": "sdr",
+  "train_config_files": [
+    "./config/train/sdr_flow_torch_cvae_2.json",
+    "./config/train/dim_torch_cvae_2.json"
+  ],
+  "multi_sample_times": 3,
+  "operation": "aqp",
+  "join_cols": ["prot_category","protocol_id"],
+  "groupby_cols": ["prot_category"],
+  "condition": [""],
+  "result_path": "./output/aqp_result/sdr_res.csv",
+  "diff_path": "./output/diff/sdr_diff.csv",
+  "sum_cols": ["l4_ul_throughput","l4_dw_throughput","l4_ul_packets","l4_dw_packets"],
+  "avg_cols": ["l4_ul_throughput","l4_dw_throughput","l4_ul_packets","l4_dw_packets"],
+  "var": "./var/sdr-1m/sdr_var.csv",
+  "ground_truth": "./ground_truth/sdr-1m/sdr_truth.csv"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "customer_inc_join_supplier",
+  "train_config_files": [
+    "./config/train/tpch_customer_inc_torch_cvae.json",
+    "./config/train/tpch_supplier_torch_cvae.json"
+  ],
+  "multi_sample_times": 1,
+  "operation": "aqp",
+  "join_cols": ["c_nationkey","s_nationkey"],
+  "groupby_cols": ["c_nationkey"],
+  "result_path": "./output/aqp_result/cs_res.csv",
+  "diff_path": "./output/diff/cs_diff.csv",
+  "sum_cols": ["c_acctbal","s_acctbal"],
+  "avg_cols": ["c_acctbal","s_acctbal"],
+  "var": "./var/tpch-1m/cs_var.csv",
+  "ground_truth": "./ground_truth/tpch-1m/cs_truth.csv"
+}

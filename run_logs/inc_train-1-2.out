@@ -1,0 +1,124 @@
+main.py:20: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2021-12-16 18:58:25,839 - __main__ - INFO - load query config config/query/customer_with_inc_join_supplier.json successfully
+2021-12-16 18:58:25,840 - __main__ - INFO - load train config ./config/train/tpch_customer_with_inc_torch_cvae.json successfully
+2021-12-16 18:58:25,840 - __main__ - INFO - load train config ./config/train/tpch_supplier_torch_cvae.json successfully
+2021-12-16 18:58:25,840 - utils.dataset_utils - INFO - load existing dataset(light):tpch-1m-customer-with-inc_c_nationkey_c_acctbal_c_nationkey_binary_gaussian5_0inc_train
+2021-12-16 18:58:28,696 - utils.dataset_utils - INFO - load dataset(light) time elapsed:2.8558301962912083
+2021-12-16 18:58:28,696 - models.pytorch_cvae - INFO - feature info:[('c_acctbal', 'numerical', 6), ('c_nationkey', 'categorical', 6)]
+2021-12-16 18:58:28,697 - utils.model_utils - INFO - load model name:torch_cvae_tpch-1m-customer-with-inc_c_nationkey_ld50_id100_bs1024_ep100_0_binary_gaussian5inc_train
+2021-12-16 18:58:28,699 - utils.model_utils - INFO - load torch model time elapsed:0.0020248303189873695
+2021-12-16 18:58:28,699 - models.pytorch_cvae - INFO - load model time elapsed:2.8592580277472734
+2021-12-16 18:58:28,699 - utils.dataset_utils - INFO - load existing dataset(light):tpch-1m-supplier_s_nationkey#s_suppkey_s_acctbal_s_nationkey_binary_gaussian5_0
+2021-12-16 18:58:28,702 - utils.dataset_utils - INFO - load dataset(light) time elapsed:0.002949880436062813
+2021-12-16 18:58:28,702 - models.pytorch_cvae - INFO - feature info:[('s_acctbal', 'numerical', 6), ('s_nationkey', 'categorical', 6), ('s_suppkey', 'categorical', 15)]
+2021-12-16 18:58:28,703 - utils.model_utils - INFO - load model name:torch_cvae_tpch-1m-supplier_s_nationkey_ld50_id100_bs32_ep150_0_binary_gaussian5
+2021-12-16 18:58:28,704 - utils.model_utils - INFO - load torch model time elapsed:0.0014860006049275398
+2021-12-16 18:58:28,704 - models.pytorch_cvae - INFO - load model time elapsed:0.005111039616167545
+2021-12-16 18:58:28,704 - __main__ - INFO - multi_sampling No.0 epoch
+2021-12-16 18:58:28,705 - models.pytorch_cvae - INFO - statistics sampling rate:0.01
+2021-12-16 18:58:28,705 - __main__ - INFO - multi_sampling No.1 epoch
+2021-12-16 18:58:28,710 - models.pytorch_cvae - INFO - statistics sampling rate:0.01
+2021-12-16 18:58:28,711 - __main__ - INFO - multi_sampling No.2 epoch
+2021-12-16 18:58:28,711 - models.pytorch_cvae - INFO - statistics sampling rate:0.01
+2021-12-16 18:58:29,277 - models.pytorch_cvae - INFO - sampling time:0.5652048951014876
+2021-12-16 18:58:29,305 - models.pytorch_cvae - INFO - statistics sampling rate:0.1
+2021-12-16 18:58:29,400 - models.pytorch_cvae - INFO - sampling time:0.6888207839801908
+2021-12-16 18:58:29,449 - models.pytorch_cvae - INFO - statistics sampling rate:0.1
+2021-12-16 18:58:29,458 - models.pytorch_cvae - INFO - sampling time:0.7535346075892448
+2021-12-16 18:58:29,503 - models.pytorch_cvae - INFO - statistics sampling rate:0.1
+2021-12-16 18:58:29,585 - models.pytorch_cvae - INFO - sampling time:0.2794733662158251
+2021-12-16 18:58:29,656 - models.pytorch_cvae - INFO - sampling time:0.15232849959284067
+2021-12-16 18:58:29,679 - __main__ - INFO - sample and aggregation time elapsed:0.9678920553997159
+2021-12-16 18:58:29,722 - __main__ - INFO - sample and aggregation time elapsed:1.0172835541889071
+2021-12-16 18:58:29,740 - models.pytorch_cvae - INFO - sampling time:0.29068517591804266
+2021-12-16 18:58:29,791 - __main__ - INFO - sample and aggregation time elapsed:1.081211461685598
+2021-12-16 18:58:29,798 - __main__ - INFO - sample time:1.093413152731955
+2021-12-16 18:58:29,812 - __main__ - INFO - aqp result:
+             avg(c_acctbal)  avg(s_acctbal)  sum(c_acctbal)  sum(s_acctbal)
+c_nationkey                                                                
+0           4431.02         4881.68         95947034526.77  105705502170.01
+1           4657.41         4978.54         105575398345.13 112854869138.07
+2           4489.18         5019.94         108443965572.83 121265320307.75
+3           4433.20         4992.00         108177070323.08 121812641187.88
+4           4311.28         4895.60         88705313545.58  100727719936.24
+5           4479.58         5141.23         90138109779.01  103451738636.54
+6           4412.16         4934.36         100794751073.74 112724322937.62
+7           4427.30         4667.93         99039978213.06  104422787733.57
+8           4376.41         4959.62         99570067328.65  112838835651.71
+9           4472.51         4943.82         101235497736.67 111903777865.96
+10          4197.08         4860.52         99148545298.30  114821229464.03
+11          4473.68         4629.94         105362604355.67 109042882286.35
+12          4508.98         4575.67         100633496267.37 102121968219.50
+13          4358.95         5025.29         93202449775.89  107450072829.73
+14          4456.34         4394.63         104839707408.10 103387913506.24
+15          4312.04         4655.91         91391095901.54  98679073015.44 
+16          4468.77         5169.70         97209377656.80  112456802192.46
+17          4314.33         5192.98         96155234122.43  115738028277.02
+18          4473.63         4717.52         104181407601.45 109861176753.40
+19          4392.77         4381.07         95934345495.84  95678902171.94 
+20          4496.12         5038.03         102139182715.00 114449932898.04
+21          4461.80         4900.31         102280348012.56 112332536284.59
+22          4455.65         4994.65         103373124689.20 115878272356.10
+23          4577.74         4915.18         101255560108.45 108719537527.02
+24          4433.70         5114.70         102676657498.37 118447567636.77
+2021-12-16 18:58:29,815 - __main__ - INFO - ground truth:
+             avg(c_acctbal)  avg(s_acctbal)  sum(c_acctbal)  sum(s_acctbal)
+c_nationkey                                                                
+0           4489.09         4750.47         97204429060.11  102864283639.34
+1           4478.58         5156.38         101521631809.03 116886387814.97
+2           4502.84         4926.83         108773860934.93 119016293073.25
+3           4510.50         4976.52         110063319836.95 121434781349.97
+4           4467.80         4955.13         91925727389.56  101952561544.09
+5           4506.93         5017.03         90688332145.90  100952499397.81
+6           4489.99         5263.09         102572805214.01 120234077220.52
+7           4481.97         4725.51         100262969999.54 105711043954.64
+8           4491.71         4898.26         102193355822.35 111442904344.11
+9           4507.31         5056.46         102023357487.12 114453365970.99
+10          4514.20         4934.04         106640129528.12 116557963141.05
+11          4509.51         4846.61         106206568975.75 114145706219.45
+12          4495.81         4905.97         100339620692.57 109493748108.56
+13          4519.66         4967.01         96638723186.87  106203971323.94
+14          4489.09         4748.57         105610059556.98 111714619054.55
+15          4513.94         4993.59         95670237506.21  105836044024.01
+16          4509.69         5125.84         98099691841.22  111502795597.57
+17          4476.99         5194.81         99780562278.61  115778956973.10
+18          4470.09         5153.13         104098927638.07 120005532950.10
+19          4480.83         4865.91         97857583891.19  106267463992.76
+20          4505.29         5210.90         102347462434.85 118377097752.18
+21          4500.84         5087.25         103175299651.56 116617824864.37
+22          4522.71         4945.33         104928946224.34 114733990724.54
+23          4492.85         4974.00         99377984303.50  110020479238.93
+24          4507.26         5065.90         104380144828.63 117317398620.77
+2021-12-16 18:58:29,826 - __main__ - INFO - relative error:
+             avg(c_acctbal)  avg(s_acctbal)  sum(c_acctbal)  sum(s_acctbal)
+c_nationkey                                                                
+0           0.01            0.03            0.01            0.03           
+1           0.04            0.03            0.04            0.03           
+2           0.00            0.02            0.00            0.02           
+3           0.02            0.00            0.02            0.00           
+4           0.04            0.01            0.04            0.01           
+5           0.01            0.02            0.01            0.02           
+6           0.02            0.06            0.02            0.06           
+7           0.01            0.01            0.01            0.01           
+8           0.03            0.01            0.03            0.01           
+9           0.01            0.02            0.01            0.02           
+10          0.07            0.01            0.07            0.01           
+11          0.01            0.04            0.01            0.04           
+12          0.00            0.07            0.00            0.07           
+13          0.04            0.01            0.04            0.01           
+14          0.01            0.07            0.01            0.07           
+15          0.04            0.07            0.04            0.07           
+16          0.01            0.01            0.01            0.01           
+17          0.04            0.00            0.04            0.00           
+18          0.00            0.08            0.00            0.08           
+19          0.02            0.10            0.02            0.10           
+20          0.00            0.03            0.00            0.03           
+21          0.01            0.04            0.01            0.04           
+22          0.01            0.01            0.01            0.01           
+23          0.02            0.01            0.02            0.01           
+24          0.02            0.01            0.02            0.01           
+2021-12-16 18:58:29,826 - __main__ - INFO - relative error average :0.025559369835830226
+2021-12-16 18:58:29,826 - __main__ - INFO - relative error normalized average :0.024969318955877836
+2021-12-16 18:58:29,826 - __main__ - INFO - relative error var normalized average :0.003207230763755684
+2021-12-16 18:58:29,827 - __main__ - INFO - total_time:3.987925985828042
