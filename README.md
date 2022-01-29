@@ -1,6 +1,8 @@
 # Table_CVAE_AQP
 
-Efficient and Accurate Approximate Join Query Processing via Conditional Sample Data Generation and Size Allocation
+This is the code repository for the approximate query processing paper titled *'Efficient and Accurate Approximate Join Query Processing via Conditional Sample Data Generation and Size Allocation'*.
+
+This project is built on an open source machine learning framework [PyTorch](https://pytorch.org/). 
 
 ## Prerequisites
 
@@ -95,3 +97,7 @@ Training configuration files  is under `/config/train`.An example is given below
 }
 ```
 
+## Copyright
+
+The code is available for research purpose only.
+For commercial usage, please contact PASA Lab@Nanjing University(gurong@nju.edu.cn).
