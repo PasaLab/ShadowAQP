@@ -99,7 +99,7 @@ There are two types of configuration files: query configuration files and traini
 
 Query configuration files is under `/config/query`.An example is given below.
 
-```json
+```shell
 {
   "name": "customer_join_supplier",
   "train_config_files": [
