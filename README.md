@@ -25,13 +25,73 @@ This project is built on an open source machine learning framework [PyTorch](htt
 
 2. Prepare the raw exact query result (under `/ground_truth`) and data
 
-3. Modifying the configuration files
+3. Train the model
 
-4. Train and use the model
+    * Modifying the configuration files
 
-    ```
-    python main.py ./config/query/xxx.json
-    ```
+        * For the query configuration file,fill in the following attributes according to the query content.
+
+            ```
+            {
+              ...
+              "join_cols": [],
+              "groupby_cols": [], 
+              ...
+              "sum_cols": [],
+              "avg_cols": []
+              ...
+            }
+            ```
+
+        * For the query configuration file,turn the "train_flag" to "train" and fill in the following attributes according to the query content.
+
+            ```
+            {
+              ...
+              "categorical_columns": [],	// Discrete attributes involved in the query
+              "numeric_columns": [],	//Contiguous attributes involved in the query
+              "label_columns": [],	// Columns used for join
+              ...
+            }
+            ```
+
+            And fill in some model parameters.
+
+            ```
+            {
+            	...
+              "categorical_encoding": ,  // binary or onehot
+              "numeric_encoding": ,  // mm or gaussian
+              "max_clusters": , // The parameter when using gaussian encoding
+              "model_type": ,
+              "lr": ,
+              "optimizer_type": ,
+              "loss_agg_type": ,
+              "gpu_num": ,
+              "epochs": ,
+              "inc_epochs": , 
+              "batch_size": ,
+              "latent_dim": ,
+              "intermediate_dim": ,
+              ...
+            }
+            ```
+
+    * Run the `main.py`
+
+        ```shell
+        python main.py ./config/query/xxx.json
+        ```
+
+4. Execute the query
+
+    * Turn the "train_flag" to "load" in the training configuration files.
+
+    * Run the `main.py`
+
+        ```shell
+        python main.py ./config/query/xxx.json
+        ```
 
 ## Configuration
 
@@ -42,7 +102,6 @@ Query configuration files is under `/config/query`.An example is given below.
 ```json
 {
   "name": "customer_join_supplier",
-  "train_flag": "train",
   "train_config_files": [
     "./config/train/tpch_customer_torch_cvae.json", 
     "./config/train/tpch_supplier_torch_cvae.json"
@@ -56,7 +115,7 @@ Query configuration files is under `/config/query`.An example is given below.
   "sum_cols": ["c_acctbal","s_acctbal"],
   "avg_cols": ["c_acctbal","s_acctbal"],
   "var": "./var/tpch-1m/cs_var.csv",
-  "ground_truth": "./ground_truth/tpch-1/cs_truth.csv" # Specifies the raw exact query result
+  "ground_truth": "./ground_truth/tpch-1/cs_truth.csv" // Specifies the raw exact query result
 }
 ```
 
@@ -65,19 +124,19 @@ Training configuration files  is under `/config/train`.An example is given below
 ```shell
 {
   "name": "tpch-1-customer", 
-  "data": "./datasets/tpch-1/customer.csv",  # Path to store the exported data
+  "data": "./datasets/tpch-1/customer.csv",  // Path to store the exported data
   "categorical_columns": [
     "c_nationkey"
   ],
   "numeric_columns": [
     "c_acctbal"
   ],
-  "label_columns": [ # Columns used for join
+  "label_columns": [ 
     "c_nationkey"
   ],
-  "categorical_encoding": "binary",  # binary or onehot
-  "numeric_encoding": "gaussian",  # mm or gaussian
-  "max_clusters": 15, # The parameter when using gaussian encoding
+  "categorical_encoding": "binary",  
+  "numeric_encoding": "gaussian", 
+  "max_clusters": 15, 
   "model_type": "torch_cvae",
   "lr": 0.001,
   "optimizer_type": "adam",
@@ -88,7 +147,7 @@ Training configuration files  is under `/config/train`.An example is given below
   "batch_size": 512,
   "latent_dim": 150,
   "intermediate_dim": 150,
-  "train_flag": "train",  # Train model or load model
+  "train_flag": "train",  
   "operation": "aqp",
   "sample_method": "statistics",
   "sample_rate": 0.1,
