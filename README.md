@@ -60,7 +60,7 @@ This project is built on an open source machine learning framework [PyTorch](htt
             ```
             {
               ...
-            	"categorical_encoding": ,  // binary or onehot
+              "categorical_encoding": ,  // binary or onehot
               "numeric_encoding": ,  // mm or gaussian
               "max_clusters": , // The parameter when using gaussian encoding
               "model_type": ,
