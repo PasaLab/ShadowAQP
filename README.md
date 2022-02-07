@@ -25,73 +25,129 @@ This project is built on an open source machine learning framework [PyTorch](htt
 
 2. Prepare the raw exact query result (under `/ground_truth`) and data
 
-3. Train the model
+3. Config the **query configuration files** `config/query/xxx.json` to define a query and  config the **training configuration files** of involved tables `config/train/xxx.json` to guide the training as in [below](#configuration). 
+    
+4. Train the models
 
-    * Modifying the configuration files
+    ```
+    python main.py ./config/query/xxx.json  # set the 'train_flag' in config/train/xxx.json to 'train'
+    ```
 
-        * For the query configuration file,fill in the following attributes according to the query content.
+5. Execute the query
+    ```
+    python main.py ./config/query/xxx.json  # set the 'train_flag' in config/train/xxx.json to 'load'
+    ```
 
-            ```
-            {
-              ...
-              "join_cols": [],
-              "groupby_cols": [], 
-              ...
-              "sum_cols": [],
-              "avg_cols": []
-              ...
-            }
-            ```
 
-        * For the query configuration file,turn the "train_flag" to "train" and fill in the following attributes according to the query content.
+## Usage
+Table-CVAE proceeds into two phases: **the model training phase (offline)** and **the sample generation phase (online)**.
+  - **The model training phase (offline)**
+    * In model traing phase, Table-CVAE learns the underlying probability distribution of a table.
+    * The model training phase includes three stages: the labeling stage, the encoding stage, and the learning stage.
+  - **The sample generation phase (online)**
+    * In sample generation phase, Table-CVAE generates sample tuples based on the learned conditional probability distribution.
+    * The sample generation phase includes the sampling stage, the decoding stage, and the execution stage.
 
-            ```
-            {
-              ...
-              "categorical_columns": [],	// Discrete attributes involved in the query
-              "numeric_columns": [],	//Contiguous attributes involved in the query
-              "label_columns": [],	// Columns used for join
-              ...
-            }
-            ```
+![overview](overview.jpg)
 
-            And fill in some model parameters.
 
-            ```
-            {
-              ...
-              "categorical_encoding": ,  // binary or onehot
-              "numeric_encoding": ,  // mm or gaussian
-              "max_clusters": , // The parameter when using gaussian encoding
-              "model_type": ,
-              "lr": ,
-              "optimizer_type": ,
-              "loss_agg_type": ,
-              "gpu_num": ,
-              "epochs": ,
-              "inc_epochs": , 
-              "batch_size": ,
-              "latent_dim": ,
-              "intermediate_dim": ,
-              ...
-            }
-            ```
+### Model Training Phase (offline)
+1. Labeling Stage
 
-    * Run the `main.py`
+   - The goal of this stage is to label tuples in the table, which is necessary because traditional conditional generative models can only train on labeled data and learn probability distribution conditioned to the labels.
 
-        ```shell
-        python main.py ./config/query/xxx.json
-        ```
+   - We use the values of the **label attributes** to label the tuples and the label attributes is set in `config/train/xxx.json`.
 
-4. Execute the query
+     ```
+     {
+       ...
+       "categorical_columns": [      // the involved categorical attributes
+         "protocol_type",
+       ],
+       "numeric_columns": [      // the involved numeric attributes
+       	"upload_throughput",
+       	"download_throughput"
+       ],
+       "label_columns": [      // the label attributes
+         "protocol_type"
+       ]
+       ...
+     }
+     ```
 
-    * Turn the "train_flag" to "load" in the training configuration files.
+2. Encoding Stage
 
-    * Run the `main.py`
+   - The target of the encoding stage is to encode tuples together with their labels into a data representation suitable for training conditional generative models. 
 
-        ```shell
-        python main.py ./config/query/xxx.json
-        ```
+   - Table-CVAE will encode the tuples according to the **encoding method** configured in `config/train/xxx.json`.
+
+     ```
+     {
+       ...
+       "categorical_encoding": "binary",     // 'binary' for binary encoding, 'onehot' for one-hot encoding
+       "numeric_encoding": "gaussian",       // 'gaussian' for guassian mixture encoding, 'minmax' for minmax normalization
+       "max_clusters": 15,               // the number of max gaussian clusters
+       ...
+     }
+     ```
+
+3. Learning Stage
+
+   -  In the learning stage, the encoded data and labels are fed to the neural network model for training.
+
+   -  Table-CVAE strats training with the **learning parameters** configured in `config/train/xxx.json`.
+
+     ```
+     {
+       ...
+       "lr": 0.001,                // learning rate
+       "optimizer_type": "adam",   // optimizer
+       "loss_agg_type": "mean",    // aggregate function of loss
+       "gpu_num": 1,               // No. of gpu 
+       "epochs": 200,              // training epochs
+       "batch_size": 1024,         // batch size
+       "latent_dim": 200,          // latent dimension of CVAE (hidden layer size)
+       "intermediate_dim": 200,    // intermediate dimension of CVAE (hidden layer size)
+       ...
+     }
+     ```
+
+### Sample Generation Phase (online)
+
+1. Sampling Stage
+
+   - In the sampling stage, Table-CVAE generates sample vectors with the latent variables sampled from the latent space and the given labels.
+
+   - The sampling rate and sampling method is also configured in `config/train/xxx.json`.
+
+     ```
+     {
+       ...
+       "sample_rate": 0.05, 
+       "sample_method": "statistics",
+       ...
+     }
+     ```
+
+2. Decoding Stage
+
+   - The decoding stage is responsible for converting the sample data generated from the Table-CVAE model into table tuples. 
+
+   - Decoding is the reverse process of the configured encoding methods in `config/train/xxx.json`.
+
+     ```
+     {
+       ...
+       "categorical_encoding": "binary",     // 'binary' for binary encoding, 'onehot' for one-hot encoding
+       "numeric_encoding": "gaussian",       // 'gaussian' for guassian mixture encoding, 'minmax' for minmax normalization
+       "max_clusters": 15,               // the number of max gaussian clusters
+       ...
+     }
+     ```
+
+3. Executing Stage
+
+   - In the execution stage, Table-CVAE executes the queries on the generated samples to obtain the approximate query answers.
 
 ## Configuration
 
