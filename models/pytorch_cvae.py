@@ -230,7 +230,7 @@ def generate_samples(model, dataset, query_config, train_config):
         sample_allocation, sample_rates = senate_sampling(model, dataset, sample_rate)
     elif train_config['sample_method'] == "house":
         sample_allocation, sample_rates = house_sampling(model, dataset, sample_rate)
-    elif train_config['sample_method'] == "advance sencate":
+    elif train_config['sample_method'] == "advance senate":
         sample_allocation, sample_rates = advance_senate_sampling(model, dataset, sample_rate)
     elif train_config['sample_method'] == "statistics":
         sample_allocation, sample_rates = statistics_sampling(model, dataset, sample_rate, query_config)

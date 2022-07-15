@@ -70,8 +70,8 @@ class TabularDataset(Dataset):
             self.label_group_relative_stds_with_num = {}
             self.label_group_relative_stds_with_num_sums = {}
             for col in self.numeric_columns:
-                self.label_group_stds[col] = self.origin_df.groupby(self.label_column_name)[col].mean().to_dict()
-                self.label_group_means[col] = self.origin_df.groupby(self.label_column_name)[col].std().to_dict()
+                self.label_group_stds[col] = self.origin_df.groupby(self.label_column_name)[col].std().to_dict()
+                self.label_group_means[col] = self.origin_df.groupby(self.label_column_name)[col].mean().to_dict()
 
                 self.label_group_relative_stds[col] = {
                     k: self.label_group_stds[col][k] / self.label_group_means[col][k] if self.label_group_means[col][
