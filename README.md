@@ -40,12 +40,12 @@ This project is built on an open source machine learning framework [PyTorch](htt
 
 
 ## Usage
-Table-CVAE proceeds into two phases: **the model training phase (offline)** and **the sample generation phase (online)**.
+ShadowAQP proceeds into two phases: **the model training phase (offline)** and **the sample generation phase (online)**.
   - **The model training phase (offline)**
-    * In model traing phase, Table-CVAE learns the underlying probability distribution of a table.
+    * In model traing phase, ShadowAQP learns the underlying probability distribution of a table.
     * The model training phase includes three stages: the labeling stage, the encoding stage, and the learning stage.
   - **The sample generation phase (online)**
-    * In sample generation phase, Table-CVAE generates sample tuples based on the learned conditional probability distribution.
+    * In sample generation phase, ShadowAQP generates sample tuples based on the learned conditional probability distribution.
     * The sample generation phase includes the sampling stage, the decoding stage, and the execution stage.
 
 
@@ -77,7 +77,7 @@ Table-CVAE proceeds into two phases: **the model training phase (offline)** and 
 
    - The target of the encoding stage is to encode tuples together with their labels into a data representation suitable for training conditional generative models. 
 
-   - Table-CVAE will encode the tuples according to the **encoding method** configured in `config/train/xxx.json`.
+   - ShadowAQP will encode the tuples according to the **encoding method** configured in `config/train/xxx.json`.
 
      ```
      {
@@ -93,7 +93,7 @@ Table-CVAE proceeds into two phases: **the model training phase (offline)** and 
 
    -  In the learning stage, the encoded data and labels are fed to the neural network model for training.
 
-   -  Table-CVAE strats training with the **learning parameters** configured in `config/train/xxx.json`.
+   -  ShadowAQP strats training with the **learning parameters** configured in `config/train/xxx.json`.
 
      ```
      {
@@ -114,7 +114,7 @@ Table-CVAE proceeds into two phases: **the model training phase (offline)** and 
 
 1. Sampling Stage
 
-   - In the sampling stage, Table-CVAE generates sample vectors with the latent variables sampled from the latent space and the given labels.
+   - In the sampling stage, ShadowAQP generates sample vectors with the latent variables sampled from the latent space and the given labels.
 
    - The sampling rate and sampling method is also configured in `config/train/xxx.json`.
 
@@ -129,7 +129,7 @@ Table-CVAE proceeds into two phases: **the model training phase (offline)** and 
 
 2. Decoding Stage
 
-   - The decoding stage is responsible for converting the sample data generated from the Table-CVAE model into table tuples. 
+   - The decoding stage is responsible for converting the sample data generated from the ShadowAQP model into table tuples. 
 
    - Decoding is the reverse process of the configured encoding methods in `config/train/xxx.json`.
 
@@ -145,7 +145,7 @@ Table-CVAE proceeds into two phases: **the model training phase (offline)** and 
 
 3. Executing Stage
 
-   - In the execution stage, Table-CVAE executes the queries on the generated samples to obtain the approximate query answers.
+   - In the execution stage, ShadowAQP executes the queries on the generated samples to obtain the approximate query answers.
 
 ## Configuration
 
