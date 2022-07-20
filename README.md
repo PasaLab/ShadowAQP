@@ -230,8 +230,11 @@ Training configuration files  is under `/config/train`.An example is given below
     > ...
     >
     > sample time: 1.5985828302800655
+    >
     > relative error average: 0.0519204122033996
+    >
     > relative error normalized average: 0.04979657492564337
+    >
     > total_time:4.340905863791704
 
 
