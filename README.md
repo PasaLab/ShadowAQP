@@ -212,3 +212,27 @@ Training configuration files  is under `/config/train`.An example is given below
     "delimiter": ","
 }
 ```
+
+## Example
+
+### TPC-DS example
+
+* Download the tpcds-kit `git clone https://github.com/gregrahn/tpcds-kit.git`, and generate the data with the 1GB scale factor `./dsdgen -scale 1 -dir ../data/ -force`
+
+* Generate the ground truth with SparkSQL
+
+* Configure the query configuration file `config/query/ssales_join_wsales.json`,  training configuration files `/config/train/tpcds_ssales_torch_cvae.json` and `/config/train/tpcds_wsales_torch_cvae.json`
+
+* Set the 'train_flag' in the training configuration files to 'train' and train the models `python main.py config/query/ssales_join_wsales.json `
+
+* Then set different sampling ratios in the training configuration files and get result from model (set the 'train_flag' in the training configuration files to 'query') `python main.py config/query/ssales_join_wsales.json `
+
+    > ......
+    > 2022-07-07 18:04:33,587 - main.py[line:542] - INFO: sample time: 1.5985828302800655
+    > 2022-07-07 18:04:33,610 - main.py[line:554] - INFO: relative error average: 0.0519204122033996
+    > 2022-07-07 18:04:33,610 - main.py[line:555] - INFO: relative error normalized average: 0.04979657492564337
+    > 2022-07-07 18:04:33,613 - main.py[line:601] - INFO: total_time:4.340905863791704
+    >
+
+
+
