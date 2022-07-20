@@ -1,0 +1,114 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2022-07-11 16:19:53,683 - main.py[line:581] - INFO: load query config config/query/census2.json successfully
+2022-07-11 16:19:53,684 - main.py[line:588] - INFO: load train config ./config/train/census2_a_torch_cvae.json successfully
+2022-07-11 16:19:53,684 - main.py[line:588] - INFO: load train config ./config/train/census2_b_torch_cvae.json successfully
+2022-07-11 16:19:53,684 - dataset_utils.py[line:567] - INFO: load existing dataset(light):census2-adult-a_a_education_num#a_relationship_a_fnlwgt#a_age#a_hours_per_week_a_education_num#a_relationship_binary_gaussian5_0
+2022-07-11 16:19:53,803 - dataset_utils.py[line:576] - INFO: load dataset(light) time elapsed:0.11914530023932457
+2022-07-11 16:19:53,803 - pytorch_cvae.py[line:276] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5), ('a_relationship', 'categorical', 4)]
+2022-07-11 16:19:53,805 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census2-adult-a_a_education_num_a_relationship_ld50_id100_bs512_ep150_0_binary_gaussian5
+2022-07-11 16:19:55,879 - model_utils.py[line:86] - INFO: load torch model time elapsed:2.0733407624065876
+2022-07-11 16:19:55,879 - pytorch_cvae.py[line:286] - INFO: load model time elapsed:2.1952683553099632
+2022-07-11 16:19:55,879 - dataset_utils.py[line:567] - INFO: load existing dataset(light):census2-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-11 16:19:55,887 - dataset_utils.py[line:576] - INFO: load dataset(light) time elapsed:0.008376631885766983
+2022-07-11 16:19:55,887 - pytorch_cvae.py[line:276] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-11 16:19:55,888 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census2-adult-b_b_education_num_ld50_id100_bs512_ep150_0_binary_gaussian5
+2022-07-11 16:19:55,889 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.001370895653963089
+2022-07-11 16:19:55,889 - pytorch_cvae.py[line:286] - INFO: load model time elapsed:0.010469269007444382
+2022-07-11 16:19:55,889 - main.py[line:525] - INFO: multi_sampling No.0 epoch
+2022-07-11 16:19:55,895 - main.py[line:525] - INFO: multi_sampling No.1 epoch
+2022-07-11 16:19:55,897 - main.py[line:525] - INFO: multi_sampling No.2 epoch
+2022-07-11 16:19:56,883 - pytorch_cvae.py[line:399] - INFO: sampling time:0.9851685129106045
+2022-07-11 16:19:56,936 - pytorch_cvae.py[line:419] - INFO: house sampling rate:0.05
+2022-07-11 16:19:57,569 - pytorch_cvae.py[line:399] - INFO: sampling time:1.678648054599762
+2022-07-11 16:19:57,674 - pytorch_cvae.py[line:399] - INFO: sampling time:1.7778921946883202
+2022-07-11 16:19:57,734 - pytorch_cvae.py[line:399] - INFO: sampling time:0.7977130115032196
+2022-07-11 16:19:57,831 - pytorch_cvae.py[line:419] - INFO: house sampling rate:0.05
+2022-07-11 16:19:57,839 - pytorch_cvae.py[line:419] - INFO: house sampling rate:0.05
+2022-07-11 16:19:57,892 - pytorch_cvae.py[line:399] - INFO: sampling time:0.06093759834766388
+2022-07-11 16:19:57,909 - pytorch_cvae.py[line:399] - INFO: sampling time:0.06985865160822868
+2022-07-11 16:19:59,449 - main.py[line:509] - INFO: sample and aggregation time elapsed:3.5591327846050262
+2022-07-11 16:19:59,489 - main.py[line:509] - INFO: sample and aggregation time elapsed:3.593058153986931
+2022-07-11 16:19:59,551 - main.py[line:509] - INFO: sample and aggregation time elapsed:3.6536844335496426
+2022-07-11 16:19:59,556 - main.py[line:542] - INFO: sample time: 3.6661782674491405
+2022-07-11 16:19:59,576 - main.py[line:99] - INFO: aqp result:
+                 avg(a_age)  avg(a_hours_per_week)  avg(a_fnlwgt)  \
+a_relationship                                                      
+ Husband        37.94       39.80                  163481.83        
+ Not-in-family  38.82       39.57                  165303.11        
+ Other-relative 37.86       38.91                  166999.57        
+ Own-child      38.30       39.44                  160543.97        
+ Unmarried      39.05       39.39                  164264.74        
+ Wife           38.54       39.81                  164011.16        
+
+                    sum(a_age)  sum(a_hours_per_week)      sum(a_fnlwgt)  
+a_relationship                                                            
+ Husband        65513694065.11 69131255856.70         280895323902055.84  
+ Not-in-family  41906734249.62 42463032178.47         175585780757862.78  
+ Other-relative 4867350949.22  4969212722.87          21600026743217.82   
+ Own-child      25401310557.30 26076913371.51         105252308206011.00  
+ Unmarried      17554822150.86 17596224586.27         72836825984660.42   
+ Wife           7896415272.51  8180357262.48          33477822155644.49   
+2022-07-11 16:19:59,579 - main.py[line:100] - INFO: ground truth:
+                  sum(a_age)  avg(a_age)  sum(a_hours_per_week)  \
+a_relationship                                                    
+ Husband         67336778711 38.56       68899110194.66           
+ Not-in-family   41827073623 38.59       42810427388.84           
+ Other-relative  5037094237  38.68       5141772942.15            
+ Own-child       25797235202 38.55       26454626717.27           
+ Unmarried       17331498534 38.45       17819579495.68           
+ Wife            7997160861  38.65       8207121739.90            
+
+                 avg(a_hours_per_week)      sum(a_fnlwgt)  avg(a_fnlwgt)  
+a_relationship                                                            
+ Husband        39.45                  310572167983047.88 177825.58       
+ Not-in-family  39.50                  191808644855494.41 176987.00       
+ Other-relative 39.49                  22869586720519.45  175631.92       
+ Own-child      39.53                  118612573522643.98 177245.50       
+ Unmarried      39.53                  79477737836955.09  176330.54       
+ Wife           39.67                  36446539396432.31  176153.23       
+2022-07-11 16:19:59,588 - main.py[line:550] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_relationship                                                                  
+ Husband        0.02        0.08           0.01                   0.03          
+ Not-in-family  0.01        0.07           0.00                   0.00          
+ Other-relative 0.02        0.05           0.01                   0.03          
+ Own-child      0.01        0.09           0.00                   0.02          
+ Unmarried      0.02        0.07           0.00                   0.01          
+ Wife           0.00        0.07           0.00                   0.01          
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_relationship                                         
+ Husband        0.10           0.00                    
+ Not-in-family  0.08           0.01                    
+ Other-relative 0.06           0.03                    
+ Own-child      0.11           0.01                    
+ Unmarried      0.08           0.01                    
+ Wife           0.08           0.00                    
+2022-07-11 16:19:59,589 - main.py[line:551] - INFO: relative error normalized:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_relationship                                                                  
+ Husband        0.02        0.08           0.01                   0.03          
+ Not-in-family  0.01        0.06           0.00                   0.00          
+ Other-relative 0.02        0.05           0.01                   0.03          
+ Own-child      0.01        0.09           0.00                   0.02          
+ Unmarried      0.02        0.07           0.00                   0.01          
+ Wife           0.00        0.07           0.00                   0.01          
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_relationship                                         
+ Husband        0.09           0.00                    
+ Not-in-family  0.08           0.01                    
+ Other-relative 0.05           0.03                    
+ Own-child      0.11           0.01                    
+ Unmarried      0.08           0.01                    
+ Wife           0.08           0.00                    
+2022-07-11 16:19:59,589 - main.py[line:554] - INFO: relative error average: 0.03394803180887853
+2022-07-11 16:19:59,589 - main.py[line:555] - INFO: relative error normalized average: 0.032830901663150974
+2022-07-11 16:19:59,592 - main.py[line:601] - INFO: total_time:5.90859267488122
+categorical_columns: ['a_education_num_0', 'a_education_num_1', 'a_education_num_2', 'a_education_num_3', 'a_education_num_4', 'a_relationship_0', 'a_relationship_1', 'a_relationship_2', 'a_relationship_3']
+categorical_columns: ['a_education_num_0', 'a_education_num_1', 'a_education_num_2', 'a_education_num_3', 'a_education_num_4', 'a_relationship_0', 'a_relationship_1', 'a_relationship_2', 'a_relationship_3']
+categorical_columns: ['a_education_num_0', 'a_education_num_1', 'a_education_num_2', 'a_education_num_3', 'a_education_num_4', 'a_relationship_0', 'a_relationship_1', 'a_relationship_2', 'a_relationship_3']
+categorical_columns: ['b_education_num_0', 'b_education_num_1', 'b_education_num_2', 'b_education_num_3', 'b_education_num_4']
+categorical_columns: ['b_education_num_0', 'b_education_num_1', 'b_education_num_2', 'b_education_num_3', 'b_education_num_4']
+categorical_columns: ['b_education_num_0', 'b_education_num_1', 'b_education_num_2', 'b_education_num_3', 'b_education_num_4']

@@ -1,0 +1,36 @@
+{
+    "name": "tpch-2g-lineitem_parts",
+    "data": "/home/lihan/train_dataset/tpch_2g/lineitem.csv",
+    "categorical_columns": [
+        "l_partkey"
+    ],
+    "numeric_columns": [
+        "l_extendedprice",
+        "l_quantity"
+    ],
+    "label_columns": [
+        "l_partkey"
+    ],
+    "bucket_columns": [
+        "l_partkey"
+    ],
+    "categorical_encoding": "binary",
+    "numeric_encoding": "gaussian",
+    "max_clusters": 5,
+    "model_type": "torch_cvae",
+    "lr": 0.001,
+    "optimizer_type": "adam",
+    "loss_agg_type": "mean",
+    "gpu_num": 0,
+    "epochs": 150,
+    "batch_size": 512,
+    "latent_dim": 150,
+    "intermediate_dim": 150,
+    "train_flag": "load",
+    "operation": "aqp",
+    "sample_method": "statistics",
+    "sample_rate": 0.01,
+    "sample_for_train": 0.2,
+    "header": 1,
+    "delimiter": ","
+}

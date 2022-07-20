@@ -110,6 +110,7 @@ class BinaryEncoder():
         #     cols[old_column_index: old_column_index + 1] = mod.columns
         if self.label != None and self.label not in self.origin_cols:
             self.feature_names = [col for col in cols if not col.startswith(self.label)]
+        print("feature_names:",self.feature_names)
         return X.reindex(columns=cols)
 
     def basen_to_integer(self, X):
@@ -131,11 +132,13 @@ class BinaryEncoder():
         if not isinstance(X_in, pd.DataFrame):
             X_in = pd.DataFrame(X_in, columns=self.feature_names)
         categorical_columns = [col for col in self.feature_names if col not in self.numeric_columns]
+        print("categorical_columns:",categorical_columns)
         X_in[categorical_columns] = X_in[categorical_columns].applymap(lambda x: 1 if x >= 0.5 else 0)
+        X_in2=X_in[categorical_columns]
         # numeric_df = X_in[self.numeric_columns]
         # X_in = X_in.applymap(lambda x: 1 if x >= 0.5 else 0)
         # X_in[self.feature_names] = numeric_df
-        X = self.basen_to_integer(X_in)
+        X = self.basen_to_integer(X_in2)
         for col, column_mapping in self.column_categories_map.items():
             if col in self.origin_cols:
                 # column_mapping = self.column_categories_map[switch]

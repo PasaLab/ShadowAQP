@@ -1,0 +1,1484 @@
+2022-03-16 20:55:19,797 - test.py[line:188] - INFO: dataset:tpcds
+2022-03-16 20:55:19,797 - test.py[line:204] - INFO: query:
+        select ss_promo_sk,avg(ss_wholesale_cost),avg(ss_list_price),
+        sum(ss_wholesale_cost),sum(ss_list_price)
+        from tpcds_1m.store_sales
+        group by ss_promo_sk order by ss_promo_sk
+         with model-0.001-./config/train/tpcds_ssales_torch_cvae.json
+2022-03-16 20:55:19,797 - test.py[line:205] - INFO: ground_truth_path:./ground_truth/tpcds-1m/swnj_truth.csv
+2022-03-16 20:55:19,797 - test.py[line:208] - INFO: round:1
+2022-03-16 20:55:19,797 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:19,799 - prompt.py[line:64] - INFO: parse time:0.0021260660141706467
+2022-03-16 20:55:19,799 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:19,800 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:19,933 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.13347405195236206
+2022-03-16 20:55:19,933 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:19,935 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:22,254 - model_utils.py[line:80] - INFO: load torch model time elapsed:2.318983169272542
+2022-03-16 20:55:22,254 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:2.454170009121299
+2022-03-16 20:55:22,254 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.001
+2022-03-16 20:55:22,950 - model_sampling.py[line:380] - INFO: sampling time:0.6953996140509844
+2022-03-16 20:55:22,960 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.009445564821362495
+2022-03-16 20:55:22,983 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.01                0.08   
+2                              0.63                0.87   
+3                              0.35                0.42   
+4                              0.28                0.46   
+5                              0.17                0.12   
+...                             ...                 ...   
+296                            0.60                0.74   
+297                            0.31                0.47   
+298                            0.16                0.17   
+299                            0.05                0.10   
+300                            0.03                0.18   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.01                0.08  
+2                              0.63                0.87  
+3                              0.35                0.42  
+4                              0.28                0.46  
+5                              0.17                0.12  
+...                             ...                 ...  
+296                            0.60                0.74  
+297                            0.31                0.47  
+298                            0.16                0.17  
+299                            0.05                0.10  
+300                            0.03                0.18  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:22,983 - prompt.py[line:89] - INFO: relative error average :0.26480435298456534
+2022-03-16 20:55:22,983 - prompt.py[line:91] - INFO: relative error normalized average :0.21907883049713361
+2022-03-16 20:55:22,983 - prompt.py[line:95] - INFO: AQP time:0.721392935141921
+2022-03-16 20:55:22,983 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:22,983 - test.py[line:208] - INFO: round:2
+2022-03-16 20:55:22,984 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:22,986 - prompt.py[line:64] - INFO: parse time:0.0020404867827892303
+2022-03-16 20:55:22,986 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:22,986 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:23,094 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.1079383846372366
+2022-03-16 20:55:23,094 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:23,095 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:23,096 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.0017632469534873962
+2022-03-16 20:55:23,096 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11067064106464386
+2022-03-16 20:55:23,097 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.001
+2022-03-16 20:55:23,259 - model_sampling.py[line:380] - INFO: sampling time:0.1616614367812872
+2022-03-16 20:55:23,267 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.007451709359884262
+2022-03-16 20:55:23,288 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.10                0.13   
+2                              0.55                0.54   
+3                              0.02                0.21   
+4                              0.12                0.22   
+5                              0.61                0.58   
+...                             ...                 ...   
+296                            0.53                0.59   
+297                            0.23                0.01   
+298                            0.60                0.27   
+299                            0.04                0.45   
+300                            0.05                0.01   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.10                0.13  
+2                              0.55                0.54  
+3                              0.02                0.21  
+4                              0.12                0.22  
+5                              0.61                0.58  
+...                             ...                 ...  
+296                            0.53                0.59  
+297                            0.23                0.01  
+298                            0.60                0.27  
+299                            0.04                0.45  
+300                            0.05                0.01  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:23,289 - prompt.py[line:89] - INFO: relative error average :0.2678674289028908
+2022-03-16 20:55:23,289 - prompt.py[line:91] - INFO: relative error normalized average :0.22090027468883908
+2022-03-16 20:55:23,289 - prompt.py[line:95] - INFO: AQP time:0.18467829190194607
+2022-03-16 20:55:23,289 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:23,289 - test.py[line:208] - INFO: round:3
+2022-03-16 20:55:23,289 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:23,291 - prompt.py[line:64] - INFO: parse time:0.0020222552120685577
+2022-03-16 20:55:23,291 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:23,291 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:23,399 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10783589817583561
+2022-03-16 20:55:23,399 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:23,400 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:23,401 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.0016439259052276611
+2022-03-16 20:55:23,401 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11045041494071484
+2022-03-16 20:55:23,402 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.001
+2022-03-16 20:55:23,563 - model_sampling.py[line:380] - INFO: sampling time:0.16145561821758747
+2022-03-16 20:55:23,572 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.007410550490021706
+2022-03-16 20:55:23,592 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.13                0.25   
+2                              0.35                0.27   
+3                              0.22                0.20   
+4                              0.13                0.26   
+5                              0.20                0.26   
+...                             ...                 ...   
+296                            0.17                0.27   
+297                            0.25                0.06   
+298                            0.48                0.40   
+299                            0.26                0.13   
+300                            0.27                0.06   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.13                0.25  
+2                              0.35                0.27  
+3                              0.22                0.20  
+4                              0.13                0.26  
+5                              0.20                0.26  
+...                             ...                 ...  
+296                            0.17                0.27  
+297                            0.25                0.06  
+298                            0.48                0.40  
+299                            0.26                0.13  
+300                            0.27                0.06  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:23,592 - prompt.py[line:89] - INFO: relative error average :0.2639118187877864
+2022-03-16 20:55:23,593 - prompt.py[line:91] - INFO: relative error normalized average :0.21839545498362176
+2022-03-16 20:55:23,593 - prompt.py[line:95] - INFO: AQP time:0.18368185684084892
+2022-03-16 20:55:23,593 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:23,593 - test.py[line:204] - INFO: query:
+        select ss_promo_sk,avg(ss_wholesale_cost),avg(ss_list_price),
+        sum(ss_wholesale_cost),sum(ss_list_price)
+        from tpcds_1m.store_sales
+        group by ss_promo_sk order by ss_promo_sk
+         with model-0.002-./config/train/tpcds_ssales_torch_cvae.json
+2022-03-16 20:55:23,593 - test.py[line:205] - INFO: ground_truth_path:./ground_truth/tpcds-1m/swnj_truth.csv
+2022-03-16 20:55:23,593 - test.py[line:208] - INFO: round:1
+2022-03-16 20:55:23,593 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:23,595 - prompt.py[line:64] - INFO: parse time:0.002000579610466957
+2022-03-16 20:55:23,595 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:23,595 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:23,703 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10787997767329216
+2022-03-16 20:55:23,703 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:23,704 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:23,706 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.001673756167292595
+2022-03-16 20:55:23,706 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11053027398884296
+2022-03-16 20:55:23,706 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.002
+2022-03-16 20:55:23,870 - model_sampling.py[line:380] - INFO: sampling time:0.16388637199997902
+2022-03-16 20:55:23,878 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.0074285659939050674
+2022-03-16 20:55:23,899 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.08                0.13   
+2                              0.07                0.14   
+3                              0.02                0.08   
+4                              0.20                0.15   
+5                              0.25                0.23   
+...                             ...                 ...   
+296                            0.11                0.12   
+297                            0.06                0.07   
+298                            0.51                0.49   
+299                            0.18                0.12   
+300                            0.14                0.02   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.08                0.13  
+2                              0.07                0.14  
+3                              0.02                0.08  
+4                              0.20                0.15  
+5                              0.25                0.23  
+...                             ...                 ...  
+296                            0.11                0.12  
+297                            0.06                0.07  
+298                            0.51                0.49  
+299                            0.18                0.12  
+300                            0.14                0.02  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:23,899 - prompt.py[line:89] - INFO: relative error average :0.18505054025319406
+2022-03-16 20:55:23,899 - prompt.py[line:91] - INFO: relative error normalized average :0.16168154844257038
+2022-03-16 20:55:23,899 - prompt.py[line:95] - INFO: AQP time:0.18640726432204247
+2022-03-16 20:55:23,900 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:23,900 - test.py[line:208] - INFO: round:2
+2022-03-16 20:55:23,900 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:23,902 - prompt.py[line:64] - INFO: parse time:0.0020316336303949356
+2022-03-16 20:55:23,902 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:23,902 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:24,010 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10819304175674915
+2022-03-16 20:55:24,010 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:24,011 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:24,013 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.001642860472202301
+2022-03-16 20:55:24,013 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.1108107790350914
+2022-03-16 20:55:24,013 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.002
+2022-03-16 20:55:24,177 - model_sampling.py[line:380] - INFO: sampling time:0.1642921194434166
+2022-03-16 20:55:24,186 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.0074749961495399475
+2022-03-16 20:55:24,208 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.26                0.25   
+2                              0.18                0.06   
+3                              0.07                0.11   
+4                              0.17                0.01   
+5                              0.09                0.09   
+...                             ...                 ...   
+296                            0.12                0.15   
+297                            0.03                0.02   
+298                            0.07                0.04   
+299                            0.27                0.20   
+300                            0.01                0.07   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.26                0.25  
+2                              0.18                0.06  
+3                              0.07                0.11  
+4                              0.17                0.01  
+5                              0.09                0.09  
+...                             ...                 ...  
+296                            0.12                0.15  
+297                            0.03                0.02  
+298                            0.07                0.04  
+299                            0.27                0.20  
+300                            0.01                0.07  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:24,208 - prompt.py[line:89] - INFO: relative error average :0.17579786045918822
+2022-03-16 20:55:24,208 - prompt.py[line:91] - INFO: relative error normalized average :0.15423262663196255
+2022-03-16 20:55:24,208 - prompt.py[line:95] - INFO: AQP time:0.1877572312951088
+2022-03-16 20:55:24,208 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:24,208 - test.py[line:208] - INFO: round:3
+2022-03-16 20:55:24,208 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:24,210 - prompt.py[line:64] - INFO: parse time:0.0020125210285186768
+2022-03-16 20:55:24,210 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:24,210 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:24,319 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10840550065040588
+2022-03-16 20:55:24,319 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:24,320 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:24,321 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.001652369275689125
+2022-03-16 20:55:24,321 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11104112677276134
+2022-03-16 20:55:24,321 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.002
+2022-03-16 20:55:24,486 - model_sampling.py[line:380] - INFO: sampling time:0.16455909609794617
+2022-03-16 20:55:24,495 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.007443007081747055
+2022-03-16 20:55:24,516 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.10                0.03   
+2                              0.23                0.18   
+3                              0.03                0.04   
+4                              0.15                0.10   
+5                              0.15                0.26   
+...                             ...                 ...   
+296                            0.04                0.02   
+297                            0.24                0.16   
+298                            0.23                0.37   
+299                            0.11                0.04   
+300                            0.26                0.07   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.10                0.03  
+2                              0.23                0.18  
+3                              0.03                0.04  
+4                              0.15                0.10  
+5                              0.15                0.26  
+...                             ...                 ...  
+296                            0.04                0.02  
+297                            0.24                0.16  
+298                            0.23                0.37  
+299                            0.11                0.04  
+300                            0.26                0.07  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:24,516 - prompt.py[line:89] - INFO: relative error average :0.1800988969366025
+2022-03-16 20:55:24,516 - prompt.py[line:91] - INFO: relative error normalized average :0.15871529807089885
+2022-03-16 20:55:24,516 - prompt.py[line:95] - INFO: AQP time:0.1871014330536127
+2022-03-16 20:55:24,516 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:24,516 - test.py[line:204] - INFO: query:
+        select ss_promo_sk,avg(ss_wholesale_cost),avg(ss_list_price),
+        sum(ss_wholesale_cost),sum(ss_list_price)
+        from tpcds_1m.store_sales
+        group by ss_promo_sk order by ss_promo_sk
+         with model-0.003-./config/train/tpcds_ssales_torch_cvae.json
+2022-03-16 20:55:24,516 - test.py[line:205] - INFO: ground_truth_path:./ground_truth/tpcds-1m/swnj_truth.csv
+2022-03-16 20:55:24,516 - test.py[line:208] - INFO: round:1
+2022-03-16 20:55:24,516 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:24,518 - prompt.py[line:64] - INFO: parse time:0.0020296871662139893
+2022-03-16 20:55:24,518 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:24,518 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:24,626 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10791261121630669
+2022-03-16 20:55:24,626 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:24,627 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:24,629 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.0016485769301652908
+2022-03-16 20:55:24,629 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11051306687295437
+2022-03-16 20:55:24,629 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.003
+2022-03-16 20:55:24,796 - model_sampling.py[line:380] - INFO: sampling time:0.16703327745199203
+2022-03-16 20:55:24,805 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.00746050663292408
+2022-03-16 20:55:24,826 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.07                0.03   
+2                              0.26                0.16   
+3                              0.07                0.02   
+4                              0.06                0.04   
+5                              0.15                0.16   
+...                             ...                 ...   
+296                            0.49                0.45   
+297                            0.28                0.26   
+298                            0.43                0.30   
+299                            0.16                0.23   
+300                            0.21                0.31   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.07                0.03  
+2                              0.26                0.16  
+3                              0.07                0.02  
+4                              0.06                0.04  
+5                              0.15                0.16  
+...                             ...                 ...  
+296                            0.49                0.45  
+297                            0.28                0.26  
+298                            0.43                0.30  
+299                            0.16                0.23  
+300                            0.21                0.31  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:24,826 - prompt.py[line:89] - INFO: relative error average :0.14677912811230465
+2022-03-16 20:55:24,826 - prompt.py[line:91] - INFO: relative error normalized average :0.13144598929584012
+2022-03-16 20:55:24,826 - prompt.py[line:95] - INFO: AQP time:0.18973064795136452
+2022-03-16 20:55:24,826 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:24,826 - test.py[line:208] - INFO: round:2
+2022-03-16 20:55:24,826 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:24,828 - prompt.py[line:64] - INFO: parse time:0.0020169951021671295
+2022-03-16 20:55:24,828 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:24,828 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:24,936 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10779831185936928
+2022-03-16 20:55:24,936 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:24,937 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:24,939 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.001658683642745018
+2022-03-16 20:55:24,939 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11042138375341892
+2022-03-16 20:55:24,939 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.003
+2022-03-16 20:55:25,106 - model_sampling.py[line:380] - INFO: sampling time:0.1668713353574276
+2022-03-16 20:55:25,114 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.007464252412319183
+2022-03-16 20:55:25,136 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.21                0.49   
+2                              0.05                0.04   
+3                              0.13                0.21   
+4                              0.02                0.01   
+5                              0.18                0.09   
+...                             ...                 ...   
+296                            0.00                0.11   
+297                            0.11                0.06   
+298                            0.01                0.07   
+299                            0.21                0.33   
+300                            0.05                0.03   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.21                0.49  
+2                              0.05                0.04  
+3                              0.13                0.21  
+4                              0.02                0.01  
+5                              0.18                0.09  
+...                             ...                 ...  
+296                            0.00                0.11  
+297                            0.11                0.06  
+298                            0.01                0.07  
+299                            0.21                0.33  
+300                            0.05                0.03  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:25,136 - prompt.py[line:89] - INFO: relative error average :0.1476864288962591
+2022-03-16 20:55:25,136 - prompt.py[line:91] - INFO: relative error normalized average :0.13273020884309175
+2022-03-16 20:55:25,136 - prompt.py[line:95] - INFO: AQP time:0.19006608612835407
+2022-03-16 20:55:25,136 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:25,136 - test.py[line:208] - INFO: round:3
+2022-03-16 20:55:25,136 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:25,138 - prompt.py[line:64] - INFO: parse time:0.0020260531455278397
+2022-03-16 20:55:25,139 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:25,139 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:25,247 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10811133868992329
+2022-03-16 20:55:25,247 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:25,248 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:25,249 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.001640819013118744
+2022-03-16 20:55:25,249 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11070047318935394
+2022-03-16 20:55:25,249 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.003
+2022-03-16 20:55:25,416 - model_sampling.py[line:380] - INFO: sampling time:0.1664978191256523
+2022-03-16 20:55:25,425 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.00746665894985199
+2022-03-16 20:55:25,445 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.00                0.03   
+2                              0.01                0.15   
+3                              0.10                0.08   
+4                              0.04                0.15   
+5                              0.03                0.07   
+...                             ...                 ...   
+296                            0.15                0.03   
+297                            0.10                0.10   
+298                            0.10                0.05   
+299                            0.03                0.02   
+300                            0.02                0.04   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.00                0.03  
+2                              0.01                0.15  
+3                              0.10                0.08  
+4                              0.04                0.15  
+5                              0.03                0.07  
+...                             ...                 ...  
+296                            0.15                0.03  
+297                            0.10                0.10  
+298                            0.10                0.05  
+299                            0.03                0.02  
+300                            0.02                0.04  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:25,445 - prompt.py[line:89] - INFO: relative error average :0.13663535251883308
+2022-03-16 20:55:25,445 - prompt.py[line:91] - INFO: relative error normalized average :0.12331277116048692
+2022-03-16 20:55:25,445 - prompt.py[line:95] - INFO: AQP time:0.18872125260531902
+2022-03-16 20:55:25,445 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:25,446 - test.py[line:204] - INFO: query:
+        select ss_promo_sk,avg(ss_wholesale_cost),avg(ss_list_price),
+        sum(ss_wholesale_cost),sum(ss_list_price)
+        from tpcds_1m.store_sales
+        group by ss_promo_sk order by ss_promo_sk
+         with model-0.004-./config/train/tpcds_ssales_torch_cvae.json
+2022-03-16 20:55:25,446 - test.py[line:205] - INFO: ground_truth_path:./ground_truth/tpcds-1m/swnj_truth.csv
+2022-03-16 20:55:25,446 - test.py[line:208] - INFO: round:1
+2022-03-16 20:55:25,446 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:25,448 - prompt.py[line:64] - INFO: parse time:0.0020592976361513138
+2022-03-16 20:55:25,448 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:25,448 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:25,556 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10802836157381535
+2022-03-16 20:55:25,556 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:25,557 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:25,559 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.001633996143937111
+2022-03-16 20:55:25,559 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11061800643801689
+2022-03-16 20:55:25,559 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.004
+2022-03-16 20:55:25,729 - model_sampling.py[line:380] - INFO: sampling time:0.1696382761001587
+2022-03-16 20:55:25,737 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.00751650333404541
+2022-03-16 20:55:25,758 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.06                0.03   
+2                              0.25                0.22   
+3                              0.07                0.07   
+4                              0.06                0.11   
+5                              0.38                0.27   
+...                             ...                 ...   
+296                            0.07                0.14   
+297                            0.12                0.11   
+298                            0.15                0.05   
+299                            0.09                0.11   
+300                            0.31                0.31   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.06                0.03  
+2                              0.25                0.22  
+3                              0.07                0.07  
+4                              0.06                0.11  
+5                              0.38                0.27  
+...                             ...                 ...  
+296                            0.07                0.14  
+297                            0.12                0.11  
+298                            0.15                0.05  
+299                            0.09                0.11  
+300                            0.31                0.31  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:25,758 - prompt.py[line:89] - INFO: relative error average :0.13131451221663382
+2022-03-16 20:55:25,758 - prompt.py[line:91] - INFO: relative error normalized average :0.11951842043697586
+2022-03-16 20:55:25,758 - prompt.py[line:95] - INFO: AQP time:0.19193857535719872
+2022-03-16 20:55:25,758 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:25,758 - test.py[line:208] - INFO: round:2
+2022-03-16 20:55:25,758 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:25,760 - prompt.py[line:64] - INFO: parse time:0.0020477529615163803
+2022-03-16 20:55:25,760 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:25,760 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:25,868 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.1077849492430687
+2022-03-16 20:55:25,868 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:25,869 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:25,871 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.001645473763346672
+2022-03-16 20:55:25,871 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11038980819284916
+2022-03-16 20:55:25,871 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.004
+2022-03-16 20:55:26,040 - model_sampling.py[line:380] - INFO: sampling time:0.16935401037335396
+2022-03-16 20:55:26,049 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.007478812709450722
+2022-03-16 20:55:26,070 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.09                0.15   
+2                              0.05                0.10   
+3                              0.00                0.06   
+4                              0.12                0.01   
+5                              0.06                0.21   
+...                             ...                 ...   
+296                            0.11                0.14   
+297                            0.03                0.08   
+298                            0.14                0.15   
+299                            0.03                0.01   
+300                            0.12                0.22   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.09                0.15  
+2                              0.05                0.10  
+3                              0.00                0.06  
+4                              0.12                0.01  
+5                              0.06                0.21  
+...                             ...                 ...  
+296                            0.11                0.14  
+297                            0.03                0.08  
+298                            0.14                0.15  
+299                            0.03                0.01  
+300                            0.12                0.22  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:26,070 - prompt.py[line:89] - INFO: relative error average :0.13183317083066395
+2022-03-16 20:55:26,070 - prompt.py[line:91] - INFO: relative error normalized average :0.11938751103058237
+2022-03-16 20:55:26,070 - prompt.py[line:95] - INFO: AQP time:0.19167252257466316
+2022-03-16 20:55:26,070 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:26,070 - test.py[line:208] - INFO: round:3
+2022-03-16 20:55:26,070 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:26,072 - prompt.py[line:64] - INFO: parse time:0.0020448602735996246
+2022-03-16 20:55:26,072 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:26,072 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:26,180 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10790370963513851
+2022-03-16 20:55:26,180 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:26,181 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:26,183 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.0016243737190961838
+2022-03-16 20:55:26,183 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11052530072629452
+2022-03-16 20:55:26,183 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.004
+2022-03-16 20:55:26,352 - model_sampling.py[line:380] - INFO: sampling time:0.1692903246730566
+2022-03-16 20:55:26,361 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.007470730692148209
+2022-03-16 20:55:26,382 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.09                0.03   
+2                              0.10                0.18   
+3                              0.11                0.10   
+4                              0.09                0.13   
+5                              0.26                0.30   
+...                             ...                 ...   
+296                            0.05                0.18   
+297                            0.09                0.13   
+298                            0.08                0.06   
+299                            0.16                0.13   
+300                            0.09                0.13   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.09                0.03  
+2                              0.10                0.18  
+3                              0.11                0.10  
+4                              0.09                0.13  
+5                              0.26                0.30  
+...                             ...                 ...  
+296                            0.05                0.18  
+297                            0.09                0.13  
+298                            0.08                0.06  
+299                            0.16                0.13  
+300                            0.09                0.13  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:26,382 - prompt.py[line:89] - INFO: relative error average :0.12440783897957298
+2022-03-16 20:55:26,382 - prompt.py[line:91] - INFO: relative error normalized average :0.1135675931838314
+2022-03-16 20:55:26,382 - prompt.py[line:95] - INFO: AQP time:0.19190704636275768
+2022-03-16 20:55:26,382 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:26,382 - test.py[line:204] - INFO: query:
+        select ss_promo_sk,avg(ss_wholesale_cost),avg(ss_list_price),
+        sum(ss_wholesale_cost),sum(ss_list_price)
+        from tpcds_1m.store_sales
+        group by ss_promo_sk order by ss_promo_sk
+         with model-0.005-./config/train/tpcds_ssales_torch_cvae.json
+2022-03-16 20:55:26,382 - test.py[line:205] - INFO: ground_truth_path:./ground_truth/tpcds-1m/swnj_truth.csv
+2022-03-16 20:55:26,383 - test.py[line:208] - INFO: round:1
+2022-03-16 20:55:26,383 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:26,385 - prompt.py[line:64] - INFO: parse time:0.0020166877657175064
+2022-03-16 20:55:26,385 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:26,385 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:26,493 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10795104131102562
+2022-03-16 20:55:26,493 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:26,494 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:26,495 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.0016381405293941498
+2022-03-16 20:55:26,495 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11054336279630661
+2022-03-16 20:55:26,495 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.005
+2022-03-16 20:55:26,667 - model_sampling.py[line:380] - INFO: sampling time:0.1715557761490345
+2022-03-16 20:55:26,676 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.007502568885684013
+2022-03-16 20:55:26,697 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.11                0.19   
+2                              0.06                0.03   
+3                              0.03                0.12   
+4                              0.07                0.21   
+5                              0.02                0.05   
+...                             ...                 ...   
+296                            0.12                0.10   
+297                            0.05                0.10   
+298                            0.06                0.10   
+299                            0.36                0.41   
+300                            0.15                0.26   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.11                0.19  
+2                              0.06                0.03  
+3                              0.03                0.12  
+4                              0.07                0.21  
+5                              0.02                0.05  
+...                             ...                 ...  
+296                            0.12                0.10  
+297                            0.05                0.10  
+298                            0.06                0.10  
+299                            0.36                0.41  
+300                            0.15                0.26  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:26,697 - prompt.py[line:89] - INFO: relative error average :0.11570981236886832
+2022-03-16 20:55:26,697 - prompt.py[line:91] - INFO: relative error normalized average :0.10585604989877441
+2022-03-16 20:55:26,697 - prompt.py[line:95] - INFO: AQP time:0.19466681592166424
+2022-03-16 20:55:26,697 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:26,697 - test.py[line:208] - INFO: round:2
+2022-03-16 20:55:26,697 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:26,700 - prompt.py[line:64] - INFO: parse time:0.0020342059433460236
+2022-03-16 20:55:26,700 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:26,700 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:26,808 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.1079164668917656
+2022-03-16 20:55:26,808 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:26,808 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:26,810 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.001642376184463501
+2022-03-16 20:55:26,810 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11051557399332523
+2022-03-16 20:55:26,810 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.005
+2022-03-16 20:55:26,982 - model_sampling.py[line:380] - INFO: sampling time:0.1718851439654827
+2022-03-16 20:55:26,991 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.007501143962144852
+2022-03-16 20:55:27,012 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.06                0.21   
+2                              0.08                0.14   
+3                              0.35                0.32   
+4                              0.12                0.08   
+5                              0.00                0.05   
+...                             ...                 ...   
+296                            0.00                0.04   
+297                            0.12                0.23   
+298                            0.28                0.25   
+299                            0.09                0.15   
+300                            0.06                0.16   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.06                0.21  
+2                              0.08                0.14  
+3                              0.35                0.32  
+4                              0.12                0.08  
+5                              0.00                0.05  
+...                             ...                 ...  
+296                            0.00                0.04  
+297                            0.12                0.23  
+298                            0.28                0.25  
+299                            0.09                0.15  
+300                            0.06                0.16  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:27,012 - prompt.py[line:89] - INFO: relative error average :0.1188484665156057
+2022-03-16 20:55:27,012 - prompt.py[line:91] - INFO: relative error normalized average :0.10843129047092125
+2022-03-16 20:55:27,012 - prompt.py[line:95] - INFO: AQP time:0.19419957511126995
+2022-03-16 20:55:27,012 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:27,012 - test.py[line:208] - INFO: round:3
+2022-03-16 20:55:27,012 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:27,014 - prompt.py[line:64] - INFO: parse time:0.002011135220527649
+2022-03-16 20:55:27,014 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:27,014 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:27,122 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10799949988722801
+2022-03-16 20:55:27,122 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:27,123 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:27,125 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.0016436930745840073
+2022-03-16 20:55:27,125 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11063849367201328
+2022-03-16 20:55:27,125 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.005
+2022-03-16 20:55:27,297 - model_sampling.py[line:380] - INFO: sampling time:0.17148682847619057
+2022-03-16 20:55:27,305 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.0075027476996183395
+2022-03-16 20:55:27,326 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.01                0.06   
+2                              0.02                0.05   
+3                              0.00                0.01   
+4                              0.03                0.04   
+5                              0.27                0.22   
+...                             ...                 ...   
+296                            0.12                0.12   
+297                            0.10                0.10   
+298                            0.14                0.09   
+299                            0.05                0.09   
+300                            0.05                0.03   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.01                0.06  
+2                              0.02                0.05  
+3                              0.00                0.01  
+4                              0.03                0.04  
+5                              0.27                0.22  
+...                             ...                 ...  
+296                            0.12                0.12  
+297                            0.10                0.10  
+298                            0.14                0.09  
+299                            0.05                0.09  
+300                            0.05                0.03  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:27,326 - prompt.py[line:89] - INFO: relative error average :0.11119911056499338
+2022-03-16 20:55:27,326 - prompt.py[line:91] - INFO: relative error normalized average :0.10215815586815985
+2022-03-16 20:55:27,326 - prompt.py[line:95] - INFO: AQP time:0.19450556673109531
+2022-03-16 20:55:27,326 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:27,327 - test.py[line:204] - INFO: query:
+        select ss_promo_sk,avg(ss_wholesale_cost),avg(ss_list_price),
+        sum(ss_wholesale_cost),sum(ss_list_price)
+        from tpcds_1m.store_sales
+        group by ss_promo_sk order by ss_promo_sk
+         with model-0.006-./config/train/tpcds_ssales_torch_cvae.json
+2022-03-16 20:55:27,327 - test.py[line:205] - INFO: ground_truth_path:./ground_truth/tpcds-1m/swnj_truth.csv
+2022-03-16 20:55:27,327 - test.py[line:208] - INFO: round:1
+2022-03-16 20:55:27,327 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:27,329 - prompt.py[line:64] - INFO: parse time:0.0020217429846525192
+2022-03-16 20:55:27,329 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:27,329 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:27,437 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10823569633066654
+2022-03-16 20:55:27,437 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:27,438 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:27,440 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.0016426853835582733
+2022-03-16 20:55:27,440 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11083262413740158
+2022-03-16 20:55:27,440 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.006
+2022-03-16 20:55:27,614 - model_sampling.py[line:380] - INFO: sampling time:0.17387413792312145
+2022-03-16 20:55:27,623 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.007554326206445694
+2022-03-16 20:55:27,643 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.07                0.16   
+2                              0.10                0.14   
+3                              0.07                0.15   
+4                              0.02                0.05   
+5                              0.00                0.01   
+...                             ...                 ...   
+296                            0.03                0.03   
+297                            0.03                0.10   
+298                            0.01                0.02   
+299                            0.18                0.28   
+300                            0.08                0.03   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.07                0.16  
+2                              0.10                0.14  
+3                              0.07                0.15  
+4                              0.02                0.05  
+5                              0.00                0.01  
+...                             ...                 ...  
+296                            0.03                0.03  
+297                            0.03                0.10  
+298                            0.01                0.02  
+299                            0.18                0.28  
+300                            0.08                0.03  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:27,643 - prompt.py[line:89] - INFO: relative error average :0.09916806737206274
+2022-03-16 20:55:27,643 - prompt.py[line:91] - INFO: relative error normalized average :0.09199071742199652
+2022-03-16 20:55:27,643 - prompt.py[line:95] - INFO: AQP time:0.19641171395778656
+2022-03-16 20:55:27,643 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:27,644 - test.py[line:208] - INFO: round:2
+2022-03-16 20:55:27,644 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:27,646 - prompt.py[line:64] - INFO: parse time:0.0020125918090343475
+2022-03-16 20:55:27,646 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:27,646 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:27,754 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.1080311480909586
+2022-03-16 20:55:27,754 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:27,755 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:27,756 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.0016239061951637268
+2022-03-16 20:55:27,756 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11060065403580666
+2022-03-16 20:55:27,756 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.006
+2022-03-16 20:55:27,931 - model_sampling.py[line:380] - INFO: sampling time:0.17416196502745152
+2022-03-16 20:55:27,939 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.007582979276776314
+2022-03-16 20:55:27,961 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.07                0.04   
+2                              0.05                0.05   
+3                              0.10                0.06   
+4                              0.07                0.05   
+5                              0.08                0.18   
+...                             ...                 ...   
+296                            0.18                0.15   
+297                            0.21                0.19   
+298                            0.07                0.10   
+299                            0.16                0.24   
+300                            0.12                0.19   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.07                0.04  
+2                              0.05                0.05  
+3                              0.10                0.06  
+4                              0.07                0.05  
+5                              0.08                0.18  
+...                             ...                 ...  
+296                            0.18                0.15  
+297                            0.21                0.19  
+298                            0.07                0.10  
+299                            0.16                0.24  
+300                            0.12                0.19  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:27,961 - prompt.py[line:89] - INFO: relative error average :0.10187004307260143
+2022-03-16 20:55:27,961 - prompt.py[line:91] - INFO: relative error normalized average :0.09445870066521579
+2022-03-16 20:55:27,961 - prompt.py[line:95] - INFO: AQP time:0.19726546853780746
+2022-03-16 20:55:27,961 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:27,961 - test.py[line:208] - INFO: round:3
+2022-03-16 20:55:27,961 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:27,963 - prompt.py[line:64] - INFO: parse time:0.002019288018345833
+2022-03-16 20:55:27,963 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:27,963 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:28,072 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10823533684015274
+2022-03-16 20:55:28,072 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:28,072 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:28,074 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.001648174598813057
+2022-03-16 20:55:28,074 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11084330081939697
+2022-03-16 20:55:28,074 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.006
+2022-03-16 20:55:28,249 - model_sampling.py[line:380] - INFO: sampling time:0.1741561833769083
+2022-03-16 20:55:28,257 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.007694268599152565
+2022-03-16 20:55:28,278 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.07                0.01   
+2                              0.13                0.15   
+3                              0.16                0.18   
+4                              0.00                0.08   
+5                              0.12                0.08   
+...                             ...                 ...   
+296                            0.08                0.11   
+297                            0.07                0.11   
+298                            0.01                0.03   
+299                            0.18                0.18   
+300                            0.02                0.00   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.07                0.01  
+2                              0.13                0.15  
+3                              0.16                0.18  
+4                              0.00                0.08  
+5                              0.12                0.08  
+...                             ...                 ...  
+296                            0.08                0.11  
+297                            0.07                0.11  
+298                            0.01                0.03  
+299                            0.18                0.18  
+300                            0.02                0.00  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:28,278 - prompt.py[line:89] - INFO: relative error average :0.09852437529334816
+2022-03-16 20:55:28,278 - prompt.py[line:91] - INFO: relative error normalized average :0.09136020129228785
+2022-03-16 20:55:28,278 - prompt.py[line:95] - INFO: AQP time:0.1970383059233427
+2022-03-16 20:55:28,278 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:28,279 - test.py[line:204] - INFO: query:
+        select ss_promo_sk,avg(ss_wholesale_cost),avg(ss_list_price),
+        sum(ss_wholesale_cost),sum(ss_list_price)
+        from tpcds_1m.store_sales
+        group by ss_promo_sk order by ss_promo_sk
+         with model-0.007-./config/train/tpcds_ssales_torch_cvae.json
+2022-03-16 20:55:28,279 - test.py[line:205] - INFO: ground_truth_path:./ground_truth/tpcds-1m/swnj_truth.csv
+2022-03-16 20:55:28,279 - test.py[line:208] - INFO: round:1
+2022-03-16 20:55:28,279 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:28,281 - prompt.py[line:64] - INFO: parse time:0.0020307358354330063
+2022-03-16 20:55:28,281 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:28,281 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:28,389 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10809704847633839
+2022-03-16 20:55:28,389 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:28,390 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:28,391 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.001642957329750061
+2022-03-16 20:55:28,392 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.1106946561485529
+2022-03-16 20:55:28,392 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.007
+2022-03-16 20:55:28,569 - model_sampling.py[line:380] - INFO: sampling time:0.1768704354763031
+2022-03-16 20:55:28,577 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.007577715441584587
+2022-03-16 20:55:28,598 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.08                0.14   
+2                              0.06                0.08   
+3                              0.00                0.04   
+4                              0.11                0.13   
+5                              0.01                0.03   
+...                             ...                 ...   
+296                            0.06                0.05   
+297                            0.05                0.00   
+298                            0.10                0.12   
+299                            0.07                0.07   
+300                            0.19                0.34   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.08                0.14  
+2                              0.06                0.08  
+3                              0.00                0.04  
+4                              0.11                0.13  
+5                              0.01                0.03  
+...                             ...                 ...  
+296                            0.06                0.05  
+297                            0.05                0.00  
+298                            0.10                0.12  
+299                            0.07                0.07  
+300                            0.19                0.34  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:28,598 - prompt.py[line:89] - INFO: relative error average :0.09071158622922247
+2022-03-16 20:55:28,598 - prompt.py[line:91] - INFO: relative error normalized average :0.08477107274857644
+2022-03-16 20:55:28,598 - prompt.py[line:95] - INFO: AQP time:0.19975926354527473
+2022-03-16 20:55:28,598 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:28,598 - test.py[line:208] - INFO: round:2
+2022-03-16 20:55:28,599 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:28,601 - prompt.py[line:64] - INFO: parse time:0.0020178426057100296
+2022-03-16 20:55:28,601 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:28,601 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:28,709 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10798332281410694
+2022-03-16 20:55:28,709 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:28,710 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:28,711 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.0016450956463813782
+2022-03-16 20:55:28,711 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11058691143989563
+2022-03-16 20:55:28,711 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.007
+2022-03-16 20:55:28,903 - model_sampling.py[line:380] - INFO: sampling time:0.19148662500083447
+2022-03-16 20:55:28,912 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.007564360275864601
+2022-03-16 20:55:28,932 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.06                0.00   
+2                              0.25                0.29   
+3                              0.08                0.07   
+4                              0.07                0.03   
+5                              0.08                0.06   
+...                             ...                 ...   
+296                            0.07                0.09   
+297                            0.04                0.00   
+298                            0.04                0.01   
+299                            0.16                0.10   
+300                            0.07                0.14   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.06                0.00  
+2                              0.25                0.29  
+3                              0.08                0.07  
+4                              0.07                0.03  
+5                              0.08                0.06  
+...                             ...                 ...  
+296                            0.07                0.09  
+297                            0.04                0.00  
+298                            0.04                0.01  
+299                            0.16                0.10  
+300                            0.07                0.14  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:28,932 - prompt.py[line:89] - INFO: relative error average :0.09251036036179157
+2022-03-16 20:55:28,933 - prompt.py[line:91] - INFO: relative error normalized average :0.0861312562570571
+2022-03-16 20:55:28,933 - prompt.py[line:95] - INFO: AQP time:0.214186143130064
+2022-03-16 20:55:28,933 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:28,933 - test.py[line:208] - INFO: round:3
+2022-03-16 20:55:28,933 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:28,935 - prompt.py[line:64] - INFO: parse time:0.002021392807364464
+2022-03-16 20:55:28,935 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:28,935 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:29,043 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.1083766371011734
+2022-03-16 20:55:29,043 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:29,044 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:29,046 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.0016441401094198227
+2022-03-16 20:55:29,046 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11100145801901817
+2022-03-16 20:55:29,046 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.007
+2022-03-16 20:55:29,223 - model_sampling.py[line:380] - INFO: sampling time:0.1766179297119379
+2022-03-16 20:55:29,231 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.007559152320027351
+2022-03-16 20:55:29,252 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.01                0.05   
+2                              0.23                0.20   
+3                              0.23                0.27   
+4                              0.31                0.28   
+5                              0.03                0.06   
+...                             ...                 ...   
+296                            0.08                0.14   
+297                            0.12                0.07   
+298                            0.04                0.01   
+299                            0.00                0.04   
+300                            0.04                0.10   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.01                0.05  
+2                              0.23                0.20  
+3                              0.23                0.27  
+4                              0.31                0.28  
+5                              0.03                0.06  
+...                             ...                 ...  
+296                            0.08                0.14  
+297                            0.12                0.07  
+298                            0.04                0.01  
+299                            0.00                0.04  
+300                            0.04                0.10  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:29,252 - prompt.py[line:89] - INFO: relative error average :0.09409931358430686
+2022-03-16 20:55:29,252 - prompt.py[line:91] - INFO: relative error normalized average :0.08744632624842538
+2022-03-16 20:55:29,252 - prompt.py[line:95] - INFO: AQP time:0.19890168868005276
+2022-03-16 20:55:29,252 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:29,252 - test.py[line:204] - INFO: query:
+        select ss_promo_sk,avg(ss_wholesale_cost),avg(ss_list_price),
+        sum(ss_wholesale_cost),sum(ss_list_price)
+        from tpcds_1m.store_sales
+        group by ss_promo_sk order by ss_promo_sk
+         with model-0.008-./config/train/tpcds_ssales_torch_cvae.json
+2022-03-16 20:55:29,252 - test.py[line:205] - INFO: ground_truth_path:./ground_truth/tpcds-1m/swnj_truth.csv
+2022-03-16 20:55:29,252 - test.py[line:208] - INFO: round:1
+2022-03-16 20:55:29,252 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:29,254 - prompt.py[line:64] - INFO: parse time:0.0020279716700315475
+2022-03-16 20:55:29,254 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:29,254 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:29,363 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10852314159274101
+2022-03-16 20:55:29,363 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:29,364 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:29,366 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.001660449430346489
+2022-03-16 20:55:29,366 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11114163510501385
+2022-03-16 20:55:29,366 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.008
+2022-03-16 20:55:29,545 - model_sampling.py[line:380] - INFO: sampling time:0.17884934321045876
+2022-03-16 20:55:29,553 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.007581174373626709
+2022-03-16 20:55:29,574 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.12                0.11   
+2                              0.15                0.12   
+3                              0.02                0.07   
+4                              0.01                0.02   
+5                              0.20                0.12   
+...                             ...                 ...   
+296                            0.02                0.05   
+297                            0.08                0.04   
+298                            0.04                0.08   
+299                            0.00                0.05   
+300                            0.07                0.05   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.12                0.11  
+2                              0.15                0.12  
+3                              0.02                0.07  
+4                              0.01                0.02  
+5                              0.20                0.12  
+...                             ...                 ...  
+296                            0.02                0.05  
+297                            0.08                0.04  
+298                            0.04                0.08  
+299                            0.00                0.05  
+300                            0.07                0.05  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:29,574 - prompt.py[line:89] - INFO: relative error average :0.0890166226596133
+2022-03-16 20:55:29,574 - prompt.py[line:91] - INFO: relative error normalized average :0.08335640394875826
+2022-03-16 20:55:29,574 - prompt.py[line:95] - INFO: AQP time:0.2012261301279068
+2022-03-16 20:55:29,574 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:29,574 - test.py[line:208] - INFO: round:2
+2022-03-16 20:55:29,574 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:29,576 - prompt.py[line:64] - INFO: parse time:0.002008264884352684
+2022-03-16 20:55:29,576 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:29,576 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:29,684 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10809524171054363
+2022-03-16 20:55:29,684 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:29,685 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:29,687 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.0016395002603530884
+2022-03-16 20:55:29,687 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11068625189363956
+2022-03-16 20:55:29,687 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.008
+2022-03-16 20:55:29,867 - model_sampling.py[line:380] - INFO: sampling time:0.17962771840393543
+2022-03-16 20:55:29,875 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.007571237161755562
+2022-03-16 20:55:29,896 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.01                0.02   
+2                              0.05                0.02   
+3                              0.05                0.05   
+4                              0.10                0.21   
+5                              0.03                0.03   
+...                             ...                 ...   
+296                            0.05                0.07   
+297                            0.19                0.21   
+298                            0.01                0.06   
+299                            0.13                0.15   
+300                            0.13                0.06   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.01                0.02  
+2                              0.05                0.02  
+3                              0.05                0.05  
+4                              0.10                0.21  
+5                              0.03                0.03  
+...                             ...                 ...  
+296                            0.05                0.07  
+297                            0.19                0.21  
+298                            0.01                0.06  
+299                            0.13                0.15  
+300                            0.13                0.06  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:29,896 - prompt.py[line:89] - INFO: relative error average :0.09108151044054066
+2022-03-16 20:55:29,896 - prompt.py[line:91] - INFO: relative error normalized average :0.085007897494599
+2022-03-16 20:55:29,896 - prompt.py[line:95] - INFO: AQP time:0.20194509997963905
+2022-03-16 20:55:29,896 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:29,896 - test.py[line:208] - INFO: round:3
+2022-03-16 20:55:29,896 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:29,898 - prompt.py[line:64] - INFO: parse time:0.002008313313126564
+2022-03-16 20:55:29,898 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:29,898 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:30,006 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10810930095613003
+2022-03-16 20:55:30,007 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:30,007 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:30,009 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.0016366168856620789
+2022-03-16 20:55:30,009 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11069585755467415
+2022-03-16 20:55:30,009 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.008
+2022-03-16 20:55:30,188 - model_sampling.py[line:380] - INFO: sampling time:0.17905844561755657
+2022-03-16 20:55:30,197 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.007565682753920555
+2022-03-16 20:55:30,217 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.06                0.06   
+2                              0.13                0.09   
+3                              0.10                0.01   
+4                              0.02                0.04   
+5                              0.08                0.06   
+...                             ...                 ...   
+296                            0.10                0.09   
+297                            0.06                0.03   
+298                            0.06                0.10   
+299                            0.01                0.04   
+300                            0.04                0.03   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.06                0.06  
+2                              0.13                0.09  
+3                              0.10                0.01  
+4                              0.02                0.04  
+5                              0.08                0.06  
+...                             ...                 ...  
+296                            0.10                0.09  
+297                            0.06                0.03  
+298                            0.06                0.10  
+299                            0.01                0.04  
+300                            0.04                0.03  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:30,218 - prompt.py[line:89] - INFO: relative error average :0.08569590008067171
+2022-03-16 20:55:30,218 - prompt.py[line:91] - INFO: relative error normalized average :0.0803088772397365
+2022-03-16 20:55:30,218 - prompt.py[line:95] - INFO: AQP time:0.20151021145284176
+2022-03-16 20:55:30,218 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:30,218 - test.py[line:204] - INFO: query:
+        select ss_promo_sk,avg(ss_wholesale_cost),avg(ss_list_price),
+        sum(ss_wholesale_cost),sum(ss_list_price)
+        from tpcds_1m.store_sales
+        group by ss_promo_sk order by ss_promo_sk
+         with model-0.009-./config/train/tpcds_ssales_torch_cvae.json
+2022-03-16 20:55:30,218 - test.py[line:205] - INFO: ground_truth_path:./ground_truth/tpcds-1m/swnj_truth.csv
+2022-03-16 20:55:30,218 - test.py[line:208] - INFO: round:1
+2022-03-16 20:55:30,218 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:30,220 - prompt.py[line:64] - INFO: parse time:0.002021465450525284
+2022-03-16 20:55:30,220 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:30,220 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:30,329 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10843214951455593
+2022-03-16 20:55:30,329 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:30,329 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:30,331 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.001649271696805954
+2022-03-16 20:55:30,331 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11103165149688721
+2022-03-16 20:55:30,331 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.009
+2022-03-16 20:55:30,520 - model_sampling.py[line:380] - INFO: sampling time:0.1884818896651268
+2022-03-16 20:55:30,529 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.007928069680929184
+2022-03-16 20:55:30,550 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.06                0.02   
+2                              0.00                0.04   
+3                              0.17                0.21   
+4                              0.24                0.21   
+5                              0.18                0.16   
+...                             ...                 ...   
+296                            0.03                0.01   
+297                            0.03                0.09   
+298                            0.08                0.12   
+299                            0.18                0.08   
+300                            0.01                0.07   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.06                0.02  
+2                              0.00                0.04  
+3                              0.17                0.21  
+4                              0.24                0.21  
+5                              0.18                0.16  
+...                             ...                 ...  
+296                            0.03                0.01  
+297                            0.03                0.09  
+298                            0.08                0.12  
+299                            0.18                0.08  
+300                            0.01                0.07  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:30,550 - prompt.py[line:89] - INFO: relative error average :0.08208405882508761
+2022-03-16 20:55:30,550 - prompt.py[line:91] - INFO: relative error normalized average :0.07701565421683501
+2022-03-16 20:55:30,550 - prompt.py[line:95] - INFO: AQP time:0.21147475577890873
+2022-03-16 20:55:30,550 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:30,550 - test.py[line:208] - INFO: round:2
+2022-03-16 20:55:30,550 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:30,552 - prompt.py[line:64] - INFO: parse time:0.002040265128016472
+2022-03-16 20:55:30,552 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:30,552 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:30,661 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10895432159304619
+2022-03-16 20:55:30,661 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:30,662 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:30,664 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.001623721793293953
+2022-03-16 20:55:30,664 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11153760552406311
+2022-03-16 20:55:30,664 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.009
+2022-03-16 20:55:30,846 - model_sampling.py[line:380] - INFO: sampling time:0.1814499907195568
+2022-03-16 20:55:30,854 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.00761810876429081
+2022-03-16 20:55:30,875 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.07                0.08   
+2                              0.17                0.02   
+3                              0.04                0.03   
+4                              0.10                0.11   
+5                              0.00                0.00   
+...                             ...                 ...   
+296                            0.17                0.19   
+297                            0.09                0.10   
+298                            0.03                0.07   
+299                            0.08                0.13   
+300                            0.01                0.06   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.07                0.08  
+2                              0.17                0.02  
+3                              0.04                0.03  
+4                              0.10                0.11  
+5                              0.00                0.00  
+...                             ...                 ...  
+296                            0.17                0.19  
+297                            0.09                0.10  
+298                            0.03                0.07  
+299                            0.08                0.13  
+300                            0.01                0.06  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:30,875 - prompt.py[line:89] - INFO: relative error average :0.081792692384716
+2022-03-16 20:55:30,875 - prompt.py[line:91] - INFO: relative error normalized average :0.07680662683087838
+2022-03-16 20:55:30,875 - prompt.py[line:95] - INFO: AQP time:0.2038890291005373
+2022-03-16 20:55:30,875 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:30,875 - test.py[line:208] - INFO: round:3
+2022-03-16 20:55:30,875 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:30,877 - prompt.py[line:64] - INFO: parse time:0.002006273716688156
+2022-03-16 20:55:30,877 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:30,877 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:30,985 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10828225687146187
+2022-03-16 20:55:30,986 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:30,986 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:30,988 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.0016678087413311005
+2022-03-16 20:55:30,988 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11090306751430035
+2022-03-16 20:55:30,988 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.009
+2022-03-16 20:55:31,170 - model_sampling.py[line:380] - INFO: sampling time:0.1813183445483446
+2022-03-16 20:55:31,178 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.007682744413614273
+2022-03-16 20:55:31,200 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.01                0.01   
+2                              0.23                0.28   
+3                              0.03                0.01   
+4                              0.16                0.22   
+5                              0.01                0.04   
+...                             ...                 ...   
+296                            0.03                0.01   
+297                            0.11                0.10   
+298                            0.00                0.01   
+299                            0.01                0.01   
+300                            0.02                0.08   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.01                0.01  
+2                              0.23                0.28  
+3                              0.03                0.01  
+4                              0.16                0.22  
+5                              0.01                0.04  
+...                             ...                 ...  
+296                            0.03                0.01  
+297                            0.11                0.10  
+298                            0.00                0.01  
+299                            0.01                0.01  
+300                            0.02                0.08  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:31,200 - prompt.py[line:89] - INFO: relative error average :0.08359469521318319
+2022-03-16 20:55:31,200 - prompt.py[line:91] - INFO: relative error normalized average :0.07857911689392767
+2022-03-16 20:55:31,200 - prompt.py[line:95] - INFO: AQP time:0.2046191357076168
+2022-03-16 20:55:31,200 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:31,200 - test.py[line:204] - INFO: query:
+        select ss_promo_sk,avg(ss_wholesale_cost),avg(ss_list_price),
+        sum(ss_wholesale_cost),sum(ss_list_price)
+        from tpcds_1m.store_sales
+        group by ss_promo_sk order by ss_promo_sk
+         with model-0.010-./config/train/tpcds_ssales_torch_cvae.json
+2022-03-16 20:55:31,200 - test.py[line:205] - INFO: ground_truth_path:./ground_truth/tpcds-1m/swnj_truth.csv
+2022-03-16 20:55:31,200 - test.py[line:208] - INFO: round:1
+2022-03-16 20:55:31,200 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:31,202 - prompt.py[line:64] - INFO: parse time:0.002030603587627411
+2022-03-16 20:55:31,202 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:31,202 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:31,311 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10865535773336887
+2022-03-16 20:55:31,311 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:31,312 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:31,314 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.0017285700887441635
+2022-03-16 20:55:31,314 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11134533956646919
+2022-03-16 20:55:31,314 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.01
+2022-03-16 20:55:31,498 - model_sampling.py[line:380] - INFO: sampling time:0.1836888324469328
+2022-03-16 20:55:31,506 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.007613660767674446
+2022-03-16 20:55:31,527 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.11                0.10   
+2                              0.13                0.11   
+3                              0.08                0.03   
+4                              0.00                0.01   
+5                              0.15                0.16   
+...                             ...                 ...   
+296                            0.08                0.16   
+297                            0.00                0.03   
+298                            0.09                0.11   
+299                            0.08                0.11   
+300                            0.03                0.11   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.11                0.10  
+2                              0.13                0.11  
+3                              0.08                0.03  
+4                              0.00                0.01  
+5                              0.15                0.16  
+...                             ...                 ...  
+296                            0.08                0.16  
+297                            0.00                0.03  
+298                            0.09                0.11  
+299                            0.08                0.11  
+300                            0.03                0.11  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:31,527 - prompt.py[line:89] - INFO: relative error average :0.07957909126567124
+2022-03-16 20:55:31,527 - prompt.py[line:91] - INFO: relative error normalized average :0.07478871700779732
+2022-03-16 20:55:31,527 - prompt.py[line:95] - INFO: AQP time:0.2065606266260147
+2022-03-16 20:55:31,527 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:31,527 - test.py[line:208] - INFO: round:2
+2022-03-16 20:55:31,527 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:31,530 - prompt.py[line:64] - INFO: parse time:0.0020358581095933914
+2022-03-16 20:55:31,530 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:31,530 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:31,638 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10842796415090561
+2022-03-16 20:55:31,638 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:31,639 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:31,641 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.0016388129442930222
+2022-03-16 20:55:31,641 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11102297343313694
+2022-03-16 20:55:31,641 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.01
+2022-03-16 20:55:31,825 - model_sampling.py[line:380] - INFO: sampling time:0.1839373428374529
+2022-03-16 20:55:31,834 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.007617121562361717
+2022-03-16 20:55:31,855 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.01                0.01   
+2                              0.08                0.03   
+3                              0.03                0.12   
+4                              0.17                0.14   
+5                              0.09                0.08   
+...                             ...                 ...   
+296                            0.07                0.07   
+297                            0.12                0.10   
+298                            0.06                0.01   
+299                            0.10                0.14   
+300                            0.08                0.10   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.01                0.01  
+2                              0.08                0.03  
+3                              0.03                0.12  
+4                              0.17                0.14  
+5                              0.09                0.08  
+...                             ...                 ...  
+296                            0.07                0.07  
+297                            0.12                0.10  
+298                            0.06                0.01  
+299                            0.10                0.14  
+300                            0.08                0.10  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:31,855 - prompt.py[line:89] - INFO: relative error average :0.07630261075670858
+2022-03-16 20:55:31,855 - prompt.py[line:91] - INFO: relative error normalized average :0.07206454224288959
+2022-03-16 20:55:31,855 - prompt.py[line:95] - INFO: AQP time:0.2068808265030384
+2022-03-16 20:55:31,855 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:31,855 - test.py[line:208] - INFO: round:3
+2022-03-16 20:55:31,855 - prompt.py[line:60] - INFO: Execute approximate query processing.
+2022-03-16 20:55:31,857 - prompt.py[line:64] - INFO: parse time:0.002018732950091362
+2022-03-16 20:55:31,857 - model_sampling.py[line:42] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-03-16 20:55:31,857 - dataset_utils.py[line:521] - INFO: load existing dataset(light):tpcds-1m-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-03-16 20:55:31,965 - dataset_utils.py[line:530] - INFO: load dataset(light) time elapsed:0.10831382870674133
+2022-03-16 20:55:31,966 - pytorch_cvae.py[line:272] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-03-16 20:55:31,966 - model_utils.py[line:69] - INFO: load model name:torch_cvae_tpcds-1m-ssales_ss_promo_sk_ld100_id150_bs1024_ep100_0_binary_gaussian5
+2022-03-16 20:55:31,968 - model_utils.py[line:80] - INFO: load torch model time elapsed:0.001657973974943161
+2022-03-16 20:55:31,968 - pytorch_cvae.py[line:282] - INFO: load model time elapsed:0.11092610843479633
+2022-03-16 20:55:31,968 - model_sampling.py[line:238] - INFO: statistics sampling rate:0.01
+2022-03-16 20:55:32,153 - model_sampling.py[line:380] - INFO: sampling time:0.18412172980606556
+2022-03-16 20:55:32,161 - model_sampling.py[line:61] - INFO: execute rewrited query time:0.007654767483472824
+2022-03-16 20:55:32,182 - prompt.py[line:86] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1                              0.04                0.12   
+2                              0.01                0.02   
+3                              0.02                0.04   
+4                              0.04                0.16   
+5                              0.11                0.01   
+...                             ...                 ...   
+296                            0.12                0.11   
+297                            0.02                0.03   
+298                            0.02                0.02   
+299                            0.10                0.13   
+300                            0.03                0.00   
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  
+ss_promo_sk                                              
+1                              0.04                0.12  
+2                              0.01                0.02  
+3                              0.02                0.04  
+4                              0.04                0.16  
+5                              0.11                0.01  
+...                             ...                 ...  
+296                            0.12                0.11  
+297                            0.02                0.03  
+298                            0.02                0.02  
+299                            0.10                0.13  
+300                            0.03                0.00  
+
+[300 rows x 4 columns]
+2022-03-16 20:55:32,182 - prompt.py[line:89] - INFO: relative error average :0.08144548186060191
+2022-03-16 20:55:32,182 - prompt.py[line:91] - INFO: relative error normalized average :0.07653658427757083
+2022-03-16 20:55:32,182 - prompt.py[line:95] - INFO: AQP time:0.20669275149703026
+2022-03-16 20:55:32,182 - prompt.py[line:96] - INFO: Saving info
+2022-03-16 20:55:32,182 - test.py[line:231] - INFO: dataset:tpcds
+average running times:[0.363, 0.187, 0.19, 0.192, 0.195, 0.197, 0.204, 0.202, 0.207, 0.207]
+average query errors:[0.219458, 0.15821, 0.129163, 0.117491, 0.105482, 0.092603, 0.086116, 0.082891, 0.077467, 0.074464]

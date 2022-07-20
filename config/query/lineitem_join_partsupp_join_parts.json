@@ -1,0 +1,19 @@
+{
+    "name": "lineitem_join_partsupp_join_parts",
+    "train_config_files": [
+      "./config/train/tpch_multi_join_lineitem.json",
+      "./config/train/tpch_multi_join_partsupp.json",
+      "./config/train/tpch_multi_join_part.json"
+    ],
+    "multi_sample_times": 1,
+    "operation": "aqp",
+    "join_cols": ["l_partkey","ps_partkey","p_partkey"],
+    "groupby_cols": ["p_brand"],
+    "result_path": "./output/aqp_result/lpp_res.csv",
+    "diff_path": "./output/diff/lpp_diff.csv",
+    "sum_cols": ["l_quantity","l_extendedprice","p_retailprice","ps_availqty","ps_supplycost"],
+    "avg_cols": ["l_quantity","l_extendedprice","p_retailprice","ps_availqty","ps_supplycost"],
+    "var": "./var/tpch-1m/lp_var.csv",
+    "ground_truth": "./ground_truth/tpch-2g/lpp_truth.csv"
+  }
+  

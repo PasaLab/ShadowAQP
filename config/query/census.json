@@ -1,0 +1,18 @@
+{
+    "name": "census_self_join",
+    "train_config_files": [
+      "./config/train/census_a_torch_cvae.json",
+      "./config/train/census_b_torch_cvae.json"
+    ],
+    "multi_sample_times": 3,
+    "operation": "aqp",
+    "join_cols": ["a_education_num","b_education_num"],
+    "groupby_cols": ["a_education_num"],
+    "result_path": "./output/aqp_result/census_res.csv",
+    "diff_path": "./output/diff/census_diff.csv",
+    "sum_cols": ["a_age","a_hours_per_week","a_fnlwgt"],
+    "avg_cols": ["a_age","a_hours_per_week","a_fnlwgt"],
+    "var": "./var/tpch-1m/cn_var.csv",
+    "ground_truth": "./ground_truth/census/census_truth.csv"
+  }
+  

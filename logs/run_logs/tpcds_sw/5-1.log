@@ -1,0 +1,239 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2022-07-07 18:05:33,731 - main.py[line:581] - INFO: load query config config/query/ssales_join_wsales.json successfully
+2022-07-07 18:05:33,731 - main.py[line:588] - INFO: load train config ./config/train/tpcds_ssales_torch_cvae.json successfully
+2022-07-07 18:05:33,731 - main.py[line:588] - INFO: load train config ./config/train/tpcds_wsales_torch_cvae.json successfully
+2022-07-07 18:05:33,731 - dataset_utils.py[line:567] - INFO: load existing dataset(light):tpcds-06667g-ssales_ss_promo_sk_ss_wholesale_cost#ss_list_price_ss_promo_sk_binary_gaussian5_0
+2022-07-07 18:05:34,251 - dataset_utils.py[line:576] - INFO: load dataset(light) time elapsed:0.5196340121328831
+2022-07-07 18:05:34,251 - pytorch_cvae.py[line:276] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 6), ('ss_list_price', 'numerical', 6), ('ss_promo_sk', 'categorical', 10)]
+2022-07-07 18:05:34,252 - model_utils.py[line:75] - INFO: load model name:torch_cvae_tpcds-06667g-ssales_ss_promo_sk_ld100_id100_bs512_ep150_0_binary_gaussian5
+2022-07-07 18:05:36,296 - model_utils.py[line:86] - INFO: load torch model time elapsed:2.043990593403578
+2022-07-07 18:05:36,297 - pytorch_cvae.py[line:286] - INFO: load model time elapsed:2.5652120038866997
+2022-07-07 18:05:36,297 - dataset_utils.py[line:567] - INFO: load existing dataset(light):tpcds-06667g-wsales_ws_promo_sk_ws_wholesale_cost#ws_list_price_ws_promo_sk_binary_gaussian5_0
+2022-07-07 18:05:36,459 - dataset_utils.py[line:576] - INFO: load dataset(light) time elapsed:0.1622919961810112
+2022-07-07 18:05:36,459 - pytorch_cvae.py[line:276] - INFO: feature info:[('ws_wholesale_cost', 'numerical', 6), ('ws_list_price', 'numerical', 6), ('ws_promo_sk', 'categorical', 10)]
+2022-07-07 18:05:36,460 - model_utils.py[line:75] - INFO: load model name:torch_cvae_tpcds-06667g-wsales_ws_promo_sk_ld100_id150_bs128_ep100_0_binary_gaussian5
+2022-07-07 18:05:36,461 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0015931613743305206
+2022-07-07 18:05:36,461 - pytorch_cvae.py[line:286] - INFO: load model time elapsed:0.16480182111263275
+2022-07-07 18:05:36,461 - main.py[line:525] - INFO: multi_sampling No.0 epoch
+2022-07-07 18:05:37,361 - pytorch_cvae.py[line:399] - INFO: sampling time:0.8976161368191242
+2022-07-07 18:05:38,058 - pytorch_cvae.py[line:399] - INFO: sampling time:0.36240188032388687
+2022-07-07 18:05:40,042 - main.py[line:509] - INFO: sample and aggregation time elapsed:3.5804103575646877
+2022-07-07 18:05:40,046 - main.py[line:542] - INFO: sample time: 3.584670901298523
+2022-07-07 18:05:40,069 - main.py[line:550] - INFO: relative error:
+             avg(ss_wholesale_cost)  avg(ss_list_price)  \
+ss_promo_sk                                               
+1           0.06                    0.05                  
+2           0.01                    0.02                  
+3           0.03                    0.06                  
+4           0.01                    0.02                  
+5           0.03                    0.02                  
+6           0.01                    0.04                  
+7           0.02                    0.04                  
+8           0.03                    0.04                  
+9           0.03                    0.06                  
+10          0.04                    0.05                  
+11          0.02                    0.01                  
+12          0.02                    0.01                  
+13          0.03                    0.07                  
+14          0.03                    0.08                  
+15          0.05                    0.06                  
+16          0.03                    0.01                  
+17          0.06                    0.01                  
+18          0.03                    0.07                  
+19          0.01                    0.02                  
+20          0.03                    0.02                  
+21          0.05                    0.06                  
+22          0.00                    0.01                  
+23          0.04                    0.02                  
+24          0.02                    0.03                  
+25          0.01                    0.02                  
+26          0.03                    0.01                  
+27          0.03                    0.06                  
+28          0.01                    0.01                  
+29          0.01                    0.03                  
+30          0.01                    0.02                  
+31          0.08                    0.04                  
+32          0.03                    0.08                  
+33          0.01                    0.03                  
+34          0.02                    0.10                  
+35          0.04                    0.04                  
+36          0.01                    0.01                  
+37          0.02                    0.01                  
+38          0.01                    0.04                  
+39          0.02                    0.03                  
+40          0.01                    0.01                  
+41          0.00                    0.03                  
+42          0.02                    0.06                  
+43          0.05                    0.03                  
+44          0.04                    0.05                  
+45          0.02                    0.02                  
+46          0.00                    0.04                  
+47          0.06                    0.03                  
+48          0.08                    0.12                  
+49          0.04                    0.06                  
+50          0.04                    0.00                  
+
+             avg(ws_wholesale_cost)  avg(ws_list_price)  \
+ss_promo_sk                                               
+1           0.02                    0.01                  
+2           0.03                    0.03                  
+3           0.03                    0.08                  
+4           0.01                    0.06                  
+5           0.02                    0.05                  
+6           0.07                    0.09                  
+7           0.02                    0.01                  
+8           0.07                    0.05                  
+9           0.02                    0.02                  
+10          0.05                    0.11                  
+11          0.09                    0.13                  
+12          0.03                    0.09                  
+13          0.01                    0.02                  
+14          0.08                    0.11                  
+15          0.05                    0.05                  
+16          0.07                    0.09                  
+17          0.01                    0.03                  
+18          0.01                    0.02                  
+19          0.02                    0.07                  
+20          0.00                    0.04                  
+21          0.01                    0.02                  
+22          0.09                    0.09                  
+23          0.03                    0.02                  
+24          0.07                    0.00                  
+25          0.02                    0.02                  
+26          0.07                    0.03                  
+27          0.02                    0.02                  
+28          0.04                    0.02                  
+29          0.03                    0.01                  
+30          0.01                    0.00                  
+31          0.00                    0.01                  
+32          0.03                    0.03                  
+33          0.03                    0.06                  
+34          0.06                    0.12                  
+35          0.13                    0.20                  
+36          0.07                    0.17                  
+37          0.05                    0.00                  
+38          0.03                    0.00                  
+39          0.02                    0.05                  
+40          0.05                    0.04                  
+41          0.03                    0.06                  
+42          0.03                    0.03                  
+43          0.04                    0.03                  
+44          0.07                    0.10                  
+45          0.04                    0.04                  
+46          0.06                    0.08                  
+47          0.06                    0.03                  
+48          0.09                    0.08                  
+49          0.02                    0.03                  
+50          0.04                    0.00                  
+
+             sum(ss_wholesale_cost)  sum(ss_list_price)  \
+ss_promo_sk                                               
+1           0.06                    0.05                  
+2           0.02                    0.02                  
+3           0.03                    0.06                  
+4           0.02                    0.02                  
+5           0.02                    0.01                  
+6           0.01                    0.04                  
+7           0.02                    0.04                  
+8           0.03                    0.05                  
+9           0.03                    0.06                  
+10          0.05                    0.06                  
+11          0.01                    0.01                  
+12          0.01                    0.01                  
+13          0.03                    0.08                  
+14          0.03                    0.08                  
+15          0.05                    0.07                  
+16          0.03                    0.01                  
+17          0.05                    0.01                  
+18          0.04                    0.07                  
+19          0.02                    0.02                  
+20          0.03                    0.03                  
+21          0.05                    0.05                  
+22          0.01                    0.01                  
+23          0.03                    0.01                  
+24          0.03                    0.03                  
+25          0.00                    0.02                  
+26          0.02                    0.00                  
+27          0.03                    0.06                  
+28          0.00                    0.01                  
+29          0.02                    0.04                  
+30          0.01                    0.03                  
+31          0.07                    0.04                  
+32          0.04                    0.08                  
+33          0.00                    0.04                  
+34          0.03                    0.11                  
+35          0.03                    0.03                  
+36          0.00                    0.01                  
+37          0.01                    0.01                  
+38          0.00                    0.04                  
+39          0.02                    0.03                  
+40          0.01                    0.01                  
+41          0.00                    0.04                  
+42          0.03                    0.06                  
+43          0.05                    0.03                  
+44          0.04                    0.05                  
+45          0.02                    0.02                  
+46          0.01                    0.05                  
+47          0.05                    0.03                  
+48          0.09                    0.13                  
+49          0.04                    0.07                  
+50          0.03                    0.00                  
+
+             sum(ws_wholesale_cost)  sum(ws_list_price)  
+ss_promo_sk                                              
+1           0.02                    0.01                 
+2           0.03                    0.02                 
+3           0.03                    0.08                 
+4           0.01                    0.07                 
+5           0.03                    0.05                 
+6           0.07                    0.09                 
+7           0.02                    0.00                 
+8           0.07                    0.06                 
+9           0.03                    0.02                 
+10          0.05                    0.11                 
+11          0.09                    0.13                 
+12          0.03                    0.09                 
+13          0.01                    0.01                 
+14          0.08                    0.11                 
+15          0.05                    0.05                 
+16          0.08                    0.09                 
+17          0.01                    0.03                 
+18          0.01                    0.03                 
+19          0.03                    0.07                 
+20          0.00                    0.04                 
+21          0.01                    0.02                 
+22          0.08                    0.09                 
+23          0.03                    0.03                 
+24          0.06                    0.01                 
+25          0.02                    0.02                 
+26          0.08                    0.03                 
+27          0.02                    0.02                 
+28          0.04                    0.01                 
+29          0.03                    0.01                 
+30          0.01                    0.00                 
+31          0.00                    0.01                 
+32          0.02                    0.02                 
+33          0.03                    0.06                 
+34          0.06                    0.13                 
+35          0.14                    0.20                 
+36          0.07                    0.17                 
+37          0.05                    0.00                 
+38          0.03                    0.01                 
+39          0.01                    0.04                 
+40          0.05                    0.05                 
+41          0.04                    0.07                 
+42          0.03                    0.03                 
+43          0.04                    0.03                 
+44          0.07                    0.10                 
+45          0.04                    0.04                 
+46          0.06                    0.09                 
+47          0.06                    0.03                 
+48          0.09                    0.07                 
+49          0.01                    0.03                 
+50          0.03                    0.00                 
+2022-07-07 18:05:40,069 - main.py[line:554] - INFO: relative error average: 0.035365025497134425
+2022-07-07 18:05:40,069 - main.py[line:555] - INFO: relative error normalized average: 0.03434544294593369
+2022-07-07 18:05:40,071 - main.py[line:601] - INFO: total_time:6.340338226407766
+categorical_columns: ['ss_promo_sk_0', 'ss_promo_sk_1', 'ss_promo_sk_2', 'ss_promo_sk_3', 'ss_promo_sk_4', 'ss_promo_sk_5', 'ss_promo_sk_6', 'ss_promo_sk_7', 'ss_promo_sk_8', 'ss_promo_sk_9']
+categorical_columns: ['ws_promo_sk_0', 'ws_promo_sk_1', 'ws_promo_sk_2', 'ws_promo_sk_3', 'ws_promo_sk_4', 'ws_promo_sk_5', 'ws_promo_sk_6', 'ws_promo_sk_7', 'ws_promo_sk_8', 'ws_promo_sk_9']

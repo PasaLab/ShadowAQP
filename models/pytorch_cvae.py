@@ -16,7 +16,6 @@ import logging
 from utils.dataset_utils import *
 from utils.pytorchtools import EarlyStopping
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 
@@ -57,8 +56,6 @@ class CVAE(nn.Module):
         self.fc4 = nn.Linear(intermediate_dim, data_dim)
         self.output_info = dataset.encoded_output_info
 
-        self.relu = nn.ReLU()
-        self.softmax = nn.Softmax(dim=1)
         self.sigmoid = nn.Sigmoid()
 
         # self.output_layers = nn.ModuleList(
@@ -87,22 +84,7 @@ class CVAE(nn.Module):
         # h3 = F.relu(self.fc3(z))
         inputs = torch.cat([z, c], 1)
         h3 = self.decode_seq(inputs)
-        # output = self.relu(self.fc4(h3))
         output = self.fc4(h3)
-
-        # st = 0
-        # activ_output = []
-        # for digit, activ in self.output_info:
-        #     ed = st + digit
-        #     if activ == 'sigmoid':
-        #         activ_output.append(self.sigmoid(output[:, st:ed]))
-        #     elif activ == 'softmax':
-        #         activ_output.append(self.softmax(output[:, st:ed]))
-        #     else:
-        #         activ_output.append(self.relu(output[:, st:ed]))
-        #         # activ_output.append(output[:, st:ed])
-        #     st = ed
-        # activ_output = torch.cat(activ_output, dim=1)
 
         # sigma=self.sigma
         # if self.numeric_flag:
@@ -110,7 +92,6 @@ class CVAE(nn.Module):
 
         # sigma = Parameter(torch.ones(self.origin_dim) * 0.1)
         return output
-        # return activ_output  # , self.sigma
 
     def forward(self, x, c):
         mu, logvar = self.encode(x, c)  # 编码
@@ -124,24 +105,6 @@ class CVAE(nn.Module):
         mu: latent mean
         logvar: latent log variance
         """
-
-        # sigma = recon_x[1]
-        # recon_x = recon_x[0]
-        # loss_list = []
-        # st = 0
-        # for digit, activ in self.output_info:
-        #     ed = st + digit
-        #     if activ == 'sigmoid':
-        #         loss_list.append(F.binary_cross_entropy(torch.sigmoid(recon_x[:, st:ed]), x[:, st:ed], reduction='sum'))
-        #     elif activ == 'softmax':
-        #         loss_list.append(
-        #             F.cross_entropy(recon_x[:, st:ed], torch.argmax(x[:, st:ed], dim=-1), reduction='sum'))
-        #     else:
-        #         loss_list.append(((x[:, st:ed] - recon_x[:, st:ed]) ** 2 / 2 / (sigma[st] ** 2)).sum())
-        #         # loss_list.append(((x[:, st:ed] - torch.tanh(recon_x[:, st:ed])) ** 2 / 2 / (sigma[st] ** 2)).sum())
-        #         # loss_list.append(torch.log(sigma[st]) * x.size()[0])
-        #     st = ed
-        # kld = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
 
         batch_size = x.size(0)
         numeric_loss = torch.tensor(0.0).to(self.device)
@@ -176,7 +139,6 @@ def alpha_schedule(epoch, max_epoch, alpha_max, strategy="exp"):
         raise NotImplementedError("Strategy {} not implemented".format(strategy))
     return alpha
 
-
 def torch_cvae_train(model, dataset, epochs, batch_size):
     start_time = time.perf_counter()
     loader = DataLoader(dataset, batch_size=batch_size, shuffle=False, drop_last=False)
@@ -187,8 +149,8 @@ def torch_cvae_train(model, dataset, epochs, batch_size):
     for epoch in range(epochs):
         epoch_start_time = time.perf_counter()
         train_loss_vae, train_kld_vae, train_num_vae, train_cat_vae = 4 * [0]
-        alpha = alpha_schedule(epoch, 100, 0.5)
-        # alpha=0.5
+        alpha = alpha_schedule(epoch, 100, 0.8)
+        # alpha=1.0
         for batch_idx, input_data in enumerate(loader):
             optimizer.zero_grad()
             x, c = input_data
@@ -230,14 +192,16 @@ def generate_samples(model, dataset, query_config, train_config):
         sample_allocation, sample_rates = senate_sampling(model, dataset, sample_rate)
     elif train_config['sample_method'] == "house":
         sample_allocation, sample_rates = house_sampling(model, dataset, sample_rate)
-    elif train_config['sample_method'] == "advance senate":
+    elif train_config['sample_method'] == "advance sencate":
         sample_allocation, sample_rates = advance_senate_sampling(model, dataset, sample_rate)
     elif train_config['sample_method'] == "statistics":
-        sample_allocation, sample_rates = statistics_sampling(model, dataset, sample_rate, query_config)
+        # sample_allocation, sample_rates = statistics_sampling(model, dataset, sample_rate, query_config)
+        sample_allocation, sample_rates = statistics_sampling_with_small_group(model, dataset, sample_rate,
+                                                                               query_config)
     else:
         sample_allocation, sample_rates = statistics_sampling_with_small_group(model, dataset, sample_rate,
                                                                                query_config)
-    # print(sample_allocation)
+    # print("sample_allocation: ",sample_allocation)
     if 'condition' in query_config and len(query_config['condition']):
         logger.info("filtering with condition {}".format(query_config['condition']))
         condition = query_config['condition'][0]
@@ -258,78 +222,35 @@ def generate_samples(model, dataset, query_config, train_config):
             sample_allocation = {k: v for k, v in sample_allocation.items() if k > bound_value}
 
     samples = generate_samples_with_allocation(dataset, model, sample_allocation, sample_rates, train_config)
+    # print("sample_allocation: ", sample_allocation)
+    # print("sample_rates: ", sample_rates)
+    # print(samples[:10])
+    samples.to_csv('./output/'+train_config['name']+".csv",index=False)
     if 'outliers' in train_config and train_config['outliers'] == 'true':
         samples = pd.concat([samples, dataset.outliers])
-    save_samples(samples, train_config)
+        samples.to_csv('./output/'+train_config['name']+"_with_outlier.csv",index=False)
+    # save_samples(samples, train_config)
+    # samples=read_samples(train_config)
     return samples
 
-
-def load_torch_cvae(param):
-    start_time = time.perf_counter()
-    postfix = ''
-    if 'inc_train_flag' in param and param['inc_train_flag'] != 'origin_train':
-        postfix = param['inc_train_flag']
-
-    dataset = load_light_dataset(param, postfix=postfix)
-    logger.info("feature info:{}".format(dataset.feature_info))
-    latent_dim = param["latent_dim"]
-    intermediate_dim = param["intermediate_dim"]
-    model = CVAE(dataset.numeric_digits + dataset.categorical_digits, dataset.label_size, intermediate_dim, latent_dim,
-                 dataset)
-    model = load_torch_model(param, model, postfix=postfix)
-    # model.to(dataset.device)
-    if model is None:
-        logger.error("model file not found")
-        return
-    end_time = time.perf_counter()
-    logger.info("load model time elapsed:{}".format(end_time - start_time))
-    return model, dataset
-
-
-def loadtrain_torch_cvae(param):
-    start_time = time.perf_counter()
-    dataset = load_dataset(param)
-    logger.info("feature info:{}".format(dataset.feature_info))
-    latent_dim = param["latent_dim"]
-    intermediate_dim = param["intermediate_dim"]
-    model = CVAE(dataset.numeric_digits + dataset.categorical_digits, dataset.label_size, intermediate_dim, latent_dim,
-                 dataset)
-    model = load_torch_model(param, model)
-    model.to(dataset.device)
-    if model is None:
-        logger.error("model file not found")
-        return
-    end_time = time.perf_counter()
-    logger.info("load model time elapsed:{}".format(end_time - start_time))
-    batch_size = param["batch_size"]
-    epochs = param["inc_epochs"]
-    model = torch_cvae_train(model, dataset, epochs=epochs, batch_size=batch_size)
-    postfix = ''
-    if 'inc_train_flag' in param:
-        postfix = param['inc_train_flag']
-    save_torch_model(model, param, postfix=postfix)
-    save_dataset(dataset, param, postfix=postfix)
-    return model, dataset
-
-
-def train_torch_cvae(param):
+def train_torch_cvae(train_config):
     # hyper parameters
     start_time = time.perf_counter()
-    lr = param["lr"]
-    optimizer_type = param["optimizer_type"]
-    batch_size = param["batch_size"]
-    latent_dim = param["latent_dim"]
-    intermediate_dim = param["intermediate_dim"]
-    epochs = param["epochs"]
+    lr = train_config["lr"]
+    optimizer_type = train_config["optimizer_type"]
+    batch_size = train_config["batch_size"]
+    latent_dim = train_config["latent_dim"]
+    intermediate_dim = train_config["intermediate_dim"]
+    epochs = train_config["epochs"]
     logger.info("epoch:{}".format(epochs))
     logger.info("batch size:{}".format(batch_size))
     logger.info("latent dimension:{}".format(latent_dim))
     logger.info("intermediate dimension:{}".format(intermediate_dim))
-    logger.info("gpu num:{}".format(param['gpu_num']))
-    if exist_dataset(param):
-        dataset = load_dataset(param)
+    logger.info("gpu num:{}".format(train_config['gpu_num']))
+    if exist_dataset(train_config):
+        dataset = load_dataset(train_config)
     else:
-        dataset = TabularDataset(param)
+        dataset = TabularDataset(train_config)
     logger.info("feature info:{}".format(dataset.feature_info))
     _, data_dim = dataset.data.shape
     model = CVAE(data_dim, dataset.label_size, intermediate_dim, latent_dim, dataset)
@@ -337,12 +258,62 @@ def train_torch_cvae(param):
     #     model = nn.DataParallel(model, device_ids=[0, 1, 2, 3])
     model.to(dataset.device)
     model = torch_cvae_train(model, dataset, epochs=epochs, batch_size=batch_size)
-    save_torch_model(model, param)
-    save_dataset(dataset, param)
+    save_torch_model(model, train_config)
+    save_dataset(dataset, train_config)
     end_time = time.perf_counter()
     logger.info("train model time elapsed:{}".format(end_time - start_time))
     return model, dataset
 
+def load_model_and_dataset(train_config):
+    start_time = time.perf_counter()
+    postfix = ''
+    if 'inc_train_flag' in train_config and train_config['inc_train_flag'] != 'origin_train':
+        postfix = train_config['inc_train_flag']
+    dataset = load_light_dataset(train_config, postfix=postfix)
+    if dataset is None:
+        logger.error("dataset file not found")
+        return None,None
+    logger.info("feature info:{}".format(dataset.feature_info))
+    latent_dim = train_config["latent_dim"]
+    intermediate_dim = train_config["intermediate_dim"]
+    model = CVAE(dataset.numeric_digits + dataset.categorical_digits, dataset.label_size, intermediate_dim, latent_dim,
+                 dataset)
+    model = load_torch_model(train_config, model, postfix=postfix)
+    # model.to(dataset.device)
+    if model is None:
+        logger.error("model file not found")
+    end_time = time.perf_counter()
+    logger.info("load model time elapsed:{}".format(end_time - start_time))
+    return model, dataset
+
+
+def load_model_and_dataset_retrain(train_config):
+    start_time = time.perf_counter()
+    dataset = load_dataset(train_config)
+    if dataset is None:
+        logger.error("dataset file not found")
+        return None,None
+    logger.info("feature info:{}".format(dataset.feature_info))
+    latent_dim = train_config["latent_dim"]
+    intermediate_dim = train_config["intermediate_dim"]
+    model = CVAE(dataset.numeric_digits + dataset.categorical_digits, dataset.label_size, intermediate_dim, latent_dim,
+                 dataset)
+    model = load_torch_model(train_config, model)
+    model.to(dataset.device)
+    if model is None:
+        logger.error("model file not found")
+        return
+    end_time = time.perf_counter()
+    logger.info("load model time elapsed:{}".format(end_time - start_time))
+    batch_size = train_config["batch_size"]
+    epochs = train_config["inc_epochs"]
+    model = torch_cvae_train(model, dataset, epochs=epochs, batch_size=batch_size)
+    postfix = ''
+    if 'inc_train_flag' in train_config:
+        postfix = train_config['inc_train_flag']
+    save_torch_model(model, train_config, postfix=postfix)
+    save_dataset(dataset, train_config, postfix=postfix)
+    return model, dataset
 
 def generate_group_samples(sample_count, label, latent_dim, batch_size, model, z_decoded_list):
     start_time = time.perf_counter()
@@ -374,7 +345,6 @@ def generate_group_samples(sample_count, label, latent_dim, batch_size, model, z
                 # column_list.append(torch.tanh(fake[:, st:ed]))
             st = ed
         fake = torch.cat(column_list, dim=1)
-
         z_decoded = fake.detach().cpu().numpy()
         z_decoded_list.append(z_decoded)
     end_time = time.perf_counter()
@@ -394,7 +364,7 @@ def generate_samples_with_allocation(dataset, model, sample_allocation, sample_r
 
     for label_value_idx, label_value in label_value_mapping.items():
         if label_value in sample_allocation:
-            sample_count = sample_allocation[label_value]
+            sample_count = int(sample_allocation[label_value])
             if categorical_encoding == 'binary':
                 mapping = dataset.label_mapping_out
                 label = [mapping.loc[label_value_idx].values]
@@ -412,14 +382,33 @@ def generate_samples_with_allocation(dataset, model, sample_allocation, sample_r
 
     # for t in threads:
     #     t.join()
+    # print("=====z_decoded: ",z_decoded)
     z_decoded = np.concatenate(z_decoded, axis=0)
     samples_df = dataset.decode_samples(z_decoded)
+    # print("label_columns:",label_columns)
+    # print("label_column_name:",dataset.label_column_name)
+    # if len(label_columns)>1:
+    #     samples_df[dataset.label_column_name]=samples_df[label_columns].astype(str).agg('-'.join, axis=1)
+    samples_df=generate_label_column(samples_df,train_config['label_columns'],train_config['bucket_columns'],dataset.label_column_name)
+    # if dataset.name == 'tpcds-06667g-store':
+    #     print("========samples_df: ", samples_df)
     samples_df['{}_rate'.format(dataset.name)] = samples_df[dataset.label_column_name].map(sample_rates)
+    
     # samples_df = pd.concat(samples)
     end_time = time.perf_counter()
     logger.info('sampling time:{}'.format(end_time - start_time))
     return samples_df
 
+def generate_label_column(df, label_columns,bucket_columns,label_column_name):
+        if len(bucket_columns)>0:
+            for col in bucket_columns:
+                df[col+"_bucket"]=(df[col]).mod(6)
+                col_idx=label_columns.index(col)
+                label_columns[col_idx]=label_columns[col_idx]+"_bucket"
+
+        if len(label_columns) > 1:
+            df[label_column_name] = df[label_columns].astype(str).agg('-'.join, axis=1)
+        return df
 
 def house_sampling(model, dataset, sample_rate):
     model.eval()
@@ -532,6 +521,8 @@ def statistics_sampling_with_small_group(model, dataset, sample_rate, query_conf
     total_samples = total_rows * sample_rate
 
     statistics_sampling_samples = total_samples * 0.5
+    # print("========sample_rate: ",sample_rate)
+    # print("========statistics_sampling_samples: ",statistics_sampling_samples)
     small_group_sampling_samples = total_samples - statistics_sampling_samples
     small_group_K = small_group_sampling_samples / len(label_group_counts)
 
@@ -541,25 +532,41 @@ def statistics_sampling_with_small_group(model, dataset, sample_rate, query_conf
         group_count = label_group_counts[label_value]
         relative_variances = sum([label_group_relative_stds[col][label_value] for col in numeric_columns])
         sum_relative_variance = sum([label_group_relative_stds_sums[col] for col in numeric_columns])
+        # print("=========label_group_relative_stds_sums: ",label_group_relative_stds_sums)
         group_sample = int(statistics_sampling_samples * (relative_variances / sum_relative_variance))
         group_sample += small_group_K
         sample_count = group_sample if group_sample < group_count else group_count
         sample_allocation[label_value] = sample_count
         sample_rates[label_value] = sample_count / group_count
-
+        
+    # print("========sample_rates: ",sample_rates)
     return sample_allocation, sample_rates
 
 
-def save_samples(samples, param):
-    samples_name = "{}_{}_{}_ld{}_id{}_bs{}_ep{}_rate{}_{}_{}.csv".format(param["model_type"], param["name"],
-                                                                          '_'.join(param["label_columns"]),
-                                                                          param["latent_dim"],
-                                                                          param["intermediate_dim"],
-                                                                          param["batch_size"],
-                                                                          param["epochs"], param["sample_rate"],
-                                                                          param["categorical_encoding"],
-                                                                          (param["numeric_encoding"] + str(
-                                                                              param["max_clusters"])) if param[
+def save_samples(samples, train_config):
+    samples_name = "{}_{}_{}_ld{}_id{}_bs{}_ep{}_rate{}_{}_{}.csv".format(train_config["model_type"], train_config["name"],
+                                                                          '_'.join(train_config["label_columns"]),
+                                                                          train_config["latent_dim"],
+                                                                          train_config["intermediate_dim"],
+                                                                          train_config["batch_size"],
+                                                                          train_config["epochs"], train_config["sample_rate"],
+                                                                          train_config["categorical_encoding"],
+                                                                          (train_config["numeric_encoding"] + str(
+                                                                              train_config["max_clusters"])) if train_config[
                                                                                                              "numeric_encoding"] == 'gaussian' else
-                                                                          param["numeric_encoding"])
+                                                                          train_config["numeric_encoding"])
     samples.to_csv("./output/{}".format(samples_name), index=False)
+
+def read_samples(train_config):
+    samples_name = "{}_{}_{}_ld{}_id{}_bs{}_ep{}_rate{}_{}_{}.csv".format(train_config["model_type"], train_config["name"],
+                                                                          '_'.join(train_config["label_columns"]),
+                                                                          train_config["latent_dim"],
+                                                                          train_config["intermediate_dim"],
+                                                                          train_config["batch_size"],
+                                                                          train_config["epochs"], train_config["sample_rate"],
+                                                                          train_config["categorical_encoding"],
+                                                                          (train_config["numeric_encoding"] + str(
+                                                                              train_config["max_clusters"])) if train_config[
+                                                                                                             "numeric_encoding"] == 'gaussian' else
+                                                                          train_config["numeric_encoding"])
+    return pd.read_csv("./output/{}".format(samples_name))

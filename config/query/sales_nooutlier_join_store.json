@@ -1,0 +1,18 @@
+{
+    "name": "sales_nooutlier_join_store",
+    "train_config_files": [
+      "./config/train/tpcds_ssales_store_nooutlier_torch_cvae.json",
+      "./config/train/tpcds_store_torch_cvae.json"
+    ],
+    "multi_sample_times": 1,
+    "operation": "aqp",
+    "join_cols": ["ss_store_sk","s_store_sk"],
+    "groupby_cols": ["s_store_name"],
+    "result_path": "./output/aqp_result/ss_nooutlier_res.csv",
+    "diff_path": "./output/diff/ss_nooutlier_diff.csv",
+    "sum_cols": ["ss_wholesale_cost","ss_list_price","ss_sales_price","ss_ext_sales_price"],
+    "avg_cols": ["ss_wholesale_cost","ss_list_price","ss_sales_price","ss_ext_sales_price"],
+    "var": "./var/tpcds-1m/ss_var.csv",
+    "ground_truth": "./ground_truth/tpcds-0.6667g/ss_outlier_truth.csv"
+  }
+  

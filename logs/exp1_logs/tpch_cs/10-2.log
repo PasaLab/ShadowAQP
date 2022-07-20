@@ -1,0 +1,53 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2022-07-09 13:30:18,333 - main.py[line:581] - INFO: load query config config/query/customer_join_supplier.json successfully
+2022-07-09 13:30:18,345 - main.py[line:588] - INFO: load train config ./config/train/tpch_customer_torch_cvae.json successfully
+2022-07-09 13:30:18,352 - main.py[line:588] - INFO: load train config ./config/train/tpch_supplier_torch_cvae.json successfully
+2022-07-09 13:30:18,352 - dataset_utils.py[line:567] - INFO: load existing dataset(light):tpch-1m-customer_c_nationkey_c_acctbal_c_nationkey_binary_gaussian5_0
+2022-07-09 13:30:20,060 - dataset_utils.py[line:576] - INFO: load dataset(light) time elapsed:1.7078246772289276
+2022-07-09 13:30:20,060 - pytorch_cvae.py[line:276] - INFO: feature info:[('c_acctbal', 'numerical', 6), ('c_nationkey', 'categorical', 6)]
+2022-07-09 13:30:20,072 - model_utils.py[line:75] - INFO: load model name:torch_cvae_tpch-1m-customer_c_nationkey_ld100_id100_bs512_ep150_0_binary_gaussian5
+2022-07-09 13:30:26,946 - model_utils.py[line:86] - INFO: load torch model time elapsed:6.874210570007563
+2022-07-09 13:30:26,946 - pytorch_cvae.py[line:286] - INFO: load model time elapsed:8.59405704215169
+2022-07-09 13:30:26,946 - dataset_utils.py[line:567] - INFO: load existing dataset(light):tpch-1m-supplier_s_nationkey_s_acctbal_s_nationkey_binary_gaussian5_0
+2022-07-09 13:30:27,079 - dataset_utils.py[line:576] - INFO: load dataset(light) time elapsed:0.13207750022411346
+2022-07-09 13:30:27,079 - pytorch_cvae.py[line:276] - INFO: feature info:[('s_acctbal', 'numerical', 6), ('s_nationkey', 'categorical', 6)]
+2022-07-09 13:30:27,081 - model_utils.py[line:75] - INFO: load model name:torch_cvae_tpch-1m-supplier_s_nationkey_ld100_id150_bs128_ep100_0_binary_gaussian5
+2022-07-09 13:30:27,085 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.004399742931127548
+2022-07-09 13:30:27,085 - pytorch_cvae.py[line:286] - INFO: load model time elapsed:0.13869532570242882
+2022-07-09 13:30:27,085 - main.py[line:525] - INFO: multi_sampling No.0 epoch
+2022-07-09 13:30:27,086 - pytorch_cvae.py[line:419] - INFO: house sampling rate:0.1
+2022-07-09 13:30:29,990 - pytorch_cvae.py[line:399] - INFO: sampling time:2.904071129858494
+2022-07-09 13:30:31,323 - pytorch_cvae.py[line:419] - INFO: house sampling rate:0.1
+2022-07-09 13:30:31,461 - pytorch_cvae.py[line:399] - INFO: sampling time:0.1381017304956913
+Exception in thread Thread-1:
+Traceback (most recent call last):
+  File "/root/anaconda3/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/root/anaconda3/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "main.py", line 506, in sample_generation_and_aggregation
+    sample_agg = sample_aggregation(sample_list, query_config, train_config_list)
+  File "main.py", line 293, in sample_aggregation
+    join_result['scale_' + numeric_column] = join_result[numeric_column] / rate
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/frame.py", line 3044, in __setitem__
+    self._set_item(key, value)
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/frame.py", line 3120, in _set_item
+    value = self._sanitize_column(key, value)
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/frame.py", line 3745, in _sanitize_column
+    value = reindexer(value)
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/frame.py", line 3726, in reindexer
+    value = value._values.copy()
+numpy.core._exceptions.MemoryError: Unable to allocate 5.48 GiB for an array with shape (735019213,) and data type float64
+categorical_columns: ['c_nationkey_0', 'c_nationkey_1', 'c_nationkey_2', 'c_nationkey_3', 'c_nationkey_4', 'c_nationkey_5']
+categorical_columns: ['s_nationkey_0', 's_nationkey_1', 's_nationkey_2', 's_nationkey_3', 's_nationkey_4', 's_nationkey_5']
+Traceback (most recent call last):
+  File "main.py", line 599, in <module>
+    model_aqp(query_config, train_config_list)
+  File "main.py", line 539, in model_aqp
+    sample_agg = pd.concat(sample_agg_list).groupby(level=0).mean()
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/reshape/concat.py", line 274, in concat
+    op = _Concatenator(
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/reshape/concat.py", line 331, in __init__
+    raise ValueError("No objects to concatenate")
+ValueError: No objects to concatenate

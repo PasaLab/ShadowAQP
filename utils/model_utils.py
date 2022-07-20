@@ -2,13 +2,29 @@ import torch
 import os.path
 import time
 import logging
-
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+def get_cvae_model_name(param):
+    model_name = "model.h5"
+    model_name = "{}_{}_{}_ld{}_id{}_bs{}_ep{}_{}_{}_{}".format(param["model_type"], param["name"],
+                                                                 '_'.join(param["label_columns"]),
+                                                                 param["latent_dim"],
+                                                                 param["intermediate_dim"], param["batch_size"],
+                                                                 param["epochs"], param['gpu_num'],param["categorical_encoding"],
+                                                                 (param["numeric_encoding"] + str(
+                                                                     param["max_clusters"])) if
+                                                                 param["numeric_encoding"] == 'gaussian' else
+                                                                 param["numeric_encoding"])
+    return model_name
 
 def get_model_name(param):
     model_name = "model.h5"
+    label_columns=param["label_columns"].copy()
+    bucket_columns=param["bucket_columns"].copy()
+    if len(bucket_columns)>0:
+        for col in bucket_columns:
+            col_idx=label_columns.index(col)
+            label_columns[col_idx]=label_columns[col_idx]+"_bucket"
     if param["model_type"] == "keras_vae" or param["model_type"] == "torch_vae":
         model_name = "{}_{}_ld{}_id{}_bs{}_ep{}_{}_{}".format(param["model_type"], param["name"], param["latent_dim"],
                                                               param["intermediate_dim"], param["batch_size"],
@@ -18,7 +34,7 @@ def get_model_name(param):
                                                               param["numeric_encoding"])
     elif param["model_type"] == "keras_cvae" or param["model_type"] == "torch_cvae":
         model_name = "{}_{}_{}_ld{}_id{}_bs{}_ep{}_{}_{}_{}".format(param["model_type"], param["name"],
-                                                                 '_'.join(param["label_columns"]),
+                                                                 '_'.join(label_columns),
                                                                  param["latent_dim"],
                                                                  param["intermediate_dim"], param["batch_size"],
                                                                  param["epochs"], param['gpu_num'],param["categorical_encoding"],

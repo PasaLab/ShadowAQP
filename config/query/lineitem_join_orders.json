@@ -1,0 +1,18 @@
+{
+    "name": "lineitem_join_orders",
+    "train_config_files": [
+      "./config/train/tpch_lineitem_order_torch_cvae.json",
+      "./config/train/tpch_orders_torch_cvae.json"
+    ],
+    "multi_sample_times": 1,
+    "operation": "aqp",
+    "join_cols": ["l_orderkey","o_orderkey"],
+    "groupby_cols": ["o_orderpriority"],
+    "result_path": "./output/aqp_result/lo_res.csv",
+    "diff_path": "./output/diff/lo_diff.csv",
+    "sum_cols": ["l_quantity","l_extendedprice"],
+    "avg_cols": ["l_quantity","l_extendedprice"],
+    "var": "./var/tpch-1m/lo_var.csv",
+    "ground_truth": "./ground_truth/tpch-2g/lo_truth.csv"
+  }
+  

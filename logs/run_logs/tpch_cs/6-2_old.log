@@ -1,0 +1,84 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2022-07-07 19:10:45,212 - main.py[line:581] - INFO: load query config config/query/customer_join_supplier.json successfully
+2022-07-07 19:10:45,218 - main.py[line:588] - INFO: load train config ./config/train/tpch_customer_torch_cvae.json successfully
+2022-07-07 19:10:45,222 - main.py[line:588] - INFO: load train config ./config/train/tpch_supplier_torch_cvae.json successfully
+2022-07-07 19:10:45,222 - dataset_utils.py[line:567] - INFO: load existing dataset(light):tpch-1m-customer_c_nationkey_c_acctbal_c_nationkey_binary_gaussian5_0
+2022-07-07 19:10:46,913 - dataset_utils.py[line:576] - INFO: load dataset(light) time elapsed:1.6903801448643208
+2022-07-07 19:10:46,913 - pytorch_cvae.py[line:276] - INFO: feature info:[('c_acctbal', 'numerical', 6), ('c_nationkey', 'categorical', 6)]
+2022-07-07 19:10:46,934 - model_utils.py[line:75] - INFO: load model name:torch_cvae_tpch-1m-customer_c_nationkey_ld100_id100_bs512_ep150_0_binary_gaussian5
+2022-07-07 19:10:55,179 - model_utils.py[line:86] - INFO: load torch model time elapsed:8.244636379182339
+2022-07-07 19:10:55,179 - pytorch_cvae.py[line:286] - INFO: load model time elapsed:9.956499967724085
+2022-07-07 19:10:55,179 - dataset_utils.py[line:567] - INFO: load existing dataset(light):tpch-1m-supplier_s_nationkey_s_acctbal_s_nationkey_binary_gaussian5_0
+2022-07-07 19:10:55,309 - dataset_utils.py[line:576] - INFO: load dataset(light) time elapsed:0.12973321601748466
+2022-07-07 19:10:55,309 - pytorch_cvae.py[line:276] - INFO: feature info:[('s_acctbal', 'numerical', 6), ('s_nationkey', 'categorical', 6)]
+2022-07-07 19:10:55,310 - model_utils.py[line:75] - INFO: load model name:torch_cvae_tpch-1m-supplier_s_nationkey_ld100_id150_bs128_ep100_0_binary_gaussian5
+2022-07-07 19:10:55,315 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0046377889811992645
+2022-07-07 19:10:55,315 - pytorch_cvae.py[line:286] - INFO: load model time elapsed:0.13636935502290726
+2022-07-07 19:10:55,315 - main.py[line:525] - INFO: multi_sampling No.0 epoch
+2022-07-07 19:10:57,806 - pytorch_cvae.py[line:399] - INFO: sampling time:2.4902522824704647
+2022-07-07 19:10:58,746 - pytorch_cvae.py[line:399] - INFO: sampling time:0.136582363396883
+Exception in thread Thread-1:
+Traceback (most recent call last):
+  File "/root/anaconda3/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/root/anaconda3/lib/python3.8/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "main.py", line 506, in sample_generation_and_aggregation
+    sample_agg = sample_aggregation(sample_list, query_config, train_config_list)
+  File "main.py", line 295, in sample_aggregation
+    agg_result = join_result.groupby(by=groupby_cols).agg(**aggregations)
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/groupby/generic.py", line 951, in aggregate
+    result, how = self._aggregate(func, *args, **kwargs)
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/base.py", line 416, in _aggregate
+    result = _agg(arg, _agg_1dim)
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/base.py", line 383, in _agg
+    result[fname] = func(fname, agg_how)
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/base.py", line 367, in _agg_1dim
+    return colg.aggregate(how)
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/groupby/generic.py", line 246, in aggregate
+    ret = self._aggregate_multiple_funcs(func)
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/groupby/generic.py", line 319, in _aggregate_multiple_funcs
+    results[base.OutputKey(label=name, position=idx)] = obj.aggregate(func)
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/groupby/generic.py", line 240, in aggregate
+    return getattr(self, func)(*args, **kwargs)
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/groupby/groupby.py", line 1395, in mean
+    return self._cython_agg_general(
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/groupby/groupby.py", line 1035, in _cython_agg_general
+    result, agg_names = self.grouper.aggregate(
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/groupby/ops.py", line 591, in aggregate
+    return self._cython_operation(
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/groupby/ops.py", line 515, in _cython_operation
+    out_shape = (self.ngroups, arity)
+  File "pandas/_libs/properties.pyx", line 33, in pandas._libs.properties.CachedProperty.__get__
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/groupby/ops.py", line 304, in ngroups
+    return len(self.result_index)
+  File "pandas/_libs/properties.pyx", line 33, in pandas._libs.properties.CachedProperty.__get__
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/groupby/ops.py", line 315, in result_index
+    return self.groupings[0].result_index.rename(self.names[0])
+  File "pandas/_libs/properties.pyx", line 33, in pandas._libs.properties.CachedProperty.__get__
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/groupby/grouper.py", line 577, in result_index
+    return self.group_index
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/groupby/grouper.py", line 582, in group_index
+    self._make_codes()
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/groupby/grouper.py", line 598, in _make_codes
+    codes, uniques = algorithms.factorize(
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/algorithms.py", line 706, in factorize
+    uniques, codes = safe_sort(
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/algorithms.py", line 2121, in safe_sort
+    new_codes = take_1d(order2, codes, fill_value=-1)
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/algorithms.py", line 1730, in take_nd
+    out = np.empty(out_shape, dtype=dtype, order="F")
+numpy.core._exceptions.MemoryError: Unable to allocate 3.28 GiB for an array with shape (440824138,) and data type int64
+categorical_columns: ['c_nationkey_0', 'c_nationkey_1', 'c_nationkey_2', 'c_nationkey_3', 'c_nationkey_4', 'c_nationkey_5']
+categorical_columns: ['s_nationkey_0', 's_nationkey_1', 's_nationkey_2', 's_nationkey_3', 's_nationkey_4', 's_nationkey_5']
+Traceback (most recent call last):
+  File "main.py", line 599, in <module>
+    model_aqp(query_config, train_config_list)
+  File "main.py", line 539, in model_aqp
+    sample_agg = pd.concat(sample_agg_list).groupby(level=0).mean()
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/reshape/concat.py", line 274, in concat
+    op = _Concatenator(
+  File "/root/anaconda3/lib/python3.8/site-packages/pandas/core/reshape/concat.py", line 331, in __init__
+    raise ValueError("No objects to concatenate")
+ValueError: No objects to concatenate

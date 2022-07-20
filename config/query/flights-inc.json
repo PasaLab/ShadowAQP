@@ -1,0 +1,18 @@
+{
+    "name": "flights_self_join_inc",
+    "train_config_files": [
+      "./config/train/flights_a_inc_torch_cvae.json",
+      "./config/train/flights_b_torch_cvae.json"
+    ],
+    "multi_sample_times": 1,
+    "operation": "aqp",
+    "join_cols": ["a_unique_carrier","b_unique_carrier"],
+    "groupby_cols": ["a_unique_carrier"],
+    "result_path": "./output/aqp_result/flights_res.csv",
+    "diff_path": "./output/diff/flights_diff.csv",
+    "sum_cols": ["a_taxi_out","a_air_time","a_distance"],
+    "avg_cols": ["a_taxi_out","a_air_time","a_distance"],
+    "var": "./var/tpch-1m/cn_var.csv",
+    "ground_truth": "./ground_truth/flights/flights_inc_truth.csv"
+  }
+  

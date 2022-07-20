@@ -1,29 +1,34 @@
 {
-  "name": "tpcds-1m-store",
-  "data": "/root/huangwenjie/train_datasets/tpcds-1m/store.csv",
-  "categorical_columns": [
-    "s_store_sk"
-  ],
-  "numeric_columns": [],
-  "label_columns": [
-    "s_store_sk"
-  ],
-  "categorical_encoding": "binary",
-  "numeric_encoding": "mm",
-  "max_clusters": 5,
-  "model_type": "torch_cvae",
-  "lr": 0.001,
-  "optimizer_type": "adam",
-  "loss_agg_type": "mean",
-  "gpu_num": 0,
-  "epochs": 200,
-  "batch_size": 1,
-  "latent_dim": 50,
-  "intermediate_dim": 100,
-  "train_flag": "train",
-  "operation": "aqp",
-  "sample_method": "house",
-  "sample_rate": 1.0,
-  "header": 1,
-  "delimiter": "|"
-}
+    "name": "tpcds-06667g-store",
+    "data": "/root/lihan/train_dataset/tpcds_0.6667g/stores.csv",
+    "categorical_columns": [
+      "s_store_sk", "s_store_name"
+    ],
+    "numeric_columns": [
+    ],
+    "label_columns": [
+      "s_store_sk", "s_store_name"
+    ],
+    "bucket_columns": [
+    ],
+    "categorical_encoding": "binary",
+    "numeric_encoding": "gaussian",
+    "max_clusters": 5,
+    "model_type": "torch_cvae",
+    "lr": 0.001,
+    "optimizer_type": "adam",
+    "loss_agg_type": "mean",
+    "gpu_num": 0,
+    "epochs": 100,
+    "batch_size": 128,
+    "latent_dim": 100,
+    "intermediate_dim": 150,
+    "train_flag": "load",
+    "operation": "other",
+    "sample_method": "house",
+    "sample_rate": 1.0,
+    "sample_for_train": 1,
+    "header": 1,
+    "delimiter": "|"
+  }
+  

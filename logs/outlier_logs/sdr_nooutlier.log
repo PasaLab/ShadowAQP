@@ -1,0 +1,76 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2022-07-04 11:53:05,267 - main.py[line:582] - INFO: load query config config/query/nooutlier_sdr.json successfully
+2022-07-04 11:53:05,267 - main.py[line:589] - INFO: load train config ./config/train/nooutlier_sdr_flow_torch_cvae.json successfully
+2022-07-04 11:53:05,267 - main.py[line:589] - INFO: load train config ./config/train/dim_torch_cvae.json successfully
+2022-07-04 11:53:05,267 - dataset_utils.py[line:567] - INFO: load existing dataset(light):nooutlier-sdr-1m_test_prot_category_l4_ul_throughput#l4_dw_throughput#l4_ul_packets#l4_dw_packets_prot_category_binary_gaussian5_0
+2022-07-04 11:53:05,621 - dataset_utils.py[line:576] - INFO: load dataset(light) time elapsed:0.3536362573504448
+2022-07-04 11:53:05,621 - pytorch_cvae.py[line:276] - INFO: feature info:[('l4_ul_throughput', 'numerical', 3), ('l4_dw_throughput', 'numerical', 2), ('l4_ul_packets', 'numerical', 2), ('l4_dw_packets', 'numerical', 2), ('prot_category', 'categorical', 4)]
+2022-07-04 11:53:05,622 - model_utils.py[line:75] - INFO: load model name:torch_cvae_nooutlier-sdr-1m_test_prot_category_ld150_id200_bs1024_ep150_0_binary_gaussian5
+2022-07-04 11:53:07,746 - model_utils.py[line:86] - INFO: load torch model time elapsed:2.12383097037673
+2022-07-04 11:53:07,746 - pytorch_cvae.py[line:286] - INFO: load model time elapsed:2.479257345199585
+2022-07-04 11:53:07,746 - dataset_utils.py[line:567] - INFO: load existing dataset(light):dim_sub_prot_test_protocol_id#protocol__protocol_id_binary_mm_0
+2022-07-04 11:53:07,748 - dataset_utils.py[line:576] - INFO: load dataset(light) time elapsed:0.001679159700870514
+2022-07-04 11:53:07,748 - pytorch_cvae.py[line:276] - INFO: feature info:[('protocol_id', 'categorical', 5), ('protocol', 'categorical', 5)]
+2022-07-04 11:53:07,749 - model_utils.py[line:75] - INFO: load model name:torch_cvae_dim_sub_prot_test_protocol_id_ld100_id100_bs128_ep100_0_binary_mm
+2022-07-04 11:53:07,752 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0030075572431087494
+2022-07-04 11:53:07,752 - pytorch_cvae.py[line:286] - INFO: load model time elapsed:0.005365286022424698
+2022-07-04 11:53:07,752 - main.py[line:526] - INFO: multi_sampling No.0 epoch
+2022-07-04 11:53:07,752 - pytorch_cvae.py[line:206] - INFO: filtering with condition ['']
+2022-07-04 11:53:08,365 - pytorch_cvae.py[line:399] - INFO: sampling time:0.6128734014928341
+2022-07-04 11:53:08,649 - dataset_utils.py[line:548] - INFO: load existing dataset:dim_sub_prot_test_protocol_id#protocol__protocol_id_binary_mm_0
+2022-07-04 11:53:08,652 - dataset_utils.py[line:560] - INFO: load dataset time elapsed:0.0025178231298923492
+2022-07-04 11:53:11,132 - main.py[line:510] - INFO: sample and aggregation time elapsed:3.379971034824848
+2022-07-04 11:53:11,135 - main.py[line:543] - INFO: sample time: 3.3837667405605316
+2022-07-04 11:53:11,157 - main.py[line:551] - INFO: relative error:
+               avg(l4_ul_throughput)  avg(l4_dw_throughput)  \
+prot_category                                                 
+2             0.45                   1.13                     
+4             0.99                   1.00                     
+6             0.10                   0.87                     
+9             0.17                   1.78                     
+17            0.01                   1.92                     
+
+               avg(l4_ul_packets)  avg(l4_dw_packets)  sum(l4_ul_throughput)  \
+prot_category                                                                  
+2             0.07                0.21                0.45                     
+4             1.00                1.00                0.99                     
+6             0.10                0.04                0.10                     
+9             0.67                0.85                0.16                     
+17            0.05                0.43                0.01                     
+
+               sum(l4_dw_throughput)  sum(l4_ul_packets)  sum(l4_dw_packets)  
+prot_category                                                                 
+2             1.13                   0.07                0.21                 
+4             1.00                   1.00                1.00                 
+6             0.87                   0.10                0.04                 
+9             1.78                   0.67                0.85                 
+17            1.92                   0.05                0.43                 
+2022-07-04 11:53:11,160 - main.py[line:552] - INFO: relative error normalized:
+               avg(l4_ul_throughput)  avg(l4_dw_throughput)  \
+prot_category                                                 
+2             0.36                   0.68                     
+4             0.63                   0.63                     
+6             0.09                   0.58                     
+9             0.15                   0.83                     
+17            0.01                   0.85                     
+
+               avg(l4_ul_packets)  avg(l4_dw_packets)  sum(l4_ul_throughput)  \
+prot_category                                                                  
+2             0.07                0.19                0.36                     
+4             0.63                0.63                0.63                     
+6             0.10                0.04                0.09                     
+9             0.49                0.57                0.15                     
+17            0.05                0.35                0.01                     
+
+               sum(l4_dw_throughput)  sum(l4_ul_packets)  sum(l4_dw_packets)  
+prot_category                                                                 
+2             0.68                   0.07                0.19                 
+4             0.63                   0.63                0.63                 
+6             0.58                   0.10                0.04                 
+9             0.83                   0.49                0.57                 
+17            0.85                   0.05                0.35                 
+2022-07-04 11:53:11,160 - main.py[line:555] - INFO: relative error average: 0.6419909368755929
+2022-07-04 11:53:11,160 - main.py[line:556] - INFO: relative error normalized average: 0.39695897968617444
+2022-07-04 11:53:11,161 - main.py[line:602] - INFO: total_time:5.8943970166146755
+categorical_columns: ['prot_category_0', 'prot_category_1', 'prot_category_2', 'prot_category_3']

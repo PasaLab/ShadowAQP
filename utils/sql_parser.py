@@ -1,59 +1,80 @@
+import time
 import sqlparse
 from sqlparse.tokens import Token
-from enum import Enum
-import copy
+from utils.schema import Query, QueryTable, Schema, Table,TableAttribute
 
 def _extract_identifiers(tokens, enforce_single=True):
+    """
+    extract identifiers from tokens
+    :param tokens: parsed tokens
+    :param enforce_single: whether to ensure only one identifiers
+    :return: single identifier or list of identifier
+    """
     identifiers = [token for token in tokens if isinstance(token, sqlparse.sql.IdentifierList)]
-    if len(identifiers) >= 1:
+    if len(identifiers) >= 1:  # a list of identifiers
         if enforce_single:
             assert len(identifiers) == 1
         identifiers = identifiers[0]
-    else:
+    else:  # only one identifiers
         identifiers = [token for token in tokens if isinstance(token, sqlparse.sql.Identifier)]
     return identifiers
 
 
 # Find corresponding table of attribute
-def _find_matching_table(attribute, schema, alias_dict):
+def _find_matching_table(attribute, schema):
+    """
+    find the table to which the attribute belongs
+    :param attribute: attribute name
+    :param schema: schema information of tables
+    :return: table name
+    """
     table_name = None
     for table_obj in schema.tables:
-        if table_obj.table_name not in alias_dict.keys():
-            continue
-        if attribute in table_obj.attributes:
+        if attribute in table_obj.columns:
             table_name = table_obj.table_name
-
     assert table_name is not None, f"No table found for attribute {attribute}."
     return table_name
 
 
-def _fully_qualified_attribute_name(identifier, schema, alias_dict, return_split=False):
+def _fully_qualified_attribute_name(identifier, schema, return_split=False):
+    """
+    find the full qualified name of attribute, like sales.price
+    :param identifier: attribute identifier
+    :param schema: schema information of tables
+    :param return_split: the return form, Ture=>(table, attribute), False=>table.attribute
+    :return: the full qualified name of attribute
+    """
     if len(identifier.tokens) == 1:
         attribute = identifier.tokens[0].value
-        table_name = _find_matching_table(attribute, schema, alias_dict)
+        table_name = _find_matching_table(attribute, schema)
         if not return_split:
             return table_name + '.' + attribute
         else:
             return table_name, attribute
-
-    # Replace alias by full table names
+    # If the identifier is already fully qualified
     assert identifier.tokens[1].value == '.', "Invalid Identifier"
     if not return_split:
-        return alias_dict[identifier.tokens[0].value] + '.' + identifier.tokens[2].value
+        return identifier.tokens[0].value + '.' + identifier.tokens[2].value
     else:
-        return alias_dict[identifier.tokens[0].value], identifier.tokens[2].value
+        return identifier.tokens[0].value, identifier.tokens[2].value
+
+def _extract_attribute(identifier, schema):
+    if len(identifier.tokens) == 1:
+        attr_name = identifier.tokens[0].value
+        table_name = _find_matching_table(attr_name, schema)
+        return TableAttribute(table_name,attr_name)
+    return TableAttribute(identifier.tokens[0].value,identifier.tokens[2].value)
 
 
-def _parse_aggregation(alias_dict, function, query, schema):
-    operation_factors = []
+def _parse_aggregation(function, query, schema):
     operation_type = None
     operator = _extract_identifiers(function.tokens)[0]
     if operator.normalized == 'sum' or operator.normalized == 'SUM':
-        operation_type = AggregationType.SUM
+        operation_type = 'SUM'
     elif operator.normalized == 'avg' or operator.normalized == 'AVG':
-        operation_type = AggregationType.AVG
+        operation_type = 'AVG'
     elif operator.normalized == 'count' or operator.normalized == 'COUNT':
-        query.add_aggregation_operation((AggregationOperationType.AGGREGATION, AggregationType.COUNT, []))
+        query.add_aggregation_operation(('COUNT', None))
         return
     else:
         raise Exception(f"Unknown operator: {operator.normalized} ")
@@ -62,134 +83,42 @@ def _parse_aggregation(alias_dict, function, query, schema):
     operand_parantheses = operand_parantheses[0]
     operation_tokens = [token for token in operand_parantheses
                         if isinstance(token, sqlparse.sql.Operation)]
-    # Product of columns
-    if len(operation_tokens) == 1:
-        operation_tokens = operation_tokens[0].tokens
-        assert [token.value == ' ' or token.value == '*' for token in operation_tokens
-                if not isinstance(token, sqlparse.sql.Identifier)], \
-            "Currently multiplication is the only supported operator."
-        identifiers = _extract_identifiers(operation_tokens)
-        for identifier in identifiers:
-            feature = _fully_qualified_attribute_name(identifier, schema, alias_dict, return_split=True)
-            operation_factors.append(feature)
-    # single column
-    else:
-        feature = _fully_qualified_attribute_name(_extract_identifiers(operand_parantheses)[0], schema,
-                                                  alias_dict, return_split=True)
-        operation_factors.append(feature)
-    query.add_aggregation_operation((AggregationOperationType.AGGREGATION, operation_type, operation_factors))
+    identifier=_extract_identifiers(operand_parantheses)[0]
+    attr=_extract_attribute(identifier,schema)
+    # feature = _fully_qualified_attribute_name(_extract_identifiers(operand_parantheses)[0], schema, return_split=True)
+    query.add_aggregation_operation((operation_type, attr))
 
-def handle_aggregation(alias_dict, query, schema, tokens_before_from):
+
+def handle_aggregation(query, schema, tokens_before_from):
     operations = [token for token in tokens_before_from if isinstance(token, sqlparse.sql.Operation)]
-    assert len(operations) <= 1, "A maximum of 1 operation is supported."
-    if len(operations) == 0:
-        functions = [token for token in tokens_before_from if isinstance(token, sqlparse.sql.Function)]
-        assert len(functions) == 1, "Only a single aggregate function is supported."
-        function = functions[0]
-        _parse_aggregation(alias_dict, function, query, schema)
-    else:
-        operation = operations[0]
-        inner_operations = [token for token in operation.tokens if isinstance(token, sqlparse.sql.Operation)]
-        # handle inner operations recursively
-        if len(inner_operations) > 0:
-            assert len(inner_operations) == 1, "Multiple inner operations impossible"
-            handle_aggregation(alias_dict, query, schema, inner_operations)
-        for token in operation.tokens:
-            if isinstance(token, sqlparse.sql.Function):
-                _parse_aggregation(alias_dict, token, query, schema)
-            elif token.value == '-':
-                query.add_aggregation_operation((AggregationOperationType.MINUS, None, None))
-            elif token.value == '+':
-                query.add_aggregation_operation((AggregationOperationType.PLUS, None, None))
+    assert len(operations) == 0, "Operation is not supported currently."
+    functions = [token for token in tokens_before_from if isinstance(token, sqlparse.sql.Function)]
+    # assert len(functions) == 1, "Only a single aggregate function is supported."
+    for function in functions:
+        _parse_aggregation(function, query, schema)
+    
 
 
-class QueryType(Enum):
-    AQP = 0
-    CARDINALITY = 1
-
-
-class AggregationType(Enum):
-    SUM = 0
-    AVG = 1
-    COUNT = 2
-
-
-class AggregationOperationType(Enum):
-    PLUS = 0
-    MINUS = 1
-    AGGREGATION = 2
-
-
-class Query:
-    """Represents query"""
-
-    def __init__(self, schema_graph, query_type=QueryType.CARDINALITY, features=None):
-        self.query_type = query_type
-        self.schema_graph = schema_graph
-        self.table_set = set()
-        self.relationship_set = set()
-        self.table_where_condition_dict = {}
-        self.conditions = []
-        self.aggregation_operations = []
-        self.group_bys = []
-
-    def remove_conditions_for_attributes(self, table, attributes):
-        def conflicting(condition):
-            return any([condition.startswith(attribute + ' ') or condition.startswith(attribute + '<') or
-                        condition.startswith(attribute + '>') or condition.startswith(attribute + '=') for
-                        attribute in attributes])
-
-        if self.table_where_condition_dict.get(table) is not None:
-            self.table_where_condition_dict[table] = [condition for condition in
-                                                      self.table_where_condition_dict[table]
-                                                      if not conflicting(condition)]
-        self.conditions = [(cond_table, condition) for cond_table, condition in self.conditions
-                           if not (cond_table == table and conflicting(condition))]
-
-    def copy_cardinality_query(self):
-        query = Query(self.schema_graph)
-        query.table_set = copy.copy(self.table_set)
-        query.relationship_set = copy.copy(self.relationship_set)
-        query.table_where_condition_dict = copy.copy(self.table_where_condition_dict)
-        query.conditions = copy.copy(self.conditions)
-        return query
-
-    def add_group_by(self, table, attribute):
-        self.group_bys.append((table, attribute))
-
-    def add_aggregation_operation(self, operation):
-        """
-        Adds operation to AQP query.
-        :param operation: (AggregationOperationType.AGGREGATION, operation_type, operation_factors) or (AggregationOperationType.MINUS, None, None)
-        :return:
-        """
-        self.aggregation_operations.append(operation)
-
-    def add_join_condition(self, relationship_identifier):
-
-        relationship = self.schema_graph.relationship_dictionary[relationship_identifier]
-        self.table_set.add(relationship.start)
-        self.table_set.add(relationship.end)
-
-        self.relationship_set.add(relationship_identifier)
-
-    def add_where_condition(self, table, condition):
-        if self.table_where_condition_dict.get(table) is None:
-            self.table_where_condition_dict[table] = [condition]
-        else:
-            self.table_where_condition_dict[table].append(condition)
-        self.conditions.append((table, condition))
-
-
-def parse_query(query_str, schema):
+def parse_query(query_str,spark):
     """
     Parses simple SQL queries and returns cardinality query object.
-    :param query_str:
-    :param schema:
+    :param query_str: sql query string
+    :param schema: schema information
     :return:
     """
-    query = Query(schema)
+    schema = Schema()
+    query = Query()
+    # catalog=spark.catalog
+    query_str=query_str.upper()
+    # handle sampling method
+    with_idx=query_str.rfind('WITH')
+    with_clause=query_str[with_idx+5:]
+    sampling_methods=with_clause.split(' ')
+    query.multi_sampling_times=int(sampling_methods[0].split('=')[1])
+    sampling_methods.pop(0)
 
+    query_str=query_str[:with_idx]
+    query.sql=query_str
     # split query into part before from
     parsed_tokens = sqlparse.parse(query_str)[0]
     from_idxs = [i for i, token in enumerate(parsed_tokens) if token.normalized == 'FROM']
@@ -197,11 +126,12 @@ def parse_query(query_str, schema):
     from_idx = from_idxs[0]
     tokens_before_from = parsed_tokens[:from_idx]
 
-    # split query into part after from and before group by
+    # split query into part between FROM and before GROUP BY (contain table names)
+    # extract group by attribute
     group_by_idxs = [i for i, token in enumerate(parsed_tokens) if token.normalized == 'GROUP BY']
     assert len(group_by_idxs) == 0 or len(group_by_idxs) == 1, "Nested queries are currently not supported."
     group_by_attributes = None
-    if len(group_by_idxs) == 1:
+    if len(group_by_idxs) == 1:  # there is a group by clause
         tokens_from_from = parsed_tokens[from_idx:group_by_idxs[0]]
         order_by_idxs = [i for i, token in enumerate(parsed_tokens) if token.normalized == 'ORDER BY']
         if len(order_by_idxs) > 0:
@@ -218,55 +148,80 @@ def parse_query(query_str, schema):
     identifiers = _extract_identifiers(tokens_from_from)
     identifier_token_length = \
         [len(token.tokens) for token in identifiers if isinstance(token, sqlparse.sql.Identifier)][0]
-
     if identifier_token_length == 3:
-        # (title, t)
+        # (database, table)
         tables = [(token[0].value, token[2].value) for token in identifiers if
                   isinstance(token, sqlparse.sql.Identifier)]
     else:
-        # (title, title), no alias
         tables = [(token[0].value, token[0].value) for token in identifiers if
                   isinstance(token, sqlparse.sql.Identifier)]
-    alias_dict = dict()
-    for table, alias in tables:
-        query.table_set.add(table)
-        alias_dict[alias] = table
+    for database_name, table_name in tables:
+        query_table=QueryTable(database_name,table_name)
+        # query_table.columns=[c.name.upper() for c in catalog.listColumns(table_name,database_name)]
+        query_table.columns=get_columns(table_name)
+        query_table.add_sampling_method(sampling_methods[0])
+        sampling_methods.pop(0)
+        schema.add_table(query_table)
+        query.add_table(query_table)
 
+    # If there is a on clause, get the join condition
+    on_idx = [idx for idx, token in enumerate(tokens_from_from) if token.normalized == 'ON']
+    if len(on_idx) > 0:
+        assert len(on_idx) == 1, "Nested queries are currently not supported."
+        token_from_on = tokens_from_from[on_idx[0]:]
+        on_statements = [token for token in token_from_on if isinstance(token, sqlparse.sql.Comparison)]
+        assert len(on_statements) == 1, "On clause must be with join condition"
+        on_statements = on_statements[0]
+        left = on_statements.left
+        right = on_statements.right
+        assert isinstance(left, sqlparse.sql.Identifier), "Invalid where condition"
+        assert isinstance(left, sqlparse.sql.Identifier), "Invalid where condition"
+
+        comparison_tokens = [token for token in on_statements.tokens if token.ttype == Token.Operator.Comparison]
+        assert len(comparison_tokens) == 1, "Invalid comparison"
+        operator_idx = on_statements.tokens.index(comparison_tokens[0])
+        assert on_statements.tokens[operator_idx].value == '=', "Invalid join condition"
+
+        if len(left.tokens) == 1:  # when then join attribute without table name
+            left_part=_extract_attribute(left,schema)
+            # Join relationship
+            assert len(right.tokens) == 1, "Invalid Identifier"
+            right_part=_extract_attribute(right,schema)
+            query.add_join_condition(left_part, right_part)
+            
+        else: # when the join attribute with the table name 
+            # Replace alias by full table names
+            left_part = _extract_attribute(left, schema)
+            right = on_statements.right
+            # Join relationship
+            assert right.tokens[1].value == '.', "Invalid Identifier"
+            right_part = _extract_attribute(right,schema)
+            query.add_join_condition(left_part, right_part)
+            
     # If there is a group by clause, parse it
     if group_by_attributes is not None:
+        for group_by_token in _extract_identifiers(group_by_attributes):
+            # attribute = group_by_token.value
+            # table = _find_matching_table(attribute, schema)
+            
+            attribute=_extract_attribute(group_by_token,schema)
+            query.add_group_by(attribute)
 
-        identifier_token_length = \
-            [len(token.tokens) for token in _extract_identifiers(group_by_attributes)][0]
-
-        if identifier_token_length == 3:
-            # lo.d_year
-            group_by_attributes = [(alias_dict[token[0].value], token[2].value) for token in
-                                   _extract_identifiers(group_by_attributes)]
-            for table, attribute in group_by_attributes:
-                query.add_group_by(table, attribute)
-        else:
-            # d_year
-            for group_by_token in _extract_identifiers(group_by_attributes):
-                attribute = group_by_token.value
-                table = _find_matching_table(attribute, schema, alias_dict)
-                query.add_group_by(table, attribute)
-
-    # Obtain projection/ aggregation attributes
+    # Obtain projection/aggregation attributes
     count_statements = [token for token in tokens_before_from if
                         token.normalized == 'COUNT(*)' or token.normalized == 'count(*)']
     assert len(count_statements) <= 1, "Several count statements are currently not supported."
     if len(count_statements) == 1:
-        query.query_type = QueryType.CARDINALITY
+        query.query_type = 0
     else:
-        query.query_type = QueryType.AQP
+        query.query_type = 1
         identifiers = _extract_identifiers(tokens_before_from)
-
-        # Only aggregation attribute, e.g. sum(lo_extendedprice*lo_discount)
-        if not isinstance(identifiers, sqlparse.sql.IdentifierList):
-            handle_aggregation(alias_dict, query, schema, tokens_before_from)
-        # group by attributes and aggregation attribute
+        if isinstance(identifiers,sqlparse.sql.IdentifierList):
+            # select group by attributes and aggregation attribute
+            handle_aggregation(query, schema, identifiers)
         else:
-            handle_aggregation(alias_dict, query, schema, identifiers.tokens)
+            # select only aggregation attribute
+            handle_aggregation(query, schema, tokens_before_from)
 
     # Obtain where statements
     where_statements = [token for token in tokens_from_from if isinstance(token, sqlparse.sql.Where)]
@@ -278,31 +233,7 @@ def parse_query(query_str, schema):
     assert len(
         [token for token in where_statements if token.normalized == 'OR']) == 0, "OR statements currently unsupported."
 
-    # Parse where statements
-    # parse multiple values differently because sqlparse does not parse as comparison
-    in_statements = [idx for idx, token in enumerate(where_statements) if token.normalized == 'IN']
-    for in_idx in in_statements:
-        assert where_statements.tokens[in_idx - 1].value == ' '
-        assert where_statements.tokens[in_idx + 1].value == ' '
-        # ('bananas', 'apples')
-        possible_values = where_statements.tokens[in_idx + 2]
-        assert isinstance(possible_values, sqlparse.sql.Parenthesis)
-        # fruits
-        identifier = where_statements.tokens[in_idx - 2]
-        assert isinstance(identifier, sqlparse.sql.Identifier)
-
-        if len(identifier.tokens) == 1:
-
-            left_table_name, left_attribute = _fully_qualified_attribute_name(identifier, schema, alias_dict,
-                                                                              return_split=True)
-            query.add_where_condition(left_table_name, left_attribute + ' IN ' + possible_values.value)
-
-        else:
-            assert identifier.tokens[1].value == '.', "Invalid identifier."
-            # Replace alias by full table names
-            query.add_where_condition(alias_dict[identifier.tokens[0].value],
-                                      identifier.tokens[2].value + ' IN ' + possible_values.value)
-    # normal comparisons
+    # normal comparisons condition
     comparisons = [token for token in where_statements if isinstance(token, sqlparse.sql.Comparison)]
     for comparison in comparisons:
         left = comparison.left
@@ -312,18 +243,17 @@ def parse_query(query_str, schema):
         operator_idx = comparison.tokens.index(comparison_tokens[0])
 
         if len(left.tokens) == 1:
-
-            left_table_name, left_attribute = _fully_qualified_attribute_name(left, schema, alias_dict,
+            left_table_name, left_attribute = _fully_qualified_attribute_name(left, schema,
                                                                               return_split=True)
             left_part = left_table_name + '.' + left_attribute
             right = comparison.right
-
             # Join relationship
             if isinstance(right, sqlparse.sql.Identifier):
                 assert len(right.tokens) == 1, "Invalid Identifier"
 
                 right_attribute = right.tokens[0].value
-                right_table_name = _find_matching_table(right_attribute, schema, alias_dict)
+                right_table_name=right_attribute
+                # right_table_name = _find_matching_table(right_attribute, schema)
                 right_part = right_table_name + '.' + right_attribute
 
                 assert comparison.tokens[operator_idx].value == '=', "Invalid join condition"
@@ -338,17 +268,17 @@ def parse_query(query_str, schema):
             else:
                 where_condition = left_attribute + "".join(
                     [token.value.strip() for token in comparison.tokens[operator_idx:]])
-                query.add_where_condition(left_table_name, where_condition)
+                query.add_where_condition(left_table_name,left_attribute, where_condition)
 
         else:
             # Replace alias by full table names
-            left_part = _fully_qualified_attribute_name(left, schema, alias_dict)
+            left_part = _fully_qualified_attribute_name(left, schema)
 
             right = comparison.right
             # Join relationship
             if isinstance(right, sqlparse.sql.Identifier):
                 assert right.tokens[1].value == '.', "Invalid Identifier"
-                right_part = alias_dict[right.tokens[0].value] + '.' + right.tokens[2].value
+                right_part = right.tokens[0].value + '.' + right.tokens[2].value
                 assert comparison.tokens[operator_idx].value == '=', "Invalid join condition"
                 assert left_part + ' = ' + right_part in schema.relationship_dictionary.keys() or \
                        right_part + ' = ' + left_part in schema.relationship_dictionary.keys(), "Relationship unknown"
@@ -359,7 +289,29 @@ def parse_query(query_str, schema):
 
             # Where condition
             else:
-                query.add_where_condition(alias_dict[left.tokens[0].value],
+                query.add_where_condition(left.tokens[0].value,left.tokens[2].value,
                                           left.tokens[2].value + comparison.tokens[operator_idx].value + right.value)
 
     return query
+
+def get_columns(table_name):
+    table_name=table_name.lower()
+    if table_name=='customer':
+        return ['C_CUSTKEY', 'C_NAME', 'C_ADDRESS', 'C_NATIONKEY', 'C_PHONE', 'C_ACCTBAL', 'C_MKTSEGMENT', 'C_COMMENT']
+    if table_name=='supplier':
+        return ['S_SUPPKEY', 'S_NAME', 'S_ADDRESS', 'S_NATIONKEY', 'S_PHONE', 'S_ACCTBAL', 'S_COMMENT']
+    if table_name=='store_sales':
+        return ['SS_SOLD_DATE_SK', 'SS_SOLD_TIME_SK', 'SS_ITEM_SK', 'SS_CUSTOMER_SK', 'SS_CDEMO_SK', 'SS_HDEMO_SK', 'SS_ADDR_SK', 'SS_STORE_SK', 'SS_PROMO_SK', 'SS_TICKET_NUMBER', 'SS_QUANTITY', 'SS_WHOLESALE_COST', 'SS_LIST_PRICE', 'SS_SALES_PRICE', 'SS_EXT_DISCOUNT_AMT', 'SS_EXT_SALES_PRICE', 'SS_EXT_WHOLESALE_COST', 'SS_EXT_LIST_PRICE', 'SS_EXT_TAX', 'SS_COUPON_AMT', 'SS_NET_PAID', 'SS_NET_PAID_INC_TAX', 'SS_NET_PROFIT']
+    if table_name=='web_sales':
+        return ['WS_SOLD_DATE_SK', 'WS_SOLD_TIME_SK', 'WS_SHIP_DATE_SK', 'WS_ITEM_SK', 'WS_BILL_CUSTOMER_SK', 'WS_BILL_CDEMO_SK', 'WS_BILL_HDEMO_SK', 'WS_BILL_ADDR_SK', 'WS_SHIP_CUSTOMER_SK', 'WS_SHIP_CDEMO_SK', 'WS_SHIP_HDEMO_SK', 'WS_SHIP_ADDR_SK', 'WS_WEB_PAGE_SK', 'WS_WEB_SITE_SK', 'WS_SHIP_MODE_SK', 'WS_WAREHOUSE_SK', 'WS_PROMO_SK', 'WS_ORDER_NUMBER', 'WS_QUANTITY', 'WS_WHOLESALE_COST', 'WS_LIST_PRICE', 'WS_SALES_PRICE', 'WS_EXT_DISCOUNT_AMT', 'WS_EXT_SALES_PRICE', 'WS_EXT_WHOLESALE_COST', 'WS_EXT_LIST_PRICE', 'WS_EXT_TAX', 'WS_COUPON_AMT', 'WS_EXT_SHIP_COST', 'WS_NET_PAID', 'WS_NET_PAID_INC_TAX', 'WS_NET_PAID_INC_SHIP', 'WS_NET_PAID_INC_SHIP_TAX', 'WS_NET_PROFIT']
+    if table_name=='movies':
+        return ['M_MOVIEID', 'TITLE', 'GENRES']
+    if table_name=='ratings':
+        return ['USERID', 'R_MOVIEID', 'RATING', 'TSTAMP']
+    if table_name=='genome_scores':
+        return ['G_MOVIEID', 'TAGID', 'RELEVANCE']
+    if table_name=='sdr_flow_with_outlier':
+        return ['BATCHNO', 'STARTTIME', 'STR1', 'INT1', 'INT2', 'INT3', 'APN', 'PROT_CATEGORY', 'INT4', 'L4_UL_THROUGHPUT', 'L4_DW_THROUGHPUT', 'L4_UL_PACKETS', 'L4_DW_PACKETS', 'INT5', 'INT6', 'INT7', 'INT8', 'INT9', 'INT10', 'STR2', 'INT11', 'INT12']
+    if table_name=='dim_sub_prot':
+        return ['ID', 'SUB_PROT_ID', 'SUB_PROT', 'PROTOCOL_ID', 'PROTOCOL']
+    return []

@@ -1,0 +1,18 @@
+{
+    "name": "imdb_self_join",
+    "train_config_files": [
+      "./config/train/imdb_a_torch_cvae.json",
+      "./config/train/imdb_b_torch_cvae.json"
+    ],
+    "multi_sample_times": 1,
+    "operation": "aqp",
+    "join_cols": ["tconst","tconst"],
+    "groupby_cols": ["tconst"],
+    "result_path": "./output/aqp_result/imdb_res.csv",
+    "diff_path": "./output/diff/imdb_diff.csv",
+    "sum_cols": ["average_rating","num_votes"],
+    "avg_cols": ["average_rating","num_votes"],
+    "var": "./var/tpch-1m/cn_var.csv",
+    "ground_truth": "./ground_truth/imdb/imdb_truth.csv"
+  }
+  

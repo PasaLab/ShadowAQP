@@ -1,0 +1,62 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2022-06-29 23:57:23,230 - main.py[line:451] - INFO: load query config config/query/sales_outlier_join_store.json successfully
+2022-06-29 23:57:23,230 - main.py[line:458] - INFO: load train config ./config/train/tpcds_ssales_store_outlier_torch_cvae.json successfully
+2022-06-29 23:57:23,230 - main.py[line:458] - INFO: load train config ./config/train/tpcds_store_torch_cvae.json successfully
+2022-06-29 23:57:23,230 - pytorch_cvae.py[line:244] - INFO: epoch:150
+2022-06-29 23:57:23,230 - pytorch_cvae.py[line:245] - INFO: batch size:512
+2022-06-29 23:57:23,230 - pytorch_cvae.py[line:246] - INFO: latent dimension:100
+2022-06-29 23:57:23,230 - pytorch_cvae.py[line:247] - INFO: intermediate dimension:100
+2022-06-29 23:57:23,230 - pytorch_cvae.py[line:248] - INFO: gpu num:0
+2022-06-29 23:57:23,238 - dataset_utils.py[line:293] - INFO: loading data:/home/lihan/train_dataset/tpcds_0.6667g/store_sales_outlier.csv
+--- Logging error ---
+Traceback (most recent call last):
+  File "/root/anaconda3/envs/py36/lib/python3.6/logging/__init__.py", line 994, in emit
+    msg = self.format(record)
+  File "/root/anaconda3/envs/py36/lib/python3.6/logging/__init__.py", line 840, in format
+    return fmt.format(record)
+  File "/root/anaconda3/envs/py36/lib/python3.6/logging/__init__.py", line 577, in format
+    record.message = record.getMessage()
+  File "/root/anaconda3/envs/py36/lib/python3.6/logging/__init__.py", line 338, in getMessage
+    msg = msg % self.args
+TypeError: not all arguments converted during string formatting
+Call stack:
+  File "main.py", line 469, in <module>
+    model_aqp(query_config, train_config_list)
+  File "main.py", line 389, in model_aqp
+    model_dataset_list = train_load_models(train_config_list)
+  File "main.py", line 46, in train_load_models
+    model_dataset = train_torch_cvae(param)
+  File "/home/lihan/table_cvae_aqp/models/pytorch_cvae.py", line 252, in train_torch_cvae
+    dataset = TabularDataset(train_config)
+  File "/home/lihan/table_cvae_aqp/utils/dataset_utils.py", line 29, in __init__
+    self.load_data(param)
+  File "/home/lihan/table_cvae_aqp/utils/dataset_utils.py", line 313, in load_data
+    self.filter_outlier()
+  File "/home/lihan/table_cvae_aqp/utils/dataset_utils.py", line 276, in filter_outlier
+    logger.info("=====outlier_condition: ", outlier_condition)
+Message: '=====outlier_condition: '
+Arguments: (['ss_wholesale_cost>=45500.0', 'ss_list_price>=1810.0', 'ss_sales_price>=1440.0', 'ss_ext_sales_price>=103530.0'],)
+/home/lihan/table_cvae_aqp/utils/dataset_utils.py:278: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  self.outliers[self.name+'_rate'] = 1
+2022-06-29 23:57:25,529 - dataset_utils.py[line:281] - INFO: filtered outlier:2 rows
+2022-06-29 23:57:25,529 - dataset_utils.py[line:314] - INFO: data total rows:1735863
+2022-06-29 23:57:25,529 - dataset_utils.py[line:346] - INFO: sample the training data sample rows:1735863
+2022-06-29 23:57:25,529 - dataset_utils.py[line:350] - INFO: load data time elapsed:2.290983472019434
+2022-06-29 23:57:25,706 - dataset_utils.py[line:43] - INFO: encode categorical columns time elapsed:0.17634078115224838
+2022-06-29 23:57:25,772 - dataset_utils.py[line:56] - INFO: encode numeric columnstime elapsed:0.06523986160755157
+2022-06-29 23:57:25,987 - dataset_utils.py[line:107] - INFO: data shape:(1735863, 9)
+2022-06-29 23:57:25,987 - dataset_utils.py[line:136] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 1), ('ss_list_price', 'numerical', 1), ('ss_sales_price', 'numerical', 1), ('ss_ext_sales_price', 'numerical', 1), ('ss_store_sk', 'categorical', 5)]
+2022-06-29 23:57:25,987 - dataset_utils.py[line:137] - INFO: output info list:[(1, 'no'), (1, 'no'), (1, 'no'), (1, 'no'), (5, 'sigmoid')]
+2022-06-29 23:57:28,054 - dataset_utils.py[line:140] - INFO: load data successfully
+2022-06-29 23:57:28,054 - pytorch_cvae.py[line:253] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 1), ('ss_list_price', 'numerical', 1), ('ss_sales_price', 'numerical', 1), ('ss_ext_sales_price', 'numerical', 1), ('ss_store_sk', 'categorical', 5)]
+2022-06-29 23:57:55,085 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.1 epoch----------------------------
+2022-06-29 23:57:55,085 - pytorch_cvae.py[line:176] - INFO: loss:267.0734363310039, numeric_loss:68.66392791783437, categorical_loss:68.61148810945451, kld_loss:24079.66736137867, epoch_train_time:27.028282448649406
+2022-06-29 23:58:21,842 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.2 epoch----------------------------
+2022-06-29 23:58:21,842 - pytorch_cvae.py[line:176] - INFO: loss:124.07796016894281, numeric_loss:33.07370681455359, categorical_loss:7.0130577597010415, kld_loss:14106.000548362732, epoch_train_time:26.757012452930212
+2022-06-29 23:58:48,640 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.3 epoch----------------------------
+2022-06-29 23:58:48,640 - pytorch_cvae.py[line:176] - INFO: loss:124.1648480296135, numeric_loss:31.66016012383625, categorical_loss:6.382938474860566, kld_loss:13107.049924612045, epoch_train_time:26.797553475946188

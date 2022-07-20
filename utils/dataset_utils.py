@@ -12,8 +12,6 @@ import logging
 
 from utils.binary_encoder import BinaryEncoder
 from utils.gaussian_encoder import GaussianEncoder
-
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 
@@ -23,10 +21,12 @@ class TabularDataset(Dataset):
         if 'gpu_num' in param:
             self.gpu_num = param['gpu_num']
         self.device = torch.device("cuda:{}".format(self.gpu_num) if torch.cuda.is_available() else "cpu")
-        self.load_data(param)
+        # self.load_data(param)
         self.inc_train_flag = 'origin_train'
         self.categorical_encoding = param['categorical_encoding']
         self.numeric_encoding = param['numeric_encoding']
+        self.sample_for_train = param['sample_for_train']
+        self.load_data(param)
         encoded_categorical = None
         encoded_numeric = None
         start_time = time.perf_counter()
@@ -35,8 +35,10 @@ class TabularDataset(Dataset):
             categorical_data = self.origin_df[self.all_categorical_columns]
             if self.categorical_encoding == 'binary':
                 encoded_categorical = self.encode_categorical_data_binary(categorical_data)
+                self.label = self.encode_label_binary(self.label_df[[self.label_column_name]])
             else:
                 encoded_categorical = self.encode_categorical_data_one_hot(categorical_data)
+                self.label = self.encode_label_binary(self.label_df[[self.label_column_name]])
         end_time = time.perf_counter()
         logger.info('encode categorical columns time elapsed:{}'.format(end_time - start_time))
 
@@ -70,14 +72,22 @@ class TabularDataset(Dataset):
             self.label_group_relative_stds_with_num = {}
             self.label_group_relative_stds_with_num_sums = {}
             for col in self.numeric_columns:
-                self.label_group_stds[col] = self.origin_df.groupby(self.label_column_name)[col].std().to_dict()
-                self.label_group_means[col] = self.origin_df.groupby(self.label_column_name)[col].mean().to_dict()
+                self.label_group_stds[col] = self.label_df.groupby(self.label_column_name)[col].std(ddof=0).to_dict()
+                self.label_group_means[col] = self.label_df.groupby(self.label_column_name)[col].mean().to_dict()
 
+                # print("==========self.label_group_stds: ",self.label_group_stds)
+                # print("==========self.label_group_means: ",self.label_group_means)
+                # print("==========self.origin_df.isnull().sum(): ",self.origin_df.isnull().sum())
                 self.label_group_relative_stds[col] = {
                     k: self.label_group_stds[col][k] / self.label_group_means[col][k] if self.label_group_means[col][
                                                                                              k] != 0 else 0
                     for k in self.label_group_stds[col]}
+
                 self.label_group_relative_stds_sums[col] = sum(self.label_group_relative_stds[col].values())
+
+                # print("==========label_group_relative_stds: ",self.label_group_relative_stds)
+                # print("==========label_group_relative_stds_sums: ",self.label_group_relative_stds_sums)
+
 
                 self.label_group_relative_stds_with_num[col] = {
                     k: self.label_group_relative_stds[col][k] * math.sqrt(self.label_group_counts[k])
@@ -85,14 +95,16 @@ class TabularDataset(Dataset):
                 self.label_group_relative_stds_with_num_sums[col] = sum(
                     self.label_group_relative_stds_with_num[col].values())
 
-            self.label = self.data.iloc[:, self.data.columns.str.contains(self.label_column_name)]
+            # self.label = self.data.iloc[:, self.data.columns.str.contains(self.label_column_name)]
             self.label_size = self.label.shape[1]
         else:
             self.label = pd.DataFrame(np.zeros((self.total_rows, 1)))
             self.label_size = 0
-
-        self.data_dim = self.data.shape[1]
-        logger.info("data shape:{}".format(self.data.shape))
+        self.feature_data=self.data
+        # if self.label_column_name not in self.all_columns:
+        #     self.feature_data.drop([t for t in self.feature_data.columns if self.label_column_name in t],axis=1,inplace=True)
+        self.data_dim = self.feature_data.shape[1]
+        logger.info("data shape:{}".format(self.feature_data.shape))
 
         self.numeric_digits = 0
         self.categorical_digits = 0
@@ -123,7 +135,7 @@ class TabularDataset(Dataset):
 
         logger.info('feature info:{}'.format(self.feature_info))
         logger.info("output info list:{}".format(self.encoded_output_info))
-        self.raw_data = torch.from_numpy(self.data.values.astype("float32")).to(self.device)
+        self.raw_data = torch.from_numpy(self.feature_data.values.astype("float32")).to(self.device)
         self.raw_label_data = torch.from_numpy(self.label.values.astype("float32")).to(self.device)
         logger.info('load data successfully')
 
@@ -146,11 +158,11 @@ class TabularDataset(Dataset):
             return self.inc_old_rows
         return self.total_rows
 
-    def load_incremental_data(self, param):
+    def load_incremental_data(self, train_config):
         start_time = time.perf_counter()
-        delimiter = param["delimiter"]
-        filename = param["inc_data"]
-        header = param["header"]
+        delimiter = train_config["delimiter"]
+        filename = train_config["inc_data"]
+        header = train_config["header"]
         if header == 1:
             df = pd.read_csv(filename, delimiter=delimiter)
         else:
@@ -160,7 +172,7 @@ class TabularDataset(Dataset):
         print("label group counts before:{}".format(self.label_group_counts))
         self.inc_rows = len(df)
 
-        label_columns = param['label_columns']
+        label_columns = train_config['label_columns']
         if len(label_columns) > 1:
             self.inc_df[self.label_column_name] = self.inc_df[label_columns].astype(str).agg('-'.join, axis=1)
         if self.label_column_name != None:
@@ -253,15 +265,20 @@ class TabularDataset(Dataset):
         numeric_data = self.origin_df[self.numeric_columns]
         # stds = numeric_data.std()
         # means = numeric_data.mean()
+        # q = 0.99
         q = 0.99
         quantiles = numeric_data.quantile(q)
         normal_condition = []
         outlier_condition = []
         for col in self.numeric_columns:
             bound = 10 * quantiles[col]
+            # bound = quantiles[col]
             normal_condition.append('{}<{}'.format(col, bound))
             outlier_condition.append('{}>={}'.format(col, bound))
+        logger.info("outlier_condition: {}".format(outlier_condition))
         self.outliers = self.origin_df.query(' | '.join(outlier_condition))
+        # tt = self.name+'_rate'
+        # self.outliers[tt] = 1
         self.outliers['{}_rate'.format(self.name)] = 1
         self.origin_df = self.origin_df.query(' & '.join(normal_condition))
         self.total_rows = len(self.origin_df)
@@ -289,14 +306,20 @@ class TabularDataset(Dataset):
         self.categorical_columns = categorical_columns
         self.numeric_columns = numeric_columns
         if 'label_columns' in param and len(param['label_columns']) > 0:
-            self.generate_label_column(param['label_columns'])
+            self.label_df=self.generate_label_data(param['label_columns'],param['bucket_columns'])
+
             # collect group count for each label group
-            self.label_group_counts = self.origin_df[self.label_column_name].value_counts().to_dict()
+            # self.label_group_counts = self.origin_df[self.label_column_name].value_counts().to_dict()
+            self.label_group_counts = self.label_df[self.label_column_name].value_counts().to_dict()
         else:
             self.label_column_name = None
         if 'outliers' in param and param['outliers'] == 'true':
             self.filter_outlier()
         logger.info('data total rows:{}'.format(self.total_rows))
+        if self.sample_for_train != 1:
+            self.origin_df = self.origin_df.sample(frac=self.sample_for_train)
+            self.total_rows = len(self.origin_df)
+            logger.info('data total rows after sample:{}'.format(self.total_rows))
         # logger.info('label value counts:{}'.format(self.label_group_counts))
         if self.total_rows > 1000000:
             rate = 0.5
@@ -330,25 +353,46 @@ class TabularDataset(Dataset):
         end_time = time.perf_counter()
         logger.info('load data time elapsed:{}'.format(end_time - start_time))
 
-    def generate_label_column(self, label_columns):
-        if len(label_columns) == 1:
+    def generate_label_data(self, label_columns,bucket_columns):
+        label_df=self.origin_df.copy()
+        label_columns_copy=label_columns.copy()
+        if len(bucket_columns)>0:
+            for col in bucket_columns:
+                label_df[col+"_bucket"]=(label_df[col]).mod(8)
+                col_idx=label_columns_copy.index(col)
+                label_columns_copy[col_idx]=label_columns_copy[col_idx]+"_bucket"
+
+        if len(label_columns_copy) == 1:
             self.all_categorical_columns = self.categorical_columns
-            self.label_column_name = label_columns[0]
+            self.label_column_name = label_columns_copy[0]
+            # if self.label_column_name not in self.all_categorical_columns:
+            #     self.all_categorical_columns.append(self.label_column_name)
         else:
-            self.label_column_name = "-".join(label_columns)
-            self.all_categorical_columns = self.categorical_columns + [self.label_column_name]
+            self.label_column_name = "-".join(label_columns_copy)
+            self.all_categorical_columns = self.categorical_columns #+ [self.label_column_name]
             # self.origin_df[self.label_column_name] = self.origin_df[label_columns].astype(str).sum(axis=1)
             # self.origin_df[self.label_column_name] = self.origin_df[label_columns].apply(lambda x: ''.join(x), axis=1)
-            self.origin_df[self.label_column_name] = self.origin_df[label_columns].astype(str).agg('-'.join, axis=1)
+            label_df[self.label_column_name] = label_df[label_columns_copy].astype(str).agg('-'.join, axis=1)
+        return label_df
 
     def encode_categorical_data_binary(self, categorical_data):
         # binary encoding for categorical columns
-        self.bce = BinaryEncoder(cols=self.categorical_columns, label=self.label_column_name)
+        self.bce = BinaryEncoder(cols=self.categorical_columns, label=None)
         binary_encoded = self.bce.fit_transform(categorical_data)
         self.column_digits = self.bce.column_digits
+        # if self.label_column_name is not None:
+        #     self.label_value_mapping = self.bce.label_value_mapping
+        #     self.label_mapping_out = self.bce.mapping[self.label_column_name]
+        return binary_encoded
+
+    def encode_label_binary(self, label_data):
+        # binary encoding for categorical columns
+        bce = BinaryEncoder(cols=[self.label_column_name], label=self.label_column_name)
+        binary_encoded = bce.fit_transform(label_data)
+        # self.column_digits = self.bce.column_digits
         if self.label_column_name is not None:
-            self.label_value_mapping = self.bce.label_value_mapping
-            self.label_mapping_out = self.bce.mapping[self.label_column_name]
+            self.label_value_mapping = bce.label_value_mapping
+            self.label_mapping_out = bce.mapping[self.label_column_name]
         return binary_encoded
 
     def decode_categorical_data_binary(self, categorical_data):
@@ -458,26 +502,26 @@ class TabularDataset(Dataset):
             print('device is changed to No.{} gpu'.format(self.device))
 
 
-def generate_dataset_name(param):
+def generate_dataset_name(train_config):
     dataset_name = 'dataset'
-    if param["model_type"] == "keras_vae" or param["model_type"] == "torch_vae":
-        dataset_name = "{}_{}_{}_{}_{}".format(param["name"], '#'.join(param["categorical_columns"]),
-                                               '#'.join(param["numeric_columns"]),
-                                               param["categorical_encoding"],
-                                               param["numeric_encoding"] + str(
-                                                   param["max_clusters"]) if
-                                               param["numeric_encoding"] == 'gaussian' else
-                                               param["numeric_encoding"])
-    elif param["model_type"] == "keras_cvae" or param["model_type"] == "torch_cvae":
-        dataset_name = "{}_{}_{}_{}_{}_{}_{}".format(param["name"], '#'.join(param["categorical_columns"]),
-                                                     '#'.join(param["numeric_columns"]),
-                                                     '#'.join(param["label_columns"]),
-                                                     param["categorical_encoding"],
-                                                     (param["numeric_encoding"] + str(
-                                                         param["max_clusters"])) if
-                                                     param["numeric_encoding"] == 'gaussian' else
-                                                     param["numeric_encoding"],
-                                                     param['gpu_num'], )
+    if train_config["model_type"] == "keras_vae" or train_config["model_type"] == "torch_vae":
+        dataset_name = "{}_{}_{}_{}_{}".format(train_config["name"], '#'.join(train_config["categorical_columns"]),
+                                               '#'.join(train_config["numeric_columns"]),
+                                               train_config["categorical_encoding"],
+                                               train_config["numeric_encoding"] + str(
+                                                   train_config["max_clusters"]) if
+                                               train_config["numeric_encoding"] == 'gaussian' else
+                                               train_config["numeric_encoding"])
+    elif train_config["model_type"] == "keras_cvae" or train_config["model_type"] == "torch_cvae":
+        dataset_name = "{}_{}_{}_{}_{}_{}_{}".format(train_config["name"], '#'.join(train_config["categorical_columns"]),
+                                                     '#'.join(train_config["numeric_columns"]),
+                                                     '#'.join(train_config["label_columns"]),
+                                                     train_config["categorical_encoding"],
+                                                     (train_config["numeric_encoding"] + str(
+                                                         train_config["max_clusters"])) if
+                                                     train_config["numeric_encoding"] == 'gaussian' else
+                                                     train_config["numeric_encoding"],
+                                                     train_config['gpu_num'], )
     return dataset_name
 
 
@@ -497,44 +541,44 @@ def save_dataset(dataset, param, postfix=''):
         pickle.dump(dataset, file, True)
 
 
-def load_dataset(param, postfix=''):
+def load_dataset(train_config, postfix=''):
     start_time = time.perf_counter()
-    dataset_name = generate_dataset_name(param)
+    dataset_name = generate_dataset_name(train_config)
     dataset_name += postfix
     logger.info("load existing dataset:{}".format(dataset_name))
     path = "./saved_datasets/{}".format(dataset_name)
     with open(path, 'rb') as file:
         dataset = pickle.load(file)
-    gpu_num = param['gpu_num']
+    gpu_num = train_config['gpu_num']
     device = torch.device("cuda:{}".format(gpu_num) if torch.cuda.is_available() else "cpu")
     dataset.change_device(device)
-    if "inc_data" in param and param['inc_train_flag'] != 'origin_train':
-        dataset.inc_train_flag = param['inc_train_flag']
-        dataset.load_incremental_data(param)
+    if "inc_data" in train_config and train_config['inc_train_flag'] != 'origin_train':
+        dataset.inc_train_flag = train_config['inc_train_flag']
+        dataset.load_incremental_data(train_config)
 
     end_time = time.perf_counter()
     logger.info("load dataset time elapsed:{}".format(end_time - start_time))
     return dataset
 
-
-def load_light_dataset(param, postfix=''):
+def load_light_dataset(train_config, postfix=''):
     start_time = time.perf_counter()
-    dataset_name = generate_dataset_name(param)
+    dataset_name = generate_dataset_name(train_config)
     dataset_name += postfix
     logger.info("load existing dataset(light):{}".format(dataset_name))
     path = "./saved_datasets/{}_light".format(dataset_name)
-    with open(path, 'rb') as file:
-        dataset = pickle.load(file)
-    gpu_num = param['gpu_num']
-    device = torch.device("cuda:{}".format(gpu_num) if torch.cuda.is_available() else "cpu")
-    dataset.change_device(device)
-    end_time = time.perf_counter()
-    logger.info("load dataset(light) time elapsed:{}".format(end_time - start_time))
-    return dataset
+    if os.path.isfile(path):
+        with open(path, 'rb') as file:
+            dataset = pickle.load(file)
+        gpu_num = train_config['gpu_num']
+        device = torch.device("cuda:{}".format(gpu_num) if torch.cuda.is_available() else "cpu")
+        dataset.change_device(device)
+        end_time = time.perf_counter()
+        logger.info("load dataset(light) time elapsed:{}".format(end_time - start_time))
+        return dataset
+    return None
 
-
-def exist_dataset(param):
-    model_name = generate_dataset_name(param)
+def exist_dataset(train_config):
+    model_name = generate_dataset_name(train_config)
     path = "./saved_datasets/{}".format(model_name)
     if os.path.isfile(path):
         return True

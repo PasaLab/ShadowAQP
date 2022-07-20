@@ -1,0 +1,194 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2022-07-11 16:18:33,665 - main.py[line:581] - INFO: load query config config/query/census.json successfully
+2022-07-11 16:18:33,665 - main.py[line:588] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-11 16:18:33,665 - main.py[line:588] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-11 16:18:33,665 - dataset_utils.py[line:567] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-11 16:18:33,758 - dataset_utils.py[line:576] - INFO: load dataset(light) time elapsed:0.09217270836234093
+2022-07-11 16:18:33,758 - pytorch_cvae.py[line:276] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-11 16:18:33,760 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-11 16:18:35,852 - model_utils.py[line:86] - INFO: load torch model time elapsed:2.0921089984476566
+2022-07-11 16:18:35,852 - pytorch_cvae.py[line:286] - INFO: load model time elapsed:2.1867375299334526
+2022-07-11 16:18:35,852 - dataset_utils.py[line:567] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-11 16:18:35,860 - dataset_utils.py[line:576] - INFO: load dataset(light) time elapsed:0.008149608969688416
+2022-07-11 16:18:35,861 - pytorch_cvae.py[line:276] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-11 16:18:35,861 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-11 16:18:35,862 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013929344713687897
+2022-07-11 16:18:35,863 - pytorch_cvae.py[line:286] - INFO: load model time elapsed:0.01027948409318924
+2022-07-11 16:18:35,863 - main.py[line:525] - INFO: multi_sampling No.0 epoch
+2022-07-11 16:18:35,868 - main.py[line:525] - INFO: multi_sampling No.1 epoch
+2022-07-11 16:18:35,870 - main.py[line:525] - INFO: multi_sampling No.2 epoch
+2022-07-11 16:18:36,436 - pytorch_cvae.py[line:399] - INFO: sampling time:0.5671347677707672
+2022-07-11 16:18:36,499 - pytorch_cvae.py[line:419] - INFO: house sampling rate:0.05
+2022-07-11 16:18:36,617 - pytorch_cvae.py[line:399] - INFO: sampling time:0.7465773746371269
+2022-07-11 16:18:36,651 - pytorch_cvae.py[line:399] - INFO: sampling time:0.787411205470562
+2022-07-11 16:18:36,841 - pytorch_cvae.py[line:419] - INFO: house sampling rate:0.05
+2022-07-11 16:18:36,850 - pytorch_cvae.py[line:419] - INFO: house sampling rate:0.05
+2022-07-11 16:18:36,890 - pytorch_cvae.py[line:399] - INFO: sampling time:0.3906148374080658
+2022-07-11 16:18:37,000 - pytorch_cvae.py[line:399] - INFO: sampling time:0.15826807916164398
+2022-07-11 16:18:37,058 - pytorch_cvae.py[line:399] - INFO: sampling time:0.20853392034769058
+2022-07-11 16:18:38,228 - main.py[line:509] - INFO: sample and aggregation time elapsed:2.359098434448242
+2022-07-11 16:18:38,510 - main.py[line:509] - INFO: sample and aggregation time elapsed:2.6398182921111584
+2022-07-11 16:18:38,576 - main.py[line:509] - INFO: sample and aggregation time elapsed:2.7133877016603947
+2022-07-11 16:18:38,581 - main.py[line:542] - INFO: sample time: 2.7182469069957733
+2022-07-11 16:18:38,603 - main.py[line:99] - INFO: aqp result:
+                 avg(a_age)  avg(a_hours_per_week)  avg(a_fnlwgt)  \
+a_education_num                                                     
+1               37.97       37.90                  170356.20        
+2               38.68       39.19                  168665.85        
+3               38.58       39.90                  169975.64        
+4               38.51       39.99                  172181.53        
+5               38.45       39.67                  172122.25        
+6               38.64       39.81                  174010.24        
+7               38.10       40.13                  173738.80        
+8               38.62       39.82                  169366.21        
+9               38.32       39.36                  170654.86        
+10              38.10       39.81                  168897.79        
+11              37.89       39.66                  165344.83        
+12              37.68       40.08                  168543.53        
+13              38.26       39.75                  172449.92        
+14              38.46       40.21                  172542.89        
+15              38.22       39.87                  168576.27        
+16              38.28       39.94                  168816.59        
+
+                    sum(a_age)  sum(a_hours_per_week)      sum(a_fnlwgt)  
+a_education_num                                                           
+1               1973935.87     1970338.16             8855796721.91       
+2               22992308.01    23294951.84            100261898328.97     
+3               95592642.17    98841817.25            421110578176.07     
+4               351463152.77   365003080.40           1571404613963.48    
+5               207115353.87   213708243.37           927229619651.26     
+6               689365882.79   710292975.25           3104721255464.37    
+7               1147504474.28  1208523507.41          5232690091253.95    
+8               145189610.48   149698559.82           636769710384.98     
+9               88882620312.38 91291849782.25         395830868308074.00  
+10              43924757654.67 45889581777.67         194694952261338.47  
+11              1510123665.00  1580732534.34          6589647853519.82    
+12              914748941.15   972901356.46           4091449617270.94    
+13              23306663666.55 24211686491.90         105048171246578.45  
+14              2380494203.26  2488335894.72          10678625553385.89   
+15              264786181.18   276212603.15           1167799332366.15    
+16              138349025.02   144351784.98           610069544605.39     
+2022-07-11 16:18:38,606 - main.py[line:100] - INFO: ground truth:
+                  sum(a_age)  avg(a_age)  sum(a_hours_per_week)  \
+a_education_num                                                   
+1                2031480     39.08       2082643.20               
+10               44452980128 38.56       45549279985.55           
+11               1525713214  38.28       1584781427.69            
+12               944372871   38.90       966552746.34             
+13               23507072916 38.59       24078556514.48           
+14               2392708715  38.66       2446393121.33            
+15               267829688   38.66       274754216.44             
+16               138387097   38.29       143994096.38             
+2                23100702    38.86       23688203.98              
+3                96651470    39.01       99301299.12              
+4                351713883   38.54       362354449.21             
+5                208430442   38.69       211279237.14             
+6                682399872   38.25       699976780.53             
+7                1167390896  38.76       1197998019.35            
+8                143650815   38.21       147510782.09             
+9                89422406979 38.55       91544134894.67           
+
+                 avg(a_hours_per_week)      sum(a_fnlwgt)  avg(a_fnlwgt)  
+a_education_num                                                           
+1               40.06                  9230224059.94      177558.94       
+10              39.51                  205404792384807.09 178188.57       
+11              39.76                  7056779504246.63   177065.92       
+12              39.82                  4299598708023.12   177118.04       
+13              39.53                  107642516109517.23 176708.86       
+14              39.53                  10917581923528.38  176403.89       
+15              39.66                  1227094390856.00   177135.74       
+16              39.85                  633778561363.00    175377.27       
+2               39.85                  103819245989.45    174650.21       
+3               40.08                  438226364458.29    176884.20       
+4               39.70                  1642737882074.27   179997.64       
+5               39.22                  961460560464.34    178476.56       
+6               39.23                  3146896115757.28   176374.01       
+7               39.78                  5236529708342.73   173866.28       
+8               39.23                  666164527647.66    177184.56       
+9               39.47                  410400044228388.38 176936.08       
+2022-07-11 16:18:38,615 - main.py[line:550] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1               0.03        0.04           0.05                   0.03          
+2               0.00        0.03           0.02                   0.00          
+3               0.01        0.04           0.00                   0.01          
+4               0.00        0.04           0.01                   0.00          
+5               0.01        0.04           0.01                   0.01          
+6               0.01        0.01           0.01                   0.01          
+7               0.02        0.00           0.01                   0.02          
+8               0.01        0.04           0.01                   0.01          
+9               0.01        0.04           0.00                   0.01          
+10              0.01        0.05           0.01                   0.01          
+11              0.01        0.07           0.00                   0.01          
+12              0.03        0.05           0.01                   0.03          
+13              0.01        0.02           0.01                   0.01          
+14              0.01        0.02           0.02                   0.01          
+15              0.01        0.05           0.01                   0.01          
+16              0.00        0.04           0.00                   0.00          
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1               0.04           0.05                    
+2               0.03           0.02                    
+3               0.04           0.00                    
+4               0.04           0.01                    
+5               0.04           0.01                    
+6               0.01           0.01                    
+7               0.00           0.01                    
+8               0.04           0.01                    
+9               0.04           0.00                    
+10              0.05           0.01                    
+11              0.07           0.00                    
+12              0.05           0.01                    
+13              0.02           0.01                    
+14              0.02           0.02                    
+15              0.05           0.01                    
+16              0.04           0.00                    
+2022-07-11 16:18:38,617 - main.py[line:551] - INFO: relative error normalized:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1               0.03        0.04           0.05                   0.03          
+2               0.00        0.03           0.02                   0.00          
+3               0.01        0.04           0.00                   0.01          
+4               0.00        0.04           0.01                   0.00          
+5               0.01        0.03           0.01                   0.01          
+6               0.01        0.01           0.01                   0.01          
+7               0.02        0.00           0.01                   0.02          
+8               0.01        0.04           0.01                   0.01          
+9               0.01        0.03           0.00                   0.01          
+10              0.01        0.05           0.01                   0.01          
+11              0.01        0.06           0.00                   0.01          
+12              0.03        0.05           0.01                   0.03          
+13              0.01        0.02           0.01                   0.01          
+14              0.01        0.02           0.02                   0.01          
+15              0.01        0.05           0.01                   0.01          
+16              0.00        0.04           0.00                   0.00          
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1               0.04           0.05                    
+2               0.03           0.02                    
+3               0.04           0.00                    
+4               0.04           0.01                    
+5               0.03           0.01                    
+6               0.01           0.01                    
+7               0.00           0.01                    
+8               0.04           0.01                    
+9               0.03           0.00                    
+10              0.05           0.01                    
+11              0.06           0.00                    
+12              0.05           0.01                    
+13              0.02           0.01                    
+14              0.02           0.02                    
+15              0.05           0.01                    
+16              0.04           0.00                    
+2022-07-11 16:18:38,617 - main.py[line:554] - INFO: relative error average: 0.019604101677758005
+2022-07-11 16:18:38,617 - main.py[line:555] - INFO: relative error normalized average: 0.01927049995301398
+2022-07-11 16:18:38,617 - main.py[line:601] - INFO: total_time:4.952041529119015
+categorical_columns: ['a_education_num_0', 'a_education_num_1', 'a_education_num_2', 'a_education_num_3', 'a_education_num_4']
+categorical_columns: ['a_education_num_0', 'a_education_num_1', 'a_education_num_2', 'a_education_num_3', 'a_education_num_4']
+categorical_columns: ['a_education_num_0', 'a_education_num_1', 'a_education_num_2', 'a_education_num_3', 'a_education_num_4']
+categorical_columns: ['b_education_num_0', 'b_education_num_1', 'b_education_num_2', 'b_education_num_3', 'b_education_num_4']
+categorical_columns: ['b_education_num_0', 'b_education_num_1', 'b_education_num_2', 'b_education_num_3', 'b_education_num_4']
+categorical_columns: ['b_education_num_0', 'b_education_num_1', 'b_education_num_2', 'b_education_num_3', 'b_education_num_4']

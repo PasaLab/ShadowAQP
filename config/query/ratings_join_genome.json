@@ -1,0 +1,18 @@
+{
+    "name": "ratings_join_genome",
+    "train_config_files": [
+      "./config/train/movielen_ratings_torch_cvae.json",
+      "./config/train/movielen_genome_torch_cvae.json"
+    ],
+    "multi_sample_times": 1,
+    "operation": "aqp",
+    "join_cols": ["r_movieid","g_movieid"],
+    "groupby_cols": ["r_movieid"],
+    "result_path": "./output/aqp_result/rg_res.csv",
+    "diff_path": "./output/diff/rg_diff.csv",
+    "sum_cols": ["rating","relevance"],
+    "avg_cols": ["rating","relevance"],
+    "var": "./var/movielen-1m/rm_var.csv",
+    "ground_truth": "./ground_truth/movielen-25m/rg_truth.csv"
+  }
+  

@@ -1,0 +1,260 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2022-07-07 23:11:17,359 - main.py[line:581] - INFO: load query config config/query/flights2.json successfully
+2022-07-07 23:11:17,359 - main.py[line:588] - INFO: load train config ./config/train/flights2_a_torch_cvae.json successfully
+2022-07-07 23:11:17,359 - main.py[line:588] - INFO: load train config ./config/train/flights2_b_torch_cvae.json successfully
+2022-07-07 23:11:17,359 - dataset_utils.py[line:567] - INFO: load existing dataset(light):flights2-flight-a_a_origin_state_abr#a_unique_carrier_a_taxi_out#a_air_time#a_distance_a_origin_state_abr#a_unique_carrier_binary_mm_0
+2022-07-07 23:11:17,511 - dataset_utils.py[line:576] - INFO: load dataset(light) time elapsed:0.1516304463148117
+2022-07-07 23:11:17,511 - pytorch_cvae.py[line:276] - INFO: feature info:[('a_taxi_out', 'numerical', 1), ('a_air_time', 'numerical', 1), ('a_distance', 'numerical', 1), ('a_origin_state_abr', 'categorical', 7), ('a_unique_carrier', 'categorical', 6)]
+2022-07-07 23:11:17,513 - model_utils.py[line:75] - INFO: load model name:torch_cvae_flights2-flight-a_a_origin_state_abr_a_unique_carrier_ld100_id150_bs512_ep150_0_binary_mm
+2022-07-07 23:11:19,538 - model_utils.py[line:86] - INFO: load torch model time elapsed:2.025148842483759
+2022-07-07 23:11:19,538 - pytorch_cvae.py[line:286] - INFO: load model time elapsed:2.1784981302917004
+2022-07-07 23:11:19,538 - dataset_utils.py[line:567] - INFO: load existing dataset(light):flights2-flight-b_b_origin_state_abr__b_origin_state_abr_binary_mm_0
+2022-07-07 23:11:19,562 - dataset_utils.py[line:576] - INFO: load dataset(light) time elapsed:0.02368456870317459
+2022-07-07 23:11:19,562 - pytorch_cvae.py[line:276] - INFO: feature info:[('b_origin_state_abr', 'categorical', 7)]
+2022-07-07 23:11:19,562 - model_utils.py[line:75] - INFO: load model name:torch_cvae_flights2-flight-b_b_origin_state_abr_ld50_id100_bs512_ep100_0_binary_mm
+2022-07-07 23:11:19,564 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0014300867915153503
+2022-07-07 23:11:19,564 - pytorch_cvae.py[line:286] - INFO: load model time elapsed:0.025896862149238586
+2022-07-07 23:11:19,564 - main.py[line:525] - INFO: multi_sampling No.0 epoch
+2022-07-07 23:11:21,541 - pytorch_cvae.py[line:399] - INFO: sampling time:1.9718483202159405
+2022-07-07 23:11:21,631 - pytorch_cvae.py[line:419] - INFO: house sampling rate:0.05
+2022-07-07 23:11:21,694 - pytorch_cvae.py[line:399] - INFO: sampling time:0.062089238315820694
+2022-07-07 23:11:23,139 - main.py[line:509] - INFO: sample and aggregation time elapsed:3.5749097280204296
+2022-07-07 23:11:23,143 - main.py[line:542] - INFO: sample time: 3.579483587294817
+2022-07-07 23:11:23,166 - main.py[line:99] - INFO: aqp result:
+                  avg(a_taxi_out)  avg(a_air_time)  avg(a_distance)  \
+a_unique_carrier                                                      
+9E               17.42            1217.40          700.20             
+AA               17.15            1218.93          725.59             
+AQ               17.47            1223.25          727.25             
+AS               17.26            1216.65          708.67             
+B6               17.50            1216.81          707.56             
+CO               17.51            1216.00          713.31             
+DH               18.01            1217.29          722.65             
+DL               17.40            1217.00          745.68             
+EV               17.60            1217.74          746.17             
+F9               17.15            1218.05          740.64             
+FL               17.59            1218.84          747.27             
+HA               17.09            1216.52          739.35             
+HP               17.71            1220.47          747.47             
+MQ               17.46            1215.56          732.70             
+NK               17.04            1219.58          754.27             
+NW               16.32            1220.53          740.70             
+OH (1)           16.91            1219.81          740.70             
+OO               16.75            1218.20          739.12             
+TW               16.96            1221.62          765.34             
+TZ               16.83            1218.42          763.51             
+UA               17.03            1219.78          743.55             
+US               16.76            1218.35          741.14             
+VX               17.02            1220.37          741.04             
+WN               16.54            1219.35          726.93             
+XE               17.27            1218.75          726.02             
+YV               16.60            1222.41          740.87             
+
+                  sum(a_taxi_out)  sum(a_air_time)  sum(a_distance)  
+a_unique_carrier                                                     
+9E               991483612.65     70141311836.69   40083166026.90    
+AA               9396969302.14    663124508842.63  389177051045.41   
+AQ               76180288.86      5421988329.62    3254353759.30     
+AS               2018781665.05    143559504898.87  83077941752.43    
+B6               1622699032.46    115859153721.04  68446306079.94    
+CO               3481168339.65    237809590001.91  136300041760.54   
+DH               430353881.98     29012223318.10   17431445446.60    
+DL               10083594505.98   695204416460.30  434491500001.60   
+EV               3506279558.28    244930179437.80  156548792239.88   
+F9               641012425.63     45114181983.86   27757587515.70    
+FL               1540975623.70    108629699203.96  68719795333.53    
+HA               528749512.88     37258258152.41   22819914190.12    
+HP               1375624485.50    97330941046.18   61168864640.22    
+MQ               4151307424.51    284986821240.04  170757649044.21   
+NK               154095525.29     11174147063.80   6959975425.44     
+NW               4053237005.43    304830257516.54  185770780947.13   
+OH (1)           1006587348.04    75249417941.58   47297782414.58    
+OO               4901862791.65    360987241027.16  222141216109.13   
+TW               1042587084.45    77422131671.72   49525157227.42    
+TZ               99760879.99      7251027837.74    4500007474.87     
+UA               7390556218.66    541189518823.59  343622962028.70   
+US               6422853977.13    464530923195.29  283851232601.15   
+VX               175358549.32     12897604751.07   8048577912.47     
+WN               14151188446.13   1029352947768.19 612724129285.35   
+XE               1960995541.28    141187873389.53  86447614466.69    
+YV               995510657.65     75061106679.24   46086927322.98    
+2022-07-07 23:11:23,169 - main.py[line:100] - INFO: ground truth:
+                  sum(a_taxi_out)  avg(a_taxi_out)  sum(a_air_time)  \
+a_unique_carrier                                                      
+9E               741101698.57     15.15            58880704989.57     
+AA               7989875051.98    15.55            619430514363.80    
+AQ               86631196.39      15.87            6543460866.54      
+AS               1848560227.43    15.43            144331558233.33    
+B6               1470850178.74    15.60            113799492628.54    
+CO               3106668746.22    15.59            240048308499.97    
+DH               367218921.85     15.49            28440016722.48     
+DL               8981685488.31    15.57            695773932714.29    
+EV               3181962351.09    15.68            244702638367.97    
+F9               570577147.90     15.46            44476849990.55     
+FL               1395415570.15    15.59            107894733721.66    
+HA               494281312.53     15.56            38211095213.40     
+HP               1227584010.63    15.51            95391382060.99     
+MQ               3759015081.03    15.64            289433438181.99    
+NK               147254628.38     15.47            11455447903.05     
+NW               3904891886.94    15.58            301859529285.21    
+OH (1)           952968179.55     15.37            74636252791.26     
+OO               4367541877.63    15.47            340289304596.67    
+TW               1004435409.83    15.42            78568723096.25     
+TZ               121899826.21     16.84            8729112894.46      
+UA               6832602622.78    15.61            527301016058.02    
+US               6092371671.52    15.74            466392055985.71    
+VX               167606958.73     14.81            13654805413.23     
+WN               12522355213.58   15.53            971806211739.94    
+XE               1848841981.24    15.61            142753704429.07    
+YV               951495612.18     15.81            72725041886.37     
+
+                  avg(a_air_time)  sum(a_distance)  avg(a_distance)  
+a_unique_carrier                                                     
+9E               1203.99          35711788851.31   730.23            
+AA               1205.41          381243748002.27  741.90            
+AQ               1198.81          3790834029.22    694.51            
+AS               1205.11          88696395636.76   740.58            
+B6               1207.26          71473179185.90   758.23            
+CO               1204.64          146402774103.50  734.70            
+DH               1199.47          16449517708.08   693.76            
+DL               1205.97          430329104776.58  745.88            
+EV               1205.57          150835474033.21  743.12            
+F9               1205.36          27325788632.97   740.55            
+FL               1205.30          66527232060.59   743.18            
+HA               1203.07          22898614485.52   720.96            
+HP               1205.34          58487708653.73   739.03            
+MQ               1204.36          176132606008.73  732.90            
+NK               1203.73          6925756819.23    727.75            
+NW               1204.24          183277498856.54  731.17            
+OH (1)           1203.89          45360575256.62   731.67            
+OO               1204.93          208420476170.33  738.00            
+TW               1206.18          48659767530.98   747.02            
+TZ               1205.89          5310019388.65    733.55            
+UA               1204.95          322665183451.92  737.33            
+US               1204.84          285669645091.13  737.97            
+VX               1206.36          8547076307.99    755.11            
+WN               1204.92          595750659418.91  738.66            
+XE               1205.52          87848470069.39   741.86            
+YV               1208.26          46183746721.52   767.30            
+2022-07-07 23:11:23,179 - main.py[line:550] - INFO: relative error:
+                  avg(a_air_time)  avg(a_distance)  avg(a_taxi_out)  \
+a_unique_carrier                                                      
+9E               0.01             0.04             0.15               
+AA               0.01             0.02             0.10               
+AQ               0.02             0.05             0.10               
+AS               0.01             0.04             0.12               
+B6               0.01             0.07             0.12               
+CO               0.01             0.03             0.12               
+DH               0.01             0.04             0.16               
+DL               0.01             0.00             0.12               
+EV               0.01             0.00             0.12               
+F9               0.01             0.00             0.11               
+FL               0.01             0.01             0.13               
+HA               0.01             0.03             0.10               
+HP               0.01             0.01             0.14               
+MQ               0.01             0.00             0.12               
+NK               0.01             0.04             0.10               
+NW               0.01             0.01             0.05               
+OH (1)           0.01             0.01             0.10               
+OO               0.01             0.00             0.08               
+TW               0.01             0.02             0.10               
+TZ               0.01             0.04             0.00               
+UA               0.01             0.01             0.09               
+US               0.01             0.00             0.06               
+VX               0.01             0.02             0.15               
+WN               0.01             0.02             0.07               
+XE               0.01             0.02             0.11               
+YV               0.01             0.03             0.05               
+
+                  sum(a_air_time)  sum(a_distance)  sum(a_taxi_out)  
+a_unique_carrier                                                     
+9E               0.19             0.12             0.34              
+AA               0.07             0.02             0.18              
+AQ               0.17             0.14             0.12              
+AS               0.01             0.06             0.09              
+B6               0.02             0.04             0.10              
+CO               0.01             0.07             0.12              
+DH               0.02             0.06             0.17              
+DL               0.00             0.01             0.12              
+EV               0.00             0.04             0.10              
+F9               0.01             0.02             0.12              
+FL               0.01             0.03             0.10              
+HA               0.02             0.00             0.07              
+HP               0.02             0.05             0.12              
+MQ               0.02             0.03             0.10              
+NK               0.02             0.00             0.05              
+NW               0.01             0.01             0.04              
+OH (1)           0.01             0.04             0.06              
+OO               0.06             0.07             0.12              
+TW               0.01             0.02             0.04              
+TZ               0.17             0.15             0.18              
+UA               0.03             0.06             0.08              
+US               0.00             0.01             0.05              
+VX               0.06             0.06             0.05              
+WN               0.06             0.03             0.13              
+XE               0.01             0.02             0.06              
+YV               0.03             0.00             0.05              
+2022-07-07 23:11:23,181 - main.py[line:551] - INFO: relative error normalized:
+                  avg(a_air_time)  avg(a_distance)  avg(a_taxi_out)  \
+a_unique_carrier                                                      
+9E               0.01             0.04             0.14               
+AA               0.01             0.02             0.10               
+AQ               0.02             0.05             0.10               
+AS               0.01             0.04             0.11               
+B6               0.01             0.06             0.11               
+CO               0.01             0.03             0.12               
+DH               0.01             0.04             0.15               
+DL               0.01             0.00             0.11               
+EV               0.01             0.00             0.12               
+F9               0.01             0.00             0.10               
+FL               0.01             0.01             0.12               
+HA               0.01             0.03             0.09               
+HP               0.01             0.01             0.13               
+MQ               0.01             0.00             0.11               
+NK               0.01             0.04             0.10               
+NW               0.01             0.01             0.05               
+OH (1)           0.01             0.01             0.10               
+OO               0.01             0.00             0.08               
+TW               0.01             0.02             0.09               
+TZ               0.01             0.04             0.00               
+UA               0.01             0.01             0.09               
+US               0.01             0.00             0.06               
+VX               0.01             0.02             0.14               
+WN               0.01             0.02             0.06               
+XE               0.01             0.02             0.10               
+YV               0.01             0.03             0.05               
+
+                  sum(a_air_time)  sum(a_distance)  sum(a_taxi_out)  
+a_unique_carrier                                                     
+9E               0.17             0.12             0.29              
+AA               0.07             0.02             0.16              
+AQ               0.16             0.13             0.11              
+AS               0.01             0.06             0.09              
+B6               0.02             0.04             0.10              
+CO               0.01             0.07             0.11              
+DH               0.02             0.06             0.16              
+DL               0.00             0.01             0.12              
+EV               0.00             0.04             0.10              
+F9               0.01             0.02             0.12              
+FL               0.01             0.03             0.10              
+HA               0.02             0.00             0.07              
+HP               0.02             0.04             0.11              
+MQ               0.02             0.03             0.10              
+NK               0.02             0.00             0.05              
+NW               0.01             0.01             0.04              
+OH (1)           0.01             0.04             0.05              
+OO               0.06             0.06             0.12              
+TW               0.01             0.02             0.04              
+TZ               0.16             0.14             0.17              
+UA               0.03             0.06             0.08              
+US               0.00             0.01             0.05              
+VX               0.05             0.06             0.05              
+WN               0.06             0.03             0.12              
+XE               0.01             0.02             0.06              
+YV               0.03             0.00             0.05              
+2022-07-07 23:11:23,181 - main.py[line:554] - INFO: relative error average: 0.05467143267784881
+2022-07-07 23:11:23,181 - main.py[line:555] - INFO: relative error normalized average: 0.05181887963491217
+2022-07-07 23:11:23,185 - main.py[line:601] - INFO: total_time:5.826269596815109
+categorical_columns: ['a_origin_state_abr_0', 'a_origin_state_abr_1', 'a_origin_state_abr_2', 'a_origin_state_abr_3', 'a_origin_state_abr_4', 'a_origin_state_abr_5', 'a_origin_state_abr_6', 'a_unique_carrier_0', 'a_unique_carrier_1', 'a_unique_carrier_2', 'a_unique_carrier_3', 'a_unique_carrier_4', 'a_unique_carrier_5']
+categorical_columns: ['b_origin_state_abr_0', 'b_origin_state_abr_1', 'b_origin_state_abr_2', 'b_origin_state_abr_3', 'b_origin_state_abr_4', 'b_origin_state_abr_5', 'b_origin_state_abr_6']

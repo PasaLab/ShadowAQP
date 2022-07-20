@@ -1,0 +1,478 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2022-07-07 21:10:32,242 - main.py[line:581] - INFO: load query config config/query/flights2.json successfully
+2022-07-07 21:10:32,242 - main.py[line:588] - INFO: load train config ./config/train/flights2_a_torch_cvae.json successfully
+2022-07-07 21:10:32,242 - main.py[line:588] - INFO: load train config ./config/train/flights2_b_torch_cvae.json successfully
+2022-07-07 21:10:32,242 - pytorch_cvae.py[line:245] - INFO: epoch:100
+2022-07-07 21:10:32,242 - pytorch_cvae.py[line:246] - INFO: batch size:512
+2022-07-07 21:10:32,242 - pytorch_cvae.py[line:247] - INFO: latent dimension:50
+2022-07-07 21:10:32,242 - pytorch_cvae.py[line:248] - INFO: intermediate dimension:100
+2022-07-07 21:10:32,243 - pytorch_cvae.py[line:249] - INFO: gpu num:0
+2022-07-07 21:10:32,265 - dataset_utils.py[line:297] - INFO: loading data:/root/lihan/train_dataset/flights/flight-a.csv
+2022-07-07 21:10:42,455 - dataset_utils.py[line:318] - INFO: data total rows:300000
+2022-07-07 21:10:42,455 - dataset_utils.py[line:354] - INFO: load data time elapsed:10.18982720002532
+2022-07-07 21:10:42,616 - dataset_utils.py[line:43] - INFO: encode categorical columns time elapsed:0.15935635939240456
+/root/anaconda3/envs/py36/lib/python3.6/site-packages/sklearn/mixture/base.py:273: ConvergenceWarning: Initialization 1 did not converge. Try different init parameters, or increase max_iter, tol or check for degenerate data.
+  % (init + 1), ConvergenceWarning)
+/root/anaconda3/envs/py36/lib/python3.6/site-packages/sklearn/mixture/base.py:273: ConvergenceWarning: Initialization 1 did not converge. Try different init parameters, or increase max_iter, tol or check for degenerate data.
+  % (init + 1), ConvergenceWarning)
+/root/anaconda3/envs/py36/lib/python3.6/site-packages/sklearn/mixture/base.py:273: ConvergenceWarning: Initialization 1 did not converge. Try different init parameters, or increase max_iter, tol or check for degenerate data.
+  % (init + 1), ConvergenceWarning)
+2022-07-07 21:11:38,734 - dataset_utils.py[line:56] - INFO: encode numeric columnstime elapsed:56.11766517162323
+2022-07-07 21:11:38,840 - dataset_utils.py[line:107] - INFO: data shape:(300000, 31)
+2022-07-07 21:11:38,840 - dataset_utils.py[line:136] - INFO: feature info:[('a_taxi_out', 'numerical', 6), ('a_air_time', 'numerical', 6), ('a_distance', 'numerical', 6), ('a_origin_state_abr', 'categorical', 7), ('a_unique_carrier', 'categorical', 6)]
+2022-07-07 21:11:38,840 - dataset_utils.py[line:137] - INFO: output info list:[(1, 'no'), (5, 'softmax'), (1, 'no'), (5, 'softmax'), (1, 'no'), (5, 'softmax'), (7, 'sigmoid'), (6, 'sigmoid')]
+2022-07-07 21:11:40,862 - dataset_utils.py[line:140] - INFO: load data successfully
+2022-07-07 21:11:40,863 - pytorch_cvae.py[line:254] - INFO: feature info:[('a_taxi_out', 'numerical', 6), ('a_air_time', 'numerical', 6), ('a_distance', 'numerical', 6), ('a_origin_state_abr', 'categorical', 7), ('a_unique_carrier', 'categorical', 6)]
+2022-07-07 21:11:46,950 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.1 epoch----------------------------
+2022-07-07 21:11:46,950 - pytorch_cvae.py[line:176] - INFO: loss:869.7948734164238, numeric_loss:54.66210753843188, categorical_loss:683.3329802080989, kld_loss:24451.028006136417, epoch_train_time:6.084459640085697
+2022-07-07 21:11:52,617 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.2 epoch----------------------------
+2022-07-07 21:11:52,617 - pytorch_cvae.py[line:176] - INFO: loss:194.46593484282494, numeric_loss:14.858019772917032, categorical_loss:41.241966646164656, kld_loss:23238.032596588135, epoch_train_time:5.666921101510525
+2022-07-07 21:11:58,297 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.3 epoch----------------------------
+2022-07-07 21:11:58,298 - pytorch_cvae.py[line:176] - INFO: loss:164.44968616962433, numeric_loss:11.98447909578681, categorical_loss:23.28991507925093, kld_loss:19659.458976745605, epoch_train_time:5.680028297007084
+2022-07-07 21:12:03,840 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.4 epoch----------------------------
+2022-07-07 21:12:03,840 - pytorch_cvae.py[line:176] - INFO: loss:155.45839461684227, numeric_loss:10.992160914465785, categorical_loss:18.970060581341386, kld_loss:17325.225107192993, epoch_train_time:5.541676994413137
+2022-07-07 21:12:09,473 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.5 epoch----------------------------
+2022-07-07 21:12:09,473 - pytorch_cvae.py[line:176] - INFO: loss:150.64348988234997, numeric_loss:10.608538410626352, categorical_loss:16.496722815558314, kld_loss:15486.039321899414, epoch_train_time:5.632940765470266
+2022-07-07 21:12:15,123 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.6 epoch----------------------------
+2022-07-07 21:12:15,123 - pytorch_cvae.py[line:176] - INFO: loss:150.30119310319424, numeric_loss:10.498056273907423, categorical_loss:15.20671587344259, kld_loss:14196.112230300903, epoch_train_time:5.6501078605651855
+2022-07-07 21:12:20,730 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.7 epoch----------------------------
+2022-07-07 21:12:20,730 - pytorch_cvae.py[line:176] - INFO: loss:153.9528358578682, numeric_loss:10.522538761608303, categorical_loss:14.667527745477855, kld_loss:13347.912462234497, epoch_train_time:5.6066538244485855
+2022-07-07 21:12:26,359 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.8 epoch----------------------------
+2022-07-07 21:12:26,359 - pytorch_cvae.py[line:176] - INFO: loss:160.77084919810295, numeric_loss:10.956182926893234, categorical_loss:14.71571487095207, kld_loss:12754.648221969604, epoch_train_time:5.628979295492172
+2022-07-07 21:12:32,041 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.9 epoch----------------------------
+2022-07-07 21:12:32,041 - pytorch_cvae.py[line:176] - INFO: loss:169.9949790239334, numeric_loss:11.544326763600111, categorical_loss:15.060492257587612, kld_loss:12341.377161026001, epoch_train_time:5.6814803667366505
+2022-07-07 21:12:37,656 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.10 epoch----------------------------
+2022-07-07 21:12:37,656 - pytorch_cvae.py[line:176] - INFO: loss:180.8964781165123, numeric_loss:12.014691481366754, categorical_loss:15.938915270380676, kld_loss:12012.559757232666, epoch_train_time:5.614724922925234
+2022-07-07 21:12:43,247 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.11 epoch----------------------------
+2022-07-07 21:12:43,247 - pytorch_cvae.py[line:176] - INFO: loss:193.02742698788643, numeric_loss:12.74452668055892, categorical_loss:16.744160220958292, kld_loss:11733.38462638855, epoch_train_time:5.590578217059374
+2022-07-07 21:12:48,807 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.12 epoch----------------------------
+2022-07-07 21:12:48,807 - pytorch_cvae.py[line:176] - INFO: loss:206.6602795124054, numeric_loss:13.55185835622251, categorical_loss:18.11106611415744, kld_loss:11480.605472564697, epoch_train_time:5.560263883322477
+2022-07-07 21:12:54,451 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.13 epoch----------------------------
+2022-07-07 21:12:54,451 - pytorch_cvae.py[line:176] - INFO: loss:221.67869088053703, numeric_loss:14.253877690061927, categorical_loss:19.58649259991944, kld_loss:11279.307884216309, epoch_train_time:5.643336109817028
+2022-07-07 21:13:00,115 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.14 epoch----------------------------
+2022-07-07 21:13:00,116 - pytorch_cvae.py[line:176] - INFO: loss:237.56947180628777, numeric_loss:15.108453016728163, categorical_loss:21.36753944121301, kld_loss:11063.57480430603, epoch_train_time:5.664356444031
+2022-07-07 21:13:05,765 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.15 epoch----------------------------
+2022-07-07 21:13:05,765 - pytorch_cvae.py[line:176] - INFO: loss:254.24457496404648, numeric_loss:15.87411324121058, categorical_loss:23.321519831195474, kld_loss:10850.964231491089, epoch_train_time:5.649069916456938
+2022-07-07 21:13:11,381 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.16 epoch----------------------------
+2022-07-07 21:13:11,382 - pytorch_cvae.py[line:176] - INFO: loss:272.6891091763973, numeric_loss:16.87235269509256, categorical_loss:25.57861584611237, kld_loss:10665.374528884888, epoch_train_time:5.616472262889147
+2022-07-07 21:13:17,039 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.17 epoch----------------------------
+2022-07-07 21:13:17,039 - pytorch_cvae.py[line:176] - INFO: loss:291.6890932917595, numeric_loss:17.81998636573553, categorical_loss:28.084850136190653, kld_loss:10462.971004486084, epoch_train_time:5.657042287290096
+2022-07-07 21:13:22,758 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.18 epoch----------------------------
+2022-07-07 21:13:22,758 - pytorch_cvae.py[line:176] - INFO: loss:311.7714569568634, numeric_loss:18.923370195552707, categorical_loss:30.83213752321899, kld_loss:10260.418846130371, epoch_train_time:5.719392579048872
+2022-07-07 21:13:28,318 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.19 epoch----------------------------
+2022-07-07 21:13:28,319 - pytorch_cvae.py[line:176] - INFO: loss:333.12288600206375, numeric_loss:20.245725417509675, categorical_loss:33.900335527956486, kld_loss:10059.494951248169, epoch_train_time:5.559989117085934
+2022-07-07 21:13:34,029 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.20 epoch----------------------------
+2022-07-07 21:13:34,029 - pytorch_cvae.py[line:176] - INFO: loss:354.98187416791916, numeric_loss:21.480814227834344, categorical_loss:37.12207152694464, kld_loss:9850.549621582031, epoch_train_time:5.709810435771942
+2022-07-07 21:13:39,627 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.21 epoch----------------------------
+2022-07-07 21:13:39,627 - pytorch_cvae.py[line:176] - INFO: loss:377.76938796043396, numeric_loss:22.87369044870138, categorical_loss:40.61108634620905, kld_loss:9637.745505332947, epoch_train_time:5.59781264513731
+2022-07-07 21:13:45,174 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.22 epoch----------------------------
+2022-07-07 21:13:45,174 - pytorch_cvae.py[line:176] - INFO: loss:402.2313660979271, numeric_loss:24.46971857175231, categorical_loss:44.954049319028854, kld_loss:9425.820294380188, epoch_train_time:5.547114130109549
+2022-07-07 21:13:50,864 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.23 epoch----------------------------
+2022-07-07 21:13:50,864 - pytorch_cvae.py[line:176] - INFO: loss:425.9051505923271, numeric_loss:26.167195051908493, categorical_loss:49.15966718271375, kld_loss:9179.496076583862, epoch_train_time:5.6900677271187305
+2022-07-07 21:13:56,464 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.24 epoch----------------------------
+2022-07-07 21:13:56,465 - pytorch_cvae.py[line:176] - INFO: loss:450.5581394433975, numeric_loss:28.179244738072157, categorical_loss:53.95192687958479, kld_loss:8927.449880599976, epoch_train_time:5.600004937499762
+2022-07-07 21:14:02,143 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.25 epoch----------------------------
+2022-07-07 21:14:02,143 - pytorch_cvae.py[line:176] - INFO: loss:473.8013435602188, numeric_loss:30.147718716412783, categorical_loss:58.46135803312063, kld_loss:8646.29508113861, epoch_train_time:5.677933841943741
+2022-07-07 21:14:07,769 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.26 epoch----------------------------
+2022-07-07 21:14:07,769 - pytorch_cvae.py[line:176] - INFO: loss:498.9543902873993, numeric_loss:32.25131956115365, categorical_loss:64.09813512861729, kld_loss:8379.96739768982, epoch_train_time:5.626062873750925
+2022-07-07 21:14:13,538 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.27 epoch----------------------------
+2022-07-07 21:14:13,538 - pytorch_cvae.py[line:176] - INFO: loss:523.92817902565, numeric_loss:34.59424726292491, categorical_loss:69.84914977103472, kld_loss:8104.4679918289185, epoch_train_time:5.769270170480013
+2022-07-07 21:14:19,107 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.28 epoch----------------------------
+2022-07-07 21:14:19,107 - pytorch_cvae.py[line:176] - INFO: loss:546.9422196149826, numeric_loss:36.67015290260315, categorical_loss:75.21093712747097, kld_loss:7809.764812469482, epoch_train_time:5.568198665976524
+2022-07-07 21:14:24,582 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.29 epoch----------------------------
+2022-07-07 21:14:24,582 - pytorch_cvae.py[line:176] - INFO: loss:569.3476899862289, numeric_loss:39.46631212159991, categorical_loss:81.23527805507183, kld_loss:7490.403502464294, epoch_train_time:5.4752152338624
+2022-07-07 21:14:30,182 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.30 epoch----------------------------
+2022-07-07 21:14:30,182 - pytorch_cvae.py[line:176] - INFO: loss:591.6819487214088, numeric_loss:42.30132135748863, categorical_loss:87.89124689251184, kld_loss:7173.167339324951, epoch_train_time:5.599664494395256
+2022-07-07 21:14:35,698 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.31 epoch----------------------------
+2022-07-07 21:14:35,698 - pytorch_cvae.py[line:176] - INFO: loss:614.5461089611053, numeric_loss:45.232675060629845, categorical_loss:95.18647453933954, kld_loss:6867.934718132019, epoch_train_time:5.515685547143221
+2022-07-07 21:14:41,257 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.32 epoch----------------------------
+2022-07-07 21:14:41,257 - pytorch_cvae.py[line:176] - INFO: loss:638.7384028434753, numeric_loss:48.43722517043352, categorical_loss:102.68894498050213, kld_loss:6589.047236442566, epoch_train_time:5.5591089725494385
+2022-07-07 21:14:46,987 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.33 epoch----------------------------
+2022-07-07 21:14:46,987 - pytorch_cvae.py[line:176] - INFO: loss:664.700389623642, numeric_loss:52.08286144584417, categorical_loss:112.58068300783634, kld_loss:6309.585852622986, epoch_train_time:5.729823585599661
+2022-07-07 21:14:52,571 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.34 epoch----------------------------
+2022-07-07 21:14:52,571 - pytorch_cvae.py[line:176] - INFO: loss:690.0663499832153, numeric_loss:56.214461989700794, categorical_loss:124.20118783414364, kld_loss:6011.136903762817, epoch_train_time:5.583520594984293
+2022-07-07 21:14:58,163 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.35 epoch----------------------------
+2022-07-07 21:14:58,163 - pytorch_cvae.py[line:176] - INFO: loss:715.3158448934555, numeric_loss:60.63866329193115, categorical_loss:137.44254738092422, kld_loss:5708.092226028442, epoch_train_time:5.5919728465378284
+2022-07-07 21:15:03,737 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.36 epoch----------------------------
+2022-07-07 21:15:03,737 - pytorch_cvae.py[line:176] - INFO: loss:740.1933612823486, numeric_loss:65.47956532239914, categorical_loss:149.6773839890957, kld_loss:5426.833751678467, epoch_train_time:5.573399279266596
+2022-07-07 21:15:09,339 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.37 epoch----------------------------
+2022-07-07 21:15:09,339 - pytorch_cvae.py[line:176] - INFO: loss:766.9880536794662, numeric_loss:70.13086296617985, categorical_loss:162.17987893521786, kld_loss:5181.277797698975, epoch_train_time:5.602037940174341
+2022-07-07 21:15:14,965 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.38 epoch----------------------------
+2022-07-07 21:15:14,965 - pytorch_cvae.py[line:176] - INFO: loss:792.7380826473236, numeric_loss:74.29831478744745, categorical_loss:174.65242168307304, kld_loss:4945.3438930511475, epoch_train_time:5.625538654625416
+2022-07-07 21:15:20,624 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.39 epoch----------------------------
+2022-07-07 21:15:20,624 - pytorch_cvae.py[line:176] - INFO: loss:818.146167755127, numeric_loss:78.07780510932207, categorical_loss:187.45887845754623, kld_loss:4721.090521335602, epoch_train_time:5.658890757709742
+2022-07-07 21:15:26,402 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.40 epoch----------------------------
+2022-07-07 21:15:26,402 - pytorch_cvae.py[line:176] - INFO: loss:843.6982570886612, numeric_loss:81.25920955091715, categorical_loss:199.848822504282, kld_loss:4519.673635005951, epoch_train_time:5.777625620365143
+2022-07-07 21:15:32,007 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.41 epoch----------------------------
+2022-07-07 21:15:32,007 - pytorch_cvae.py[line:176] - INFO: loss:873.8179023265839, numeric_loss:84.27808630466461, categorical_loss:213.76403868198395, kld_loss:4354.050817489624, epoch_train_time:5.605088535696268
+2022-07-07 21:15:37,623 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.42 epoch----------------------------
+2022-07-07 21:15:37,623 - pytorch_cvae.py[line:176] - INFO: loss:902.1331225633621, numeric_loss:86.6858933866024, categorical_loss:229.8216880261898, kld_loss:4172.723272323608, epoch_train_time:5.615297418087721
+2022-07-07 21:15:43,205 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.43 epoch----------------------------
+2022-07-07 21:15:43,205 - pytorch_cvae.py[line:176] - INFO: loss:931.8722363710403, numeric_loss:88.5899377912283, categorical_loss:249.5607706308365, kld_loss:3990.0296630859375, epoch_train_time:5.582510657608509
+2022-07-07 21:15:48,811 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.44 epoch----------------------------
+2022-07-07 21:15:48,811 - pytorch_cvae.py[line:176] - INFO: loss:958.585954785347, numeric_loss:90.00113850831985, categorical_loss:271.29167225956917, kld_loss:3789.735815525055, epoch_train_time:5.605747256428003
+2022-07-07 21:15:54,525 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.45 epoch----------------------------
+2022-07-07 21:15:54,525 - pytorch_cvae.py[line:176] - INFO: loss:985.0333318710327, numeric_loss:90.75580471754074, categorical_loss:293.6554157435894, kld_loss:3601.5136642456055, epoch_train_time:5.713805448263884
+2022-07-07 21:16:00,359 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.46 epoch----------------------------
+2022-07-07 21:16:00,359 - pytorch_cvae.py[line:176] - INFO: loss:1006.5166763067245, numeric_loss:91.19302172958851, categorical_loss:315.6300288438797, kld_loss:3401.808436870575, epoch_train_time:5.83360705897212
+2022-07-07 21:16:06,038 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.47 epoch----------------------------
+2022-07-07 21:16:06,038 - pytorch_cvae.py[line:176] - INFO: loss:1027.3057485818863, numeric_loss:91.51531846821308, categorical_loss:337.1486749649048, kld_loss:3215.7211298942566, epoch_train_time:5.678547959774733
+2022-07-07 21:16:11,764 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.48 epoch----------------------------
+2022-07-07 21:16:11,764 - pytorch_cvae.py[line:176] - INFO: loss:1047.3919183015823, numeric_loss:91.73682177066803, categorical_loss:353.4728255867958, kld_loss:3066.228865623474, epoch_train_time:5.725672651082277
+2022-07-07 21:16:17,299 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.49 epoch----------------------------
+2022-07-07 21:16:17,299 - pytorch_cvae.py[line:176] - INFO: loss:1068.4363696575165, numeric_loss:91.99529276788235, categorical_loss:365.87469762563705, kld_loss:2949.911766052246, epoch_train_time:5.534927934408188
+2022-07-07 21:16:23,002 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.50 epoch----------------------------
+2022-07-07 21:16:23,003 - pytorch_cvae.py[line:176] - INFO: loss:1090.4124794006348, numeric_loss:92.19205768406391, categorical_loss:375.0690687298775, kld_loss:2859.588481903076, epoch_train_time:5.703380815684795
+2022-07-07 21:16:28,705 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.51 epoch----------------------------
+2022-07-07 21:16:28,705 - pytorch_cvae.py[line:176] - INFO: loss:1108.4292426109314, numeric_loss:92.42416435480118, categorical_loss:380.90769296884537, kld_loss:2770.884644508362, epoch_train_time:5.702024627476931
+2022-07-07 21:16:34,314 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.52 epoch----------------------------
+2022-07-07 21:16:34,314 - pytorch_cvae.py[line:176] - INFO: loss:1129.6626776456833, numeric_loss:92.76844197511673, categorical_loss:383.59798669815063, kld_loss:2712.6308903694153, epoch_train_time:5.608445920050144
+2022-07-07 21:16:40,011 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.53 epoch----------------------------
+2022-07-07 21:16:40,011 - pytorch_cvae.py[line:176] - INFO: loss:1153.2998294830322, numeric_loss:92.9341342896223, categorical_loss:385.4577193260193, kld_loss:2669.696105003357, epoch_train_time:5.6974955052137375
+2022-07-07 21:16:45,715 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.54 epoch----------------------------
+2022-07-07 21:16:45,715 - pytorch_cvae.py[line:176] - INFO: loss:1178.0918848514557, numeric_loss:93.15621890127659, categorical_loss:387.5783441066742, kld_loss:2630.5322546958923, epoch_train_time:5.703457113355398
+2022-07-07 21:16:51,394 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.55 epoch----------------------------
+2022-07-07 21:16:51,394 - pytorch_cvae.py[line:176] - INFO: loss:1203.9194413423538, numeric_loss:93.32609660923481, categorical_loss:389.40253525972366, kld_loss:2596.8314714431763, epoch_train_time:5.678396616131067
+2022-07-07 21:16:57,073 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.56 epoch----------------------------
+2022-07-07 21:16:57,073 - pytorch_cvae.py[line:176] - INFO: loss:1230.0449517965317, numeric_loss:93.58500988781452, categorical_loss:391.38514214754105, kld_loss:2563.4984035491943, epoch_train_time:5.679010700434446
+2022-07-07 21:17:02,781 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.57 epoch----------------------------
+2022-07-07 21:17:02,781 - pytorch_cvae.py[line:176] - INFO: loss:1257.7582149505615, numeric_loss:93.71977704763412, categorical_loss:393.8719255924225, kld_loss:2534.4965591430664, epoch_train_time:5.708285395056009
+2022-07-07 21:17:08,386 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.58 epoch----------------------------
+2022-07-07 21:17:08,386 - pytorch_cvae.py[line:176] - INFO: loss:1286.8878166675568, numeric_loss:93.72000782191753, categorical_loss:398.7708662748337, kld_loss:2502.9536752700806, epoch_train_time:5.6048382222652435
+2022-07-07 21:17:14,230 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.59 epoch----------------------------
+2022-07-07 21:17:14,230 - pytorch_cvae.py[line:176] - INFO: loss:1316.9545822143555, numeric_loss:93.95549558103085, categorical_loss:403.2187469005585, kld_loss:2475.4561409950256, epoch_train_time:5.842986550182104
+2022-07-07 21:17:19,902 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.60 epoch----------------------------
+2022-07-07 21:17:19,902 - pytorch_cvae.py[line:176] - INFO: loss:1347.7123863697052, numeric_loss:93.94206720590591, categorical_loss:409.0195218324661, kld_loss:2447.1643912792206, epoch_train_time:5.671901278197765
+2022-07-07 21:17:25,523 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.61 epoch----------------------------
+2022-07-07 21:17:25,523 - pytorch_cvae.py[line:176] - INFO: loss:1377.5081961154938, numeric_loss:94.16733503341675, categorical_loss:414.60440850257874, kld_loss:2416.7605726718903, epoch_train_time:5.620697628706694
+2022-07-07 21:17:31,113 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.62 epoch----------------------------
+2022-07-07 21:17:31,113 - pytorch_cvae.py[line:176] - INFO: loss:1407.8347334861755, numeric_loss:94.29670847952366, categorical_loss:421.1090440750122, kld_loss:2386.517483472824, epoch_train_time:5.589690417051315
+2022-07-07 21:17:36,738 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.63 epoch----------------------------
+2022-07-07 21:17:36,738 - pytorch_cvae.py[line:176] - INFO: loss:1438.980476140976, numeric_loss:94.48962058126926, categorical_loss:427.4487236738205, kld_loss:2359.7170066833496, epoch_train_time:5.624721426516771
+2022-07-07 21:17:42,594 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.64 epoch----------------------------
+2022-07-07 21:17:42,594 - pytorch_cvae.py[line:176] - INFO: loss:1470.3903396129608, numeric_loss:94.79531455039978, categorical_loss:434.63027262687683, kld_loss:2332.157770395279, epoch_train_time:5.855962309986353
+2022-07-07 21:17:48,171 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.65 epoch----------------------------
+2022-07-07 21:17:48,172 - pytorch_cvae.py[line:176] - INFO: loss:1502.071081161499, numeric_loss:94.99918420612812, categorical_loss:442.3659124970436, kld_loss:2305.3018760681152, epoch_train_time:5.577327948063612
+2022-07-07 21:17:53,678 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.66 epoch----------------------------
+2022-07-07 21:17:53,678 - pytorch_cvae.py[line:176] - INFO: loss:1533.6165506839752, numeric_loss:95.23881992697716, categorical_loss:450.74918031692505, kld_loss:2277.765496492386, epoch_train_time:5.506676271557808
+2022-07-07 21:17:59,355 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.67 epoch----------------------------
+2022-07-07 21:17:59,356 - pytorch_cvae.py[line:176] - INFO: loss:1567.4605004787445, numeric_loss:95.52281013131142, categorical_loss:459.4407411813736, kld_loss:2255.9316601753235, epoch_train_time:5.677013341337442
+2022-07-07 21:18:05,018 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.68 epoch----------------------------
+2022-07-07 21:18:05,018 - pytorch_cvae.py[line:176] - INFO: loss:1598.4095251560211, numeric_loss:95.82170569896698, categorical_loss:469.60059291124344, kld_loss:2225.75984787941, epoch_train_time:5.662476748228073
+2022-07-07 21:18:10,661 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.69 epoch----------------------------
+2022-07-07 21:18:10,662 - pytorch_cvae.py[line:176] - INFO: loss:1628.8414027690887, numeric_loss:96.05326257646084, categorical_loss:479.807614505291, kld_loss:2196.28715133667, epoch_train_time:5.64301710575819
+2022-07-07 21:18:16,341 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.70 epoch----------------------------
+2022-07-07 21:18:16,342 - pytorch_cvae.py[line:176] - INFO: loss:1660.2320704460144, numeric_loss:96.15542216598988, categorical_loss:489.53402465581894, kld_loss:2171.7616486549377, epoch_train_time:5.679824233055115
+2022-07-07 21:18:21,995 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.71 epoch----------------------------
+2022-07-07 21:18:21,995 - pytorch_cvae.py[line:176] - INFO: loss:1690.2930278778076, numeric_loss:96.33824391663074, categorical_loss:500.0686598420143, kld_loss:2144.443706512451, epoch_train_time:5.653061017394066
+2022-07-07 21:18:27,710 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.72 epoch----------------------------
+2022-07-07 21:18:27,710 - pytorch_cvae.py[line:176] - INFO: loss:1721.1405849456787, numeric_loss:96.4967236071825, categorical_loss:510.92062693834305, kld_loss:2119.8645701408386, epoch_train_time:5.715213023126125
+2022-07-07 21:18:33,372 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.73 epoch----------------------------
+2022-07-07 21:18:33,372 - pytorch_cvae.py[line:176] - INFO: loss:1751.1584737300873, numeric_loss:96.74551716446877, categorical_loss:522.609463095665, kld_loss:2093.748364686966, epoch_train_time:5.6613056398928165
+2022-07-07 21:18:39,007 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.74 epoch----------------------------
+2022-07-07 21:18:39,007 - pytorch_cvae.py[line:176] - INFO: loss:1779.0730769634247, numeric_loss:96.97342339158058, categorical_loss:533.4930776357651, kld_loss:2067.195879459381, epoch_train_time:5.634259197860956
+2022-07-07 21:18:44,643 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.75 epoch----------------------------
+2022-07-07 21:18:44,644 - pytorch_cvae.py[line:176] - INFO: loss:1807.1436009407043, numeric_loss:97.20069490373135, categorical_loss:544.4836597442627, kld_loss:2042.6720428466797, epoch_train_time:5.636708918958902
+2022-07-07 21:18:50,399 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.76 epoch----------------------------
+2022-07-07 21:18:50,399 - pytorch_cvae.py[line:176] - INFO: loss:1834.739149093628, numeric_loss:97.43125165998936, categorical_loss:557.2886931300163, kld_loss:2016.1187191009521, epoch_train_time:5.754969984292984
+2022-07-07 21:18:55,997 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.77 epoch----------------------------
+2022-07-07 21:18:55,997 - pytorch_cvae.py[line:176] - INFO: loss:1861.7692942619324, numeric_loss:97.65333656966686, categorical_loss:569.9168511033058, kld_loss:1990.9646706581116, epoch_train_time:5.597598131746054
+2022-07-07 21:19:01,656 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.78 epoch----------------------------
+2022-07-07 21:19:01,656 - pytorch_cvae.py[line:176] - INFO: loss:1886.3615908622742, numeric_loss:97.90614804625511, categorical_loss:580.5596377253532, kld_loss:1967.0272250175476, epoch_train_time:5.659193653613329
+2022-07-07 21:19:07,338 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.79 epoch----------------------------
+2022-07-07 21:19:07,338 - pytorch_cvae.py[line:176] - INFO: loss:1910.224229812622, numeric_loss:98.22947590053082, categorical_loss:591.3571013212204, kld_loss:1943.5513803958893, epoch_train_time:5.681894283741713
+2022-07-07 21:19:12,921 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.80 epoch----------------------------
+2022-07-07 21:19:12,921 - pytorch_cvae.py[line:176] - INFO: loss:1934.154548406601, numeric_loss:98.44174940884113, categorical_loss:604.6062386035919, kld_loss:1918.5255172252655, epoch_train_time:5.582133691757917
+2022-07-07 21:19:18,546 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.81 epoch----------------------------
+2022-07-07 21:19:18,546 - pytorch_cvae.py[line:176] - INFO: loss:1956.3983216285706, numeric_loss:98.58518892526627, categorical_loss:617.2385199069977, kld_loss:1894.0515954494476, epoch_train_time:5.624937307089567
+2022-07-07 21:19:24,116 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.82 epoch----------------------------
+2022-07-07 21:19:24,116 - pytorch_cvae.py[line:176] - INFO: loss:1979.9285962581635, numeric_loss:98.88092985749245, categorical_loss:630.0688149929047, kld_loss:1873.0533018112183, epoch_train_time:5.570066526532173
+2022-07-07 21:19:29,781 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.83 epoch----------------------------
+2022-07-07 21:19:29,782 - pytorch_cvae.py[line:176] - INFO: loss:2000.686912536621, numeric_loss:99.06239922344685, categorical_loss:640.4712512493134, kld_loss:1853.6749155521393, epoch_train_time:5.665310375392437
+2022-07-07 21:19:35,450 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.84 epoch----------------------------
+2022-07-07 21:19:35,451 - pytorch_cvae.py[line:176] - INFO: loss:2022.92191696167, numeric_loss:99.3618877530098, categorical_loss:653.819382071495, kld_loss:1833.920883178711, epoch_train_time:5.668725054711103
+2022-07-07 21:19:41,056 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.85 epoch----------------------------
+2022-07-07 21:19:41,056 - pytorch_cvae.py[line:176] - INFO: loss:2041.3459119796753, numeric_loss:99.6309936195612, categorical_loss:667.2705715894699, kld_loss:1810.591962337494, epoch_train_time:5.604931693524122
+2022-07-07 21:19:46,811 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.86 epoch----------------------------
+2022-07-07 21:19:46,811 - pytorch_cvae.py[line:176] - INFO: loss:2057.9418606758118, numeric_loss:99.82720728218555, categorical_loss:677.3079085350037, kld_loss:1791.6440529823303, epoch_train_time:5.75518125295639
+2022-07-07 21:19:52,319 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.87 epoch----------------------------
+2022-07-07 21:19:52,319 - pytorch_cvae.py[line:176] - INFO: loss:2072.4172246456146, numeric_loss:100.06370590627193, categorical_loss:690.6946125030518, kld_loss:1767.027540922165, epoch_train_time:5.507200110703707
+2022-07-07 21:19:57,964 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.88 epoch----------------------------
+2022-07-07 21:19:57,964 - pytorch_cvae.py[line:176] - INFO: loss:2090.7232768535614, numeric_loss:100.27185222506523, categorical_loss:703.3548185825348, kld_loss:1750.7294330596924, epoch_train_time:5.644684765487909
+2022-07-07 21:20:03,560 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.89 epoch----------------------------
+2022-07-07 21:20:03,560 - pytorch_cvae.py[line:176] - INFO: loss:2103.826606988907, numeric_loss:100.39562724530697, categorical_loss:714.045489192009, kld_loss:1732.0562946796417, epoch_train_time:5.5964077077806
+2022-07-07 21:20:09,218 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.90 epoch----------------------------
+2022-07-07 21:20:09,218 - pytorch_cvae.py[line:176] - INFO: loss:2118.548629760742, numeric_loss:100.70156209170818, categorical_loss:726.9851101636887, kld_loss:1714.212413072586, epoch_train_time:5.657506018877029
+2022-07-07 21:20:14,860 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.91 epoch----------------------------
+2022-07-07 21:20:14,860 - pytorch_cvae.py[line:176] - INFO: loss:2128.152075767517, numeric_loss:100.89869114756584, categorical_loss:736.5988258123398, kld_loss:1696.0348246097565, epoch_train_time:5.64158533513546
+2022-07-07 21:20:20,542 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.92 epoch----------------------------
+2022-07-07 21:20:20,542 - pytorch_cvae.py[line:176] - INFO: loss:2137.8063712120056, numeric_loss:101.0931684076786, categorical_loss:745.9527002573013, kld_loss:1680.1367135047913, epoch_train_time:5.681831359863281
+2022-07-07 21:20:26,166 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.93 epoch----------------------------
+2022-07-07 21:20:26,166 - pytorch_cvae.py[line:176] - INFO: loss:2147.249041557312, numeric_loss:101.38135507702827, categorical_loss:755.4158831834793, kld_loss:1665.5176348686218, epoch_train_time:5.6239211186766624
+2022-07-07 21:20:31,828 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.94 epoch----------------------------
+2022-07-07 21:20:31,828 - pytorch_cvae.py[line:176] - INFO: loss:2156.366579055786, numeric_loss:101.41393868625164, categorical_loss:764.2034323215485, kld_loss:1653.4538927078247, epoch_train_time:5.6619587652385235
+2022-07-07 21:20:37,579 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.95 epoch----------------------------
+2022-07-07 21:20:37,579 - pytorch_cvae.py[line:176] - INFO: loss:2158.9565982818604, numeric_loss:101.50112901628017, categorical_loss:770.5959759950638, kld_loss:1637.7908930778503, epoch_train_time:5.750289309769869
+2022-07-07 21:20:43,179 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.96 epoch----------------------------
+2022-07-07 21:20:43,179 - pytorch_cvae.py[line:176] - INFO: loss:2166.4947261810303, numeric_loss:101.53431783616543, categorical_loss:776.8537179231644, kld_loss:1630.3863322734833, epoch_train_time:5.600294556468725
+2022-07-07 21:20:48,763 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.97 epoch----------------------------
+2022-07-07 21:20:48,763 - pytorch_cvae.py[line:176] - INFO: loss:2171.5178384780884, numeric_loss:101.5918179154396, categorical_loss:781.7791475057602, kld_loss:1623.1167175769806, epoch_train_time:5.583341132849455
+2022-07-07 21:20:54,270 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.98 epoch----------------------------
+2022-07-07 21:20:54,270 - pytorch_cvae.py[line:176] - INFO: loss:2172.1782224178314, numeric_loss:101.56027972698212, categorical_loss:785.4317024946213, kld_loss:1613.7282025814056, epoch_train_time:5.506524454802275
+2022-07-07 21:20:59,940 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.99 epoch----------------------------
+2022-07-07 21:20:59,940 - pytorch_cvae.py[line:176] - INFO: loss:2173.4652557373047, numeric_loss:101.59070920944214, categorical_loss:788.5110355615616, kld_loss:1607.416008234024, epoch_train_time:5.669803474098444
+2022-07-07 21:21:05,580 - pytorch_cvae.py[line:169] - INFO: ----------------------------No.100 epoch----------------------------
+2022-07-07 21:21:05,580 - pytorch_cvae.py[line:176] - INFO: loss:2175.237404823303, numeric_loss:101.54745925962925, categorical_loss:791.9542306661606, kld_loss:1602.9708807468414, epoch_train_time:5.640345621854067
+2022-07-07 21:21:05,580 - pytorch_cvae.py[line:185] - INFO: training time elapsed:564.7153914235532
+2022-07-07 21:21:05,582 - model_utils.py[line:67] - INFO: save model successfully
+2022-07-07 21:21:06,300 - pytorch_cvae.py[line:264] - INFO: train model time elapsed:634.0571954734623
+2022-07-07 21:21:06,300 - dataset_utils.py[line:567] - INFO: load existing dataset(light):flights2-flight-b_b_origin_state_abr__b_origin_state_abr_binary_mm_0
+2022-07-07 21:21:06,321 - dataset_utils.py[line:576] - INFO: load dataset(light) time elapsed:0.0209183469414711
+2022-07-07 21:21:06,321 - pytorch_cvae.py[line:276] - INFO: feature info:[('b_origin_state_abr', 'categorical', 7)]
+2022-07-07 21:21:06,321 - model_utils.py[line:75] - INFO: load model name:torch_cvae_flights2-flight-b_b_origin_state_abr_ld50_id100_bs512_ep100_0_binary_mm
+2022-07-07 21:21:06,323 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0017318464815616608
+2022-07-07 21:21:06,323 - pytorch_cvae.py[line:286] - INFO: load model time elapsed:0.023496974259614944
+2022-07-07 21:21:06,323 - main.py[line:525] - INFO: multi_sampling No.0 epoch
+2022-07-07 21:21:07,622 - pytorch_cvae.py[line:399] - INFO: sampling time:1.29287938028574
+2022-07-07 21:21:07,681 - pytorch_cvae.py[line:419] - INFO: house sampling rate:0.05
+2022-07-07 21:21:07,743 - pytorch_cvae.py[line:399] - INFO: sampling time:0.0627594068646431
+2022-07-07 21:21:08,599 - main.py[line:509] - INFO: sample and aggregation time elapsed:2.275032691657543
+2022-07-07 21:21:08,600 - main.py[line:542] - INFO: sample time: 2.2769946232438087
+2022-07-07 21:21:08,620 - main.py[line:99] - INFO: aqp result:
+                  avg(a_taxi_out)  avg(a_air_time)  avg(a_distance)  \
+a_unique_carrier                                                      
+9E               15.81            1198.72          698.11             
+AA               15.28            1207.09          762.34             
+AQ               13.90            1185.86          581.47             
+AS               17.11            1209.48          736.36             
+B6               16.65            1214.77          793.12             
+CO               15.91            1208.30          780.27             
+DH               15.81            1210.30          842.49             
+DL               15.47            1202.95          724.03             
+EV               15.79            1203.97          711.85             
+F9               14.83            1202.89          682.58             
+FL               19.33            1178.75          548.59             
+HA               15.45            1189.46          557.11             
+HP               15.86            1204.28          739.29             
+MQ               15.76            1204.30          743.03             
+NK               15.49            1209.12          775.72             
+NW               16.32            1213.59          789.48             
+OH (1)           15.40            1198.50          673.79             
+OO               14.75            1204.40          746.22             
+TW               16.90            1205.04          779.30             
+TZ               15.81            1210.11          776.05             
+UA               15.48            1205.77          737.45             
+US               15.82            1203.96          721.03             
+VX               15.68            1211.14          780.24             
+WN               15.63            1203.76          724.72             
+XE               15.78            1209.20          755.74             
+
+                  sum(a_taxi_out)  sum(a_air_time)  sum(a_distance)  
+a_unique_carrier                                                     
+9E               1809746672.36    132917924995.01  78090790862.19    
+AA               20774665374.01   1634157042023.21 1086257481120.51  
+AQ               3415817.01       294727607.29     144777583.86      
+AS               408413757.99     27796395884.22   16974543993.31    
+B6               849280944.61     62312510428.86   44686740266.83    
+CO               5744463893.64    438466216019.59  287371705493.46   
+DH               110747834.01     8528787520.17    5810365847.44     
+DL               24743219562.68   1940483399589.45 1171048441642.46  
+EV               9695135565.95    740875554772.17  429869127957.11   
+F9               147028036.32     12886608069.61   6743385667.11     
+FL               91682104.95      5683689730.87    2867808803.75     
+HA               7496784.91       582185261.30     253515503.98      
+HP               1222123549.09    96559029201.44   53380424309.18    
+MQ               4060318045.86    314957102818.23  198976107173.13   
+NK               75859292.38      5958102053.47    3903196349.32     
+NW               5720885214.26    420011805667.60  280664658993.45   
+OH (1)           852590307.41     70660989888.52   36378249811.84    
+OO               2706766203.32    230546362614.98  137764459205.68   
+TW               16172596.64      1137483753.99    770179404.93      
+TZ               151958.77        11631619.82      7459549.72        
+UA               25253646482.35   1996547079497.00 1233033993732.67  
+US               15988217585.13   1236157440444.52 756371502011.81   
+VX               50549658.09      3910917506.06    2508806194.11     
+WN               31357524920.72   2424885146483.45 1411061944341.05  
+XE               267341910.72     20259830971.41   13372866004.47    
+2022-07-07 21:21:08,625 - main.py[line:100] - INFO: ground truth:
+                  sum(a_taxi_out)  avg(a_taxi_out)  sum(a_air_time)  \
+a_unique_carrier                                                      
+9E               741101698.57     15.15            58880704989.57     
+AA               7989875051.98    15.55            619430514363.80    
+AQ               86631196.39      15.87            6543460866.54      
+AS               1848560227.43    15.43            144331558233.33    
+B6               1470850178.74    15.60            113799492628.54    
+CO               3106668746.22    15.59            240048308499.97    
+DH               367218921.85     15.49            28440016722.48     
+DL               8981685488.31    15.57            695773932714.29    
+EV               3181962351.09    15.68            244702638367.97    
+F9               570577147.90     15.46            44476849990.55     
+FL               1395415570.15    15.59            107894733721.66    
+HA               494281312.53     15.56            38211095213.40     
+HP               1227584010.63    15.51            95391382060.99     
+MQ               3759015081.03    15.64            289433438181.99    
+NK               147254628.38     15.47            11455447903.05     
+NW               3904891886.94    15.58            301859529285.21    
+OH (1)           952968179.55     15.37            74636252791.26     
+OO               4367541877.63    15.47            340289304596.67    
+TW               1004435409.83    15.42            78568723096.25     
+TZ               121899826.21     16.84            8729112894.46      
+UA               6832602622.78    15.61            527301016058.02    
+US               6092371671.52    15.74            466392055985.71    
+VX               167606958.73     14.81            13654805413.23     
+WN               12522355213.58   15.53            971806211739.94    
+XE               1848841981.24    15.61            142753704429.07    
+YV               951495612.18     15.81            72725041886.37     
+
+                  avg(a_air_time)  sum(a_distance)  avg(a_distance)  
+a_unique_carrier                                                     
+9E               1203.99          35711788851.31   730.23            
+AA               1205.41          381243748002.27  741.90            
+AQ               1198.81          3790834029.22    694.51            
+AS               1205.11          88696395636.76   740.58            
+B6               1207.26          71473179185.90   758.23            
+CO               1204.64          146402774103.50  734.70            
+DH               1199.47          16449517708.08   693.76            
+DL               1205.97          430329104776.58  745.88            
+EV               1205.57          150835474033.21  743.12            
+F9               1205.36          27325788632.97   740.55            
+FL               1205.30          66527232060.59   743.18            
+HA               1203.07          22898614485.52   720.96            
+HP               1205.34          58487708653.73   739.03            
+MQ               1204.36          176132606008.73  732.90            
+NK               1203.73          6925756819.23    727.75            
+NW               1204.24          183277498856.54  731.17            
+OH (1)           1203.89          45360575256.62   731.67            
+OO               1204.93          208420476170.33  738.00            
+TW               1206.18          48659767530.98   747.02            
+TZ               1205.89          5310019388.65    733.55            
+UA               1204.95          322665183451.92  737.33            
+US               1204.84          285669645091.13  737.97            
+VX               1206.36          8547076307.99    755.11            
+WN               1204.92          595750659418.91  738.66            
+XE               1205.52          87848470069.39   741.86            
+YV               1208.26          46183746721.52   767.30            
+2022-07-07 21:21:08,637 - main.py[line:550] - INFO: relative error:
+                  avg(a_air_time)  avg(a_distance)  avg(a_taxi_out)  \
+a_unique_carrier                                                      
+9E               0.00             0.04             0.04               
+AA               0.00             0.03             0.02               
+AQ               0.01             0.16             0.12               
+AS               0.00             0.01             0.11               
+B6               0.01             0.05             0.07               
+CO               0.00             0.06             0.02               
+DH               0.01             0.21             0.02               
+DL               0.00             0.03             0.01               
+EV               0.00             0.04             0.01               
+F9               0.00             0.08             0.04               
+FL               0.02             0.26             0.24               
+HA               0.01             0.23             0.01               
+HP               0.00             0.00             0.02               
+MQ               0.00             0.01             0.01               
+NK               0.00             0.07             0.00               
+NW               0.01             0.08             0.05               
+OH (1)           0.00             0.08             0.00               
+OO               0.00             0.01             0.05               
+TW               0.00             0.04             0.10               
+TZ               0.00             0.06             0.06               
+UA               0.00             0.00             0.01               
+US               0.00             0.02             0.01               
+VX               0.00             0.03             0.06               
+WN               0.00             0.02             0.01               
+XE               0.00             0.02             0.01               
+YV               1.00             1.00             1.00               
+
+                  sum(a_air_time)  sum(a_distance)  sum(a_taxi_out)  
+a_unique_carrier                                                     
+9E               1.26             1.19             1.44              
+AA               1.64             1.85             1.60              
+AQ               0.95             0.96             0.96              
+AS               0.81             0.81             0.78              
+B6               0.45             0.37             0.42              
+CO               0.83             0.96             0.85              
+DH               0.70             0.65             0.70              
+DL               1.79             1.72             1.75              
+EV               2.03             1.85             2.05              
+F9               0.71             0.75             0.74              
+FL               0.95             0.96             0.93              
+HA               0.98             0.99             0.98              
+HP               0.01             0.09             0.00              
+MQ               0.09             0.13             0.08              
+NK               0.48             0.44             0.48              
+NW               0.39             0.53             0.47              
+OH (1)           0.05             0.20             0.11              
+OO               0.32             0.34             0.38              
+TW               0.99             0.98             0.98              
+TZ               1.00             1.00             1.00              
+UA               2.79             2.82             2.70              
+US               1.65             1.65             1.62              
+VX               0.71             0.71             0.70              
+WN               1.50             1.37             1.50              
+XE               0.86             0.85             0.86              
+YV               1.00             1.00             1.00              
+2022-07-07 21:21:08,639 - main.py[line:551] - INFO: relative error normalized:
+                  avg(a_air_time)  avg(a_distance)  avg(a_taxi_out)  \
+a_unique_carrier                                                      
+9E               0.00             0.04             0.04               
+AA               0.00             0.03             0.02               
+AQ               0.01             0.15             0.12               
+AS               0.00             0.01             0.10               
+B6               0.01             0.04             0.06               
+CO               0.00             0.06             0.02               
+DH               0.01             0.19             0.02               
+DL               0.00             0.03             0.01               
+EV               0.00             0.04             0.01               
+F9               0.00             0.08             0.04               
+FL               0.02             0.23             0.21               
+HA               0.01             0.20             0.01               
+HP               0.00             0.00             0.02               
+MQ               0.00             0.01             0.01               
+NK               0.00             0.06             0.00               
+NW               0.01             0.08             0.05               
+OH (1)           0.00             0.08             0.00               
+OO               0.00             0.01             0.04               
+TW               0.00             0.04             0.09               
+TZ               0.00             0.06             0.06               
+UA               0.00             0.00             0.01               
+US               0.00             0.02             0.01               
+VX               0.00             0.03             0.06               
+WN               0.00             0.02             0.01               
+XE               0.00             0.02             0.01               
+YV               1.00             1.00             1.00               
+
+                  sum(a_air_time)  sum(a_distance)  sum(a_taxi_out)  
+a_unique_carrier                                                     
+9E               0.72             0.69             0.76              
+AA               0.81             0.84             0.80              
+AQ               0.62             0.62             0.62              
+AS               0.55             0.55             0.54              
+B6               0.36             0.31             0.34              
+CO               0.56             0.62             0.57              
+DH               0.50             0.48             0.50              
+DL               0.83             0.82             0.83              
+EV               0.87             0.84             0.87              
+F9               0.51             0.53             0.52              
+FL               0.61             0.62             0.61              
+HA               0.63             0.63             0.63              
+HP               0.01             0.08             0.00              
+MQ               0.08             0.12             0.08              
+NK               0.38             0.35             0.38              
+NW               0.32             0.41             0.37              
+OH (1)           0.05             0.18             0.10              
+OO               0.28             0.29             0.32              
+TW               0.63             0.63             0.63              
+TZ               0.63             0.63             0.63              
+UA               0.94             0.94             0.93              
+US               0.81             0.81             0.80              
+VX               0.51             0.51             0.50              
+WN               0.78             0.75             0.78              
+XE               0.58             0.57             0.57              
+YV               1.00             1.00             1.00              
+2022-07-07 21:21:08,640 - main.py[line:554] - INFO: relative error average: 0.5193434798767914
+2022-07-07 21:21:08,640 - main.py[line:555] - INFO: relative error normalized average: 0.318916379457259
+2022-07-07 21:21:08,647 - main.py[line:601] - INFO: total_time:636.4044466279447
+feature_names: ['a_origin_state_abr_0', 'a_origin_state_abr_1', 'a_origin_state_abr_2', 'a_origin_state_abr_3', 'a_origin_state_abr_4', 'a_origin_state_abr_5', 'a_origin_state_abr_6', 'a_unique_carrier_0', 'a_unique_carrier_1', 'a_unique_carrier_2', 'a_unique_carrier_3', 'a_unique_carrier_4', 'a_unique_carrier_5']
+feature_names: ['a_origin_state_abr-a_unique_carrier_0', 'a_origin_state_abr-a_unique_carrier_1', 'a_origin_state_abr-a_unique_carrier_2', 'a_origin_state_abr-a_unique_carrier_3', 'a_origin_state_abr-a_unique_carrier_4', 'a_origin_state_abr-a_unique_carrier_5', 'a_origin_state_abr-a_unique_carrier_6', 'a_origin_state_abr-a_unique_carrier_7', 'a_origin_state_abr-a_unique_carrier_8', 'a_origin_state_abr-a_unique_carrier_9', 'a_origin_state_abr-a_unique_carrier_10', 'a_origin_state_abr-a_unique_carrier_11']
+categorical_columns: ['a_origin_state_abr_0', 'a_origin_state_abr_1', 'a_origin_state_abr_2', 'a_origin_state_abr_3', 'a_origin_state_abr_4', 'a_origin_state_abr_5', 'a_origin_state_abr_6', 'a_unique_carrier_0', 'a_unique_carrier_1', 'a_unique_carrier_2', 'a_unique_carrier_3', 'a_unique_carrier_4', 'a_unique_carrier_5']
+categorical_columns: ['b_origin_state_abr_0', 'b_origin_state_abr_1', 'b_origin_state_abr_2', 'b_origin_state_abr_3', 'b_origin_state_abr_4', 'b_origin_state_abr_5', 'b_origin_state_abr_6']

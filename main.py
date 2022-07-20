@@ -7,8 +7,7 @@ import threading
 # from models.keras_vae import train_vae
 # from models.keras_cvae import train_cvae
 import time
-from models.pytorch_vae import train_torch_vae
-from models.pytorch_cvae import train_torch_cvae, load_torch_cvae, loadtrain_torch_cvae, generate_samples
+from models.pytorch_cvae import train_torch_cvae, load_model_and_dataset, load_model_and_dataset_retrain, generate_samples
 from utils.dataset_utils import TabularDataset, save_dataset, load_dataset
 import pandas as pd
 import numpy as np
@@ -19,7 +18,11 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
 pd.set_option('max_colwidth', -1)
 pd.set_option('display.float_format', lambda x: '%.2f' % x)
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO,#控制台打印的日志级别
+                    # filename='./logs/tpcds-test2.log',
+                    filemode='w',
+                    format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s'
+                    )
 logger = logging.getLogger(__name__)
 
 
@@ -38,15 +41,13 @@ def train_load_models(train_config_list):
     model_dataset_list = []
     for param in train_config_list:
         model_type = param["model_type"]
-        if model_type == "torch_vae":
-            model_dataset = train_torch_vae(param)
-        elif model_type == "torch_cvae":
+        if model_type == "torch_cvae":
             if param['train_flag'] == 'train':
                 model_dataset = train_torch_cvae(param)
             elif param['train_flag'] == 'load':
-                model_dataset = load_torch_cvae(param)
+                model_dataset = load_model_and_dataset(param)
             else:
-                model_dataset = loadtrain_torch_cvae(param)
+                model_dataset = load_model_and_dataset_retrain(param)
         model_dataset_list.append(model_dataset)
     return model_dataset_list
 
@@ -55,9 +56,7 @@ def train_models(train_config_list):
     model_dataset_list = []
     for param in train_config_list:
         model_type = param["model_type"]
-        if model_type == "torch_vae":
-            model_dataset = train_torch_vae(param)
-        elif model_type == "torch_cvae":
+        if model_type == "torch_cvae":
             model_dataset = train_torch_cvae(param)
         model_dataset_list.append(model_dataset)
     return model_dataset_list
@@ -67,10 +66,8 @@ def load_models(train_config_list):
     model_dataset_list = []
     for param in train_config_list:
         model_type = param["model_type"]
-        if model_type == "torch_vae":
-            model_dataset = train_torch_vae(param)
-        elif model_type == "torch_cvae":
-            model_dataset = load_torch_cvae(param)
+        if model_type == "torch_cvae":
+            model_dataset = load_model_and_dataset(param)
         model_dataset_list.append(model_dataset)
     return model_dataset_list
 
@@ -246,6 +243,161 @@ def sample_aggregation(sample_list, query_config, train_config_list):
     outlier = True if 'outliers' in train_config_list[0] and train_config_list[0]['outliers'] == 'true' else False
     aggregations = {}
 
+    # for col in avg_cols:
+    #     agg_name = "avg({})".format(col)
+    #     aggregations[agg_name] = (col, 'mean')
+
+    # for col in sum_cols:
+    #     agg_name = "sum({})".format(col)
+    #     aggregations[agg_name] = ('scale_' + col, 'sum')
+
+    # for col in rate_cols:
+    #     agg_name = col
+    #     aggregations[agg_name] = (col, 'mean')
+
+    if len(sample_list) > 1:
+        join_result = pd.merge(sample_list[0], sample_list[1], left_on=join_cols[0], right_on=join_cols[1], how='inner')
+        if len(join_cols)>2:
+            join_result = pd.merge(join_result, sample_list[2], left_on=join_cols[1], right_on=join_cols[2], how='inner')
+
+        # for train_config in train_config_list:
+        #     for numeric_column in train_config['numeric_columns']:
+        #         rate = 1
+        #         for col in join_result.columns:
+        #             if col.endswith('_rate'):
+        #                 rate *= join_result[col]
+        #         join_result['scale_' + numeric_column] = join_result[numeric_column] / rate
+
+        # join_result.to_csv('./join_result.csv')
+
+        if len(groupby_cols) > 0:  # with group by clause
+            if not outlier:
+                for col in avg_cols:
+                    agg_name = "avg({})".format(col)
+                    aggregations[agg_name] = (col, 'mean')
+
+                for col in sum_cols:
+                    agg_name = "sum({})".format(col)
+                    aggregations[agg_name] = ('scale_' + col, 'sum')
+
+                for col in rate_cols:
+                    agg_name = col
+                    aggregations[agg_name] = (col, 'mean')
+
+                for train_config in train_config_list:
+                    for numeric_column in train_config['numeric_columns']:
+                        rate = 1
+                        for col in join_result.columns:
+                            if col.endswith('_rate'):
+                                rate *= join_result[col]
+                        join_result['scale_' + numeric_column] = join_result[numeric_column] / rate
+                
+                agg_result = join_result.groupby(by=groupby_cols).agg(**aggregations)
+                # agg_result.to_csv('./agg_result.csv')
+                for col in agg_result.columns:
+                    if col.endswith('_rate'):
+                        del agg_result[col]
+            else:
+                for col in avg_cols:
+                    agg_name = "avg({})".format(col)
+                    aggregations[agg_name] = (col, 'mean')
+                for col in sum_cols:
+                    agg_name = "sum({})".format(col)
+                    aggregations[agg_name] = (col, 'sum')
+                for col in rate_cols:
+                    agg_name = col
+                    aggregations[agg_name] = (col, 'mean')
+                    
+                cnt_col = 'cnt'
+                aggregations[cnt_col] = (avg_cols[0], 'size')
+                agg_result = join_result.groupby(by=groupby_cols + rate_cols).agg(**aggregations)
+                # agg_result.to_csv('./agg_result.csv')
+
+                rate_col = 'rate'
+                agg_result[rate_col] = 1
+                for col in agg_result.columns:
+                    if col.endswith('_rate'):
+                        agg_result[rate_col] *= agg_result[col]
+                        del agg_result[col]
+
+                f_aggregations = {}
+                for col in agg_result.columns:
+                    if col.startswith('sum') or col == 'cnt':
+                        agg_result[col] /= agg_result[rate_col]
+                        f_aggregations[col] = (col, 'sum')
+
+
+                agg_result = agg_result.groupby(by=groupby_cols).agg(**f_aggregations)
+                for col in avg_cols:
+                    magg_name = "avg({})".format(col)
+                    sagg_name = "sum({})".format(col)
+                    agg_result[magg_name] = agg_result[sagg_name] / agg_result[cnt_col]
+                del agg_result[cnt_col]
+        else:  # without group by clause
+            for col in avg_cols:
+                    agg_name = "avg({})".format(col)
+                    aggregations[agg_name] = (col, 'mean')
+            for col in sum_cols:
+                agg_name = "sum({})".format(col)
+                aggregations[agg_name] = (col, 'sum')
+            for col in rate_cols:
+                agg_name = col
+                aggregations[agg_name] = (col, 'mean')
+            cnt_col = 'cnt'
+            aggregations = {agg_name: aggregations[agg_name] for agg_name in aggregations if agg_name.startswith('sum')}
+            aggregations[cnt_col] = (avg_cols[0], 'size')
+            agg_result = join_result.groupby(by=rate_cols).agg(**aggregations)
+            agg_result.reset_index(inplace=True)
+            # print(agg_result)
+            rate_col = 'rate'
+            agg_result[rate_col] = 1
+            for col in agg_result.columns:
+                if col.endswith('_rate'):
+                    agg_result[rate_col] *= agg_result[col]
+                    del agg_result[col]
+            print(outlier)
+            print(agg_result)
+            for col in agg_result.columns:
+                if col.startswith('sum') or col == 'cnt':
+                    agg_result[col] /= agg_result[rate_col]
+            del agg_result[rate_col]
+            agg_result = pd.DataFrame(agg_result.sum()).transpose()
+            # agg_result = agg_result.agg(**f_aggregations)
+            for col in avg_cols:
+                # agg_name = col + "_mean"
+                magg_name = "avg({})".format(col)
+                sagg_name = "sum({})".format(col)
+                agg_result[magg_name] = agg_result[sagg_name] / agg_result[cnt_col]
+            del agg_result[cnt_col]
+    else:
+        for col in avg_cols:
+            agg_name = "avg({})".format(col)
+            aggregations[agg_name] = (col, 'mean')
+        for col in sum_cols:
+            agg_name = "sum({})".format(col)
+            aggregations[agg_name] = (col, 'sum')
+        for col in rate_cols:
+            agg_name = col
+            aggregations[agg_name] = (col, 'mean')
+        samples = sample_list[0]
+        agg_result = samples.groupby(by=groupby_cols).agg(**aggregations)
+        rate_col = rate_cols[0]
+        for col in agg_result.columns:
+            if col.startswith('sum'):
+                # if col.endswith('_sum'):
+                agg_result[col] /= agg_result[rate_col]
+        del agg_result[rate_col]
+    return agg_result
+
+def sample_aggregation_prev(sample_list, query_config, train_config_list):
+    sum_cols = query_config['sum_cols']
+    avg_cols = query_config['avg_cols']
+    join_cols = query_config['join_cols']
+    groupby_cols = query_config['groupby_cols']
+    rate_cols = [config['name'] + "_rate" for config in train_config_list]
+    outlier = True if 'outliers' in train_config_list[0] and train_config_list[0]['outliers'] == 'true' else False
+    aggregations = {}
+
     for col in avg_cols:
         # agg_name = col + "_mean"
         agg_name = "avg({})".format(col)
@@ -339,7 +491,6 @@ def sample_aggregation(sample_list, query_config, train_config_list):
         del agg_result[rate_col]
     return agg_result
 
-
 def sample_list_combination(sample_list_list):
     sample_list_comb = []
     sample_list_size = len(sample_list_list)
@@ -352,6 +503,7 @@ def sample_list_combination(sample_list_list):
 def sample_generation_and_aggregation(model_dataset_list, query_config, train_config_list, sample_agg_list):
     start_time = time.perf_counter()
     sample_list = generate_sample_list(model_dataset_list, query_config, train_config_list)
+    # logger.info('===================:{}'.format(time.perf_counter() - start_time))
     sample_agg = sample_aggregation(sample_list, query_config, train_config_list)
     sample_agg_list.append(sample_agg)
     end_time = time.perf_counter()
@@ -388,21 +540,21 @@ def model_aqp(query_config, train_config_list):
     sample_agg = pd.concat(sample_agg_list).groupby(level=0).mean()
 
     end_time = time.perf_counter()
-    logger.info("sample time:{}".format(end_time - start_time))
+    logger.info("sample time: {}".format(end_time - start_time))
     index_flag = True
     if len(query_config['groupby_cols']) == 0:
         index_flag = False
     diff = compare_aggregation(sample_agg, query_config, index_flag)
     diff_norm = compare_aggregation_norm(sample_agg, query_config, index_flag)
-    diff_var_norm = compare_aggregation_norm_var(sample_agg, query_config, index_flag)
+    # diff_var_norm = compare_aggregation_norm_var(sample_agg, query_config, index_flag)
 
     logger.info("relative error:\n{}".format(diff[:50]))
-    # logger.info("relative error normalized:\n{}".format(diff_norm))
+    logger.info("relative error normalized:\n{}".format(diff_norm))
     # logger.info("relative error var normalized:\n{}".format(diff_var_norm))
 
-    logger.info("relative error average :{}".format(diff.values.sum() / diff.size))
-    logger.info("relative error normalized average :{}".format(diff_norm.values.sum() / diff_norm.size))
-    logger.info("relative error var normalized average :{}".format(diff_var_norm.values.sum() / diff_var_norm.size))
+    logger.info("relative error average: {}".format(diff.values.sum() / diff.size))
+    logger.info("relative error normalized average: {}".format(diff_norm.values.sum() / diff_norm.size))
+    # logger.info("relative error var normalized average :{}".format(diff_var_norm.values.sum() / diff_var_norm.size))
 
     # sample_list_list = []
     # sample_times = 3

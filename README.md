@@ -1,6 +1,6 @@
-# Table_CVAE_AQP
+# ShadowAQP
 
-This is the code repository for the approximate query processing paper titled *'Efficient and Accurate Approximate Join Query Processing via Conditional Sample Data Generation and Size Allocation'*.
+This is the code repository for the approximate query processing paper titled *'ShadowAQP: Efficient Approximate Join and Group-by Query via Attribute-oriented Sample Size Allocation and Data Generation'*.
 
 This project is built on an open source machine learning framework [PyTorch](https://pytorch.org/). 
 
@@ -26,7 +26,7 @@ This project is built on an open source machine learning framework [PyTorch](htt
 2. Prepare the raw exact query result (under `/ground_truth`) and data
 
 3. Config the **query configuration files** `config/query/xxx.json` to define a query and  config the **training configuration files** of involved tables `config/train/xxx.json` to guide the training as in [below](#configuration). 
-    
+   
 4. Train the models
 
     ```
@@ -47,8 +47,6 @@ Table-CVAE proceeds into two phases: **the model training phase (offline)** and 
   - **The sample generation phase (online)**
     * In sample generation phase, Table-CVAE generates sample tuples based on the learned conditional probability distribution.
     * The sample generation phase includes the sampling stage, the decoding stage, and the execution stage.
-
-![overview](overview.jpg)
 
 
 ### Model Training Phase (offline)
@@ -211,9 +209,3 @@ Training configuration files  is under `/config/train`.An example is given below
   "delimiter": ","
 }
 ```
-
-## Copyright
-
-The code is available for research purpose only.
-
-For commercial usage, please contact PASA Lab@Nanjing University(gurong@nju.edu.cn).

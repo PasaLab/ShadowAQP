@@ -1,0 +1,222 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2022-06-23 18:15:01,085 - main.py[line:438] - INFO: load query config config/query/sales_join_store.json successfully
+2022-06-23 18:15:01,085 - main.py[line:445] - INFO: load train config ./config/train/tpcds_ssales_store_torch_cvae.json successfully
+2022-06-23 18:15:01,085 - main.py[line:445] - INFO: load train config ./config/train/tpcds_store_torch_cvae.json successfully
+2022-06-23 18:15:01,085 - dataset_utils.py[line:562] - INFO: load existing dataset(light):tpcds-06667g-ssales_store_ss_store_sk_ss_wholesale_cost#ss_list_price#ss_sales_price#ss_ext_sales_price_ss_store_sk_binary_mm_0
+2022-06-23 18:15:01,489 - dataset_utils.py[line:571] - INFO: load dataset(light) time elapsed:0.4037523493170738
+2022-06-23 18:15:01,489 - pytorch_cvae.py[line:275] - INFO: feature info:[('ss_wholesale_cost', 'numerical', 1), ('ss_list_price', 'numerical', 1), ('ss_sales_price', 'numerical', 1), ('ss_ext_sales_price', 'numerical', 1), ('ss_store_sk', 'categorical', 4)]
+2022-06-23 18:15:01,490 - model_utils.py[line:75] - INFO: load model name:torch_cvae_tpcds-06667g-ssales_store_ss_store_sk_ld100_id100_bs512_ep150_0_binary_mm
+2022-06-23 18:15:03,541 - model_utils.py[line:86] - INFO: load torch model time elapsed:2.0510440953075886
+2022-06-23 18:15:03,541 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:2.4564337991178036
+2022-06-23 18:15:03,541 - dataset_utils.py[line:562] - INFO: load existing dataset(light):tpcds-06667g-store_s_store_sk#s_store_name__s_store_sk#s_store_name_binary_gaussian5_0
+2022-06-23 18:15:03,543 - dataset_utils.py[line:571] - INFO: load dataset(light) time elapsed:0.0015415512025356293
+2022-06-23 18:15:03,543 - pytorch_cvae.py[line:275] - INFO: feature info:[('s_store_sk', 'categorical', 5), ('s_store_name', 'categorical', 4)]
+2022-06-23 18:15:03,544 - model_utils.py[line:75] - INFO: load model name:torch_cvae_tpcds-06667g-store_s_store_sk_s_store_name_ld100_id150_bs128_ep100_0_binary_gaussian5
+2022-06-23 18:15:03,545 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0014304444193840027
+2022-06-23 18:15:03,545 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.0037335827946662903
+2022-06-23 18:15:03,545 - main.py[line:382] - INFO: multi_sampling No.0 epoch
+2022-06-23 18:15:03,550 - main.py[line:382] - INFO: multi_sampling No.1 epoch
+2022-06-23 18:15:03,550 - main.py[line:382] - INFO: multi_sampling No.2 epoch
+2022-06-23 18:15:04,068 - pytorch_cvae.py[line:398] - INFO: sampling time:0.5223498269915581
+2022-06-23 18:15:04,116 - dataset_utils.py[line:543] - INFO: load existing dataset:tpcds-06667g-store_s_store_sk#s_store_name__s_store_sk#s_store_name_binary_gaussian5_0
+2022-06-23 18:15:04,118 - dataset_utils.py[line:555] - INFO: load dataset time elapsed:0.0023003555834293365
+2022-06-23 18:15:04,167 - main.py[line:366] - INFO: sample and aggregation time elapsed:0.6211363971233368
+2022-06-23 18:15:04,224 - pytorch_cvae.py[line:398] - INFO: sampling time:0.6737570688128471
+2022-06-23 18:15:04,233 - pytorch_cvae.py[line:398] - INFO: sampling time:0.6816903539001942
+2022-06-23 18:15:04,393 - dataset_utils.py[line:543] - INFO: load existing dataset:tpcds-06667g-store_s_store_sk#s_store_name__s_store_sk#s_store_name_binary_gaussian5_0
+2022-06-23 18:15:04,423 - dataset_utils.py[line:555] - INFO: load dataset time elapsed:0.02970629557967186
+2022-06-23 18:15:04,441 - dataset_utils.py[line:543] - INFO: load existing dataset:tpcds-06667g-store_s_store_sk#s_store_name__s_store_sk#s_store_name_binary_gaussian5_0
+2022-06-23 18:15:04,447 - dataset_utils.py[line:555] - INFO: load dataset time elapsed:0.0061331018805503845
+2022-06-23 18:15:04,501 - main.py[line:366] - INFO: sample and aggregation time elapsed:0.9508799202740192
+2022-06-23 18:15:04,530 - main.py[line:366] - INFO: sample and aggregation time elapsed:0.978916697204113
+2022-06-23 18:15:04,535 - main.py[line:399] - INFO: sample time:0.9894185066223145
+2022-06-23 18:15:04,547 - main.py[line:99] - INFO: aqp result:
+              avg(ss_wholesale_cost)  avg(ss_list_price)  avg(ss_sales_price)  \
+s_store_name                                                                    
+able         51.13                   77.54               39.35                  
+ation        50.51                   76.42               37.71                  
+bar          51.37                   78.16               39.95                  
+eing         50.61                   75.97               38.82                  
+ese          49.75                   74.22               36.57                  
+ought        50.36                   75.32               38.17                  
+
+              avg(ss_ext_sales_price)  sum(ss_wholesale_cost)  \
+s_store_name                                                    
+able         2045.14                  14892727.64               
+ation        1950.78                  14677054.55               
+bar          1966.10                  14997723.03               
+eing         1856.45                  14767563.90               
+ese          1841.02                  14519863.14               
+ought        1933.06                  14611834.40               
+
+              sum(ss_list_price)  sum(ss_sales_price)  sum(ss_ext_sales_price)  
+s_store_name                                                                    
+able         22584523.03         11461604.90          595662945.13              
+ation        22204175.58         10958657.90          566835476.85              
+bar          22818903.71         11663075.41          573990836.97              
+eing         22165747.45         11325356.19          541655878.74              
+ese          21660578.47         10673310.37          537263388.08              
+ought        21854908.36         11076278.88          560914059.68              
+2022-06-23 18:15:04,551 - main.py[line:100] - INFO: ground truth:
+              avg(ss_wholesale_cost)  avg(ss_list_price)  avg(ss_sales_price)  \
+s_store_name                                                                    
+able         50.61                   75.94               38.01                  
+ation        50.49                   75.73               37.84                  
+bar          50.44                   75.60               37.82                  
+eing         50.51                   75.74               37.90                  
+ese          50.45                   75.68               37.84                  
+ought        50.53                   75.81               37.86                  
+
+              avg(ss_ext_sales_price)  sum(ss_wholesale_cost)  \
+s_store_name                                                    
+able         1926.73                  14788342.66               
+ation        1912.60                  14719970.91               
+bar          1908.59                  14772426.13               
+eing         1914.34                  14780997.94               
+ese          1909.48                  14773197.68               
+ought        1914.89                  14711080.58               
+
+              sum(ss_list_price)  sum(ss_sales_price)  sum(ss_ext_sales_price)  
+s_store_name                                                                    
+able         22192137.70         11106136.78          563027468.51              
+ation        22077941.50         11030756.51          557588392.87              
+bar          22140203.25         11076479.69          558936632.49              
+eing         22164691.16         11090655.80          560240592.93              
+ese          22160987.02         11079587.87          559161564.93              
+ought        22070501.42         11022022.19          557483004.15              
+2022-06-23 18:15:04,558 - main.py[line:407] - INFO: relative error:
+              avg(ss_wholesale_cost)  avg(ss_list_price)  avg(ss_sales_price)  \
+s_store_name                                                                    
+able         0.01                    0.02                0.04                   
+ation        0.00                    0.01                0.00                   
+bar          0.02                    0.03                0.06                   
+eing         0.00                    0.00                0.02                   
+ese          0.01                    0.02                0.03                   
+ought        0.00                    0.01                0.01                   
+
+              avg(ss_ext_sales_price)  sum(ss_wholesale_cost)  \
+s_store_name                                                    
+able         0.06                     0.01                      
+ation        0.02                     0.00                      
+bar          0.03                     0.02                      
+eing         0.03                     0.00                      
+ese          0.04                     0.02                      
+ought        0.01                     0.01                      
+
+              sum(ss_list_price)  sum(ss_sales_price)  sum(ss_ext_sales_price)  
+s_store_name                                                                    
+able         0.02                0.03                 0.06                      
+ation        0.01                0.01                 0.02                      
+bar          0.03                0.05                 0.03                      
+eing         0.00                0.02                 0.03                      
+ese          0.02                0.04                 0.04                      
+ought        0.01                0.00                 0.01                      
+2022-06-23 18:15:04,561 - main.py[line:408] - INFO: relative error normalized:
+              avg(ss_wholesale_cost)  avg(ss_list_price)  avg(ss_sales_price)  \
+s_store_name                                                                    
+able         0.01                    0.02                0.03                   
+ation        0.00                    0.01                0.00                   
+bar          0.02                    0.03                0.05                   
+eing         0.00                    0.00                0.02                   
+ese          0.01                    0.02                0.03                   
+ought        0.00                    0.01                0.01                   
+
+              avg(ss_ext_sales_price)  sum(ss_wholesale_cost)  \
+s_store_name                                                    
+able         0.06                     0.01                      
+ation        0.02                     0.00                      
+bar          0.03                     0.02                      
+eing         0.03                     0.00                      
+ese          0.04                     0.02                      
+ought        0.01                     0.01                      
+
+              sum(ss_list_price)  sum(ss_sales_price)  sum(ss_ext_sales_price)  
+s_store_name                                                                    
+able         0.02                0.03                 0.06                      
+ation        0.01                0.01                 0.02                      
+bar          0.03                0.05                 0.03                      
+eing         0.00                0.02                 0.03                      
+ese          0.02                0.04                 0.04                      
+ought        0.01                0.00                 0.01                      
+2022-06-23 18:15:04,561 - main.py[line:411] - INFO: relative error average :0.01999720804769685
+2022-06-23 18:15:04,561 - main.py[line:412] - INFO: relative error normalized average :0.019672933524119463
+2022-06-23 18:15:04,562 - main.py[line:458] - INFO: total_time:3.4778170622885227
+categorical_columns: ['ss_store_sk_0', 'ss_store_sk_1', 'ss_store_sk_2', 'ss_store_sk_3']
+sample_allocation:  {1: 1454.2829166666666, 2: 1456.2829166666666, 4: 1457.2829166666666, 7: 1456.2829166666666, 8: 1455.2829166666666, 10: 1457.2829166666666}
+sample_rates:  {1: 0.0050108636602739474, 2: 0.004998997362534255, 4: 0.004992644103063068, 7: 0.005010865949820788, 8: 0.00498680011330914, 10: 0.004990694920091324}
+   ss_store_sk  ss_wholesale_cost  ss_list_price  ss_sales_price  \
+0  1           50.01              75.01          37.97             
+1  1           49.70              74.39          37.52             
+2  1           50.85              76.86          39.38             
+3  1           50.71              76.00          38.66             
+4  1           48.94              73.62          37.68             
+5  1           50.33              75.38          37.37             
+6  1           50.64              75.72          39.30             
+7  1           50.45              75.74          38.17             
+8  1           51.18              77.44          39.34             
+9  1           51.65              78.43          39.50             
+
+   ss_ext_sales_price  tpcds-06667g-ssales_store_rate  
+0 1943.68             0.01                             
+1 1906.78             0.01                             
+2 2027.26             0.01                             
+3 1946.90             0.01                             
+4 1777.45             0.01                             
+5 1984.77             0.01                             
+6 1963.55             0.01                             
+7 1750.51             0.01                             
+8 1927.44             0.01                             
+9 2089.69             0.01                             
+categorical_columns: ['ss_store_sk_0', 'ss_store_sk_1', 'ss_store_sk_2', 'ss_store_sk_3']
+categorical_columns: ['ss_store_sk_0', 'ss_store_sk_1', 'ss_store_sk_2', 'ss_store_sk_3']
+sample_allocation:  {1: 1454.2829166666666, 2: 1456.2829166666666, 4: 1457.2829166666666, 7: 1456.2829166666666, 8: 1455.2829166666666, 10: 1457.2829166666666}
+sample_rates:  {1: 0.0050108636602739474, 2: 0.004998997362534255, 4: 0.004992644103063068, 7: 0.005010865949820788, 8: 0.00498680011330914, 10: 0.004990694920091324}
+   ss_store_sk  ss_wholesale_cost  ss_list_price  ss_sales_price  \
+0  1           50.00              74.20          38.88             
+1  1           49.39              72.59          35.32             
+2  1           51.06              76.54          38.80             
+3  1           51.57              77.34          40.02             
+4  1           49.94              74.90          38.95             
+5  1           48.95              73.02          34.71             
+6  1           51.38              76.77          39.12             
+7  1           51.03              76.60          39.07             
+8  1           50.46              75.47          39.17             
+9  1           50.37              75.32          38.73             
+
+   ss_ext_sales_price  tpcds-06667g-ssales_store_rate  
+0 2029.93             0.01                             
+1 1669.81             0.01                             
+2 1999.73             0.01                             
+3 2046.97             0.01                             
+4 1948.39             0.01                             
+5 1837.73             0.01                             
+6 1953.90             0.01                             
+7 1990.85             0.01                             
+8 1991.31             0.01                             
+9 1880.90             0.01                             
+sample_allocation:  {1: 1454.2829166666666, 2: 1456.2829166666666, 4: 1457.2829166666666, 7: 1456.2829166666666, 8: 1455.2829166666666, 10: 1457.2829166666666}
+sample_rates:  {1: 0.0050108636602739474, 2: 0.004998997362534255, 4: 0.004992644103063068, 7: 0.005010865949820788, 8: 0.00498680011330914, 10: 0.004990694920091324}
+   ss_store_sk  ss_wholesale_cost  ss_list_price  ss_sales_price  \
+0  1           50.09              74.98          37.35             
+1  1           50.40              74.64          37.61             
+2  1           49.95              74.26          37.45             
+3  1           50.09              75.00          37.93             
+4  1           50.42              75.43          38.62             
+5  1           50.04              74.83          38.62             
+6  1           48.69              72.93          37.07             
+7  1           50.77              77.03          39.74             
+8  1           49.96              74.68          37.21             
+9  1           50.19              74.54          38.06             
+
+   ss_ext_sales_price  tpcds-06667g-ssales_store_rate  
+0 1893.57             0.01                             
+1 1798.56             0.01                             
+2 1898.65             0.01                             
+3 1969.29             0.01                             
+4 1977.32             0.01                             
+5 2021.05             0.01                             
+6 1783.09             0.01                             
+7 2017.72             0.01                             
+8 1882.13             0.01                             
+9 1896.31             0.01                             

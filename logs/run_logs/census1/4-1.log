@@ -1,0 +1,66 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2022-07-07 18:08:14,531 - main.py[line:581] - INFO: load query config config/query/census.json successfully
+2022-07-07 18:08:14,531 - main.py[line:588] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-07 18:08:14,532 - main.py[line:588] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-07 18:08:14,532 - dataset_utils.py[line:567] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-07 18:08:14,607 - dataset_utils.py[line:576] - INFO: load dataset(light) time elapsed:0.07509630545973778
+2022-07-07 18:08:14,607 - pytorch_cvae.py[line:276] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-07 18:08:14,608 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-07 18:08:16,654 - model_utils.py[line:86] - INFO: load torch model time elapsed:2.046325609087944
+2022-07-07 18:08:16,655 - pytorch_cvae.py[line:286] - INFO: load model time elapsed:2.122928585857153
+2022-07-07 18:08:16,655 - dataset_utils.py[line:567] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-07 18:08:16,664 - dataset_utils.py[line:576] - INFO: load dataset(light) time elapsed:0.009263146668672562
+2022-07-07 18:08:16,664 - pytorch_cvae.py[line:276] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-07 18:08:16,664 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-07 18:08:16,666 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013887397944927216
+2022-07-07 18:08:16,666 - pytorch_cvae.py[line:286] - INFO: load model time elapsed:0.011369079351425171
+2022-07-07 18:08:16,666 - main.py[line:525] - INFO: multi_sampling No.0 epoch
+2022-07-07 18:08:17,190 - pytorch_cvae.py[line:399] - INFO: sampling time:0.5240394957363605
+2022-07-07 18:08:17,243 - pytorch_cvae.py[line:419] - INFO: house sampling rate:0.05
+2022-07-07 18:08:17,268 - pytorch_cvae.py[line:399] - INFO: sampling time:0.024945836514234543
+2022-07-07 18:08:17,982 - main.py[line:509] - INFO: sample and aggregation time elapsed:1.3161327131092548
+2022-07-07 18:08:17,984 - main.py[line:542] - INFO: sample time: 1.3182562813162804
+2022-07-07 18:08:18,010 - main.py[line:550] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1               0.02        0.09           0.03                   0.02          
+2               0.01        0.06           0.02                   0.01          
+3               0.02        0.02           0.02                   0.02          
+4               0.00        0.07           0.02                   0.00          
+5               0.01        0.03           0.01                   0.01          
+6               0.01        0.04           0.01                   0.01          
+7               0.01        0.03           0.02                   0.01          
+8               0.01        0.02           0.01                   0.01          
+9               0.00        0.09           0.01                   0.00          
+10              0.01        0.04           0.01                   0.01          
+11              0.02        0.03           0.01                   0.02          
+12              0.02        0.04           0.01                   0.02          
+13              0.01        0.03           0.01                   0.01          
+14              0.02        0.00           0.01                   0.02          
+15              0.02        0.02           0.02                   0.02          
+16              0.02        0.04           0.00                   0.02          
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1               0.09           0.03                    
+2               0.06           0.02                    
+3               0.02           0.02                    
+4               0.07           0.02                    
+5               0.03           0.01                    
+6               0.04           0.01                    
+7               0.03           0.02                    
+8               0.02           0.01                    
+9               0.09           0.01                    
+10              0.04           0.01                    
+11              0.03           0.01                    
+12              0.04           0.01                    
+13              0.03           0.01                    
+14              0.00           0.01                    
+15              0.02           0.02                    
+16              0.04           0.00                    
+2022-07-07 18:08:18,011 - main.py[line:554] - INFO: relative error average: 0.022164451585501854
+2022-07-07 18:08:18,011 - main.py[line:555] - INFO: relative error normalized average: 0.021727361597600043
+2022-07-07 18:08:18,011 - main.py[line:601] - INFO: total_time:3.479611650109291
+categorical_columns: ['a_education_num_0', 'a_education_num_1', 'a_education_num_2', 'a_education_num_3', 'a_education_num_4']
+categorical_columns: ['b_education_num_0', 'b_education_num_1', 'b_education_num_2', 'b_education_num_3', 'b_education_num_4']

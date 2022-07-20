@@ -1,0 +1,251 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2022-07-10 09:02:28,001 - main.py[line:581] - INFO: load query config config/query/lineitem_join_parts.json successfully
+2022-07-10 09:02:28,001 - main.py[line:588] - INFO: load train config ./config/train/tpch_lineitem_parts_torch_cvae.json successfully
+2022-07-10 09:02:28,001 - main.py[line:588] - INFO: load train config ./config/train/tpch_parts_torch_cvae.json successfully
+2022-07-10 09:02:28,001 - dataset_utils.py[line:567] - INFO: load existing dataset(light):tpch-2g-lineitem_parts_l_partkey_l_extendedprice#l_quantity_l_partkey_binary_gaussian5_0
+2022-07-10 09:02:30,618 - dataset_utils.py[line:576] - INFO: load dataset(light) time elapsed:2.6168073043227196
+2022-07-10 09:02:30,618 - pytorch_cvae.py[line:276] - INFO: feature info:[('l_extendedprice', 'numerical', 6), ('l_quantity', 'numerical', 6), ('l_partkey', 'categorical', 20)]
+2022-07-10 09:02:30,620 - model_utils.py[line:75] - INFO: load model name:torch_cvae_tpch-2g-lineitem_parts_l_partkey_bucket_ld150_id150_bs512_ep150_0_binary_gaussian5
+2022-07-10 09:02:32,898 - model_utils.py[line:86] - INFO: load torch model time elapsed:2.2784883603453636
+2022-07-10 09:02:32,898 - pytorch_cvae.py[line:286] - INFO: load model time elapsed:4.896992910653353
+2022-07-10 09:02:32,898 - dataset_utils.py[line:567] - INFO: load existing dataset(light):tpch-2g-parts_p_partkey#p_brand_p_retailprice_p_partkey#p_brand_binary_gaussian5_0
+2022-07-10 09:02:33,237 - dataset_utils.py[line:576] - INFO: load dataset(light) time elapsed:0.3387731984257698
+2022-07-10 09:02:33,237 - pytorch_cvae.py[line:276] - INFO: feature info:[('p_retailprice', 'numerical', 6), ('p_partkey', 'categorical', 20), ('p_brand', 'categorical', 6)]
+2022-07-10 09:02:33,238 - model_utils.py[line:75] - INFO: load model name:torch_cvae_tpch-2g-parts_p_partkey_bucket_p_brand_ld100_id150_bs128_ep100_0_binary_gaussian5
+2022-07-10 09:02:33,240 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0017353370785713196
+2022-07-10 09:02:33,240 - pytorch_cvae.py[line:286] - INFO: load model time elapsed:0.34151459112763405
+2022-07-10 09:02:33,240 - main.py[line:525] - INFO: multi_sampling No.0 epoch
+2022-07-10 09:02:33,978 - pytorch_cvae.py[line:399] - INFO: sampling time:0.7375023737549782
+2022-07-10 09:02:34,022 - dataset_utils.py[line:548] - INFO: load existing dataset:tpch-2g-parts_p_partkey#p_brand_p_retailprice_p_partkey#p_brand_binary_gaussian5_0
+2022-07-10 09:02:34,524 - dataset_utils.py[line:560] - INFO: load dataset time elapsed:0.5018144175410271
+2022-07-10 09:02:34,582 - main.py[line:509] - INFO: sample and aggregation time elapsed:1.3416689708828926
+2022-07-10 09:02:34,586 - main.py[line:542] - INFO: sample time: 1.3458202555775642
+2022-07-10 09:02:34,607 - main.py[line:99] - INFO: aqp result:
+          avg(l_quantity)  avg(l_extendedprice)  avg(p_retailprice)  \
+p_brand                                                               
+Brand#11 25.66            37639.13              1265.66               
+Brand#12 26.75            40966.77              1519.44               
+Brand#13 24.33            37385.11              1457.80               
+Brand#14 24.35            35575.29              1351.87               
+Brand#15 27.31            42350.99              1417.84               
+Brand#21 27.43            40868.22              1428.02               
+Brand#22 30.07            45332.63              1387.84               
+Brand#23 27.79            42450.37              1428.00               
+Brand#24 24.34            36478.65              1423.08               
+Brand#25 21.99            32408.02              1407.25               
+Brand#31 31.90            47469.40              1457.43               
+Brand#32 23.83            38565.51              1439.32               
+Brand#33 23.75            38618.76              1298.62               
+Brand#34 23.65            35259.92              1364.44               
+Brand#35 22.06            31445.68              1285.48               
+Brand#41 26.37            39288.08              1243.28               
+Brand#42 23.86            37901.31              1478.07               
+Brand#43 30.78            42615.42              1380.19               
+Brand#44 28.22            44350.78              1358.99               
+Brand#45 28.15            40692.66              1252.50               
+Brand#51 34.32            54780.26              1420.68               
+Brand#52 27.27            41052.10              1365.00               
+Brand#53 25.88            40265.78              1363.25               
+Brand#54 22.67            34328.95              1368.23               
+Brand#55 21.86            33843.05              1341.36               
+
+          sum(l_quantity)  sum(l_extendedprice)  sum(p_retailprice)  
+p_brand                                                              
+Brand#11 13933135.85      20438629052.20        687233450.83         
+Brand#12 9092542.89       13924787860.48        516523073.72         
+Brand#13 8787217.66       13500820218.03        526391302.21         
+Brand#14 12208513.74      17833056474.92        677728986.89         
+Brand#15 13141316.58      20380190128.06        682224711.29         
+Brand#21 7678777.82       11440258105.47        399668719.23         
+Brand#22 10286677.90      15508827814.92        474901407.95         
+Brand#23 11760946.34      17964909720.05        604289142.86         
+Brand#24 16845593.75      25249684663.48        985092882.97         
+Brand#25 10825857.36      15950974846.95        692857804.25         
+Brand#31 17835177.59      26541869111.58        815142831.74         
+Brand#32 9156799.91       14819891976.55        553117767.45         
+Brand#33 17040289.24      27706939487.20        931493847.28         
+Brand#34 8162575.48       12169842670.68        470932646.57         
+Brand#35 13946852.02      19883829004.15        812794747.81         
+Brand#41 13181647.71      19641546331.20        621629756.12         
+Brand#42 9521375.65       15123592968.35        589616991.15         
+Brand#43 17309683.51      23967154263.67        776172558.44         
+Brand#44 13205551.22      20755028144.94        635995833.91         
+Brand#45 14812133.06      21413290192.30        658878592.24         
+Brand#51 19215100.62      30670758078.62        795385425.52         
+Brand#52 16177687.52      24357046210.78        809843184.60         
+Brand#53 10229801.94      15913498342.73        538723451.81         
+Brand#54 13803569.40      20905135170.38        833201061.33         
+Brand#55 6168287.59       9547045550.06         378503634.83         
+2022-07-10 09:02:34,611 - main.py[line:100] - INFO: ground truth:
+          avg(l_quantity)  sum(l_quantity)  avg(l_extendedprice)  \
+p_brand                                                            
+Brand#11 25.48            12223593.00      38289.44                
+Brand#12 25.52            12363054.00      38262.77                
+Brand#13 25.51            12241440.00      38290.03                
+Brand#14 25.49            12267818.00      38228.18                
+Brand#15 25.51            12268842.00      38268.13                
+Brand#21 25.47            12362626.00      38167.74                
+Brand#22 25.51            12195911.00      38280.51                
+Brand#23 25.52            12174553.00      38336.07                
+Brand#24 25.55            12258208.00      38293.47                
+Brand#25 25.51            12065573.00      38331.83                
+Brand#31 25.47            12220977.00      38206.66                
+Brand#32 25.48            12081235.00      38175.75                
+Brand#33 25.49            12457409.00      38162.83                
+Brand#34 25.51            12219938.00      38206.00                
+Brand#35 25.48            12381147.00      38196.71                
+Brand#41 25.53            12289698.00      38290.97                
+Brand#42 25.53            12238205.00      38351.88                
+Brand#43 25.47            12102747.00      38228.96                
+Brand#44 25.53            12293137.00      38365.06                
+Brand#45 25.50            12152055.00      38108.44                
+Brand#51 25.48            12257345.00      38196.22                
+Brand#52 25.55            12322724.00      38277.42                
+Brand#53 25.48            12286690.00      38196.85                
+Brand#54 25.49            12130968.00      38316.39                
+Brand#55 25.50            12120437.00      38108.68                
+
+          sum(l_extendedprice)  avg(p_retailprice)  sum(p_retailprice)  
+p_brand                                                                 
+Brand#11 18368441872.90        1501.69             720401435.71         
+Brand#12 18535518755.56        1499.41             726355566.66         
+Brand#13 18376726309.13        1500.97             720366068.36         
+Brand#14 18398840131.10        1499.73             721806004.84         
+Brand#15 18406435321.73        1500.35             721646614.02         
+Brand#21 18522346882.54        1498.28             727094953.52         
+Brand#22 18304169154.04        1500.83             717633423.62         
+Brand#23 18290213295.74        1502.53             716860036.00         
+Brand#24 18372822640.48        1498.70             719060180.57         
+Brand#25 18132260141.37        1502.62             710788517.08         
+Brand#31 18330332449.90        1500.00             719652902.40         
+Brand#32 18098433958.49        1498.25             710291905.03         
+Brand#33 18652351751.22        1497.23             731783646.09         
+Brand#34 18304382313.78        1497.78             717583994.59         
+Brand#35 18558636204.82        1499.47             728549776.35         
+Brand#41 18432467187.43        1499.85             721995723.09         
+Brand#42 18385126352.58        1502.24             720144678.78         
+Brand#43 18162351244.85        1500.43             712843766.32         
+Brand#44 18474501092.91        1502.82             723675801.79         
+Brand#45 18158290301.37        1494.26             712001615.59         
+Brand#51 18375400842.32        1499.03             721149461.38         
+Brand#52 18458327482.92        1498.07             722408433.01         
+Brand#53 18419932575.01        1499.05             722898656.94         
+Brand#54 18234923331.26        1503.23             715394348.54         
+Brand#55 18115039247.94        1494.91             710607678.93         
+2022-07-10 09:02:34,620 - main.py[line:550] - INFO: relative error:
+          avg(l_extendedprice)  avg(l_quantity)  avg(p_retailprice)  \
+p_brand                                                               
+Brand#11 0.02                  0.01             0.16                  
+Brand#12 0.07                  0.05             0.01                  
+Brand#13 0.02                  0.05             0.03                  
+Brand#14 0.07                  0.04             0.10                  
+Brand#15 0.11                  0.07             0.05                  
+Brand#21 0.07                  0.08             0.05                  
+Brand#22 0.18                  0.18             0.08                  
+Brand#23 0.11                  0.09             0.05                  
+Brand#24 0.05                  0.05             0.05                  
+Brand#25 0.15                  0.14             0.06                  
+Brand#31 0.24                  0.25             0.03                  
+Brand#32 0.01                  0.06             0.04                  
+Brand#33 0.01                  0.07             0.13                  
+Brand#34 0.08                  0.07             0.09                  
+Brand#35 0.18                  0.13             0.14                  
+Brand#41 0.03                  0.03             0.17                  
+Brand#42 0.01                  0.07             0.02                  
+Brand#43 0.11                  0.21             0.08                  
+Brand#44 0.16                  0.11             0.10                  
+Brand#45 0.07                  0.10             0.16                  
+Brand#51 0.43                  0.35             0.05                  
+Brand#52 0.07                  0.07             0.09                  
+Brand#53 0.05                  0.02             0.09                  
+Brand#54 0.10                  0.11             0.09                  
+Brand#55 0.11                  0.14             0.10                  
+
+          sum(l_extendedprice)  sum(l_quantity)  sum(p_retailprice)  
+p_brand                                                              
+Brand#11 0.11                  0.14             0.05                 
+Brand#12 0.25                  0.26             0.29                 
+Brand#13 0.27                  0.28             0.27                 
+Brand#14 0.03                  0.00             0.06                 
+Brand#15 0.11                  0.07             0.05                 
+Brand#21 0.38                  0.38             0.45                 
+Brand#22 0.15                  0.16             0.34                 
+Brand#23 0.02                  0.03             0.16                 
+Brand#24 0.37                  0.37             0.37                 
+Brand#25 0.12                  0.10             0.03                 
+Brand#31 0.45                  0.46             0.13                 
+Brand#32 0.18                  0.24             0.22                 
+Brand#33 0.49                  0.37             0.27                 
+Brand#34 0.34                  0.33             0.34                 
+Brand#35 0.07                  0.13             0.12                 
+Brand#41 0.07                  0.07             0.14                 
+Brand#42 0.18                  0.22             0.18                 
+Brand#43 0.32                  0.43             0.09                 
+Brand#44 0.12                  0.07             0.12                 
+Brand#45 0.18                  0.22             0.07                 
+Brand#51 0.67                  0.57             0.10                 
+Brand#52 0.32                  0.31             0.12                 
+Brand#53 0.14                  0.17             0.25                 
+Brand#54 0.15                  0.14             0.16                 
+Brand#55 0.47                  0.49             0.47                 
+2022-07-10 09:02:34,622 - main.py[line:551] - INFO: relative error normalized:
+          avg(l_extendedprice)  avg(l_quantity)  avg(p_retailprice)  \
+p_brand                                                               
+Brand#11 0.02                  0.01             0.15                  
+Brand#12 0.07                  0.05             0.01                  
+Brand#13 0.02                  0.04             0.03                  
+Brand#14 0.07                  0.04             0.09                  
+Brand#15 0.10                  0.07             0.05                  
+Brand#21 0.07                  0.07             0.05                  
+Brand#22 0.17                  0.16             0.07                  
+Brand#23 0.10                  0.09             0.05                  
+Brand#24 0.05                  0.05             0.05                  
+Brand#25 0.14                  0.13             0.06                  
+Brand#31 0.22                  0.22             0.03                  
+Brand#32 0.01                  0.06             0.04                  
+Brand#33 0.01                  0.07             0.12                  
+Brand#34 0.07                  0.07             0.09                  
+Brand#35 0.16                  0.13             0.13                  
+Brand#41 0.03                  0.03             0.16                  
+Brand#42 0.01                  0.06             0.02                  
+Brand#43 0.11                  0.19             0.08                  
+Brand#44 0.14                  0.10             0.09                  
+Brand#45 0.07                  0.10             0.15                  
+Brand#51 0.35                  0.29             0.05                  
+Brand#52 0.07                  0.06             0.08                  
+Brand#53 0.05                  0.02             0.09                  
+Brand#54 0.10                  0.10             0.09                  
+Brand#55 0.11                  0.13             0.10                  
+
+          sum(l_extendedprice)  sum(l_quantity)  sum(p_retailprice)  
+p_brand                                                              
+Brand#11 0.11                  0.13             0.04                 
+Brand#12 0.22                  0.23             0.25                 
+Brand#13 0.23                  0.25             0.24                 
+Brand#14 0.03                  0.00             0.06                 
+Brand#15 0.10                  0.07             0.05                 
+Brand#21 0.32                  0.32             0.36                 
+Brand#22 0.14                  0.14             0.29                 
+Brand#23 0.02                  0.03             0.15                 
+Brand#24 0.31                  0.31             0.31                 
+Brand#25 0.11                  0.10             0.02                 
+Brand#31 0.36                  0.37             0.12                 
+Brand#32 0.17                  0.21             0.20                 
+Brand#33 0.38                  0.31             0.24                 
+Brand#34 0.28                  0.28             0.29                 
+Brand#35 0.07                  0.12             0.11                 
+Brand#41 0.06                  0.07             0.13                 
+Brand#42 0.16                  0.20             0.17                 
+Brand#43 0.27                  0.35             0.09                 
+Brand#44 0.12                  0.07             0.11                 
+Brand#45 0.16                  0.20             0.07                 
+Brand#51 0.49                  0.43             0.10                 
+Brand#52 0.27                  0.27             0.11                 
+Brand#53 0.13                  0.15             0.22                 
+Brand#54 0.14                  0.13             0.15                 
+Brand#55 0.38                  0.39             0.37                 
+2022-07-10 09:02:34,622 - main.py[line:554] - INFO: relative error average: 0.15944588710063085
+2022-07-10 09:02:34,622 - main.py[line:555] - INFO: relative error normalized average: 0.14015325084852268
+2022-07-10 09:02:34,698 - main.py[line:601] - INFO: total_time:6.696546968072653
+categorical_columns: ['l_partkey_0', 'l_partkey_1', 'l_partkey_2', 'l_partkey_3', 'l_partkey_4', 'l_partkey_5', 'l_partkey_6', 'l_partkey_7', 'l_partkey_8', 'l_partkey_9', 'l_partkey_10', 'l_partkey_11', 'l_partkey_12', 'l_partkey_13', 'l_partkey_14', 'l_partkey_15', 'l_partkey_16', 'l_partkey_17', 'l_partkey_18', 'l_partkey_19']
