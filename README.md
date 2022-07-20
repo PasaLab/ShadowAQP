@@ -228,13 +228,9 @@ Training configuration files  is under `/config/train`.An example is given below
 * Then set different sampling ratios in the training configuration files and get result from model (set the 'train_flag' in the training configuration files to 'query') `python main.py config/query/ssales_join_wsales.json `
 
     > ...
-    >
     > sample time: 1.5985828302800655
-    >
     > relative error average: 0.0519204122033996
-    >
     > relative error normalized average: 0.04979657492564337
-    >
     > total_time:4.340905863791704
 
 
