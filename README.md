@@ -155,22 +155,23 @@ Query configuration files is under `/config/query`.An example is given below.
 
 ```shell
 {
-  "name": "customer_join_supplier",
+  "name": "ssales_join_wsales",
   "train_config_files": [
-    "./config/train/tpch_customer_torch_cvae.json", 
-    "./config/train/tpch_supplier_torch_cvae.json"
+    "./config/train/tpcds_ssales_torch_cvae.json",
+    "./config/train/tpcds_wsales_torch_cvae.json"
   ],
   "multi_sample_times": 1,
   "operation": "aqp",
-  "join_cols": ["c_nationkey","s_nationkey"],
-  "groupby_cols": ["c_nationkey"], 
-  "result_path": "./output/aqp_result/cs_res.csv",
-  "diff_path": "./output/diff/cs_diff.csv", 
-  "sum_cols": ["c_acctbal","s_acctbal"],
-  "avg_cols": ["c_acctbal","s_acctbal"],
-  "var": "./var/tpch-1m/cs_var.csv",
-  "ground_truth": "./ground_truth/tpch-1/cs_truth.csv" // Specifies the raw exact query result
+  "join_cols": ["ss_promo_sk","ws_promo_sk"],
+  "groupby_cols": ["ss_promo_sk"],
+  "result_path": "./output/aqp_result/ss_res.csv",
+  "diff_path": "./output/diff/ss_diff.csv",
+  "sum_cols": ["ss_wholesale_cost","ss_list_price","ws_wholesale_cost","ws_list_price"],
+  "avg_cols": ["ss_wholesale_cost","ss_list_price","ws_wholesale_cost","ws_list_price"],
+  "var": "./var/tpcds-1m/sw_var.csv",
+  "ground_truth": "./ground_truth/tpcds-0.6667g/sw_truth.csv" // Specifies the raw exact query result
 }
+
 ```
 
 Training configuration files  is under `/config/train`.An example is given below.
