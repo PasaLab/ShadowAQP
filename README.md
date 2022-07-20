@@ -177,35 +177,37 @@ Training configuration files  is under `/config/train`.An example is given below
 
 ```shell
 {
-  "name": "tpch-1-customer", 
-  "data": "./datasets/tpch-1/customer.csv",  // Path to store the exported data
-  "categorical_columns": [
-    "c_nationkey"
-  ],
-  "numeric_columns": [
-    "c_acctbal"
-  ],
-  "label_columns": [ 
-    "c_nationkey"
-  ],
-  "categorical_encoding": "binary",  
-  "numeric_encoding": "gaussian", 
-  "max_clusters": 15, 
-  "model_type": "torch_cvae",
-  "lr": 0.001,
-  "optimizer_type": "adam",
-  "loss_agg_type": "mean",
-  "gpu_num": 0,
-  "epochs": 100,
-  "inc_epochs": 100, 
-  "batch_size": 512,
-  "latent_dim": 150,
-  "intermediate_dim": 150,
-  "train_flag": "train",  
-  "operation": "aqp",
-  "sample_method": "statistics",
-  "sample_rate": 0.1,
-  "header": 1,
-  "delimiter": ","
+    "name": "tpcds-06667g-ssales",
+    "data": "/root/lihan/train_dataset/tpcds_0.6667g/store_sales.csv",
+    "categorical_columns": [
+        "ss_promo_sk"
+    ],
+    "numeric_columns": [
+        "ss_wholesale_cost",
+        "ss_list_price"
+    ],
+    "label_columns": [
+        "ss_promo_sk"
+    ],
+    "bucket_columns": [],
+    "categorical_encoding": "binary",
+    "numeric_encoding": "mm",
+    "max_clusters": 5,
+    "model_type": "torch_cvae",
+    "lr": 0.001,
+    "optimizer_type": "adam",
+    "loss_agg_type": "mean",
+    "gpu_num": 0,
+    "epochs": 150,
+    "batch_size": 512,
+    "latent_dim": 100,
+    "intermediate_dim": 100,
+    "train_flag": "load",
+    "operation": "aqp",
+    "sample_method": "statistics",
+    "sample_rate": 0.01,
+    "sample_for_train": 1,
+    "header": 1,
+    "delimiter": ","
 }
 ```
