@@ -20,7 +20,7 @@
  1. Clone source code
 
      ```
-     git clone https://github.com/PasaLab/Table_CVAE_AQP.git
+     git clone https://github.com/PasaLab/ShadowAQP.git
      ```
 
  2. Prepare the raw exact query result (under `/ground_truth`) and data
