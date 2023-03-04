@@ -132,7 +132,7 @@ class BinaryEncoder():
         if not isinstance(X_in, pd.DataFrame):
             X_in = pd.DataFrame(X_in, columns=self.feature_names)
         categorical_columns = [col for col in self.feature_names if col not in self.numeric_columns]
-        print("categorical_columns:",categorical_columns)
+        # print("categorical_columns:",categorical_columns)
         X_in[categorical_columns] = X_in[categorical_columns].applymap(lambda x: 1 if x >= 0.5 else 0)
         X_in2=X_in[categorical_columns]
         # numeric_df = X_in[self.numeric_columns]

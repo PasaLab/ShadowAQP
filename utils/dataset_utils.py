@@ -300,6 +300,10 @@ class TabularDataset(Dataset):
             df = pd.read_csv(filename, delimiter=delimiter)
         else:
             df = pd.read_csv(filename, header=None, delimiter=delimiter)
+
+        # print("========df.std: ", df.groupby('c_nationkey')['c_acctbal'].std(ddof=0).to_dict())
+        # print("========df.mean: ", df.groupby('c_nationkey')['c_acctbal'].mean().to_dict())
+
         self.all_columns = numeric_columns + categorical_columns
         self.origin_df = df[self.all_columns].copy(deep=True)
         self.total_rows = len(df)

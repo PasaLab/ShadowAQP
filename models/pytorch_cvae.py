@@ -139,17 +139,18 @@ def alpha_schedule(epoch, max_epoch, alpha_max, strategy="exp"):
         raise NotImplementedError("Strategy {} not implemented".format(strategy))
     return alpha
 
-def torch_cvae_train(model, dataset, epochs, batch_size):
+def torch_cvae_train(model, dataset, learning_rate, epochs, batch_size):
     start_time = time.perf_counter()
     loader = DataLoader(dataset, batch_size=batch_size, shuffle=False, drop_last=False)
     optimizer = optim.Adam(model.parameters(), weight_decay=1e-5)
-    # optimizer = optim.Adam(model.parameters(),lr=1e-3)
+    # optimizer = optim.Adam(model.parameters(),lr=learning_rate,weight_decay=1e-5)
     early_stopping = EarlyStopping(patience=10, verbose=True)
     latent_param = {}
     for epoch in range(epochs):
         epoch_start_time = time.perf_counter()
         train_loss_vae, train_kld_vae, train_num_vae, train_cat_vae = 4 * [0]
         alpha = alpha_schedule(epoch, 100, 0.8)
+        # alpha = alpha_schedule(epoch, 50, 1)
         # alpha=1.0
         for batch_idx, input_data in enumerate(loader):
             optimizer.zero_grad()
@@ -198,37 +199,40 @@ def generate_samples(model, dataset, query_config, train_config):
         # sample_allocation, sample_rates = statistics_sampling(model, dataset, sample_rate, query_config)
         sample_allocation, sample_rates = statistics_sampling_with_small_group(model, dataset, sample_rate,
                                                                                query_config)
+        # print("sample_allocation before: ", sample_allocation)                                                   
     else:
         sample_allocation, sample_rates = statistics_sampling_with_small_group(model, dataset, sample_rate,
                                                                                query_config)
-    # print("sample_allocation: ",sample_allocation)
-    if 'condition' in query_config and len(query_config['condition']):
-        logger.info("filtering with condition {}".format(query_config['condition']))
-        condition = query_config['condition'][0]
-        if '<=' in condition:
-            bound_value = int(condition.split('<=')[-1])
-            sample_allocation = {k: v for k, v in sample_allocation.items() if k <= bound_value}
-        elif '>=' in condition:
-            bound_value = int(condition.split('>=')[-1])
-            sample_allocation = {k: v for k, v in sample_allocation.items() if k >= bound_value}
-        elif '=' in condition:
-            bound_value = int(condition.split('=')[-1])
-            sample_allocation = {k: v for k, v in sample_allocation.items() if k == bound_value}
-        elif '<' in condition:
-            bound_value = int(condition.split('<')[-1])
-            sample_allocation = {k: v for k, v in sample_allocation.items() if k < bound_value}
-        elif '>' in condition:
-            bound_value = int(condition.split('>')[-1])
-            sample_allocation = {k: v for k, v in sample_allocation.items() if k > bound_value}
+    # print("sample_allocation before: ",sample_allocation)
+    # if 'condition' in query_config and len(query_config['condition']):
+    #     logger.info("filtering with condition {}".format(query_config['condition']))
+    #     condition = query_config['condition'][0]
+    #     if '<=' in condition:
+    #         bound_value = int(condition.split('<=')[-1])
+    #         sample_allocation = {k: v for k, v in sample_allocation.items() if k <= bound_value}
+    #     elif '>=' in condition:
+    #         bound_value = int(condition.split('>=')[-1])
+    #         sample_allocation = {k: v for k, v in sample_allocation.items() if k >= bound_value}
+    #     elif '=' in condition:
+    #         bound_value = int(condition.split('=')[-1])
+    #         sample_allocation = {k: v for k, v in sample_allocation.items() if k == bound_value}
+    #     elif '<' in condition:
+    #         bound_value = int(condition.split('<')[-1])
+    #         sample_allocation = {k: v for k, v in sample_allocation.items() if k < bound_value}
+    #     elif '>' in condition:
+    #         bound_value = int(condition.split('>')[-1])
+    #         sample_allocation = {k: v for k, v in sample_allocation.items() if k > bound_value}
 
     samples = generate_samples_with_allocation(dataset, model, sample_allocation, sample_rates, train_config)
-    # print("sample_allocation: ", sample_allocation)
+    # print("sample_allocation after: ", sample_allocation)
     # print("sample_rates: ", sample_rates)
     # print(samples[:10])
-    samples.to_csv('./output/'+train_config['name']+".csv",index=False)
+
+    # save samples, but bring I/O cost
+    # samples.to_csv('./samples/'+train_config['name']+".csv",index=False)
     if 'outliers' in train_config and train_config['outliers'] == 'true':
         samples = pd.concat([samples, dataset.outliers])
-        samples.to_csv('./output/'+train_config['name']+"_with_outlier.csv",index=False)
+        # samples.to_csv('./samples/'+train_config['name']+"_with_outlier.csv",index=False)
     # save_samples(samples, train_config)
     # samples=read_samples(train_config)
     return samples
@@ -257,7 +261,7 @@ def train_torch_cvae(train_config):
     # if torch.cuda.device_count() > 1:
     #     model = nn.DataParallel(model, device_ids=[0, 1, 2, 3])
     model.to(dataset.device)
-    model = torch_cvae_train(model, dataset, epochs=epochs, batch_size=batch_size)
+    model = torch_cvae_train(model, dataset, learning_rate=lr, epochs=epochs, batch_size=batch_size)
     save_torch_model(model, train_config)
     save_dataset(dataset, train_config)
     end_time = time.perf_counter()
@@ -307,7 +311,8 @@ def load_model_and_dataset_retrain(train_config):
     logger.info("load model time elapsed:{}".format(end_time - start_time))
     batch_size = train_config["batch_size"]
     epochs = train_config["inc_epochs"]
-    model = torch_cvae_train(model, dataset, epochs=epochs, batch_size=batch_size)
+    lr = train_config["lr"]
+    model = torch_cvae_train(model, dataset, learning_rate=lr, epochs=epochs, batch_size=batch_size)
     postfix = ''
     if 'inc_train_flag' in train_config:
         postfix = train_config['inc_train_flag']

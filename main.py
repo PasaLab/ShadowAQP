@@ -19,7 +19,7 @@ pd.set_option('display.max_rows', None)
 pd.set_option('max_colwidth', -1)
 pd.set_option('display.float_format', lambda x: '%.2f' % x)
 logging.basicConfig(level=logging.INFO,#控制台打印的日志级别
-                    # filename='./logs/tpcds-test2.log',
+                    # filename='./skew_size_var/logs/aggvar086_id200_ld_200.log',
                     filemode='w',
                     format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s'
                     )
@@ -242,6 +242,10 @@ def sample_aggregation(sample_list, query_config, train_config_list):
     rate_cols = [config['name'] + "_rate" for config in train_config_list]
     outlier = True if 'outliers' in train_config_list[0] and train_config_list[0]['outliers'] == 'true' else False
     aggregations = {}
+    condition = 1
+    if 'condition' in query_config and len(query_config['condition']):
+        logger.info("filtering with condition {}".format(query_config['condition'][0]))
+        condition = query_config['condition'][1]
 
     # for col in avg_cols:
     #     agg_name = "avg({})".format(col)
@@ -268,7 +272,9 @@ def sample_aggregation(sample_list, query_config, train_config_list):
         #                 rate *= join_result[col]
         #         join_result['scale_' + numeric_column] = join_result[numeric_column] / rate
 
-        # join_result.to_csv('./join_result.csv')
+        # save samples, but bring I/O cost
+        # join_result.to_csv('./samples/join_results/'+query_config['name']+'.csv',index=False)
+        # join_result.to_csv('./aggvar15_gaussian35.csv',index=False)
 
         if len(groupby_cols) > 0:  # with group by clause
             if not outlier:
@@ -290,10 +296,11 @@ def sample_aggregation(sample_list, query_config, train_config_list):
                         for col in join_result.columns:
                             if col.endswith('_rate'):
                                 rate *= join_result[col]
-                        join_result['scale_' + numeric_column] = join_result[numeric_column] / rate
+                        join_result['scale_' + numeric_column] = join_result[numeric_column] / rate * condition
                 
+                # join_result.to_csv('./join_result.csv',index=False)
                 agg_result = join_result.groupby(by=groupby_cols).agg(**aggregations)
-                # agg_result.to_csv('./agg_result.csv')
+                # agg_result.to_csv('./agg_result.csv',index=False)
                 for col in agg_result.columns:
                     if col.endswith('_rate'):
                         del agg_result[col]
@@ -387,6 +394,8 @@ def sample_aggregation(sample_list, query_config, train_config_list):
                 # if col.endswith('_sum'):
                 agg_result[col] /= agg_result[rate_col]
         del agg_result[rate_col]
+    # save samples, but bring I/O cost
+    # agg_result.to_csv('./samples/agg_results/'+query_config['name']+'.csv',index=False)
     return agg_result
 
 def sample_aggregation_prev(sample_list, query_config, train_config_list):
@@ -548,8 +557,12 @@ def model_aqp(query_config, train_config_list):
     diff_norm = compare_aggregation_norm(sample_agg, query_config, index_flag)
     # diff_var_norm = compare_aggregation_norm_var(sample_agg, query_config, index_flag)
 
+    # diff.to_csv('./diff.csv')
+    # diff_norm.to_csv('./diff_norm.csv')
+    # print('========diff.size: ', diff.size)
+    # print('========diff_norm.size: ', diff_norm.size)
     logger.info("relative error:\n{}".format(diff[:50]))
-    logger.info("relative error normalized:\n{}".format(diff_norm))
+    logger.info("relative error normalized:\n{}".format(diff_norm[:50]))
     # logger.info("relative error var normalized:\n{}".format(diff_var_norm))
 
     logger.info("relative error average: {}".format(diff.values.sum() / diff.size))
