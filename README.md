@@ -1,6 +1,6 @@
 # ShadowAQP
 
- This is the code repository for the approximate query processing paper titled *'ShadowAQP: Efficient Approximate Join and Group-by Query via Attribute-oriented Sample Size Allocation and Data Generation'*.
+ This is the code repository for the approximate query processing paper titled *'ShadowAQP: Efficient Approximate Group-by and Join Query via Attribute-oriented Sample Size Allocation and Data Generation'*.
 
  This project is built on an open source machine learning framework [PyTorch](https://pytorch.org/). 
 
