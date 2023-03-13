@@ -213,7 +213,39 @@
  }
  ```
 
- ## Example
+We also provide a script `conf_script.py` to help generate the configuration files.
+
+```
+usage: conf_script.py [-h]
+               sql_file flag dataset_path ground_truth cat_attr1 cat_attr2
+               num_attr1 num_attr2 sampling_ratio delimiter1 delimiter2
+
+command line parsing
+
+positional arguments:
+  sql_file        input sql file
+  flag            train/load flag
+  dataset_path    input dataset path, separate with commas
+  ground_truth    ground truth path
+  cat_attr1       categorical attributes of table1, separate with commas
+                  between attributes
+  cat_attr2       categorical attributes of table2, separate with commas
+                  between attributes
+  num_attr1       number attributes of table1, separate with commas between
+                  attributes
+  num_attr2       number attributes of table2, separate with commas between
+                  attributes
+  sampling_ratio  sampling ratios of tables, separate with commas
+  delimiter1      delimiter in the dataset of table1
+  delimiter2      delimiter in the dataset of table2
+
+optional arguments:
+  -h, --help      show this help message and exit
+```
+
+It can be easily used like `python conf_script.py tpch_cn.sql train /xxx/train_dataset/tpch_20g/customer.csv,/xxx/train_dataset/tpch_20g/nation.csv ./ground_truth/tpch-20g/cn_truth.csv c_nationkey n_nationkey,n_name c_acctbal '' 0.01,1 ',' '|'`. Then the configuration files will be automatically generated under `/generate_config/query/`  and `generate_config/train/`.
+
+## Example
 
  ### TPC-DS example
 
