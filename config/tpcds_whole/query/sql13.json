@@ -1,0 +1,18 @@
+{
+    "name": "sql13",
+    "train_config_files": [
+      "./config/tpcds_whole/train/13_store_sales.json",
+      "./config/tpcds_whole/train/70_store.json",
+      "./config/tpcds_whole/train/3_date_dim.json",
+      "./config/tpcds_whole/train/13_household_demographics.json",
+      "./config/tpcds_whole/train/13_customer_demographics.json",
+      "./config/tpcds_whole/train/94_customer_address.json"
+    ],
+    "multi_sample_times": 1,
+    "operation": "aqp",
+    "join_cols": ["ss_store_sk","s_store_sk","ss_sold_date_sk","d_date_sk","ss_hdemo_sk","hd_demo_sk","ss_cdemo_sk","cd_demo_sk","ss_addr_sk","ca_address_sk"],
+    "groupby_cols": [],
+    "sum_cols": ["ss_quantity", "ss_ext_sales_price", "ss_ext_wholesale_cost"],
+    "avg_cols": ["ss_quantity", "ss_ext_sales_price", "ss_ext_wholesale_cost"],
+    "ground_truth": "./ground_truth/tpcds_whole/sql13.csv"
+}  

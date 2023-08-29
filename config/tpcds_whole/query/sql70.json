@@ -1,0 +1,15 @@
+{
+    "name": "sql70",
+    "train_config_files": [
+      "./config/tpcds_whole/train/77_store_sales.json",
+      "./config/tpcds_whole/train/3_date_dim.json",
+      "./config/tpcds_whole/train/70_store.json"
+    ],
+    "multi_sample_times": 3,
+    "operation": "aqp",
+    "join_cols": ["ss_sold_date_sk","d_date_sk","ss_store_sk","s_store_sk"],
+    "groupby_cols": ["s_state", "s_county"],
+    "sum_cols": ["ss_net_profit"],
+    "avg_cols": ["ss_net_profit"],
+    "ground_truth": "./ground_truth/tpcds_whole/sql70.csv"
+}  

@@ -1,0 +1,69 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2023-06-17 10:25:39,406 - main.py[line:631] - INFO: load query config config/tpcds_whole/query/sql92.json successfully
+2023-06-17 10:25:39,406 - main.py[line:638] - INFO: load train config ./config/tpcds_whole/train/86_web_sales.json successfully
+2023-06-17 10:25:39,406 - main.py[line:638] - INFO: load train config ./config/tpcds_whole/train/86_item.json successfully
+2023-06-17 10:25:39,406 - main.py[line:638] - INFO: load train config ./config/tpcds_whole/train/3_date_dim.json successfully
+2023-06-17 10:25:39,406 - pytorch_cvae.py[line:249] - INFO: epoch:2
+2023-06-17 10:25:39,407 - pytorch_cvae.py[line:250] - INFO: batch size:128
+2023-06-17 10:25:39,407 - pytorch_cvae.py[line:251] - INFO: latent dimension:100
+2023-06-17 10:25:39,407 - pytorch_cvae.py[line:252] - INFO: intermediate dimension:100
+2023-06-17 10:25:39,407 - pytorch_cvae.py[line:253] - INFO: gpu num:0
+2023-06-17 10:25:39,429 - dataset_utils.py[line:310] - INFO: loading data:/home/lihan/train_dataset/tpcds_whole_1G/web_sales.csv
+2023-06-17 10:25:40,893 - dataset_utils.py[line:335] - INFO: data total rows:719030
+2023-06-17 10:25:40,893 - dataset_utils.py[line:371] - INFO: load data time elapsed:1.4637026310083456
+feature_names: ['ws_sold_date_sk_0', 'ws_sold_date_sk_1', 'ws_sold_date_sk_2', 'ws_sold_date_sk_3', 'ws_sold_date_sk_4', 'ws_sold_date_sk_5', 'ws_sold_date_sk_6', 'ws_sold_date_sk_7', 'ws_sold_date_sk_8', 'ws_sold_date_sk_9', 'ws_sold_date_sk_10', 'ws_sold_date_sk_11', 'ws_item_sk_0', 'ws_item_sk_1', 'ws_item_sk_2', 'ws_item_sk_3', 'ws_item_sk_4', 'ws_item_sk_5', 'ws_item_sk_6', 'ws_item_sk_7', 'ws_item_sk_8', 'ws_item_sk_9', 'ws_item_sk_10', 'ws_item_sk_11', 'ws_item_sk_12', 'ws_item_sk_13', 'ws_item_sk_14', 'ws_item_sk_15']
+feature_names: ['ws_item_sk_bucket_0', 'ws_item_sk_bucket_1', 'ws_item_sk_bucket_2', 'ws_item_sk_bucket_3']
+2023-06-17 10:25:41,367 - dataset_utils.py[line:43] - INFO: encode categorical columns time elapsed:0.4738172320066951
+/root/anaconda3/envs/py36/lib/python3.6/site-packages/sklearn/mixture/base.py:273: ConvergenceWarning: Initialization 1 did not converge. Try different init parameters, or increase max_iter, tol or check for degenerate data.
+  % (init + 1), ConvergenceWarning)
+/root/anaconda3/envs/py36/lib/python3.6/site-packages/sklearn/mixture/base.py:273: ConvergenceWarning: Initialization 1 did not converge. Try different init parameters, or increase max_iter, tol or check for degenerate data.
+  % (init + 1), ConvergenceWarning)
+2023-06-17 10:27:05,259 - dataset_utils.py[line:56] - INFO: encode numeric columnstime elapsed:83.89152888202807
+2023-06-17 10:27:05,393 - dataset_utils.py[line:107] - INFO: data shape:(719030, 40)
+2023-06-17 10:27:05,393 - dataset_utils.py[line:136] - INFO: feature info:[('ws_net_paid', 'numerical', 6), ('ws_ext_discount_amt', 'numerical', 6), ('ws_sold_date_sk', 'categorical', 12), ('ws_item_sk', 'categorical', 16)]
+2023-06-17 10:27:05,393 - dataset_utils.py[line:137] - INFO: output info list:[(1, 'no'), (5, 'softmax'), (1, 'no'), (5, 'softmax'), (12, 'sigmoid'), (16, 'sigmoid')]
+2023-06-17 10:27:07,500 - dataset_utils.py[line:140] - INFO: load data successfully
+2023-06-17 10:27:07,501 - pytorch_cvae.py[line:258] - INFO: feature info:[('ws_net_paid', 'numerical', 6), ('ws_ext_discount_amt', 'numerical', 6), ('ws_sold_date_sk', 'categorical', 12), ('ws_item_sk', 'categorical', 16)]
+2023-06-17 10:27:54,188 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.1 epoch----------------------------
+2023-06-17 10:27:54,188 - pytorch_cvae.py[line:177] - INFO: loss:3274.5354812443256, numeric_loss:118.86769983451813, categorical_loss:1576.9626727625728, kld_loss:292875.76026916504, epoch_train_time:46.684517799993046
+2023-06-17 10:28:40,587 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.2 epoch----------------------------
+2023-06-17 10:28:40,587 - pytorch_cvae.py[line:177] - INFO: loss:1717.1470230221748, numeric_loss:58.058043899945915, categorical_loss:220.1960786022246, kld_loss:241656.56782531738, epoch_train_time:46.39868062501773
+2023-06-17 10:28:40,587 - pytorch_cvae.py[line:186] - INFO: training time elapsed:93.08445425098762
+2023-06-17 10:28:40,590 - model_utils.py[line:67] - INFO: save model successfully
+2023-06-17 10:28:41,988 - pytorch_cvae.py[line:268] - INFO: train model time elapsed:182.5815196300391
+2023-06-17 10:28:41,988 - dataset_utils.py[line:585] - INFO: load existing dataset(light):86-item_i_item_sk#i_category#i_class#i_item_id__i_item_sk#i_category#i_class#i_item_id_binary_gaussian5_0
+2023-06-17 10:28:42,008 - dataset_utils.py[line:594] - INFO: load dataset(light) time elapsed:0.01976978697348386
+2023-06-17 10:28:42,008 - pytorch_cvae.py[line:280] - INFO: feature info:[('i_item_sk', 'categorical', 16), ('i_category', 'categorical', 5), ('i_class', 'categorical', 8), ('i_item_id', 'categorical', 15)]
+2023-06-17 10:28:42,009 - model_utils.py[line:75] - INFO: load model name:torch_cvae_86-item_i_item_sk_i_category_i_class_i_item_id_ld100_id150_bs128_ep1_0_binary_gaussian5
+2023-06-17 10:28:42,011 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.001723141991533339
+2023-06-17 10:28:42,011 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:0.022453673009295017
+2023-06-17 10:28:42,011 - dataset_utils.py[line:585] - INFO: load existing dataset(light):3-date_dim_d_date_sk#d_year__d_date_sk#d_year_binary_gaussian5_0
+2023-06-17 10:28:42,064 - dataset_utils.py[line:594] - INFO: load dataset(light) time elapsed:0.0533422349835746
+2023-06-17 10:28:42,064 - pytorch_cvae.py[line:280] - INFO: feature info:[('d_date_sk', 'categorical', 18), ('d_year', 'categorical', 9)]
+2023-06-17 10:28:42,065 - model_utils.py[line:75] - INFO: load model name:torch_cvae_3-date_dim_d_date_sk_d_year_ld100_id150_bs128_ep100_0_binary_gaussian5
+2023-06-17 10:28:42,067 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.001650388992857188
+2023-06-17 10:28:42,067 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:0.05593994399532676
+2023-06-17 10:28:42,067 - main.py[line:561] - INFO: multi_sampling No.0 epoch
+2023-06-17 10:28:42,451 - pytorch_cvae.py[line:407] - INFO: sampling time:0.38429427798837423
+2023-06-17 10:28:42,452 - dataset_utils.py[line:566] - INFO: load existing dataset:86-item_i_item_sk#i_category#i_class#i_item_id__i_item_sk#i_category#i_class#i_item_id_binary_gaussian5_0
+2023-06-17 10:28:42,475 - dataset_utils.py[line:578] - INFO: load dataset time elapsed:0.02372932800790295
+2023-06-17 10:28:42,476 - dataset_utils.py[line:566] - INFO: load existing dataset:3-date_dim_d_date_sk#d_year__d_date_sk#d_year_binary_gaussian5_0
+2023-06-17 10:28:42,548 - dataset_utils.py[line:578] - INFO: load dataset time elapsed:0.07211693999124691
+2023-06-17 10:28:42,587 - main.py[line:544] - INFO: sample and aggregation time elapsed:0.5200696219690144
+2023-06-17 10:28:42,588 - main.py[line:582] - INFO: sample time: 0.5216038699727505
+2023-06-17 10:28:42,593 - main.py[line:104] - INFO: aqp result:
+sum(ws_ext_discount_amt)   1804602655.57 
+dtype: float64
+2023-06-17 10:28:42,595 - main.py[line:105] - INFO: ground truth:
+   sum(ws_ext_discount_amt)
+0 1832836843              
+2023-06-17 10:28:42,602 - main.py[line:600] - INFO: relative error:
+   sum(ws_ext_discount_amt)
+0 0.02                     
+2023-06-17 10:28:42,604 - main.py[line:601] - INFO: relative error normalized:
+   sum(ws_ext_discount_amt)
+0 0.02                     
+2023-06-17 10:28:42,604 - main.py[line:604] - INFO: relative error average: 0.015404637645643435
+2023-06-17 10:28:42,604 - main.py[line:605] - INFO: relative error normalized average: 0.015523900690512349
+2023-06-17 10:28:42,613 - main.py[line:651] - INFO: total_time:183.2066359979799

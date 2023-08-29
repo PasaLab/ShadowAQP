@@ -1,0 +1,17 @@
+{
+    "name": "sql59",
+    "train_config_files": [
+      "./config/tpcds_whole/train/59_store_sales.json",
+      "./config/tpcds_whole/train/59_date_dim.json"
+    ],
+    "multi_sample_times": 3,
+    "operation": "aqp",
+    "join_cols": ["ss_sold_date_sk","d_date_sk"],
+    "groupby_cols": ["d_week_seq", "ss_store_sk"],
+    "result_path": "./output/aqp_result/ss_res.csv",
+    "diff_path": "./output/diff/ss_diff.csv",
+    "sum_cols": ["ss_sales_price"],
+    "avg_cols": ["ss_sales_price"],
+    "var": "./var/tpcds-1m/sw_var.csv",
+    "ground_truth": "./ground_truth/tpcds_whole/sql59.csv"
+}  

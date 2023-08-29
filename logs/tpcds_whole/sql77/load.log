@@ -1,0 +1,98 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2023-06-22 10:14:14,395 - main.py[line:642] - INFO: load query config config/tpcds_whole/query/sql77.json successfully
+2023-06-22 10:14:14,395 - main.py[line:649] - INFO: load train config ./config/tpcds_whole/train/77_store_sales.json successfully
+2023-06-22 10:14:14,396 - main.py[line:649] - INFO: load train config ./config/tpcds_whole/train/3_date_dim.json successfully
+2023-06-22 10:14:14,396 - main.py[line:649] - INFO: load train config ./config/tpcds_whole/train/70_store.json successfully
+2023-06-22 10:14:14,396 - dataset_utils.py[line:585] - INFO: load existing dataset(light):77-store_sales_ss_sold_date_sk#ss_store_sk_ss_ext_sales_price#ss_net_profit#ss_sales_price#ss_quantity_ss_store_sk_binary_gaussian5_0
+2023-06-22 10:14:15,900 - dataset_utils.py[line:594] - INFO: load dataset(light) time elapsed:1.5040855130646378
+2023-06-22 10:14:15,900 - pytorch_cvae.py[line:280] - INFO: feature info:[('ss_ext_sales_price', 'numerical', 6), ('ss_net_profit', 'numerical', 6), ('ss_sales_price', 'numerical', 6), ('ss_quantity', 'numerical', 6), ('ss_sold_date_sk', 'categorical', 12), ('ss_store_sk', 'categorical', 4)]
+2023-06-22 10:14:15,901 - model_utils.py[line:75] - INFO: load model name:torch_cvae_77-store_sales_ss_store_sk_ld100_id100_bs512_ep1_0_binary_gaussian5
+2023-06-22 10:14:17,984 - model_utils.py[line:86] - INFO: load torch model time elapsed:2.0823338699992746
+2023-06-22 10:14:17,984 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:3.588027077028528
+2023-06-22 10:14:17,984 - dataset_utils.py[line:585] - INFO: load existing dataset(light):3-date_dim_d_date_sk#d_year__d_date_sk#d_year_binary_gaussian5_0
+2023-06-22 10:14:18,042 - dataset_utils.py[line:594] - INFO: load dataset(light) time elapsed:0.05872932600323111
+2023-06-22 10:14:18,043 - pytorch_cvae.py[line:280] - INFO: feature info:[('d_date_sk', 'categorical', 18), ('d_year', 'categorical', 9)]
+2023-06-22 10:14:18,043 - model_utils.py[line:75] - INFO: load model name:torch_cvae_3-date_dim_d_date_sk_d_year_ld100_id150_bs128_ep100_0_binary_gaussian5
+2023-06-22 10:14:18,045 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0016822280595079064
+2023-06-22 10:14:18,045 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:0.06143096706364304
+2023-06-22 10:14:18,045 - dataset_utils.py[line:585] - INFO: load existing dataset(light):70-store_s_store_sk#s_store_id#s_store_name#s_state#s_county__s_store_sk#s_store_id#s_store_name#s_state#s_county_binary_gaussian5_0
+2023-06-22 10:14:18,047 - dataset_utils.py[line:594] - INFO: load dataset(light) time elapsed:0.002024409011937678
+2023-06-22 10:14:18,047 - pytorch_cvae.py[line:280] - INFO: feature info:[('s_store_sk', 'categorical', 5), ('s_store_id', 'categorical', 4), ('s_store_name', 'categorical', 4), ('s_state', 'categorical', 1), ('s_county', 'categorical', 1)]
+2023-06-22 10:14:18,048 - model_utils.py[line:75] - INFO: load model name:torch_cvae_70-store_s_store_sk_s_store_id_s_store_name_s_state_s_county_ld100_id150_bs128_ep100_0_binary_gaussian5
+2023-06-22 10:14:18,049 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013773180544376373
+2023-06-22 10:14:18,049 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:0.004138314048759639
+2023-06-22 10:14:18,049 - main.py[line:572] - INFO: multi_sampling No.0 epoch
+2023-06-22 10:14:18,691 - pytorch_cvae.py[line:407] - INFO: sampling time:0.6411818900378421
+2023-06-22 10:14:18,691 - dataset_utils.py[line:566] - INFO: load existing dataset:3-date_dim_d_date_sk#d_year__d_date_sk#d_year_binary_gaussian5_0
+2023-06-22 10:14:18,765 - dataset_utils.py[line:578] - INFO: load dataset time elapsed:0.0741565270582214
+2023-06-22 10:14:18,766 - dataset_utils.py[line:566] - INFO: load existing dataset:70-store_s_store_sk#s_store_id#s_store_name#s_state#s_county__s_store_sk#s_store_id#s_store_name#s_state#s_county_binary_gaussian5_0
+2023-06-22 10:14:18,769 - dataset_utils.py[line:578] - INFO: load dataset time elapsed:0.00265845307148993
+2023-06-22 10:14:18,813 - main.py[line:555] - INFO: sample and aggregation time elapsed:0.7638514399295673
+2023-06-22 10:14:18,816 - main.py[line:593] - INFO: sample time: 0.7665973629336804
+2023-06-22 10:14:18,838 - main.py[line:104] - INFO: aqp result:
+            avg(ss_ext_sales_price)  avg(ss_net_profit)  \
+s_store_sk                                                
+1          1887.51                  -860.39               
+2          1972.96                  -841.95               
+4          1946.72                  -839.19               
+7          1898.27                  -752.95               
+8          1924.15                  -847.39               
+10         1857.35                  -805.46               
+
+            sum(ss_ext_sales_price)  sum(ss_net_profit)  
+s_store_sk                                               
+1          719776193.65             -328096272.80        
+2          821459848.55             -350554065.37        
+4          830869870.83             -358171323.78        
+7          793571214.47             -314769522.35        
+8          821288714.99             -361690956.69        
+10         803139683.96             -348288486.64        
+2023-06-22 10:14:18,841 - main.py[line:105] - INFO: ground truth:
+            avg(ss_ext_sales_price)  sum(ss_ext_sales_price)  \
+s_store_sk                                                     
+1.00       1916.60                   835059812                 
+2.00       1924.54                   840676634                 
+4.00       1911.49                   835271398                 
+7.00       1913.00                   835799978                 
+8.00       1913.28                   838002095                 
+10.00      1908.84                   836364091                 
+
+            avg(ss_net_profit)  sum(ss_net_profit)  
+s_store_sk                                          
+1.00       -830.11             -361675363           
+2.00       -827.77             -361586710           
+4.00       -822.53             -359423468           
+7.00       -830.19             -362714019           
+8.00       -829.47             -363303944           
+10.00      -826.76             -362246622           
+2023-06-22 10:14:18,847 - main.py[line:611] - INFO: relative error:
+            avg(ss_ext_sales_price)  avg(ss_net_profit)  \
+s_store_sk                                                
+1.00       0.02                     0.04                  
+2.00       0.03                     0.02                  
+4.00       0.02                     0.02                  
+7.00       0.01                     0.09                  
+8.00       0.01                     0.02                  
+10.00      0.03                     0.03                  
+
+            sum(ss_ext_sales_price)  sum(ss_net_profit)  
+s_store_sk                                               
+1.00       0.14                     0.09                 
+2.00       0.02                     0.03                 
+4.00       0.01                     0.00                 
+7.00       0.05                     0.13                 
+8.00       0.02                     0.00                 
+10.00      0.04                     0.04                 
+2023-06-22 10:14:18,849 - main.py[line:612] - INFO: relative error normalized:
+            avg(ss_ext_sales_price)  avg(ss_net_profit)
+s_store_sk                                             
+1.00       0.02                     0.04               
+2.00       0.02                     0.02               
+4.00       0.02                     0.02               
+7.00       0.01                     0.09               
+8.00       0.01                     0.02               
+10.00      0.03                     0.03               
+2023-06-22 10:14:18,849 - main.py[line:615] - INFO: relative error average: 0.037156752069094225
+2023-06-22 10:14:18,849 - main.py[line:616] - INFO: relative error normalized average: 0.025551986381399234
+2023-06-22 10:14:18,855 - main.py[line:662] - INFO: total_time:4.460158434929326

@@ -397,7 +397,10 @@ def generate_samples_with_allocation(dataset, model, sample_allocation, sample_r
     samples_df=generate_label_column(samples_df,train_config['label_columns'],train_config['bucket_columns'],dataset.label_column_name)
     # if dataset.name == 'tpcds-06667g-store':
     #     print("========samples_df: ", samples_df)
+    # print("======sample_rates: ", sample_rates)
+    # print("======dataset.label_column_name: ", dataset.label_column_name)
     samples_df['{}_rate'.format(dataset.name)] = samples_df[dataset.label_column_name].map(sample_rates)
+    # print("========samples_df: ", samples_df[:50])
     
     # samples_df = pd.concat(samples)
     end_time = time.perf_counter()
@@ -422,6 +425,7 @@ def house_sampling(model, dataset, sample_rate):
     sample_rates = {}
     sample_allocation = {}
     logger.info("house sampling rate:{}".format(sample_rate))
+    # print("=======label_value_mapping: ", label_value_mapping)
     for label_value_idx, label_value in label_value_mapping.items():
         label_count = label_group_counts[label_value]
         sample_count = round(label_count * sample_rate)
@@ -533,6 +537,7 @@ def statistics_sampling_with_small_group(model, dataset, sample_rate, query_conf
 
     sample_allocation = {}
     sample_rates = {}
+    # print("=======label_value_mapping: ", label_value_mapping)
     for label_value_idx, label_value in label_value_mapping.items():
         group_count = label_group_counts[label_value]
         relative_variances = sum([label_group_relative_stds[col][label_value] for col in numeric_columns])

@@ -1,0 +1,16 @@
+{
+    "name": "sql94",
+    "train_config_files": [
+      "./config/tpcds_whole/train/94_web_sales.json",
+      "./config/tpcds_whole/train/3_date_dim.json",
+      "./config/tpcds_whole/train/94_customer_address.json",
+      "./config/tpcds_whole/train/94_web_site.json"
+    ],
+    "multi_sample_times": 1,
+    "operation": "aqp",
+    "join_cols": ["ws_ship_date_sk","d_date_sk","ws_ship_addr_sk","ca_address_sk","ws_web_site_sk","web_site_sk"],
+    "groupby_cols": [],
+    "sum_cols": ["ws_ext_ship_cost", "ws_net_profit"],
+    "avg_cols": ["ws_ext_ship_cost", "ws_net_profit"],
+    "ground_truth": "./ground_truth/tpcds_whole/sql94.csv"
+}  

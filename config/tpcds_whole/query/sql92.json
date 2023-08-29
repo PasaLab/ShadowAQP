@@ -1,0 +1,15 @@
+{
+    "name": "sql92",
+    "train_config_files": [
+      "./config/tpcds_whole/train/86_web_sales.json",
+      "./config/tpcds_whole/train/86_item.json",
+      "./config/tpcds_whole/train/3_date_dim.json"
+    ],
+    "multi_sample_times": 1,
+    "operation": "aqp",
+    "join_cols": ["ws_item_sk","i_item_sk","ws_sold_date_sk","d_date_sk"],
+    "groupby_cols": [],
+    "sum_cols": ["ws_ext_discount_amt"],
+    "avg_cols": ["ws_ext_discount_amt"],
+    "ground_truth": "./ground_truth/tpcds_whole/sql92.csv"
+}  

@@ -1,0 +1,795 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2023-07-04 13:58:24,585 - main.py[line:642] - INFO: load query config config/tpcds_whole/query/sql27.json successfully
+2023-07-04 13:58:24,585 - main.py[line:649] - INFO: load train config ./config/tpcds_whole/train/27_store_sales.json successfully
+2023-07-04 13:58:24,585 - main.py[line:649] - INFO: load train config ./config/tpcds_whole/train/13_customer_demographics.json successfully
+2023-07-04 13:58:24,585 - main.py[line:649] - INFO: load train config ./config/tpcds_whole/train/3_date_dim.json successfully
+2023-07-04 13:58:24,586 - main.py[line:649] - INFO: load train config ./config/tpcds_whole/train/70_store.json successfully
+2023-07-04 13:58:24,586 - main.py[line:649] - INFO: load train config ./config/tpcds_whole/train/86_item.json successfully
+2023-07-04 13:58:24,586 - dataset_utils.py[line:585] - INFO: load existing dataset(light):27-store_sales_ss_store_sk#ss_sold_date_sk#ss_cdemo_sk#ss_item_sk_ss_quantity#ss_list_price#ss_coupon_amt#ss_sales_price_ss_item_sk_binary_mm_0
+2023-07-04 13:58:27,178 - dataset_utils.py[line:594] - INFO: load dataset(light) time elapsed:2.59194005606696
+2023-07-04 13:58:27,178 - pytorch_cvae.py[line:280] - INFO: feature info:[('ss_quantity', 'numerical', 1), ('ss_list_price', 'numerical', 1), ('ss_coupon_amt', 'numerical', 1), ('ss_sales_price', 'numerical', 1), ('ss_store_sk', 'categorical', 4), ('ss_sold_date_sk', 'categorical', 12), ('ss_cdemo_sk', 'categorical', 19), ('ss_item_sk', 'categorical', 16)]
+2023-07-04 13:58:27,179 - model_utils.py[line:75] - INFO: load model name:torch_cvae_27-store_sales_ss_item_sk_ld100_id100_bs256_ep100_0_binary_mm
+2023-07-04 13:58:29,487 - model_utils.py[line:86] - INFO: load torch model time elapsed:2.3080724731553346
+2023-07-04 13:58:29,487 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:4.901549480855465
+2023-07-04 13:58:29,487 - dataset_utils.py[line:585] - INFO: load existing dataset(light):13-customer_demographics_cd_demo_sk__cd_demo_sk_binary_gaussian5_0
+2023-07-04 13:58:31,682 - dataset_utils.py[line:594] - INFO: load dataset(light) time elapsed:2.1946938768960536
+2023-07-04 13:58:31,682 - pytorch_cvae.py[line:280] - INFO: feature info:[('cd_demo_sk', 'categorical', 22)]
+2023-07-04 13:58:31,683 - model_utils.py[line:75] - INFO: load model name:torch_cvae_13-customer_demographics_cd_demo_sk_ld100_id150_bs128_ep100_0_binary_gaussian5
+2023-07-04 13:58:31,685 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0017327859532088041
+2023-07-04 13:58:31,685 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:2.197409196058288
+2023-07-04 13:58:31,685 - dataset_utils.py[line:585] - INFO: load existing dataset(light):3-date_dim_d_date_sk#d_year#d_qoy__d_date_sk#d_year#d_qoy_binary_gaussian5_0
+2023-07-04 13:58:31,745 - dataset_utils.py[line:594] - INFO: load dataset(light) time elapsed:0.06067625293508172
+2023-07-04 13:58:31,745 - pytorch_cvae.py[line:280] - INFO: feature info:[('d_date_sk', 'categorical', 18), ('d_year', 'categorical', 9), ('d_qoy', 'categorical', 3)]
+2023-07-04 13:58:31,746 - model_utils.py[line:75] - INFO: load model name:torch_cvae_3-date_dim_d_date_sk_d_year_d_qoy_ld100_id150_bs128_ep100_0_binary_gaussian5
+2023-07-04 13:58:31,748 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0017092518974095583
+2023-07-04 13:58:31,748 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:0.06333780102431774
+2023-07-04 13:58:31,748 - dataset_utils.py[line:585] - INFO: load existing dataset(light):70-store_s_store_sk#s_store_id#s_store_name#s_state#s_county__s_store_sk#s_store_id#s_store_name#s_state#s_county_binary_gaussian5_0
+2023-07-04 13:58:31,750 - dataset_utils.py[line:594] - INFO: load dataset(light) time elapsed:0.0020355761516839266
+2023-07-04 13:58:31,750 - pytorch_cvae.py[line:280] - INFO: feature info:[('s_store_sk', 'categorical', 5), ('s_store_id', 'categorical', 4), ('s_store_name', 'categorical', 4), ('s_state', 'categorical', 1), ('s_county', 'categorical', 1)]
+2023-07-04 13:58:31,751 - model_utils.py[line:75] - INFO: load model name:torch_cvae_70-store_s_store_sk_s_store_id_s_store_name_s_state_s_county_ld100_id150_bs128_ep100_0_binary_gaussian5
+2023-07-04 13:58:31,752 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0014297959860414267
+2023-07-04 13:58:31,752 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:0.004245567135512829
+2023-07-04 13:58:31,752 - dataset_utils.py[line:585] - INFO: load existing dataset(light):86-item_i_item_sk#i_category#i_class#i_item_id#i_brand#i_brand_id__i_item_sk#i_category#i_class#i_item_id#i_brand#i_brand_id_binary_gaussian5_0
+2023-07-04 13:58:31,774 - dataset_utils.py[line:594] - INFO: load dataset(light) time elapsed:0.02151101501658559
+2023-07-04 13:58:31,774 - pytorch_cvae.py[line:280] - INFO: feature info:[('i_item_sk', 'categorical', 16), ('i_category', 'categorical', 5), ('i_class', 'categorical', 8), ('i_item_id', 'categorical', 15), ('i_brand', 'categorical', 11), ('i_brand_id', 'categorical', 11)]
+2023-07-04 13:58:31,775 - model_utils.py[line:75] - INFO: load model name:torch_cvae_86-item_i_item_sk_i_category_i_class_i_item_id_i_brand_i_brand_id_ld100_id150_bs128_ep100_0_binary_gaussian5
+2023-07-04 13:58:31,777 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0017720581963658333
+2023-07-04 13:58:31,777 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:0.024256562115624547
+2023-07-04 13:58:31,777 - main.py[line:572] - INFO: multi_sampling No.0 epoch
+2023-07-04 13:58:43,030 - pytorch_cvae.py[line:407] - INFO: sampling time:11.209158011944965
+2023-07-04 13:58:43,031 - dataset_utils.py[line:566] - INFO: load existing dataset:13-customer_demographics_cd_demo_sk__cd_demo_sk_binary_gaussian5_0
+2023-07-04 13:58:45,943 - dataset_utils.py[line:578] - INFO: load dataset time elapsed:2.9122610921040177
+2023-07-04 13:58:45,945 - dataset_utils.py[line:566] - INFO: load existing dataset:3-date_dim_d_date_sk#d_year#d_qoy__d_date_sk#d_year#d_qoy_binary_gaussian5_0
+2023-07-04 13:58:46,026 - dataset_utils.py[line:578] - INFO: load dataset time elapsed:0.08093334711156785
+2023-07-04 13:58:46,141 - dataset_utils.py[line:566] - INFO: load existing dataset:70-store_s_store_sk#s_store_id#s_store_name#s_state#s_county__s_store_sk#s_store_id#s_store_name#s_state#s_county_binary_gaussian5_0
+2023-07-04 13:58:46,144 - dataset_utils.py[line:578] - INFO: load dataset time elapsed:0.0027002778369933367
+2023-07-04 13:58:46,150 - dataset_utils.py[line:566] - INFO: load existing dataset:86-item_i_item_sk#i_category#i_class#i_item_id#i_brand#i_brand_id__i_item_sk#i_category#i_class#i_item_id#i_brand#i_brand_id_binary_gaussian5_0
+2023-07-04 13:58:46,183 - dataset_utils.py[line:578] - INFO: load dataset time elapsed:0.03338587796315551
+2023-07-04 13:58:46,554 - main.py[line:555] - INFO: sample and aggregation time elapsed:14.776748090982437
+2023-07-04 13:58:46,575 - main.py[line:593] - INFO: sample time: 14.797906166873872
+2023-07-04 13:58:46,605 - main.py[line:104] - INFO: aqp result:
+                          avg(ss_quantity)  avg(ss_list_price)  \
+i_item_id        s_state                                         
+AAAAAAAAAAABAAAA TN      50.24             75.19                 
+AAAAAAAAAAACAAAA TN      47.74             74.42                 
+AAAAAAAAAAAEAAAA TN      50.01             75.19                 
+AAAAAAAAAABAAAAA TN      49.10             75.49                 
+AAAAAAAAAABBAAAA TN      50.31             75.80                 
+AAAAAAAAAABDAAAA TN      49.47             75.70                 
+AAAAAAAAAABEAAAA TN      50.02             73.64                 
+AAAAAAAAAACAAAAA TN      49.75             75.12                 
+AAAAAAAAAACCAAAA TN      48.63             75.75                 
+AAAAAAAAAACDAAAA TN      49.60             77.03                 
+AAAAAAAAAADBAAAA TN      50.12             75.03                 
+AAAAAAAAAADCAAAA TN      48.71             76.23                 
+AAAAAAAAAADEAAAA TN      49.62             74.33                 
+AAAAAAAAAAEAAAAA TN      49.75             75.27                 
+AAAAAAAAAAEBAAAA TN      50.73             75.80                 
+AAAAAAAAAAEDAAAA TN      50.03             75.97                 
+AAAAAAAAAAEEAAAA TN      49.97             75.36                 
+AAAAAAAAAAFAAAAA TN      50.33             74.87                 
+AAAAAAAAAAFCAAAA TN      49.26             74.65                 
+AAAAAAAAAAFDAAAA TN      50.37             76.51                 
+AAAAAAAAAAGBAAAA TN      51.16             75.37                 
+AAAAAAAAAAGCAAAA TN      49.46             75.66                 
+AAAAAAAAAAGEAAAA TN      50.84             74.19                 
+AAAAAAAAAAHAAAAA TN      50.07             74.13                 
+AAAAAAAAAAHBAAAA TN      51.13             75.36                 
+AAAAAAAAAAHDAAAA TN      49.88             75.01                 
+AAAAAAAAAAIAAAAA TN      49.84             74.43                 
+AAAAAAAAAAICAAAA TN      49.07             75.52                 
+AAAAAAAAAAIDAAAA TN      49.96             76.49                 
+AAAAAAAAAAJBAAAA TN      49.57             74.11                 
+AAAAAAAAAAJCAAAA TN      48.61             75.45                 
+AAAAAAAAAAKAAAAA TN      49.26             74.01                 
+AAAAAAAAAAKBAAAA TN      50.20             75.40                 
+AAAAAAAAAAKDAAAA TN      49.35             75.87                 
+AAAAAAAAAALAAAAA TN      49.18             75.11                 
+AAAAAAAAAALCAAAA TN      48.05             74.06                 
+AAAAAAAAAALDAAAA TN      49.16             75.71                 
+AAAAAAAAAAMBAAAA TN      50.56             75.58                 
+AAAAAAAAAAMCAAAA TN      49.02             75.47                 
+AAAAAAAAAANAAAAA TN      50.01             74.25                 
+AAAAAAAAAANBAAAA TN      51.07             75.57                 
+AAAAAAAAAANDAAAA TN      49.92             74.69                 
+AAAAAAAAAAOAAAAA TN      50.00             75.08                 
+AAAAAAAAAAOCAAAA TN      49.19             75.09                 
+AAAAAAAAAAODAAAA TN      50.25             75.89                 
+AAAAAAAAAAPBAAAA TN      50.59             74.19                 
+AAAAAAAAAAPCAAAA TN      49.09             75.05                 
+AAAAAAAAABAAAAAA TN      49.32             76.83                 
+AAAAAAAAABABAAAA TN      49.99             77.05                 
+AAAAAAAAABADAAAA TN      49.54             77.27                 
+
+                          avg(ss_coupon_amt)  avg(ss_sales_price)  \
+i_item_id        s_state                                            
+AAAAAAAAAAABAAAA TN      207.10              39.03                  
+AAAAAAAAAAACAAAA TN      197.48              36.48                  
+AAAAAAAAAAAEAAAA TN      153.24              39.12                  
+AAAAAAAAAABAAAAA TN      165.48              38.84                  
+AAAAAAAAAABBAAAA TN      201.37              39.80                  
+AAAAAAAAAABDAAAA TN      192.39              38.89                  
+AAAAAAAAAABEAAAA TN      106.89              37.84                  
+AAAAAAAAAACAAAAA TN      159.17              39.11                  
+AAAAAAAAAACCAAAA TN      176.00              39.20                  
+AAAAAAAAAACDAAAA TN      193.26              40.11                  
+AAAAAAAAAADBAAAA TN      171.77              38.69                  
+AAAAAAAAAADCAAAA TN      174.76              39.44                  
+AAAAAAAAAADEAAAA TN      96.46               38.19                  
+AAAAAAAAAAEAAAAA TN      194.41              38.64                  
+AAAAAAAAAAEBAAAA TN      170.06              39.14                  
+AAAAAAAAAAEDAAAA TN      229.25              39.35                  
+AAAAAAAAAAEEAAAA TN      114.69              39.17                  
+AAAAAAAAAAFAAAAA TN      239.39              38.70                  
+AAAAAAAAAAFCAAAA TN      238.04              38.18                  
+AAAAAAAAAAFDAAAA TN      242.36              39.71                  
+AAAAAAAAAAGBAAAA TN      204.26              39.14                  
+AAAAAAAAAAGCAAAA TN      206.60              39.48                  
+AAAAAAAAAAGEAAAA TN      151.88              38.64                  
+AAAAAAAAAAHAAAAA TN      185.78              38.39                  
+AAAAAAAAAAHBAAAA TN      199.62              39.36                  
+AAAAAAAAAAHDAAAA TN      207.63              38.81                  
+AAAAAAAAAAIAAAAA TN      191.74              38.82                  
+AAAAAAAAAAICAAAA TN      226.85              39.24                  
+AAAAAAAAAAIDAAAA TN      203.67              39.79                  
+AAAAAAAAAAJBAAAA TN      199.25              37.73                  
+AAAAAAAAAAJCAAAA TN      220.40              39.10                  
+AAAAAAAAAAKAAAAA TN      201.24              37.96                  
+AAAAAAAAAAKBAAAA TN      216.54              39.13                  
+AAAAAAAAAAKDAAAA TN      232.07              39.39                  
+AAAAAAAAAALAAAAA TN      185.83              39.06                  
+AAAAAAAAAALCAAAA TN      192.87              38.11                  
+AAAAAAAAAALDAAAA TN      227.58              39.05                  
+AAAAAAAAAAMBAAAA TN      228.97              39.42                  
+AAAAAAAAAAMCAAAA TN      265.12              38.14                  
+AAAAAAAAAANAAAAA TN      216.88              38.29                  
+AAAAAAAAAANBAAAA TN      240.15              39.40                  
+AAAAAAAAAANDAAAA TN      248.76              38.54                  
+AAAAAAAAAAOAAAAA TN      226.17              39.21                  
+AAAAAAAAAAOCAAAA TN      248.04              39.10                  
+AAAAAAAAAAODAAAA TN      251.00              39.65                  
+AAAAAAAAAAPBAAAA TN      213.24              38.49                  
+AAAAAAAAAAPCAAAA TN      234.71              39.17                  
+AAAAAAAAABAAAAAA TN      165.60              39.34                  
+AAAAAAAAABABAAAA TN      179.20              40.05                  
+AAAAAAAAABADAAAA TN      196.21              39.99                  
+
+                          sum(ss_quantity)  sum(ss_list_price)  \
+i_item_id        s_state                                         
+AAAAAAAAAAABAAAA TN      13699.26          20505.94              
+AAAAAAAAAAACAAAA TN      4961.25           7733.47               
+AAAAAAAAAAAEAAAA TN      12809.75          19305.99              
+AAAAAAAAAABAAAAA TN      12376.42          19019.99              
+AAAAAAAAAABBAAAA TN      13029.97          19674.34              
+AAAAAAAAAABDAAAA TN      13138.17          20167.54              
+AAAAAAAAAABEAAAA TN      13666.97          20218.45              
+AAAAAAAAAACAAAAA TN      12714.44          19204.96              
+AAAAAAAAAACCAAAA TN      13106.97          20417.93              
+AAAAAAAAAACDAAAA TN      12579.99          19485.87              
+AAAAAAAAAADBAAAA TN      12793.94          19186.83              
+AAAAAAAAAADCAAAA TN      12410.31          19437.52              
+AAAAAAAAAADEAAAA TN      13677.12          20580.88              
+AAAAAAAAAAEAAAAA TN      12508.91          18917.55              
+AAAAAAAAAAEBAAAA TN      12744.58          19066.80              
+AAAAAAAAAAEDAAAA TN      13140.91          19998.03              
+AAAAAAAAAAEEAAAA TN      11712.05          17635.10              
+AAAAAAAAAAFAAAAA TN      12909.15          19233.83              
+AAAAAAAAAAFCAAAA TN      13594.31          20657.70              
+AAAAAAAAAAFDAAAA TN      13526.76          20564.88              
+AAAAAAAAAAGBAAAA TN      11837.87          17452.61              
+AAAAAAAAAAGCAAAA TN      14959.80          22857.69              
+AAAAAAAAAAGEAAAA TN      13762.54          20174.76              
+AAAAAAAAAAHAAAAA TN      15448.41          22957.53              
+AAAAAAAAAAHBAAAA TN      13311.02          19678.66              
+AAAAAAAAAAHDAAAA TN      11498.18          17327.15              
+AAAAAAAAAAIAAAAA TN      13289.59          19826.77              
+AAAAAAAAAAICAAAA TN      12033.44          18538.92              
+AAAAAAAAAAIDAAAA TN      12545.49          19165.77              
+AAAAAAAAAAJBAAAA TN      13330.68          19987.35              
+AAAAAAAAAAJCAAAA TN      12556.67          19509.46              
+AAAAAAAAAAKAAAAA TN      13959.40          20999.81              
+AAAAAAAAAAKBAAAA TN      13561.05          20364.40              
+AAAAAAAAAAKDAAAA TN      14390.73          22164.49              
+AAAAAAAAAALAAAAA TN      12538.88          19159.96              
+AAAAAAAAAALCAAAA TN      12817.80          19769.66              
+AAAAAAAAAALDAAAA TN      12143.68          18727.99              
+AAAAAAAAAAMBAAAA TN      13067.71          19526.32              
+AAAAAAAAAAMCAAAA TN      4716.25           7261.26               
+AAAAAAAAAANAAAAA TN      13086.25          19489.53              
+AAAAAAAAAANBAAAA TN      13571.28          20107.64              
+AAAAAAAAAANDAAAA TN      13695.23          20533.36              
+AAAAAAAAAAOAAAAA TN      14259.97          21364.14              
+AAAAAAAAAAOCAAAA TN      12785.79          19527.84              
+AAAAAAAAAAODAAAA TN      13340.71          20137.96              
+AAAAAAAAAAPBAAAA TN      13405.17          19751.96              
+AAAAAAAAAAPCAAAA TN      14621.63          22402.48              
+AAAAAAAAABAAAAAA TN      13267.45          20706.96              
+AAAAAAAAABABAAAA TN      13154.54          20194.49              
+AAAAAAAAABADAAAA TN      12509.38          19580.17              
+
+                          sum(ss_coupon_amt)  sum(ss_sales_price)  
+i_item_id        s_state                                           
+AAAAAAAAAAABAAAA TN      58517.12            10688.00              
+AAAAAAAAAAACAAAA TN      20522.62            3790.99               
+AAAAAAAAAAAEAAAA TN      42818.23            10080.42              
+AAAAAAAAAABAAAAA TN      44393.83            9794.86               
+AAAAAAAAAABBAAAA TN      51333.62            10372.25              
+AAAAAAAAAABDAAAA TN      52025.51            10391.00              
+AAAAAAAAAABEAAAA TN      29842.84            10462.90              
+AAAAAAAAAACAAAAA TN      40223.88            10008.20              
+AAAAAAAAAACCAAAA TN      46679.95            10569.04              
+AAAAAAAAAACDAAAA TN      47407.32            10181.12              
+AAAAAAAAAADBAAAA TN      44271.93            9914.48               
+AAAAAAAAAADCAAAA TN      44851.09            10160.94              
+AAAAAAAAAADEAAAA TN      27548.05            10617.22              
+AAAAAAAAAAEAAAAA TN      47645.26            9695.87               
+AAAAAAAAAAEBAAAA TN      41401.71            9893.69               
+AAAAAAAAAAEDAAAA TN      57650.53            10372.64              
+AAAAAAAAAAEEAAAA TN      24787.32            9197.46               
+AAAAAAAAAAFAAAAA TN      59778.09            9986.33               
+AAAAAAAAAAFCAAAA TN      65291.33            10603.52              
+AAAAAAAAAAFDAAAA TN      64144.09            10729.40              
+AAAAAAAAAAGBAAAA TN      46538.01            9082.09               
+AAAAAAAAAAGCAAAA TN      59867.89            11962.69              
+AAAAAAAAAAGEAAAA TN      41473.88            10516.35              
+AAAAAAAAAAHAAAAA TN      58295.90            11930.21              
+AAAAAAAAAAHBAAAA TN      51654.00            10339.05              
+AAAAAAAAAAHDAAAA TN      48440.58            8993.44               
+AAAAAAAAAAIAAAAA TN      48055.13            10380.41              
+AAAAAAAAAAICAAAA TN      56209.96            9645.33               
+AAAAAAAAAAIDAAAA TN      49893.10            10003.45              
+AAAAAAAAAAJBAAAA TN      54188.18            10211.73              
+AAAAAAAAAAJCAAAA TN      56892.56            10150.60              
+AAAAAAAAAAKAAAAA TN      57265.10            10817.12              
+AAAAAAAAAAKBAAAA TN      56171.15            10616.71              
+AAAAAAAAAAKDAAAA TN      67858.59            11506.56              
+AAAAAAAAAALAAAAA TN      47765.89            10015.31              
+AAAAAAAAAALCAAAA TN      52408.58            10183.10              
+AAAAAAAAAALDAAAA TN      56578.87            9764.02               
+AAAAAAAAAAMBAAAA TN      59103.96            10187.86              
+AAAAAAAAAAMCAAAA TN      25506.62            3669.21               
+AAAAAAAAAANAAAAA TN      58081.65            10059.74              
+AAAAAAAAAANBAAAA TN      63688.65            10536.58              
+AAAAAAAAAANDAAAA TN      69225.40            10614.54              
+AAAAAAAAAAOAAAAA TN      62348.54            11183.61              
+AAAAAAAAAAOCAAAA TN      64454.64            10191.04              
+AAAAAAAAAAODAAAA TN      65132.48            10545.70              
+AAAAAAAAAAPBAAAA TN      58051.46            10267.07              
+AAAAAAAAAAPCAAAA TN      68601.33            11816.77              
+AAAAAAAAABAAAAAA TN      43006.42            10561.59              
+AAAAAAAAABABAAAA TN      44669.66            10548.36              
+AAAAAAAAABADAAAA TN      49686.86            10126.39              
+2023-07-04 13:58:46,610 - main.py[line:105] - INFO: ground truth:
+                          avg(ss_quantity)  sum(ss_quantity)  \
+i_item_id        s_state                                       
+AAAAAAAAAAABAAAA TN      49.81              15044              
+AAAAAAAAAAACAAAA TN      50.23              5777               
+AAAAAAAAAAAEAAAA TN      51.48              14570              
+AAAAAAAAAABAAAAA TN      55.25              15359              
+AAAAAAAAAABBAAAA TN      48.77              13801              
+AAAAAAAAAABDAAAA TN      52.22              15300              
+AAAAAAAAAABEAAAA TN      50.71              15265              
+AAAAAAAAAACAAAAA TN      54.82              15624              
+AAAAAAAAAACCAAAA TN      50.57              15069              
+AAAAAAAAAACDAAAA TN      50.42              14118              
+AAAAAAAAAADBAAAA TN      51.31              14469              
+AAAAAAAAAADCAAAA TN      50.18              14050              
+AAAAAAAAAADEAAAA TN      51.91              15782              
+AAAAAAAAAAEAAAAA TN      49.48              13804              
+AAAAAAAAAAEBAAAA TN      51.75              14387              
+AAAAAAAAAAEDAAAA TN      49.37              14316              
+AAAAAAAAAAEEAAAA TN      52.09              13492              
+AAAAAAAAAAFAAAAA TN      52.18              14768              
+AAAAAAAAAAFCAAAA TN      48.12              14435              
+AAAAAAAAAAFDAAAA TN      52.01              15395              
+AAAAAAAAAAGBAAAA TN      51.32              13086              
+AAAAAAAAAAGCAAAA TN      48.94              16346              
+AAAAAAAAAAGEAAAA TN      52.75              15771              
+AAAAAAAAAAHAAAAA TN      51.66              17565              
+AAAAAAAAAAHBAAAA TN      50.06              14267              
+AAAAAAAAAAHDAAAA TN      48.51              12274              
+AAAAAAAAAAIAAAAA TN      50.83              14944              
+AAAAAAAAAAICAAAA TN      47.27              12810              
+AAAAAAAAAAIDAAAA TN      49.57              13532              
+AAAAAAAAAAJBAAAA TN      52.25              15413              
+AAAAAAAAAAJCAAAA TN      49.02              13970              
+AAAAAAAAAAKAAAAA TN      52.88              16711              
+AAAAAAAAAAKBAAAA TN      49.97              14641              
+AAAAAAAAAAKDAAAA TN      49.11              15961              
+AAAAAAAAAALAAAAA TN      49.72              14071              
+AAAAAAAAAALCAAAA TN      49.02              14363              
+AAAAAAAAAALDAAAA TN      50.21              13557              
+AAAAAAAAAAMBAAAA TN      51.30              14671              
+AAAAAAAAAAMCAAAA TN      47.23              4959               
+AAAAAAAAAANAAAAA TN      52.70              15179              
+AAAAAAAAAANBAAAA TN      53.95              15914              
+AAAAAAAAAANDAAAA TN      50.62              15338              
+AAAAAAAAAAOAAAAA TN      51.31              16162              
+AAAAAAAAAAOCAAAA TN      48.52              13829              
+AAAAAAAAAAODAAAA TN      50.56              14713              
+AAAAAAAAAAPBAAAA TN      50.58              14768              
+AAAAAAAAAAPCAAAA TN      50.01              16254              
+AAAAAAAAABAAAAAA TN      52.03              15505              
+AAAAAAAAABABAAAA TN      48.59              13946              
+AAAAAAAAABADAAAA TN      50.46              14130              
+
+                          avg(ss_list_price)  sum(ss_list_price)  \
+i_item_id        s_state                                           
+AAAAAAAAAAABAAAA TN      75.58                22826                
+AAAAAAAAAAACAAAA TN      69.04                7940                 
+AAAAAAAAAAAEAAAA TN      74.83                21176                
+AAAAAAAAAABAAAAA TN      69.94                19443                
+AAAAAAAAAABBAAAA TN      79.04                22368                
+AAAAAAAAAABDAAAA TN      77.26                22636                
+AAAAAAAAAABEAAAA TN      75.59                22752                
+AAAAAAAAAACAAAAA TN      79.15                22559                
+AAAAAAAAAACCAAAA TN      71.40                21278                
+AAAAAAAAAACDAAAA TN      74.87                20964                
+AAAAAAAAAADBAAAA TN      78.66                22183                
+AAAAAAAAAADCAAAA TN      73.10                20469                
+AAAAAAAAAADEAAAA TN      79.71                24232                
+AAAAAAAAAAEAAAAA TN      76.44                21328                
+AAAAAAAAAAEBAAAA TN      76.52                21272                
+AAAAAAAAAAEDAAAA TN      72.79                21108                
+AAAAAAAAAAEEAAAA TN      78.67                20375                
+AAAAAAAAAAFAAAAA TN      77.73                21999                
+AAAAAAAAAAFCAAAA TN      76.02                22805                
+AAAAAAAAAAFDAAAA TN      74.83                22151                
+AAAAAAAAAAGBAAAA TN      71.07                18123                
+AAAAAAAAAAGCAAAA TN      72.76                24301                
+AAAAAAAAAAGEAAAA TN      74.34                22229                
+AAAAAAAAAAHAAAAA TN      77.13                26224                
+AAAAAAAAAAHBAAAA TN      79.09                22542                
+AAAAAAAAAAHDAAAA TN      72.90                18443                
+AAAAAAAAAAIAAAAA TN      76.68                22543                
+AAAAAAAAAAICAAAA TN      71.26                19311                
+AAAAAAAAAAIDAAAA TN      73.71                20122                
+AAAAAAAAAAJBAAAA TN      71.81                21184                
+AAAAAAAAAAJCAAAA TN      79.68                22708                
+AAAAAAAAAAKAAAAA TN      74.41                23513                
+AAAAAAAAAAKBAAAA TN      77.25                22634                
+AAAAAAAAAAKDAAAA TN      74.04                24064                
+AAAAAAAAAALAAAAA TN      72.49                20515                
+AAAAAAAAAALCAAAA TN      73.38                21499                
+AAAAAAAAAALDAAAA TN      73.67                19891                
+AAAAAAAAAAMBAAAA TN      77.12                22057                
+AAAAAAAAAAMCAAAA TN      75.37                7914                 
+AAAAAAAAAANAAAAA TN      77.66                22367                
+AAAAAAAAAANBAAAA TN      78.16                23056                
+AAAAAAAAAANDAAAA TN      79.01                23939                
+AAAAAAAAAAOAAAAA TN      75.52                23788                
+AAAAAAAAAAOCAAAA TN      76.70                21860                
+AAAAAAAAAAODAAAA TN      78.58                22867                
+AAAAAAAAAAPBAAAA TN      78.78                23004                
+AAAAAAAAAAPCAAAA TN      77.20                25091                
+AAAAAAAAABAAAAAA TN      71.67                21359                
+AAAAAAAAABABAAAA TN      75.02                21530                
+AAAAAAAAABADAAAA TN      76.39                21389                
+
+                          avg(ss_coupon_amt)  sum(ss_coupon_amt)  \
+i_item_id        s_state                                           
+AAAAAAAAAAABAAAA TN      223.92               67623                
+AAAAAAAAAAACAAAA TN      127.43               14654                
+AAAAAAAAAAAEAAAA TN      202.83               57400                
+AAAAAAAAAABAAAAA TN      271.99               75613                
+AAAAAAAAAABBAAAA TN      176.97               50082                
+AAAAAAAAAABDAAAA TN      207.82               60891                
+AAAAAAAAAABEAAAA TN      188.54               56751                
+AAAAAAAAAACAAAAA TN      252.16               71865                
+AAAAAAAAAACCAAAA TN      128.64               38334                
+AAAAAAAAAACDAAAA TN      160.80               45023                
+AAAAAAAAAADBAAAA TN      217.34               61291                
+AAAAAAAAAADCAAAA TN      163.34               45736                
+AAAAAAAAAADEAAAA TN      214.16               65104                
+AAAAAAAAAAEAAAAA TN      279.18               77892                
+AAAAAAAAAAEBAAAA TN      272.83               75846                
+AAAAAAAAAAEDAAAA TN      231.03               66998                
+AAAAAAAAAAEEAAAA TN      293.97               76138                
+AAAAAAAAAAFAAAAA TN      197.59               55918                
+AAAAAAAAAAFCAAAA TN      185.17               55550                
+AAAAAAAAAAFDAAAA TN      187.41               55474                
+AAAAAAAAAAGBAAAA TN      168.67               43012                
+AAAAAAAAAAGCAAAA TN      220.79               73743                
+AAAAAAAAAAGEAAAA TN      137.85               41218                
+AAAAAAAAAAHAAAAA TN      247.66               84204                
+AAAAAAAAAAHBAAAA TN      195.60               55745                
+AAAAAAAAAAHDAAAA TN      195.48               49456                
+AAAAAAAAAAIAAAAA TN      178.72               52544                
+AAAAAAAAAAICAAAA TN      161.44               43749                
+AAAAAAAAAAIDAAAA TN      214.07               58440                
+AAAAAAAAAAJBAAAA TN      135.10               39854                
+AAAAAAAAAAJCAAAA TN      166.10               47338                
+AAAAAAAAAAKAAAAA TN      254.17               80319                
+AAAAAAAAAAKBAAAA TN      110.05               32246                
+AAAAAAAAAAKDAAAA TN      231.92               75374                
+AAAAAAAAAALAAAAA TN      202.95               57435                
+AAAAAAAAAALCAAAA TN      189.06               55395                
+AAAAAAAAAALDAAAA TN      151.11               40800                
+AAAAAAAAAAMBAAAA TN      151.93               43453                
+AAAAAAAAAAMCAAAA TN      113.33               11900                
+AAAAAAAAAANAAAAA TN      157.56               45377                
+AAAAAAAAAANBAAAA TN      330.11               97382                
+AAAAAAAAAANDAAAA TN      221.56               67132                
+AAAAAAAAAAOAAAAA TN      194.37               61228                
+AAAAAAAAAAOCAAAA TN      156.45               44587                
+AAAAAAAAAAODAAAA TN      168.02               48895                
+AAAAAAAAAAPBAAAA TN      177.22               51748                
+AAAAAAAAAAPCAAAA TN      261.70               85053                
+AAAAAAAAABAAAAAA TN      106.66               31786                
+AAAAAAAAABABAAAA TN      210.16               60315                
+AAAAAAAAABADAAAA TN      154.14               43158                
+
+                          avg(ss_sales_price)  sum(ss_sales_price)  
+i_item_id        s_state                                            
+AAAAAAAAAAABAAAA TN      38.20                 11535                
+AAAAAAAAAAACAAAA TN      36.29                 4173                 
+AAAAAAAAAAAEAAAA TN      37.56                 10630                
+AAAAAAAAAABAAAAA TN      32.99                 9171                 
+AAAAAAAAAABBAAAA TN      39.52                 11184                
+AAAAAAAAAABDAAAA TN      41.41                 12133                
+AAAAAAAAAABEAAAA TN      38.55                 11603                
+AAAAAAAAAACAAAAA TN      41.36                 11789                
+AAAAAAAAAACCAAAA TN      32.40                 9656                 
+AAAAAAAAAACDAAAA TN      36.73                 10284                
+AAAAAAAAAADBAAAA TN      38.55                 10872                
+AAAAAAAAAADCAAAA TN      35.04                 9812                 
+AAAAAAAAAADEAAAA TN      37.67                 11453                
+AAAAAAAAAAEAAAAA TN      39.15                 10923                
+AAAAAAAAAAEBAAAA TN      36.22                 10070                
+AAAAAAAAAAEDAAAA TN      34.03                 9870                 
+AAAAAAAAAAEEAAAA TN      39.74                 10293                
+AAAAAAAAAAFAAAAA TN      39.26                 11111                
+AAAAAAAAAAFCAAAA TN      36.30                 10889                
+AAAAAAAAAAFDAAAA TN      36.23                 10724                
+AAAAAAAAAAGBAAAA TN      37.47                 9556                 
+AAAAAAAAAAGCAAAA TN      35.79                 11955                
+AAAAAAAAAAGEAAAA TN      35.83                 10712                
+AAAAAAAAAAHAAAAA TN      38.75                 13174                
+AAAAAAAAAAHBAAAA TN      40.68                 11593                
+AAAAAAAAAAHDAAAA TN      35.47                 8974                 
+AAAAAAAAAAIAAAAA TN      36.24                 10655                
+AAAAAAAAAAICAAAA TN      34.12                 9247                 
+AAAAAAAAAAIDAAAA TN      36.95                 10088                
+AAAAAAAAAAJBAAAA TN      33.42                 9859                 
+AAAAAAAAAAJCAAAA TN      38.35                 10931                
+AAAAAAAAAAKAAAAA TN      39.33                 12427                
+AAAAAAAAAAKBAAAA TN      35.25                 10327                
+AAAAAAAAAAKDAAAA TN      39.27                 12764                
+AAAAAAAAAALAAAAA TN      35.23                 9969                 
+AAAAAAAAAALCAAAA TN      34.77                 10189                
+AAAAAAAAAALDAAAA TN      37.09                 10015                
+AAAAAAAAAAMBAAAA TN      38.73                 11077                
+AAAAAAAAAAMCAAAA TN      37.35                 3922                 
+AAAAAAAAAANAAAAA TN      37.61                 10833                
+AAAAAAAAAANBAAAA TN      39.40                 11622                
+AAAAAAAAAANDAAAA TN      41.94                 12708                
+AAAAAAAAAAOAAAAA TN      35.56                 11202                
+AAAAAAAAAAOCAAAA TN      39.52                 11263                
+AAAAAAAAAAODAAAA TN      39.10                 11379                
+AAAAAAAAAAPBAAAA TN      38.25                 11168                
+AAAAAAAAAAPCAAAA TN      37.93                 12328                
+AAAAAAAAABAAAAAA TN      36.46                 10864                
+AAAAAAAAABABAAAA TN      37.84                 10861                
+AAAAAAAAABADAAAA TN      39.89                 11169                
+2023-07-04 13:58:46,632 - main.py[line:611] - INFO: relative error:
+                          avg(ss_coupon_amt)  avg(ss_list_price)  \
+i_item_id        s_state                                           
+AAAAAAAAAAABAAAA TN      0.08                0.01                  
+AAAAAAAAAAACAAAA TN      0.55                0.08                  
+AAAAAAAAAAAEAAAA TN      0.24                0.00                  
+AAAAAAAAAABAAAAA TN      0.39                0.08                  
+AAAAAAAAAABBAAAA TN      0.14                0.04                  
+AAAAAAAAAABDAAAA TN      0.07                0.02                  
+AAAAAAAAAABEAAAA TN      0.43                0.03                  
+AAAAAAAAAACAAAAA TN      0.37                0.05                  
+AAAAAAAAAACCAAAA TN      0.37                0.06                  
+AAAAAAAAAACDAAAA TN      0.20                0.03                  
+AAAAAAAAAADBAAAA TN      0.21                0.05                  
+AAAAAAAAAADCAAAA TN      0.07                0.04                  
+AAAAAAAAAADEAAAA TN      0.55                0.07                  
+AAAAAAAAAAEAAAAA TN      0.30                0.02                  
+AAAAAAAAAAEBAAAA TN      0.38                0.01                  
+AAAAAAAAAAEDAAAA TN      0.01                0.04                  
+AAAAAAAAAAEEAAAA TN      0.61                0.04                  
+AAAAAAAAAAFAAAAA TN      0.21                0.04                  
+AAAAAAAAAAFCAAAA TN      0.29                0.02                  
+AAAAAAAAAAFDAAAA TN      0.29                0.02                  
+AAAAAAAAAAGBAAAA TN      0.21                0.06                  
+AAAAAAAAAAGCAAAA TN      0.06                0.04                  
+AAAAAAAAAAGEAAAA TN      0.10                0.00                  
+AAAAAAAAAAHAAAAA TN      0.25                0.04                  
+AAAAAAAAAAHBAAAA TN      0.02                0.05                  
+AAAAAAAAAAHDAAAA TN      0.06                0.03                  
+AAAAAAAAAAIAAAAA TN      0.07                0.03                  
+AAAAAAAAAAICAAAA TN      0.41                0.06                  
+AAAAAAAAAAIDAAAA TN      0.05                0.04                  
+AAAAAAAAAAJBAAAA TN      0.47                0.03                  
+AAAAAAAAAAJCAAAA TN      0.33                0.05                  
+AAAAAAAAAAKAAAAA TN      0.21                0.01                  
+AAAAAAAAAAKBAAAA TN      0.97                0.02                  
+AAAAAAAAAAKDAAAA TN      0.00                0.02                  
+AAAAAAAAAALAAAAA TN      0.08                0.04                  
+AAAAAAAAAALCAAAA TN      0.02                0.01                  
+AAAAAAAAAALDAAAA TN      0.51                0.03                  
+AAAAAAAAAAMBAAAA TN      0.51                0.02                  
+AAAAAAAAAAMCAAAA TN      1.34                0.00                  
+AAAAAAAAAANAAAAA TN      0.38                0.04                  
+AAAAAAAAAANBAAAA TN      0.27                0.03                  
+AAAAAAAAAANDAAAA TN      0.12                0.05                  
+AAAAAAAAAAOAAAAA TN      0.16                0.01                  
+AAAAAAAAAAOCAAAA TN      0.59                0.02                  
+AAAAAAAAAAODAAAA TN      0.49                0.03                  
+AAAAAAAAAAPBAAAA TN      0.20                0.06                  
+AAAAAAAAAAPCAAAA TN      0.10                0.03                  
+AAAAAAAAABAAAAAA TN      0.55                0.07                  
+AAAAAAAAABABAAAA TN      0.15                0.03                  
+AAAAAAAAABADAAAA TN      0.27                0.01                  
+
+                          avg(ss_quantity)  avg(ss_sales_price)  \
+i_item_id        s_state                                          
+AAAAAAAAAAABAAAA TN      0.01              0.02                   
+AAAAAAAAAAACAAAA TN      0.05              0.01                   
+AAAAAAAAAAAEAAAA TN      0.03              0.04                   
+AAAAAAAAAABAAAAA TN      0.11              0.18                   
+AAAAAAAAAABBAAAA TN      0.03              0.01                   
+AAAAAAAAAABDAAAA TN      0.05              0.06                   
+AAAAAAAAAABEAAAA TN      0.01              0.02                   
+AAAAAAAAAACAAAAA TN      0.09              0.05                   
+AAAAAAAAAACCAAAA TN      0.04              0.21                   
+AAAAAAAAAACDAAAA TN      0.02              0.09                   
+AAAAAAAAAADBAAAA TN      0.02              0.00                   
+AAAAAAAAAADCAAAA TN      0.03              0.13                   
+AAAAAAAAAADEAAAA TN      0.04              0.01                   
+AAAAAAAAAAEAAAAA TN      0.01              0.01                   
+AAAAAAAAAAEBAAAA TN      0.02              0.08                   
+AAAAAAAAAAEDAAAA TN      0.01              0.16                   
+AAAAAAAAAAEEAAAA TN      0.04              0.01                   
+AAAAAAAAAAFAAAAA TN      0.04              0.01                   
+AAAAAAAAAAFCAAAA TN      0.02              0.05                   
+AAAAAAAAAAFDAAAA TN      0.03              0.10                   
+AAAAAAAAAAGBAAAA TN      0.00              0.04                   
+AAAAAAAAAAGCAAAA TN      0.01              0.10                   
+AAAAAAAAAAGEAAAA TN      0.04              0.08                   
+AAAAAAAAAAHAAAAA TN      0.03              0.01                   
+AAAAAAAAAAHBAAAA TN      0.02              0.03                   
+AAAAAAAAAAHDAAAA TN      0.03              0.09                   
+AAAAAAAAAAIAAAAA TN      0.02              0.07                   
+AAAAAAAAAAICAAAA TN      0.04              0.15                   
+AAAAAAAAAAIDAAAA TN      0.01              0.08                   
+AAAAAAAAAAJBAAAA TN      0.05              0.13                   
+AAAAAAAAAAJCAAAA TN      0.01              0.02                   
+AAAAAAAAAAKAAAAA TN      0.07              0.03                   
+AAAAAAAAAAKBAAAA TN      0.00              0.11                   
+AAAAAAAAAAKDAAAA TN      0.00              0.00                   
+AAAAAAAAAALAAAAA TN      0.01              0.11                   
+AAAAAAAAAALCAAAA TN      0.02              0.10                   
+AAAAAAAAAALDAAAA TN      0.02              0.05                   
+AAAAAAAAAAMBAAAA TN      0.01              0.02                   
+AAAAAAAAAAMCAAAA TN      0.04              0.02                   
+AAAAAAAAAANAAAAA TN      0.05              0.02                   
+AAAAAAAAAANBAAAA TN      0.05              0.00                   
+AAAAAAAAAANDAAAA TN      0.01              0.08                   
+AAAAAAAAAAOAAAAA TN      0.03              0.10                   
+AAAAAAAAAAOCAAAA TN      0.01              0.01                   
+AAAAAAAAAAODAAAA TN      0.01              0.01                   
+AAAAAAAAAAPBAAAA TN      0.00              0.01                   
+AAAAAAAAAAPCAAAA TN      0.02              0.03                   
+AAAAAAAAABAAAAAA TN      0.05              0.08                   
+AAAAAAAAABABAAAA TN      0.03              0.06                   
+AAAAAAAAABADAAAA TN      0.02              0.00                   
+
+                          sum(ss_coupon_amt)  sum(ss_list_price)  \
+i_item_id        s_state                                           
+AAAAAAAAAAABAAAA TN      0.13                0.10                  
+AAAAAAAAAAACAAAA TN      0.40                0.03                  
+AAAAAAAAAAAEAAAA TN      0.25                0.09                  
+AAAAAAAAAABAAAAA TN      0.41                0.02                  
+AAAAAAAAAABBAAAA TN      0.02                0.12                  
+AAAAAAAAAABDAAAA TN      0.15                0.11                  
+AAAAAAAAAABEAAAA TN      0.47                0.11                  
+AAAAAAAAAACAAAAA TN      0.44                0.15                  
+AAAAAAAAAACCAAAA TN      0.22                0.04                  
+AAAAAAAAAACDAAAA TN      0.05                0.07                  
+AAAAAAAAAADBAAAA TN      0.28                0.14                  
+AAAAAAAAAADCAAAA TN      0.02                0.05                  
+AAAAAAAAAADEAAAA TN      0.58                0.15                  
+AAAAAAAAAAEAAAAA TN      0.39                0.11                  
+AAAAAAAAAAEBAAAA TN      0.45                0.10                  
+AAAAAAAAAAEDAAAA TN      0.14                0.05                  
+AAAAAAAAAAEEAAAA TN      0.67                0.13                  
+AAAAAAAAAAFAAAAA TN      0.07                0.13                  
+AAAAAAAAAAFCAAAA TN      0.18                0.09                  
+AAAAAAAAAAFDAAAA TN      0.16                0.07                  
+AAAAAAAAAAGBAAAA TN      0.08                0.04                  
+AAAAAAAAAAGCAAAA TN      0.19                0.06                  
+AAAAAAAAAAGEAAAA TN      0.01                0.09                  
+AAAAAAAAAAHAAAAA TN      0.31                0.12                  
+AAAAAAAAAAHBAAAA TN      0.07                0.13                  
+AAAAAAAAAAHDAAAA TN      0.02                0.06                  
+AAAAAAAAAAIAAAAA TN      0.09                0.12                  
+AAAAAAAAAAICAAAA TN      0.28                0.04                  
+AAAAAAAAAAIDAAAA TN      0.15                0.05                  
+AAAAAAAAAAJBAAAA TN      0.36                0.06                  
+AAAAAAAAAAJCAAAA TN      0.20                0.14                  
+AAAAAAAAAAKAAAAA TN      0.29                0.11                  
+AAAAAAAAAAKBAAAA TN      0.74                0.10                  
+AAAAAAAAAAKDAAAA TN      0.10                0.08                  
+AAAAAAAAAALAAAAA TN      0.17                0.07                  
+AAAAAAAAAALCAAAA TN      0.05                0.08                  
+AAAAAAAAAALDAAAA TN      0.39                0.06                  
+AAAAAAAAAAMBAAAA TN      0.36                0.11                  
+AAAAAAAAAAMCAAAA TN      1.14                0.08                  
+AAAAAAAAAANAAAAA TN      0.28                0.13                  
+AAAAAAAAAANBAAAA TN      0.35                0.13                  
+AAAAAAAAAANDAAAA TN      0.03                0.14                  
+AAAAAAAAAAOAAAAA TN      0.02                0.10                  
+AAAAAAAAAAOCAAAA TN      0.45                0.11                  
+AAAAAAAAAAODAAAA TN      0.33                0.12                  
+AAAAAAAAAAPBAAAA TN      0.12                0.14                  
+AAAAAAAAAAPCAAAA TN      0.19                0.11                  
+AAAAAAAAABAAAAAA TN      0.35                0.03                  
+AAAAAAAAABABAAAA TN      0.26                0.06                  
+AAAAAAAAABADAAAA TN      0.15                0.08                  
+
+                          sum(ss_quantity)  sum(ss_sales_price)  
+i_item_id        s_state                                         
+AAAAAAAAAAABAAAA TN      0.09              0.07                  
+AAAAAAAAAAACAAAA TN      0.14              0.09                  
+AAAAAAAAAAAEAAAA TN      0.12              0.05                  
+AAAAAAAAAABAAAAA TN      0.19              0.07                  
+AAAAAAAAAABBAAAA TN      0.06              0.07                  
+AAAAAAAAAABDAAAA TN      0.14              0.14                  
+AAAAAAAAAABEAAAA TN      0.10              0.10                  
+AAAAAAAAAACAAAAA TN      0.19              0.15                  
+AAAAAAAAAACCAAAA TN      0.13              0.09                  
+AAAAAAAAAACDAAAA TN      0.11              0.01                  
+AAAAAAAAAADBAAAA TN      0.12              0.09                  
+AAAAAAAAAADCAAAA TN      0.12              0.04                  
+AAAAAAAAAADEAAAA TN      0.13              0.07                  
+AAAAAAAAAAEAAAAA TN      0.09              0.11                  
+AAAAAAAAAAEBAAAA TN      0.11              0.02                  
+AAAAAAAAAAEDAAAA TN      0.08              0.05                  
+AAAAAAAAAAEEAAAA TN      0.13              0.11                  
+AAAAAAAAAAFAAAAA TN      0.13              0.10                  
+AAAAAAAAAAFCAAAA TN      0.06              0.03                  
+AAAAAAAAAAFDAAAA TN      0.12              0.00                  
+AAAAAAAAAAGBAAAA TN      0.10              0.05                  
+AAAAAAAAAAGCAAAA TN      0.08              0.00                  
+AAAAAAAAAAGEAAAA TN      0.13              0.02                  
+AAAAAAAAAAHAAAAA TN      0.12              0.09                  
+AAAAAAAAAAHBAAAA TN      0.07              0.11                  
+AAAAAAAAAAHDAAAA TN      0.06              0.00                  
+AAAAAAAAAAIAAAAA TN      0.11              0.03                  
+AAAAAAAAAAICAAAA TN      0.06              0.04                  
+AAAAAAAAAAIDAAAA TN      0.07              0.01                  
+AAAAAAAAAAJBAAAA TN      0.14              0.04                  
+AAAAAAAAAAJCAAAA TN      0.10              0.07                  
+AAAAAAAAAAKAAAAA TN      0.16              0.13                  
+AAAAAAAAAAKBAAAA TN      0.07              0.03                  
+AAAAAAAAAAKDAAAA TN      0.10              0.10                  
+AAAAAAAAAALAAAAA TN      0.11              0.00                  
+AAAAAAAAAALCAAAA TN      0.11              0.00                  
+AAAAAAAAAALDAAAA TN      0.10              0.03                  
+AAAAAAAAAAMBAAAA TN      0.11              0.08                  
+AAAAAAAAAAMCAAAA TN      0.05              0.06                  
+AAAAAAAAAANAAAAA TN      0.14              0.07                  
+AAAAAAAAAANBAAAA TN      0.15              0.09                  
+AAAAAAAAAANDAAAA TN      0.11              0.16                  
+AAAAAAAAAAOAAAAA TN      0.12              0.00                  
+AAAAAAAAAAOCAAAA TN      0.08              0.10                  
+AAAAAAAAAAODAAAA TN      0.09              0.07                  
+AAAAAAAAAAPBAAAA TN      0.09              0.08                  
+AAAAAAAAAAPCAAAA TN      0.10              0.04                  
+AAAAAAAAABAAAAAA TN      0.14              0.03                  
+AAAAAAAAABABAAAA TN      0.06              0.03                  
+AAAAAAAAABADAAAA TN      0.11              0.09                  
+2023-07-04 13:58:46,635 - main.py[line:612] - INFO: relative error normalized:
+                          avg(ss_quantity)  avg(ss_list_price)  \
+i_item_id        s_state                                         
+AAAAAAAAAAABAAAA TN      0.01              0.01                  
+AAAAAAAAAAACAAAA TN      0.05              0.07                  
+AAAAAAAAAAAEAAAA TN      0.03              0.00                  
+AAAAAAAAAABAAAAA TN      0.11              0.08                  
+AAAAAAAAAABBAAAA TN      0.03              0.04                  
+AAAAAAAAAABDAAAA TN      0.05              0.02                  
+AAAAAAAAAABEAAAA TN      0.01              0.03                  
+AAAAAAAAAACAAAAA TN      0.09              0.05                  
+AAAAAAAAAACCAAAA TN      0.04              0.06                  
+AAAAAAAAAACDAAAA TN      0.02              0.03                  
+AAAAAAAAAADBAAAA TN      0.02              0.05                  
+AAAAAAAAAADCAAAA TN      0.03              0.04                  
+AAAAAAAAAADEAAAA TN      0.04              0.07                  
+AAAAAAAAAAEAAAAA TN      0.01              0.02                  
+AAAAAAAAAAEBAAAA TN      0.02              0.01                  
+AAAAAAAAAAEDAAAA TN      0.01              0.04                  
+AAAAAAAAAAEEAAAA TN      0.04              0.04                  
+AAAAAAAAAAFAAAAA TN      0.03              0.04                  
+AAAAAAAAAAFCAAAA TN      0.02              0.02                  
+AAAAAAAAAAFDAAAA TN      0.03              0.02                  
+AAAAAAAAAAGBAAAA TN      0.00              0.06                  
+AAAAAAAAAAGCAAAA TN      0.01              0.04                  
+AAAAAAAAAAGEAAAA TN      0.04              0.00                  
+AAAAAAAAAAHAAAAA TN      0.03              0.04                  
+AAAAAAAAAAHBAAAA TN      0.02              0.05                  
+AAAAAAAAAAHDAAAA TN      0.03              0.03                  
+AAAAAAAAAAIAAAAA TN      0.02              0.03                  
+AAAAAAAAAAICAAAA TN      0.04              0.06                  
+AAAAAAAAAAIDAAAA TN      0.01              0.04                  
+AAAAAAAAAAJBAAAA TN      0.05              0.03                  
+AAAAAAAAAAJCAAAA TN      0.01              0.05                  
+AAAAAAAAAAKAAAAA TN      0.07              0.01                  
+AAAAAAAAAAKBAAAA TN      0.00              0.02                  
+AAAAAAAAAAKDAAAA TN      0.00              0.02                  
+AAAAAAAAAALAAAAA TN      0.01              0.04                  
+AAAAAAAAAALCAAAA TN      0.02              0.01                  
+AAAAAAAAAALDAAAA TN      0.02              0.03                  
+AAAAAAAAAAMBAAAA TN      0.01              0.02                  
+AAAAAAAAAAMCAAAA TN      0.04              0.00                  
+AAAAAAAAAANAAAAA TN      0.05              0.04                  
+AAAAAAAAAANBAAAA TN      0.05              0.03                  
+AAAAAAAAAANDAAAA TN      0.01              0.05                  
+AAAAAAAAAAOAAAAA TN      0.03              0.01                  
+AAAAAAAAAAOCAAAA TN      0.01              0.02                  
+AAAAAAAAAAODAAAA TN      0.01              0.03                  
+AAAAAAAAAAPBAAAA TN      0.00              0.06                  
+AAAAAAAAAAPCAAAA TN      0.02              0.03                  
+AAAAAAAAABAAAAAA TN      0.05              0.07                  
+AAAAAAAAABABAAAA TN      0.03              0.03                  
+AAAAAAAAABADAAAA TN      0.02              0.01                  
+
+                          avg(ss_coupon_amt)  avg(ss_sales_price)  
+i_item_id        s_state                                           
+AAAAAAAAAAABAAAA TN      0.07                0.02                  
+AAAAAAAAAAACAAAA TN      0.42                0.01                  
+AAAAAAAAAAAEAAAA TN      0.22                0.04                  
+AAAAAAAAAABAAAAA TN      0.32                0.16                  
+AAAAAAAAAABBAAAA TN      0.13                0.01                  
+AAAAAAAAAABDAAAA TN      0.07                0.06                  
+AAAAAAAAAABEAAAA TN      0.35                0.02                  
+AAAAAAAAAACAAAAA TN      0.31                0.05                  
+AAAAAAAAAACCAAAA TN      0.31                0.19                  
+AAAAAAAAAACDAAAA TN      0.18                0.09                  
+AAAAAAAAAADBAAAA TN      0.19                0.00                  
+AAAAAAAAAADCAAAA TN      0.07                0.12                  
+AAAAAAAAAADEAAAA TN      0.42                0.01                  
+AAAAAAAAAAEAAAAA TN      0.26                0.01                  
+AAAAAAAAAAEBAAAA TN      0.31                0.08                  
+AAAAAAAAAAEDAAAA TN      0.01                0.14                  
+AAAAAAAAAAEEAAAA TN      0.46                0.01                  
+AAAAAAAAAAFAAAAA TN      0.19                0.01                  
+AAAAAAAAAAFCAAAA TN      0.25                0.05                  
+AAAAAAAAAAFDAAAA TN      0.25                0.09                  
+AAAAAAAAAAGBAAAA TN      0.19                0.04                  
+AAAAAAAAAAGCAAAA TN      0.06                0.10                  
+AAAAAAAAAAGEAAAA TN      0.10                0.08                  
+AAAAAAAAAAHAAAAA TN      0.22                0.01                  
+AAAAAAAAAAHBAAAA TN      0.02                0.03                  
+AAAAAAAAAAHDAAAA TN      0.06                0.09                  
+AAAAAAAAAAIAAAAA TN      0.07                0.07                  
+AAAAAAAAAAICAAAA TN      0.33                0.14                  
+AAAAAAAAAAIDAAAA TN      0.05                0.07                  
+AAAAAAAAAAJBAAAA TN      0.38                0.12                  
+AAAAAAAAAAJCAAAA TN      0.28                0.02                  
+AAAAAAAAAAKAAAAA TN      0.19                0.03                  
+AAAAAAAAAAKBAAAA TN      0.62                0.10                  
+AAAAAAAAAAKDAAAA TN      0.00                0.00                  
+AAAAAAAAAALAAAAA TN      0.08                0.10                  
+AAAAAAAAAALCAAAA TN      0.02                0.09                  
+AAAAAAAAAALDAAAA TN      0.40                0.05                  
+AAAAAAAAAAMBAAAA TN      0.40                0.02                  
+AAAAAAAAAAMCAAAA TN      0.74                0.02                  
+AAAAAAAAAANAAAAA TN      0.31                0.02                  
+AAAAAAAAAANBAAAA TN      0.24                0.00                  
+AAAAAAAAAANDAAAA TN      0.12                0.08                  
+AAAAAAAAAAOAAAAA TN      0.15                0.10                  
+AAAAAAAAAAOCAAAA TN      0.44                0.01                  
+AAAAAAAAAAODAAAA TN      0.39                0.01                  
+AAAAAAAAAAPBAAAA TN      0.18                0.01                  
+AAAAAAAAAAPCAAAA TN      0.10                0.03                  
+AAAAAAAAABAAAAAA TN      0.42                0.08                  
+AAAAAAAAABABAAAA TN      0.14                0.06                  
+AAAAAAAAABADAAAA TN      0.24                0.00                  
+2023-07-04 13:58:46,635 - main.py[line:615] - INFO: relative error average: 0.12080041086963335
+2023-07-04 13:58:46,635 - main.py[line:616] - INFO: relative error normalized average: 0.0906974555372801
+2023-07-04 13:58:46,855 - main.py[line:662] - INFO: total_time:22.269914645003155

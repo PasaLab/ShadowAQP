@@ -1,0 +1,1984 @@
+2022-07-09 04:13:25,567 - test.py[line:267] - INFO: dataset:census
+2022-07-09 04:13:25,567 - test.py[line:283] - INFO: query:
+        select a_education_num, sum(a_age), avg(a_age), sum(a_hours_per_week), avg(a_hours_per_week), sum(a_fnlwgt), avg(a_fnlwgt)
+        from census_150k.adult_a join census_150k.adult_b on a_education_num = b_education_num
+        group by a_education_num order by a_education_num
+         with k=1 model-0.010-./config/train/census_a_torch_cvae.json model-0.1-./config/train/census_b_torch_cvae.json
+2022-07-09 04:13:25,567 - test.py[line:284] - INFO: ground_truth_path:./ground_truth/census/census_truth.csv
+2022-07-09 04:13:25,567 - test.py[line:287] - INFO: round:1
+2022-07-09 04:13:25,567 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:25,570 - prompt.py[line:66] - INFO: parse time:0.002900626976042986
+2022-07-09 04:13:25,570 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:25,570 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:25,645 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.07519073109142482
+2022-07-09 04:13:25,645 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:25,646 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:27,091 - model_utils.py[line:86] - INFO: load torch model time elapsed:1.4443491571582854
+2022-07-09 04:13:27,091 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:1.5208771729376167
+2022-07-09 04:13:27,091 - model_sampling.py[line:208] - INFO: house sampling rate:0.01
+2022-07-09 04:13:27,666 - model_sampling.py[line:386] - INFO: sampling time:0.5750249188859016
+2022-07-09 04:13:27,667 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:27,667 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:27,675 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.008568768855184317
+2022-07-09 04:13:27,676 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:27,676 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:27,678 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013218577951192856
+2022-07-09 04:13:27,678 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.010650126961991191
+2022-07-09 04:13:27,678 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:27,712 - model_sampling.py[line:386] - INFO: sampling time:0.0346430700737983
+2022-07-09 04:13:28,074 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.3607642489951104
+2022-07-09 04:13:28,090 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.41           0.35                   0.03        0.41   
+2                      0.05           0.10                   0.14        0.05   
+3                      0.01           0.02                   0.06        0.01   
+4                      0.01           0.05                   0.03        0.01   
+5                      0.04           0.15                   0.02        0.04   
+6                      0.03           0.00                   0.04        0.03   
+7                      0.03           0.05                   0.02        0.03   
+8                      0.07           0.13                   0.05        0.07   
+9                      0.01           0.03                   0.01        0.01   
+10                     0.00           0.09                   0.00        0.00   
+11                     0.04           0.05                   0.00        0.04   
+12                     0.02           0.07                   0.01        0.02   
+13                     0.01           0.09                   0.01        0.01   
+14                     0.00           0.15                   0.01        0.00   
+15                     0.01           0.17                   0.09        0.01   
+16                     0.08           0.07                   0.04        0.08   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.35                   0.03  
+2                         0.10                   0.14  
+3                         0.02                   0.06  
+4                         0.05                   0.03  
+5                         0.15                   0.02  
+6                         0.00                   0.04  
+7                         0.05                   0.02  
+8                         0.13                   0.05  
+9                         0.03                   0.01  
+10                        0.09                   0.00  
+11                        0.05                   0.00  
+12                        0.07                   0.01  
+13                        0.09                   0.01  
+14                        0.15                   0.01  
+15                        0.17                   0.09  
+16                        0.07                   0.04  
+2022-07-09 04:13:28,090 - prompt.py[line:110] - INFO: relative error average :0.06190200847554626
+2022-07-09 04:13:28,090 - prompt.py[line:112] - INFO: relative error normalized average :0.05726245202215228
+2022-07-09 04:13:28,090 - prompt.py[line:116] - INFO: AQP time:0.9750650918576866
+2022-07-09 04:13:28,090 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:28,090 - test.py[line:287] - INFO: round:2
+2022-07-09 04:13:28,090 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:28,093 - prompt.py[line:66] - INFO: parse time:0.002803094917908311
+2022-07-09 04:13:28,093 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:28,093 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:28,140 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.0466559249907732
+2022-07-09 04:13:28,140 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:28,141 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:28,142 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.00136417499743402
+2022-07-09 04:13:28,142 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.04877168615348637
+2022-07-09 04:13:28,142 - model_sampling.py[line:208] - INFO: house sampling rate:0.01
+2022-07-09 04:13:28,158 - model_sampling.py[line:386] - INFO: sampling time:0.015311461174860597
+2022-07-09 04:13:28,158 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:28,159 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:28,165 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.006505619967356324
+2022-07-09 04:13:28,165 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:28,166 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:28,167 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013007170055061579
+2022-07-09 04:13:28,167 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.00848122383467853
+2022-07-09 04:13:28,167 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:28,201 - model_sampling.py[line:386] - INFO: sampling time:0.03416756191290915
+2022-07-09 04:13:28,554 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.35200183698907495
+2022-07-09 04:13:28,569 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.10           0.36                   0.18        0.10   
+2                      0.01           0.23                   0.06        0.01   
+3                      0.08           0.08                   0.11        0.08   
+4                      0.07           0.01                   0.00        0.07   
+5                      0.07           0.08                   0.06        0.07   
+6                      0.07           0.17                   0.03        0.07   
+7                      0.07           0.01                   0.02        0.07   
+8                      0.00           0.04                   0.04        0.00   
+9                      0.01           0.01                   0.00        0.01   
+10                     0.01           0.08                   0.01        0.01   
+11                     0.08           0.09                   0.02        0.08   
+12                     0.04           0.03                   0.03        0.04   
+13                     0.03           0.06                   0.00        0.03   
+14                     0.03           0.07                   0.03        0.03   
+15                     0.05           0.05                   0.00        0.05   
+16                     0.07           0.19                   0.01        0.07   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.36                   0.18  
+2                         0.23                   0.06  
+3                         0.08                   0.11  
+4                         0.01                   0.00  
+5                         0.08                   0.06  
+6                         0.17                   0.03  
+7                         0.01                   0.02  
+8                         0.04                   0.04  
+9                         0.01                   0.00  
+10                        0.08                   0.01  
+11                        0.09                   0.02  
+12                        0.03                   0.03  
+13                        0.06                   0.00  
+14                        0.07                   0.03  
+15                        0.05                   0.00  
+16                        0.19                   0.01  
+2022-07-09 04:13:28,569 - prompt.py[line:110] - INFO: relative error average :0.06108732740362135
+2022-07-09 04:13:28,570 - prompt.py[line:112] - INFO: relative error normalized average :0.05728624536560759
+2022-07-09 04:13:28,570 - prompt.py[line:116] - INFO: AQP time:0.4052718938328326
+2022-07-09 04:13:28,570 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:28,570 - test.py[line:287] - INFO: round:3
+2022-07-09 04:13:28,570 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:28,572 - prompt.py[line:66] - INFO: parse time:0.0027814179193228483
+2022-07-09 04:13:28,573 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:28,573 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:28,620 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.047382526099681854
+2022-07-09 04:13:28,620 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:28,621 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:28,622 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013546620029956102
+2022-07-09 04:13:28,622 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.049488463904708624
+2022-07-09 04:13:28,622 - model_sampling.py[line:208] - INFO: house sampling rate:0.01
+2022-07-09 04:13:28,637 - model_sampling.py[line:386] - INFO: sampling time:0.01523383497260511
+2022-07-09 04:13:28,638 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:28,638 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:28,645 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.006767344195395708
+2022-07-09 04:13:28,645 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:28,646 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:28,647 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0012819631956517696
+2022-07-09 04:13:28,647 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.008704535197466612
+2022-07-09 04:13:28,647 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:28,681 - model_sampling.py[line:386] - INFO: sampling time:0.034045354928821325
+2022-07-09 04:13:29,034 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.3516759460326284
+2022-07-09 04:13:29,049 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.05           0.34                   0.02        0.05   
+2                      0.04           0.19                   0.02        0.04   
+3                      0.08           0.06                   0.02        0.08   
+4                      0.02           0.08                   0.02        0.02   
+5                      0.07           0.07                   0.02        0.07   
+6                      0.06           0.05                   0.02        0.06   
+7                      0.10           0.06                   0.02        0.10   
+8                      0.15           0.02                   0.05        0.15   
+9                      0.01           0.06                   0.01        0.01   
+10                     0.02           0.06                   0.01        0.02   
+11                     0.06           0.03                   0.03        0.06   
+12                     0.14           0.00                   0.01        0.14   
+13                     0.02           0.10                   0.01        0.02   
+14                     0.03           0.08                   0.00        0.03   
+15                     0.01           0.10                   0.01        0.01   
+16                     0.08           0.12                   0.04        0.08   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.34                   0.02  
+2                         0.19                   0.02  
+3                         0.06                   0.02  
+4                         0.08                   0.02  
+5                         0.07                   0.02  
+6                         0.05                   0.02  
+7                         0.06                   0.02  
+8                         0.02                   0.05  
+9                         0.06                   0.01  
+10                        0.06                   0.01  
+11                        0.03                   0.03  
+12                        0.00                   0.01  
+13                        0.10                   0.01  
+14                        0.08                   0.00  
+15                        0.10                   0.01  
+16                        0.12                   0.04  
+2022-07-09 04:13:29,049 - prompt.py[line:110] - INFO: relative error average :0.055454186922430176
+2022-07-09 04:13:29,049 - prompt.py[line:112] - INFO: relative error normalized average :0.052382581370854935
+2022-07-09 04:13:29,049 - prompt.py[line:116] - INFO: AQP time:0.40451983571983874
+2022-07-09 04:13:29,049 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:29,049 - test.py[line:283] - INFO: query:
+        select a_education_num, sum(a_age), avg(a_age), sum(a_hours_per_week), avg(a_hours_per_week), sum(a_fnlwgt), avg(a_fnlwgt)
+        from census_150k.adult_a join census_150k.adult_b on a_education_num = b_education_num
+        group by a_education_num order by a_education_num
+         with k=1 model-0.020-./config/train/census_a_torch_cvae.json model-0.1-./config/train/census_b_torch_cvae.json
+2022-07-09 04:13:29,049 - test.py[line:284] - INFO: ground_truth_path:./ground_truth/census/census_truth.csv
+2022-07-09 04:13:29,049 - test.py[line:287] - INFO: round:1
+2022-07-09 04:13:29,049 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:29,052 - prompt.py[line:66] - INFO: parse time:0.00276655494235456
+2022-07-09 04:13:29,052 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:29,052 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:29,100 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.0475148418918252
+2022-07-09 04:13:29,100 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:29,100 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:29,102 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.001350322039797902
+2022-07-09 04:13:29,102 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.04962904588319361
+2022-07-09 04:13:29,102 - model_sampling.py[line:208] - INFO: house sampling rate:0.02
+2022-07-09 04:13:29,120 - model_sampling.py[line:386] - INFO: sampling time:0.017933255061507225
+2022-07-09 04:13:29,121 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:29,121 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:29,127 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.006751589011400938
+2022-07-09 04:13:29,128 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:29,128 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:29,129 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0012894799001514912
+2022-07-09 04:13:29,129 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.008732669055461884
+2022-07-09 04:13:29,130 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:29,164 - model_sampling.py[line:386] - INFO: sampling time:0.03402547584846616
+2022-07-09 04:13:29,882 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.7177598411217332
+2022-07-09 04:13:29,897 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.07           0.02                   0.14        0.07   
+2                      0.01           0.08                   0.05        0.01   
+3                      0.02           0.11                   0.07        0.02   
+4                      0.04           0.14                   0.01        0.04   
+5                      0.04           0.05                   0.10        0.04   
+6                      0.05           0.02                   0.05        0.05   
+7                      0.01           0.09                   0.00        0.01   
+8                      0.02           0.14                   0.00        0.02   
+9                      0.00           0.04                   0.00        0.00   
+10                     0.01           0.08                   0.01        0.01   
+11                     0.02           0.01                   0.03        0.02   
+12                     0.01           0.01                   0.04        0.01   
+13                     0.00           0.04                   0.00        0.00   
+14                     0.01           0.10                   0.00        0.01   
+15                     0.14           0.05                   0.07        0.14   
+16                     0.01           0.23                   0.03        0.01   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.02                   0.14  
+2                         0.08                   0.05  
+3                         0.11                   0.07  
+4                         0.14                   0.01  
+5                         0.05                   0.10  
+6                         0.02                   0.05  
+7                         0.09                   0.00  
+8                         0.14                   0.00  
+9                         0.04                   0.00  
+10                        0.08                   0.01  
+11                        0.01                   0.03  
+12                        0.01                   0.04  
+13                        0.04                   0.00  
+14                        0.10                   0.00  
+15                        0.05                   0.07  
+16                        0.23                   0.03  
+2022-07-09 04:13:29,897 - prompt.py[line:110] - INFO: relative error average :0.04676801302451448
+2022-07-09 04:13:29,897 - prompt.py[line:112] - INFO: relative error normalized average :0.04456325165517102
+2022-07-09 04:13:29,897 - prompt.py[line:116] - INFO: AQP time:0.7731665668543428
+2022-07-09 04:13:29,897 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:29,897 - test.py[line:287] - INFO: round:2
+2022-07-09 04:13:29,897 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:29,900 - prompt.py[line:66] - INFO: parse time:0.002752095926553011
+2022-07-09 04:13:29,900 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:29,900 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:29,948 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.04741844697855413
+2022-07-09 04:13:29,948 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:29,948 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:29,950 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.001358045032247901
+2022-07-09 04:13:29,950 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.049546850845217705
+2022-07-09 04:13:29,950 - model_sampling.py[line:208] - INFO: house sampling rate:0.02
+2022-07-09 04:13:29,968 - model_sampling.py[line:386] - INFO: sampling time:0.01798146590590477
+2022-07-09 04:13:29,969 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:29,969 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:29,976 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.006746143102645874
+2022-07-09 04:13:29,976 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:29,976 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:29,977 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0012775498908013105
+2022-07-09 04:13:29,978 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.008708656998351216
+2022-07-09 04:13:29,978 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:30,012 - model_sampling.py[line:386] - INFO: sampling time:0.03418964915908873
+2022-07-09 04:13:30,730 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.7169120430480689
+2022-07-09 04:13:30,744 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.07           0.02                   0.08        0.07   
+2                      0.07           0.35                   0.03        0.07   
+3                      0.06           0.14                   0.03        0.06   
+4                      0.05           0.00                   0.06        0.05   
+5                      0.01           0.00                   0.02        0.01   
+6                      0.02           0.03                   0.04        0.02   
+7                      0.02           0.05                   0.01        0.02   
+8                      0.03           0.07                   0.00        0.03   
+9                      0.01           0.06                   0.00        0.01   
+10                     0.02           0.02                   0.01        0.02   
+11                     0.01           0.05                   0.01        0.01   
+12                     0.05           0.01                   0.02        0.05   
+13                     0.00           0.04                   0.02        0.00   
+14                     0.02           0.03                   0.03        0.02   
+15                     0.05           0.05                   0.02        0.05   
+16                     0.12           0.04                   0.03        0.12   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.02                   0.08  
+2                         0.35                   0.03  
+3                         0.14                   0.03  
+4                         0.00                   0.06  
+5                         0.00                   0.02  
+6                         0.03                   0.04  
+7                         0.05                   0.01  
+8                         0.07                   0.00  
+9                         0.06                   0.00  
+10                        0.02                   0.01  
+11                        0.05                   0.01  
+12                        0.01                   0.02  
+13                        0.04                   0.02  
+14                        0.03                   0.03  
+15                        0.05                   0.02  
+16                        0.04                   0.03  
+2022-07-09 04:13:30,745 - prompt.py[line:110] - INFO: relative error average :0.04149513282236946
+2022-07-09 04:13:30,745 - prompt.py[line:112] - INFO: relative error normalized average :0.03934227303167462
+2022-07-09 04:13:30,745 - prompt.py[line:116] - INFO: AQP time:0.7725912372116
+2022-07-09 04:13:30,745 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:30,745 - test.py[line:287] - INFO: round:3
+2022-07-09 04:13:30,745 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:30,748 - prompt.py[line:66] - INFO: parse time:0.00278270710259676
+2022-07-09 04:13:30,748 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:30,748 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:30,795 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.04745363490656018
+2022-07-09 04:13:30,795 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:30,796 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:30,797 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013490240089595318
+2022-07-09 04:13:30,797 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.04955675103701651
+2022-07-09 04:13:30,797 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.02
+2022-07-09 04:13:30,815 - model_sampling.py[line:386] - INFO: sampling time:0.017124906880781054
+2022-07-09 04:13:30,815 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:30,816 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:30,822 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.0067401789128780365
+2022-07-09 04:13:30,822 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:30,823 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:30,824 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0012946419883519411
+2022-07-09 04:13:30,824 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.008705415995791554
+2022-07-09 04:13:30,824 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:30,858 - model_sampling.py[line:386] - INFO: sampling time:0.03401493211276829
+2022-07-09 04:13:31,066 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.20716939703561366
+2022-07-09 04:13:31,081 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.02           0.02                   0.03        0.02   
+2                      0.04           0.00                   0.02        0.04   
+3                      0.04           0.02                   0.01        0.04   
+4                      0.03           0.03                   0.02        0.03   
+5                      0.03           0.11                   0.03        0.03   
+6                      0.01           0.06                   0.00        0.01   
+7                      0.04           0.01                   0.01        0.04   
+8                      0.03           0.06                   0.02        0.03   
+9                      0.01           0.07                   0.01        0.01   
+10                     0.02           0.06                   0.00        0.02   
+11                     0.01           0.06                   0.02        0.01   
+12                     0.01           0.08                   0.03        0.01   
+13                     0.01           0.05                   0.02        0.01   
+14                     0.03           0.04                   0.00        0.03   
+15                     0.02           0.12                   0.02        0.02   
+16                     0.02           0.05                   0.02        0.02   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.02                   0.03  
+2                         0.00                   0.02  
+3                         0.02                   0.01  
+4                         0.03                   0.02  
+5                         0.11                   0.03  
+6                         0.06                   0.00  
+7                         0.01                   0.01  
+8                         0.06                   0.02  
+9                         0.07                   0.01  
+10                        0.06                   0.00  
+11                        0.06                   0.02  
+12                        0.08                   0.03  
+13                        0.05                   0.02  
+14                        0.04                   0.00  
+15                        0.12                   0.02  
+16                        0.05                   0.02  
+2022-07-09 04:13:31,081 - prompt.py[line:110] - INFO: relative error average :0.03128564160463656
+2022-07-09 04:13:31,081 - prompt.py[line:112] - INFO: relative error normalized average :0.030485785986804764
+2022-07-09 04:13:31,081 - prompt.py[line:116] - INFO: AQP time:0.2614019578322768
+2022-07-09 04:13:31,081 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:31,081 - test.py[line:283] - INFO: query:
+        select a_education_num, sum(a_age), avg(a_age), sum(a_hours_per_week), avg(a_hours_per_week), sum(a_fnlwgt), avg(a_fnlwgt)
+        from census_150k.adult_a join census_150k.adult_b on a_education_num = b_education_num
+        group by a_education_num order by a_education_num
+         with k=1 model-0.030-./config/train/census_a_torch_cvae.json model-0.1-./config/train/census_b_torch_cvae.json
+2022-07-09 04:13:31,081 - test.py[line:284] - INFO: ground_truth_path:./ground_truth/census/census_truth.csv
+2022-07-09 04:13:31,081 - test.py[line:287] - INFO: round:1
+2022-07-09 04:13:31,081 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:31,084 - prompt.py[line:66] - INFO: parse time:0.0027919718995690346
+2022-07-09 04:13:31,084 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:31,084 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:31,131 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.04673153185285628
+2022-07-09 04:13:31,131 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:31,132 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:31,133 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.001356292050331831
+2022-07-09 04:13:31,133 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.048837712965905666
+2022-07-09 04:13:31,133 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.03
+2022-07-09 04:13:31,152 - model_sampling.py[line:386] - INFO: sampling time:0.01898761512711644
+2022-07-09 04:13:31,153 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:31,153 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:31,160 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.006281945155933499
+2022-07-09 04:13:31,160 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:31,160 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:31,161 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0012830090709030628
+2022-07-09 04:13:31,161 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.008230292005464435
+2022-07-09 04:13:31,162 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:31,196 - model_sampling.py[line:386] - INFO: sampling time:0.034590431954711676
+2022-07-09 04:13:31,539 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.3421013259794563
+2022-07-09 04:13:31,554 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.00           0.07                   0.02        0.00   
+2                      0.02           0.02                   0.01        0.02   
+3                      0.00           0.01                   0.01        0.00   
+4                      0.01           0.07                   0.02        0.01   
+5                      0.02           0.08                   0.01        0.02   
+6                      0.00           0.02                   0.02        0.00   
+7                      0.00           0.01                   0.03        0.00   
+8                      0.02           0.03                   0.00        0.02   
+9                      0.03           0.05                   0.03        0.03   
+10                     0.01           0.06                   0.01        0.01   
+11                     0.03           0.02                   0.01        0.03   
+12                     0.03           0.05                   0.02        0.03   
+13                     0.01           0.06                   0.03        0.01   
+14                     0.01           0.02                   0.01        0.01   
+15                     0.01           0.01                   0.01        0.01   
+16                     0.02           0.05                   0.02        0.02   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.07                   0.02  
+2                         0.02                   0.01  
+3                         0.01                   0.01  
+4                         0.07                   0.02  
+5                         0.08                   0.01  
+6                         0.02                   0.02  
+7                         0.01                   0.03  
+8                         0.03                   0.00  
+9                         0.05                   0.03  
+10                        0.06                   0.01  
+11                        0.02                   0.01  
+12                        0.05                   0.02  
+13                        0.06                   0.03  
+14                        0.02                   0.01  
+15                        0.01                   0.01  
+16                        0.05                   0.02  
+2022-07-09 04:13:31,554 - prompt.py[line:110] - INFO: relative error average :0.02251801902134787
+2022-07-09 04:13:31,555 - prompt.py[line:112] - INFO: relative error normalized average :0.022096702167037657
+2022-07-09 04:13:31,555 - prompt.py[line:116] - INFO: AQP time:0.39942868100479245
+2022-07-09 04:13:31,555 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:31,555 - test.py[line:287] - INFO: round:2
+2022-07-09 04:13:31,555 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:31,557 - prompt.py[line:66] - INFO: parse time:0.002770272083580494
+2022-07-09 04:13:31,558 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:31,558 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:31,605 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.047368228202685714
+2022-07-09 04:13:31,605 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:31,606 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:31,607 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013554799370467663
+2022-07-09 04:13:31,607 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.04948153789155185
+2022-07-09 04:13:31,607 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.03
+2022-07-09 04:13:31,626 - model_sampling.py[line:386] - INFO: sampling time:0.018983254907652736
+2022-07-09 04:13:31,627 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:31,627 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:31,634 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.006750754080712795
+2022-07-09 04:13:31,634 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:31,635 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:31,636 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0012948508374392986
+2022-07-09 04:13:31,636 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.00872428179718554
+2022-07-09 04:13:31,636 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:31,670 - model_sampling.py[line:386] - INFO: sampling time:0.034017426893115044
+2022-07-09 04:13:32,015 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.3440258780028671
+2022-07-09 04:13:32,030 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.04           0.10                   0.01        0.04   
+2                      0.02           0.01                   0.00        0.02   
+3                      0.02           0.05                   0.02        0.02   
+4                      0.01           0.05                   0.03        0.01   
+5                      0.02           0.07                   0.02        0.02   
+6                      0.01           0.05                   0.02        0.01   
+7                      0.00           0.03                   0.01        0.00   
+8                      0.00           0.03                   0.02        0.00   
+9                      0.01           0.04                   0.00        0.01   
+10                     0.00           0.07                   0.01        0.00   
+11                     0.01           0.02                   0.01        0.01   
+12                     0.00           0.06                   0.00        0.00   
+13                     0.00           0.02                   0.02        0.00   
+14                     0.04           0.06                   0.00        0.04   
+15                     0.01           0.03                   0.02        0.01   
+16                     0.03           0.03                   0.02        0.03   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.10                   0.01  
+2                         0.01                   0.00  
+3                         0.05                   0.02  
+4                         0.05                   0.03  
+5                         0.07                   0.02  
+6                         0.05                   0.02  
+7                         0.03                   0.01  
+8                         0.03                   0.02  
+9                         0.04                   0.00  
+10                        0.07                   0.01  
+11                        0.02                   0.01  
+12                        0.06                   0.00  
+13                        0.02                   0.02  
+14                        0.06                   0.00  
+15                        0.03                   0.02  
+16                        0.03                   0.02  
+2022-07-09 04:13:32,030 - prompt.py[line:110] - INFO: relative error average :0.024373074457608418
+2022-07-09 04:13:32,030 - prompt.py[line:112] - INFO: relative error normalized average :0.023872402579595654
+2022-07-09 04:13:32,030 - prompt.py[line:116] - INFO: AQP time:0.4006855918560177
+2022-07-09 04:13:32,030 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:32,030 - test.py[line:287] - INFO: round:3
+2022-07-09 04:13:32,030 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:32,033 - prompt.py[line:66] - INFO: parse time:0.00277549191378057
+2022-07-09 04:13:32,033 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:32,033 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:32,081 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.04739692504517734
+2022-07-09 04:13:32,081 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:32,081 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:32,083 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.001352295046672225
+2022-07-09 04:13:32,083 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.04950607311911881
+2022-07-09 04:13:32,083 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.03
+2022-07-09 04:13:32,102 - model_sampling.py[line:386] - INFO: sampling time:0.0190575928427279
+2022-07-09 04:13:32,103 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:32,103 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:32,110 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.0072055410128086805
+2022-07-09 04:13:32,110 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:32,111 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:32,112 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.001288241008296609
+2022-07-09 04:13:32,112 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.00916028511710465
+2022-07-09 04:13:32,112 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:32,146 - model_sampling.py[line:386] - INFO: sampling time:0.034054604126140475
+2022-07-09 04:13:32,490 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.34299811418168247
+2022-07-09 04:13:32,505 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.00           0.06                   0.02        0.00   
+2                      0.01           0.03                   0.01        0.01   
+3                      0.00           0.01                   0.00        0.00   
+4                      0.01           0.10                   0.01        0.01   
+5                      0.00           0.02                   0.01        0.00   
+6                      0.03           0.02                   0.00        0.03   
+7                      0.01           0.02                   0.02        0.01   
+8                      0.02           0.02                   0.00        0.02   
+9                      0.03           0.04                   0.01        0.03   
+10                     0.00           0.03                   0.00        0.00   
+11                     0.02           0.02                   0.00        0.02   
+12                     0.03           0.02                   0.03        0.03   
+13                     0.00           0.00                   0.01        0.00   
+14                     0.04           0.06                   0.00        0.04   
+15                     0.03           0.04                   0.02        0.03   
+16                     0.01           0.03                   0.00        0.01   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.06                   0.02  
+2                         0.03                   0.01  
+3                         0.01                   0.00  
+4                         0.10                   0.01  
+5                         0.02                   0.01  
+6                         0.02                   0.00  
+7                         0.02                   0.02  
+8                         0.02                   0.00  
+9                         0.04                   0.01  
+10                        0.03                   0.00  
+11                        0.02                   0.00  
+12                        0.02                   0.03  
+13                        0.00                   0.01  
+14                        0.06                   0.00  
+15                        0.04                   0.02  
+16                        0.03                   0.00  
+2022-07-09 04:13:32,505 - prompt.py[line:110] - INFO: relative error average :0.020142464767396517
+2022-07-09 04:13:32,505 - prompt.py[line:112] - INFO: relative error normalized average :0.019773666985612278
+2022-07-09 04:13:32,505 - prompt.py[line:116] - INFO: AQP time:0.3997752007562667
+2022-07-09 04:13:32,505 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:32,505 - test.py[line:283] - INFO: query:
+        select a_education_num, sum(a_age), avg(a_age), sum(a_hours_per_week), avg(a_hours_per_week), sum(a_fnlwgt), avg(a_fnlwgt)
+        from census_150k.adult_a join census_150k.adult_b on a_education_num = b_education_num
+        group by a_education_num order by a_education_num
+         with k=1 model-0.040-./config/train/census_a_torch_cvae.json model-0.1-./config/train/census_b_torch_cvae.json
+2022-07-09 04:13:32,505 - test.py[line:284] - INFO: ground_truth_path:./ground_truth/census/census_truth.csv
+2022-07-09 04:13:32,505 - test.py[line:287] - INFO: round:1
+2022-07-09 04:13:32,505 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:32,508 - prompt.py[line:66] - INFO: parse time:0.0027991891838610172
+2022-07-09 04:13:32,508 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:32,508 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:32,556 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.04745677602477372
+2022-07-09 04:13:32,556 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:32,557 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:32,558 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013543230015784502
+2022-07-09 04:13:32,558 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.04955537989735603
+2022-07-09 04:13:32,558 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.04
+2022-07-09 04:13:32,579 - model_sampling.py[line:386] - INFO: sampling time:0.02068671816959977
+2022-07-09 04:13:32,580 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:32,580 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:32,587 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.006716568022966385
+2022-07-09 04:13:32,587 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:32,587 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:32,588 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0012806069571524858
+2022-07-09 04:13:32,588 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.008681761100888252
+2022-07-09 04:13:32,589 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:32,623 - model_sampling.py[line:386] - INFO: sampling time:0.0342773930169642
+2022-07-09 04:13:33,072 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.448568464955315
+2022-07-09 04:13:33,087 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.04           0.06                   0.01        0.04   
+2                      0.01           0.00                   0.03        0.01   
+3                      0.03           0.08                   0.01        0.03   
+4                      0.00           0.08                   0.00        0.00   
+5                      0.04           0.02                   0.02        0.04   
+6                      0.01           0.03                   0.02        0.01   
+7                      0.01           0.03                   0.01        0.01   
+8                      0.03           0.05                   0.01        0.03   
+9                      0.00           0.05                   0.01        0.00   
+10                     0.01           0.08                   0.01        0.01   
+11                     0.02           0.00                   0.02        0.02   
+12                     0.02           0.02                   0.01        0.02   
+13                     0.00           0.05                   0.01        0.00   
+14                     0.00           0.09                   0.01        0.00   
+15                     0.01           0.06                   0.02        0.01   
+16                     0.01           0.06                   0.03        0.01   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.06                   0.01  
+2                         0.00                   0.03  
+3                         0.08                   0.01  
+4                         0.08                   0.00  
+5                         0.02                   0.02  
+6                         0.03                   0.02  
+7                         0.03                   0.01  
+8                         0.05                   0.01  
+9                         0.05                   0.01  
+10                        0.08                   0.01  
+11                        0.00                   0.02  
+12                        0.02                   0.01  
+13                        0.05                   0.01  
+14                        0.09                   0.01  
+15                        0.06                   0.02  
+16                        0.06                   0.03  
+2022-07-09 04:13:33,087 - prompt.py[line:110] - INFO: relative error average :0.025132422577008515
+2022-07-09 04:13:33,087 - prompt.py[line:112] - INFO: relative error normalized average :0.024540832640365984
+2022-07-09 04:13:33,087 - prompt.py[line:116] - INFO: AQP time:0.5070795984938741
+2022-07-09 04:13:33,087 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:33,087 - test.py[line:287] - INFO: round:2
+2022-07-09 04:13:33,088 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:33,090 - prompt.py[line:66] - INFO: parse time:0.0027805331628769636
+2022-07-09 04:13:33,090 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:33,091 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:33,138 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.04745155107229948
+2022-07-09 04:13:33,138 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:33,139 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:33,140 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013597900979220867
+2022-07-09 04:13:33,140 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.04956177808344364
+2022-07-09 04:13:33,140 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.04
+2022-07-09 04:13:33,161 - model_sampling.py[line:386] - INFO: sampling time:0.0207373620942235
+2022-07-09 04:13:33,162 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:33,162 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:33,169 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.006712595000863075
+2022-07-09 04:13:33,169 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:33,169 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:33,171 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0012767990119755268
+2022-07-09 04:13:33,171 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.008777999086305499
+2022-07-09 04:13:33,171 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:33,205 - model_sampling.py[line:386] - INFO: sampling time:0.0339033140335232
+2022-07-09 04:13:33,654 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.44883648585528135
+2022-07-09 04:13:33,669 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.00           0.06                   0.03        0.00   
+2                      0.01           0.03                   0.00        0.01   
+3                      0.00           0.06                   0.00        0.00   
+4                      0.00           0.06                   0.03        0.00   
+5                      0.01           0.06                   0.03        0.01   
+6                      0.03           0.02                   0.02        0.03   
+7                      0.01           0.05                   0.01        0.01   
+8                      0.02           0.01                   0.04        0.02   
+9                      0.00           0.04                   0.02        0.00   
+10                     0.01           0.05                   0.01        0.01   
+11                     0.01           0.06                   0.03        0.01   
+12                     0.00           0.08                   0.00        0.00   
+13                     0.01           0.03                   0.02        0.01   
+14                     0.00           0.05                   0.01        0.00   
+15                     0.02           0.03                   0.02        0.02   
+16                     0.03           0.00                   0.02        0.03   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.06                   0.03  
+2                         0.03                   0.00  
+3                         0.06                   0.00  
+4                         0.06                   0.03  
+5                         0.06                   0.03  
+6                         0.02                   0.02  
+7                         0.05                   0.01  
+8                         0.01                   0.04  
+9                         0.04                   0.02  
+10                        0.05                   0.01  
+11                        0.06                   0.03  
+12                        0.08                   0.00  
+13                        0.03                   0.02  
+14                        0.05                   0.01  
+15                        0.03                   0.02  
+16                        0.00                   0.02  
+2022-07-09 04:13:33,669 - prompt.py[line:110] - INFO: relative error average :0.024167235184877785
+2022-07-09 04:13:33,669 - prompt.py[line:112] - INFO: relative error normalized average :0.02368317434539466
+2022-07-09 04:13:33,669 - prompt.py[line:116] - INFO: AQP time:0.5069942488335073
+2022-07-09 04:13:33,669 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:33,670 - test.py[line:287] - INFO: round:3
+2022-07-09 04:13:33,670 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:33,672 - prompt.py[line:66] - INFO: parse time:0.002779203001409769
+2022-07-09 04:13:33,673 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:33,673 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:33,720 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.047386011108756065
+2022-07-09 04:13:33,720 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:33,721 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:33,722 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013579269871115685
+2022-07-09 04:13:33,722 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.04949593008495867
+2022-07-09 04:13:33,722 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.04
+2022-07-09 04:13:33,743 - model_sampling.py[line:386] - INFO: sampling time:0.020828351145610213
+2022-07-09 04:13:33,744 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:33,744 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:33,751 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.006611372111365199
+2022-07-09 04:13:33,751 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:33,751 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:33,753 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.001283619087189436
+2022-07-09 04:13:33,753 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.008678053971379995
+2022-07-09 04:13:33,753 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:33,787 - model_sampling.py[line:386] - INFO: sampling time:0.03427073219791055
+2022-07-09 04:13:34,237 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.44876936497166753
+2022-07-09 04:13:34,252 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.01           0.02                   0.02        0.01   
+2                      0.01           0.02                   0.02        0.01   
+3                      0.00           0.10                   0.03        0.00   
+4                      0.01           0.05                   0.03        0.01   
+5                      0.00           0.02                   0.01        0.00   
+6                      0.00           0.04                   0.03        0.00   
+7                      0.01           0.04                   0.00        0.01   
+8                      0.01           0.01                   0.02        0.01   
+9                      0.00           0.02                   0.00        0.00   
+10                     0.01           0.04                   0.01        0.01   
+11                     0.03           0.02                   0.01        0.03   
+12                     0.00           0.07                   0.02        0.00   
+13                     0.03           0.03                   0.00        0.03   
+14                     0.00           0.08                   0.00        0.00   
+15                     0.02           0.05                   0.00        0.02   
+16                     0.02           0.03                   0.00        0.02   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.02                   0.02  
+2                         0.02                   0.02  
+3                         0.10                   0.03  
+4                         0.05                   0.03  
+5                         0.02                   0.01  
+6                         0.04                   0.03  
+7                         0.04                   0.00  
+8                         0.01                   0.02  
+9                         0.02                   0.00  
+10                        0.04                   0.01  
+11                        0.02                   0.01  
+12                        0.07                   0.02  
+13                        0.03                   0.00  
+14                        0.08                   0.00  
+15                        0.05                   0.00  
+16                        0.03                   0.00  
+2022-07-09 04:13:34,252 - prompt.py[line:110] - INFO: relative error average :0.021363834537935177
+2022-07-09 04:13:34,252 - prompt.py[line:112] - INFO: relative error normalized average :0.020926595024860984
+2022-07-09 04:13:34,252 - prompt.py[line:116] - INFO: AQP time:0.5074531950522214
+2022-07-09 04:13:34,252 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:34,252 - test.py[line:283] - INFO: query:
+        select a_education_num, sum(a_age), avg(a_age), sum(a_hours_per_week), avg(a_hours_per_week), sum(a_fnlwgt), avg(a_fnlwgt)
+        from census_150k.adult_a join census_150k.adult_b on a_education_num = b_education_num
+        group by a_education_num order by a_education_num
+         with k=1 model-0.050-./config/train/census_a_torch_cvae.json model-0.1-./config/train/census_b_torch_cvae.json
+2022-07-09 04:13:34,252 - test.py[line:284] - INFO: ground_truth_path:./ground_truth/census/census_truth.csv
+2022-07-09 04:13:34,252 - test.py[line:287] - INFO: round:1
+2022-07-09 04:13:34,252 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:34,255 - prompt.py[line:66] - INFO: parse time:0.0028102498035877943
+2022-07-09 04:13:34,255 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:34,255 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:34,303 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.0474879308603704
+2022-07-09 04:13:34,303 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:34,303 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:34,305 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013659249525517225
+2022-07-09 04:13:34,305 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.049630584893748164
+2022-07-09 04:13:34,305 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.05
+2022-07-09 04:13:34,328 - model_sampling.py[line:386] - INFO: sampling time:0.022731235018000007
+2022-07-09 04:13:34,328 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:34,328 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:34,335 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.00663205492310226
+2022-07-09 04:13:34,335 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:34,336 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:34,337 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013068600092083216
+2022-07-09 04:13:34,337 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.008736119838431478
+2022-07-09 04:13:34,337 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:34,372 - model_sampling.py[line:386] - INFO: sampling time:0.03412005491554737
+2022-07-09 04:13:34,973 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.6004195481073111
+2022-07-09 04:13:34,988 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.01           0.05                   0.00        0.01   
+2                      0.00           0.01                   0.02        0.00   
+3                      0.02           0.09                   0.02        0.02   
+4                      0.01           0.03                   0.01        0.01   
+5                      0.00           0.03                   0.02        0.00   
+6                      0.00           0.07                   0.01        0.00   
+7                      0.00           0.01                   0.01        0.00   
+8                      0.03           0.03                   0.03        0.03   
+9                      0.03           0.06                   0.02        0.03   
+10                     0.00           0.08                   0.01        0.00   
+11                     0.00           0.09                   0.00        0.00   
+12                     0.02           0.05                   0.02        0.02   
+13                     0.02           0.06                   0.02        0.02   
+14                     0.03           0.04                   0.00        0.03   
+15                     0.02           0.06                   0.03        0.02   
+16                     0.01           0.07                   0.00        0.01   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.05                   0.00  
+2                         0.01                   0.02  
+3                         0.09                   0.02  
+4                         0.03                   0.01  
+5                         0.03                   0.02  
+6                         0.07                   0.01  
+7                         0.01                   0.01  
+8                         0.03                   0.03  
+9                         0.06                   0.02  
+10                        0.08                   0.01  
+11                        0.09                   0.00  
+12                        0.05                   0.02  
+13                        0.06                   0.02  
+14                        0.04                   0.00  
+15                        0.06                   0.03  
+16                        0.07                   0.00  
+2022-07-09 04:13:34,988 - prompt.py[line:110] - INFO: relative error average :0.026418669950413375
+2022-07-09 04:13:34,988 - prompt.py[line:112] - INFO: relative error normalized average :0.025779702286867528
+2022-07-09 04:13:34,988 - prompt.py[line:116] - INFO: AQP time:0.6608487898483872
+2022-07-09 04:13:34,988 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:34,988 - test.py[line:287] - INFO: round:2
+2022-07-09 04:13:34,988 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:34,991 - prompt.py[line:66] - INFO: parse time:0.002793713007122278
+2022-07-09 04:13:34,991 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:34,991 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:35,039 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.047506324015557766
+2022-07-09 04:13:35,039 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:35,039 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:35,041 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013623239938169718
+2022-07-09 04:13:35,041 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.04962818301282823
+2022-07-09 04:13:35,041 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.05
+2022-07-09 04:13:35,063 - model_sampling.py[line:386] - INFO: sampling time:0.022595146903768182
+2022-07-09 04:13:35,064 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:35,064 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:35,071 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.006565436953678727
+2022-07-09 04:13:35,071 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:35,072 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:35,073 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0012804188299924135
+2022-07-09 04:13:35,073 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.008647205075249076
+2022-07-09 04:13:35,073 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:35,107 - model_sampling.py[line:386] - INFO: sampling time:0.03414273704402149
+2022-07-09 04:13:35,704 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.5962029220536351
+2022-07-09 04:13:35,719 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.05           0.00                   0.02        0.05   
+2                      0.02           0.04                   0.02        0.02   
+3                      0.01           0.06                   0.01        0.01   
+4                      0.01           0.10                   0.00        0.01   
+5                      0.01           0.06                   0.01        0.01   
+6                      0.00           0.04                   0.00        0.00   
+7                      0.00           0.05                   0.02        0.00   
+8                      0.01           0.02                   0.03        0.01   
+9                      0.01           0.04                   0.00        0.01   
+10                     0.01           0.07                   0.00        0.01   
+11                     0.01           0.03                   0.01        0.01   
+12                     0.03           0.03                   0.01        0.03   
+13                     0.03           0.05                   0.02        0.03   
+14                     0.00           0.03                   0.01        0.00   
+15                     0.01           0.05                   0.02        0.01   
+16                     0.01           0.02                   0.01        0.01   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.00                   0.02  
+2                         0.04                   0.02  
+3                         0.06                   0.01  
+4                         0.10                   0.00  
+5                         0.06                   0.01  
+6                         0.04                   0.00  
+7                         0.05                   0.02  
+8                         0.02                   0.03  
+9                         0.04                   0.00  
+10                        0.07                   0.00  
+11                        0.03                   0.01  
+12                        0.03                   0.01  
+13                        0.05                   0.02  
+14                        0.03                   0.01  
+15                        0.05                   0.02  
+16                        0.02                   0.01  
+2022-07-09 04:13:35,719 - prompt.py[line:110] - INFO: relative error average :0.022747959235109246
+2022-07-09 04:13:35,719 - prompt.py[line:112] - INFO: relative error normalized average :0.022276562100181443
+2022-07-09 04:13:35,719 - prompt.py[line:116] - INFO: AQP time:0.6565033968072385
+2022-07-09 04:13:35,719 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:35,720 - test.py[line:287] - INFO: round:3
+2022-07-09 04:13:35,720 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:35,722 - prompt.py[line:66] - INFO: parse time:0.0027862871065735817
+2022-07-09 04:13:35,722 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:35,723 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:35,770 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.04738112585619092
+2022-07-09 04:13:35,770 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:35,771 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:35,772 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013636031653732061
+2022-07-09 04:13:35,772 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.0495059359818697
+2022-07-09 04:13:35,772 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.05
+2022-07-09 04:13:35,795 - model_sampling.py[line:386] - INFO: sampling time:0.022623441880568862
+2022-07-09 04:13:35,796 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:35,796 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:35,802 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.006634569028392434
+2022-07-09 04:13:35,802 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:35,803 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:35,804 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0012774330098181963
+2022-07-09 04:13:35,804 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.008713742950931191
+2022-07-09 04:13:35,805 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:35,839 - model_sampling.py[line:386] - INFO: sampling time:0.033965305890887976
+2022-07-09 04:13:36,436 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.5962235210463405
+2022-07-09 04:13:36,451 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.00           0.06                   0.01        0.00   
+2                      0.01           0.07                   0.00        0.01   
+3                      0.03           0.04                   0.01        0.03   
+4                      0.03           0.05                   0.01        0.03   
+5                      0.01           0.04                   0.02        0.01   
+6                      0.02           0.01                   0.00        0.02   
+7                      0.01           0.03                   0.01        0.01   
+8                      0.01           0.05                   0.02        0.01   
+9                      0.00           0.04                   0.02        0.00   
+10                     0.00           0.07                   0.01        0.00   
+11                     0.01           0.04                   0.02        0.01   
+12                     0.00           0.04                   0.01        0.00   
+13                     0.01           0.04                   0.01        0.01   
+14                     0.01           0.08                   0.01        0.01   
+15                     0.02           0.04                   0.02        0.02   
+16                     0.00           0.01                   0.01        0.00   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.06                   0.01  
+2                         0.07                   0.00  
+3                         0.04                   0.01  
+4                         0.05                   0.01  
+5                         0.04                   0.02  
+6                         0.01                   0.00  
+7                         0.03                   0.01  
+8                         0.05                   0.02  
+9                         0.04                   0.02  
+10                        0.07                   0.01  
+11                        0.04                   0.02  
+12                        0.04                   0.01  
+13                        0.04                   0.01  
+14                        0.08                   0.01  
+15                        0.04                   0.02  
+16                        0.01                   0.01  
+2022-07-09 04:13:36,451 - prompt.py[line:110] - INFO: relative error average :0.021944218539334693
+2022-07-09 04:13:36,451 - prompt.py[line:112] - INFO: relative error normalized average :0.021517260697570584
+2022-07-09 04:13:36,451 - prompt.py[line:116] - INFO: AQP time:0.656415011966601
+2022-07-09 04:13:36,451 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:36,451 - test.py[line:283] - INFO: query:
+        select a_education_num, sum(a_age), avg(a_age), sum(a_hours_per_week), avg(a_hours_per_week), sum(a_fnlwgt), avg(a_fnlwgt)
+        from census_150k.adult_a join census_150k.adult_b on a_education_num = b_education_num
+        group by a_education_num order by a_education_num
+         with k=1 model-0.060-./config/train/census_a_torch_cvae.json model-0.1-./config/train/census_b_torch_cvae.json
+2022-07-09 04:13:36,451 - test.py[line:284] - INFO: ground_truth_path:./ground_truth/census/census_truth.csv
+2022-07-09 04:13:36,451 - test.py[line:287] - INFO: round:1
+2022-07-09 04:13:36,451 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:36,454 - prompt.py[line:66] - INFO: parse time:0.002781239105388522
+2022-07-09 04:13:36,454 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:36,454 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:36,502 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.047388524981215596
+2022-07-09 04:13:36,502 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:36,502 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:36,504 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013593779876828194
+2022-07-09 04:13:36,504 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.049508127849549055
+2022-07-09 04:13:36,504 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.06
+2022-07-09 04:13:36,534 - model_sampling.py[line:386] - INFO: sampling time:0.030149508966133
+2022-07-09 04:13:36,535 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:36,535 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:36,542 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.006702554179355502
+2022-07-09 04:13:36,542 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:36,542 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:36,544 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0012945339549332857
+2022-07-09 04:13:36,544 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.00879220012575388
+2022-07-09 04:13:36,544 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:36,578 - model_sampling.py[line:386] - INFO: sampling time:0.03406366682611406
+2022-07-09 04:13:37,286 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.7068760339170694
+2022-07-09 04:13:37,301 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.01           0.07                   0.01        0.01   
+2                      0.01           0.04                   0.02        0.01   
+3                      0.00           0.08                   0.01        0.00   
+4                      0.00           0.02                   0.01        0.00   
+5                      0.01           0.05                   0.01        0.01   
+6                      0.02           0.05                   0.01        0.02   
+7                      0.01           0.03                   0.02        0.01   
+8                      0.02           0.06                   0.00        0.02   
+9                      0.02           0.04                   0.01        0.02   
+10                     0.01           0.05                   0.01        0.01   
+11                     0.01           0.04                   0.01        0.01   
+12                     0.02           0.01                   0.01        0.02   
+13                     0.00           0.06                   0.01        0.00   
+14                     0.02           0.00                   0.02        0.02   
+15                     0.00           0.07                   0.01        0.00   
+16                     0.02           0.07                   0.01        0.02   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.07                   0.01  
+2                         0.04                   0.02  
+3                         0.08                   0.01  
+4                         0.02                   0.01  
+5                         0.05                   0.01  
+6                         0.05                   0.01  
+7                         0.03                   0.02  
+8                         0.06                   0.00  
+9                         0.04                   0.01  
+10                        0.05                   0.01  
+11                        0.04                   0.01  
+12                        0.01                   0.01  
+13                        0.06                   0.01  
+14                        0.00                   0.02  
+15                        0.07                   0.01  
+16                        0.07                   0.01  
+2022-07-09 04:13:37,301 - prompt.py[line:110] - INFO: relative error average :0.022137728769551866
+2022-07-09 04:13:37,301 - prompt.py[line:112] - INFO: relative error normalized average :0.021675989158108578
+2022-07-09 04:13:37,301 - prompt.py[line:116] - INFO: AQP time:0.7746690309140831
+2022-07-09 04:13:37,301 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:37,301 - test.py[line:287] - INFO: round:2
+2022-07-09 04:13:37,301 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:37,304 - prompt.py[line:66] - INFO: parse time:0.002771154046058655
+2022-07-09 04:13:37,304 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:37,304 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:37,351 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.0474715989548713
+2022-07-09 04:13:37,352 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:37,352 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:37,353 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013571488671004772
+2022-07-09 04:13:37,354 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.04959026211872697
+2022-07-09 04:13:37,354 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.06
+2022-07-09 04:13:37,384 - model_sampling.py[line:386] - INFO: sampling time:0.030167295830324292
+2022-07-09 04:13:37,385 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:37,385 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:37,391 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.0066663590259850025
+2022-07-09 04:13:37,392 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:37,392 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:37,393 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0012999300379306078
+2022-07-09 04:13:37,394 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.008774671936407685
+2022-07-09 04:13:37,394 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:37,428 - model_sampling.py[line:386] - INFO: sampling time:0.033976366044953465
+2022-07-09 04:13:38,138 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.7092691080179065
+2022-07-09 04:13:38,153 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.03           0.04                   0.01        0.03   
+2                      0.01           0.00                   0.00        0.01   
+3                      0.02           0.07                   0.00        0.02   
+4                      0.00           0.05                   0.01        0.00   
+5                      0.01           0.07                   0.03        0.01   
+6                      0.01           0.01                   0.01        0.01   
+7                      0.01           0.02                   0.01        0.01   
+8                      0.02           0.03                   0.02        0.02   
+9                      0.01           0.05                   0.00        0.01   
+10                     0.04           0.03                   0.03        0.04   
+11                     0.02           0.02                   0.00        0.02   
+12                     0.01           0.06                   0.01        0.01   
+13                     0.01           0.05                   0.00        0.01   
+14                     0.01           0.00                   0.01        0.01   
+15                     0.01           0.07                   0.00        0.01   
+16                     0.03           0.05                   0.01        0.03   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.04                   0.01  
+2                         0.00                   0.00  
+3                         0.07                   0.00  
+4                         0.05                   0.01  
+5                         0.07                   0.03  
+6                         0.01                   0.01  
+7                         0.02                   0.01  
+8                         0.03                   0.02  
+9                         0.05                   0.00  
+10                        0.03                   0.03  
+11                        0.02                   0.00  
+12                        0.06                   0.01  
+13                        0.05                   0.00  
+14                        0.00                   0.01  
+15                        0.07                   0.00  
+16                        0.05                   0.01  
+2022-07-09 04:13:38,153 - prompt.py[line:110] - INFO: relative error average :0.021004710454296596
+2022-07-09 04:13:38,153 - prompt.py[line:112] - INFO: relative error normalized average :0.020604849808256002
+2022-07-09 04:13:38,153 - prompt.py[line:116] - INFO: AQP time:0.7769988079089671
+2022-07-09 04:13:38,153 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:38,153 - test.py[line:287] - INFO: round:3
+2022-07-09 04:13:38,153 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:38,156 - prompt.py[line:66] - INFO: parse time:0.0027793848421424627
+2022-07-09 04:13:38,156 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:38,156 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:38,203 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.04738904512487352
+2022-07-09 04:13:38,204 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:38,204 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:38,205 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.001367397140711546
+2022-07-09 04:13:38,206 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.049518606858327985
+2022-07-09 04:13:38,206 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.06
+2022-07-09 04:13:38,236 - model_sampling.py[line:386] - INFO: sampling time:0.030055686132982373
+2022-07-09 04:13:38,237 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:38,237 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:38,243 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.006541982060298324
+2022-07-09 04:13:38,243 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:38,244 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:38,245 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.001289521111175418
+2022-07-09 04:13:38,245 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.008616163861006498
+2022-07-09 04:13:38,245 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:38,280 - model_sampling.py[line:386] - INFO: sampling time:0.034098217030987144
+2022-07-09 04:13:38,987 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.7068612279836088
+2022-07-09 04:13:39,002 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.01           0.04                   0.02        0.01   
+2                      0.01           0.00                   0.00        0.01   
+3                      0.01           0.05                   0.01        0.01   
+4                      0.01           0.04                   0.01        0.01   
+5                      0.01           0.04                   0.00        0.01   
+6                      0.02           0.00                   0.00        0.02   
+7                      0.02           0.00                   0.02        0.02   
+8                      0.02           0.03                   0.02        0.02   
+9                      0.01           0.06                   0.01        0.01   
+10                     0.02           0.05                   0.01        0.02   
+11                     0.00           0.04                   0.00        0.00   
+12                     0.01           0.06                   0.00        0.01   
+13                     0.01           0.01                   0.00        0.01   
+14                     0.01           0.03                   0.01        0.01   
+15                     0.00           0.06                   0.03        0.00   
+16                     0.01           0.00                   0.01        0.01   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.04                   0.02  
+2                         0.00                   0.00  
+3                         0.05                   0.01  
+4                         0.04                   0.01  
+5                         0.04                   0.00  
+6                         0.00                   0.00  
+7                         0.00                   0.02  
+8                         0.03                   0.02  
+9                         0.06                   0.01  
+10                        0.05                   0.01  
+11                        0.04                   0.00  
+12                        0.06                   0.00  
+13                        0.01                   0.00  
+14                        0.03                   0.01  
+15                        0.06                   0.03  
+16                        0.00                   0.01  
+2022-07-09 04:13:39,002 - prompt.py[line:110] - INFO: relative error average :0.01828068127460124
+2022-07-09 04:13:39,002 - prompt.py[line:112] - INFO: relative error normalized average :0.017979068733657358
+2022-07-09 04:13:39,002 - prompt.py[line:116] - INFO: AQP time:0.7746408588718623
+2022-07-09 04:13:39,002 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:39,003 - test.py[line:283] - INFO: query:
+        select a_education_num, sum(a_age), avg(a_age), sum(a_hours_per_week), avg(a_hours_per_week), sum(a_fnlwgt), avg(a_fnlwgt)
+        from census_150k.adult_a join census_150k.adult_b on a_education_num = b_education_num
+        group by a_education_num order by a_education_num
+         with k=1 model-0.070-./config/train/census_a_torch_cvae.json model-0.1-./config/train/census_b_torch_cvae.json
+2022-07-09 04:13:39,003 - test.py[line:284] - INFO: ground_truth_path:./ground_truth/census/census_truth.csv
+2022-07-09 04:13:39,003 - test.py[line:287] - INFO: round:1
+2022-07-09 04:13:39,003 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:39,005 - prompt.py[line:66] - INFO: parse time:0.002748491009697318
+2022-07-09 04:13:39,005 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:39,006 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:39,053 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.04747847514227033
+2022-07-09 04:13:39,053 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:39,054 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:39,055 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013650080654770136
+2022-07-09 04:13:39,055 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.049593216041103005
+2022-07-09 04:13:39,055 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.07
+2022-07-09 04:13:39,087 - model_sampling.py[line:386] - INFO: sampling time:0.03200518409721553
+2022-07-09 04:13:39,088 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:39,088 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:39,095 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.006713039008900523
+2022-07-09 04:13:39,095 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:39,096 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:39,097 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0012975968420505524
+2022-07-09 04:13:39,097 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.008800443960353732
+2022-07-09 04:13:39,097 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:39,131 - model_sampling.py[line:386] - INFO: sampling time:0.03410916798748076
+2022-07-09 04:13:39,939 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.8073104959912598
+2022-07-09 04:13:39,954 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.06           0.07                   0.04        0.06   
+2                      0.02           0.03                   0.02        0.02   
+3                      0.02           0.05                   0.00        0.02   
+4                      0.01           0.05                   0.01        0.01   
+5                      0.01           0.03                   0.01        0.01   
+6                      0.01           0.04                   0.00        0.01   
+7                      0.01           0.03                   0.00        0.01   
+8                      0.02           0.01                   0.02        0.02   
+9                      0.00           0.06                   0.02        0.00   
+10                     0.01           0.03                   0.01        0.01   
+11                     0.03           0.01                   0.02        0.03   
+12                     0.01           0.06                   0.00        0.01   
+13                     0.02           0.02                   0.00        0.02   
+14                     0.01           0.05                   0.01        0.01   
+15                     0.04           0.08                   0.01        0.04   
+16                     0.01           0.05                   0.01        0.01   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.07                   0.04  
+2                         0.03                   0.02  
+3                         0.05                   0.00  
+4                         0.05                   0.01  
+5                         0.03                   0.01  
+6                         0.04                   0.00  
+7                         0.03                   0.00  
+8                         0.01                   0.02  
+9                         0.06                   0.02  
+10                        0.03                   0.01  
+11                        0.01                   0.02  
+12                        0.06                   0.00  
+13                        0.02                   0.00  
+14                        0.05                   0.01  
+15                        0.08                   0.01  
+16                        0.05                   0.01  
+2022-07-09 04:13:39,954 - prompt.py[line:110] - INFO: relative error average :0.023550514567360552
+2022-07-09 04:13:39,954 - prompt.py[line:112] - INFO: relative error normalized average :0.023085505861080685
+2022-07-09 04:13:39,955 - prompt.py[line:116] - INFO: AQP time:0.8770190880168229
+2022-07-09 04:13:39,955 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:39,955 - test.py[line:287] - INFO: round:2
+2022-07-09 04:13:39,955 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:39,957 - prompt.py[line:66] - INFO: parse time:0.0027935809921473265
+2022-07-09 04:13:39,958 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:39,958 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:40,005 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.047467082971706986
+2022-07-09 04:13:40,005 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:40,006 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:40,007 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013562338426709175
+2022-07-09 04:13:40,007 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.04957804409787059
+2022-07-09 04:13:40,007 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.07
+2022-07-09 04:13:40,039 - model_sampling.py[line:386] - INFO: sampling time:0.031954357866197824
+2022-07-09 04:13:40,040 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:40,040 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:40,047 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.00670834886841476
+2022-07-09 04:13:40,047 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:40,048 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:40,049 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0012888251803815365
+2022-07-09 04:13:40,049 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.008798765018582344
+2022-07-09 04:13:40,049 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:40,083 - model_sampling.py[line:386] - INFO: sampling time:0.03403811505995691
+2022-07-09 04:13:40,889 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.8047158231493086
+2022-07-09 04:13:40,904 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.02           0.09                   0.01        0.02   
+2                      0.01           0.00                   0.00        0.01   
+3                      0.02           0.06                   0.02        0.02   
+4                      0.01           0.06                   0.02        0.01   
+5                      0.01           0.03                   0.00        0.01   
+6                      0.02           0.05                   0.01        0.02   
+7                      0.01           0.04                   0.01        0.01   
+8                      0.04           0.04                   0.03        0.04   
+9                      0.01           0.06                   0.00        0.01   
+10                     0.02           0.02                   0.00        0.02   
+11                     0.02           0.04                   0.00        0.02   
+12                     0.02           0.06                   0.00        0.02   
+13                     0.01           0.04                   0.00        0.01   
+14                     0.01           0.05                   0.01        0.01   
+15                     0.00           0.07                   0.03        0.00   
+16                     0.02           0.04                   0.01        0.02   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.09                   0.01  
+2                         0.00                   0.00  
+3                         0.06                   0.02  
+4                         0.06                   0.02  
+5                         0.03                   0.00  
+6                         0.05                   0.01  
+7                         0.04                   0.01  
+8                         0.04                   0.03  
+9                         0.06                   0.00  
+10                        0.02                   0.00  
+11                        0.04                   0.00  
+12                        0.06                   0.00  
+13                        0.04                   0.00  
+14                        0.05                   0.01  
+15                        0.07                   0.03  
+16                        0.04                   0.01  
+2022-07-09 04:13:40,904 - prompt.py[line:110] - INFO: relative error average :0.023744535153566438
+2022-07-09 04:13:40,904 - prompt.py[line:112] - INFO: relative error normalized average :0.023245257557156604
+2022-07-09 04:13:40,904 - prompt.py[line:116] - INFO: AQP time:0.874287435086444
+2022-07-09 04:13:40,904 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:40,904 - test.py[line:287] - INFO: round:3
+2022-07-09 04:13:40,904 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:40,907 - prompt.py[line:66] - INFO: parse time:0.002772308886051178
+2022-07-09 04:13:40,907 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:40,907 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:40,954 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.04738050093874335
+2022-07-09 04:13:40,955 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:40,955 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:40,956 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013516591861844063
+2022-07-09 04:13:40,956 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.04949826397933066
+2022-07-09 04:13:40,957 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.07
+2022-07-09 04:13:40,989 - model_sampling.py[line:386] - INFO: sampling time:0.031896167900413275
+2022-07-09 04:13:40,989 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:40,989 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:40,996 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.006554456893354654
+2022-07-09 04:13:40,996 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:40,997 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:40,998 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0012921369634568691
+2022-07-09 04:13:40,998 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.00864055403508246
+2022-07-09 04:13:40,998 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:41,032 - model_sampling.py[line:386] - INFO: sampling time:0.03397899097763002
+2022-07-09 04:13:41,843 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.809827569173649
+2022-07-09 04:13:41,858 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.01           0.09                   0.00        0.01   
+2                      0.00           0.03                   0.01        0.00   
+3                      0.03           0.05                   0.01        0.03   
+4                      0.02           0.08                   0.01        0.02   
+5                      0.03           0.08                   0.01        0.03   
+6                      0.00           0.03                   0.03        0.00   
+7                      0.02           0.02                   0.00        0.02   
+8                      0.02           0.04                   0.01        0.02   
+9                      0.01           0.04                   0.01        0.01   
+10                     0.03           0.05                   0.01        0.03   
+11                     0.01           0.08                   0.01        0.01   
+12                     0.01           0.03                   0.00        0.01   
+13                     0.00           0.03                   0.02        0.00   
+14                     0.02           0.03                   0.01        0.02   
+15                     0.01           0.06                   0.01        0.01   
+16                     0.02           0.04                   0.00        0.02   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.09                   0.00  
+2                         0.03                   0.01  
+3                         0.05                   0.01  
+4                         0.08                   0.01  
+5                         0.08                   0.01  
+6                         0.03                   0.03  
+7                         0.02                   0.00  
+8                         0.04                   0.01  
+9                         0.04                   0.01  
+10                        0.05                   0.01  
+11                        0.08                   0.01  
+12                        0.03                   0.00  
+13                        0.03                   0.02  
+14                        0.03                   0.01  
+15                        0.06                   0.01  
+16                        0.04                   0.00  
+2022-07-09 04:13:41,858 - prompt.py[line:110] - INFO: relative error average :0.02420871508616298
+2022-07-09 04:13:41,858 - prompt.py[line:112] - INFO: relative error normalized average :0.023654561295269123
+2022-07-09 04:13:41,858 - prompt.py[line:116] - INFO: AQP time:0.8792812877800316
+2022-07-09 04:13:41,858 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:41,858 - test.py[line:283] - INFO: query:
+        select a_education_num, sum(a_age), avg(a_age), sum(a_hours_per_week), avg(a_hours_per_week), sum(a_fnlwgt), avg(a_fnlwgt)
+        from census_150k.adult_a join census_150k.adult_b on a_education_num = b_education_num
+        group by a_education_num order by a_education_num
+         with k=1 model-0.080-./config/train/census_a_torch_cvae.json model-0.1-./config/train/census_b_torch_cvae.json
+2022-07-09 04:13:41,858 - test.py[line:284] - INFO: ground_truth_path:./ground_truth/census/census_truth.csv
+2022-07-09 04:13:41,858 - test.py[line:287] - INFO: round:1
+2022-07-09 04:13:41,858 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:41,861 - prompt.py[line:66] - INFO: parse time:0.0027785280253738165
+2022-07-09 04:13:41,861 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:41,861 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:41,909 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.04744962300173938
+2022-07-09 04:13:41,909 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:41,909 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:41,911 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013548131100833416
+2022-07-09 04:13:41,911 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.04955622390843928
+2022-07-09 04:13:41,911 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.08
+2022-07-09 04:13:41,945 - model_sampling.py[line:386] - INFO: sampling time:0.033915341133251786
+2022-07-09 04:13:41,946 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:41,946 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:41,952 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.006590405013412237
+2022-07-09 04:13:41,953 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:41,953 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:41,954 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0012800919357687235
+2022-07-09 04:13:41,955 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.00866342382505536
+2022-07-09 04:13:41,955 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:41,989 - model_sampling.py[line:386] - INFO: sampling time:0.03391098091378808
+2022-07-09 04:13:42,898 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.9086780790239573
+2022-07-09 04:13:42,913 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.04           0.07                   0.02        0.04   
+2                      0.02           0.01                   0.02        0.02   
+3                      0.00           0.02                   0.00        0.00   
+4                      0.00           0.06                   0.00        0.00   
+5                      0.00           0.03                   0.02        0.00   
+6                      0.00           0.03                   0.01        0.00   
+7                      0.00           0.04                   0.01        0.00   
+8                      0.02           0.04                   0.01        0.02   
+9                      0.01           0.03                   0.01        0.01   
+10                     0.03           0.05                   0.00        0.03   
+11                     0.02           0.08                   0.01        0.02   
+12                     0.01           0.04                   0.00        0.01   
+13                     0.00           0.05                   0.01        0.00   
+14                     0.00           0.03                   0.02        0.00   
+15                     0.01           0.04                   0.01        0.01   
+16                     0.01           0.04                   0.02        0.01   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.07                   0.02  
+2                         0.01                   0.02  
+3                         0.02                   0.00  
+4                         0.06                   0.00  
+5                         0.03                   0.02  
+6                         0.03                   0.01  
+7                         0.04                   0.01  
+8                         0.04                   0.01  
+9                         0.03                   0.01  
+10                        0.05                   0.00  
+11                        0.08                   0.01  
+12                        0.04                   0.00  
+13                        0.05                   0.01  
+14                        0.03                   0.02  
+15                        0.04                   0.01  
+16                        0.04                   0.02  
+2022-07-09 04:13:42,913 - prompt.py[line:110] - INFO: relative error average :0.020754527633275753
+2022-07-09 04:13:42,913 - prompt.py[line:112] - INFO: relative error normalized average :0.02037592295249233
+2022-07-09 04:13:42,913 - prompt.py[line:116] - INFO: AQP time:0.9800908290781081
+2022-07-09 04:13:42,913 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:42,913 - test.py[line:287] - INFO: round:2
+2022-07-09 04:13:42,913 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:42,916 - prompt.py[line:66] - INFO: parse time:0.002777154091745615
+2022-07-09 04:13:42,916 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:42,916 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:42,964 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.047344818944111466
+2022-07-09 04:13:42,964 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:42,964 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:42,966 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013613610062748194
+2022-07-09 04:13:42,966 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.04947381792590022
+2022-07-09 04:13:42,966 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.08
+2022-07-09 04:13:43,000 - model_sampling.py[line:386] - INFO: sampling time:0.03379795607179403
+2022-07-09 04:13:43,001 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:43,001 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:43,007 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.006633409997448325
+2022-07-09 04:13:43,007 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:43,008 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:43,009 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0012893190141767263
+2022-07-09 04:13:43,009 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.0087236980907619
+2022-07-09 04:13:43,009 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:43,044 - model_sampling.py[line:386] - INFO: sampling time:0.03403094410896301
+2022-07-09 04:13:43,961 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.916863173013553
+2022-07-09 04:13:43,976 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.01           0.07                   0.01        0.01   
+2                      0.01           0.04                   0.01        0.01   
+3                      0.01           0.04                   0.01        0.01   
+4                      0.00           0.06                   0.00        0.00   
+5                      0.01           0.05                   0.00        0.01   
+6                      0.01           0.05                   0.01        0.01   
+7                      0.03           0.04                   0.00        0.03   
+8                      0.00           0.05                   0.03        0.00   
+9                      0.02           0.07                   0.01        0.02   
+10                     0.01           0.07                   0.01        0.01   
+11                     0.02           0.06                   0.01        0.02   
+12                     0.01           0.07                   0.02        0.01   
+13                     0.02           0.05                   0.01        0.02   
+14                     0.01           0.05                   0.01        0.01   
+15                     0.01           0.05                   0.02        0.01   
+16                     0.01           0.04                   0.01        0.01   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.07                   0.01  
+2                         0.04                   0.01  
+3                         0.04                   0.01  
+4                         0.06                   0.00  
+5                         0.05                   0.00  
+6                         0.05                   0.01  
+7                         0.04                   0.00  
+8                         0.05                   0.03  
+9                         0.07                   0.01  
+10                        0.07                   0.01  
+11                        0.06                   0.01  
+12                        0.07                   0.02  
+13                        0.05                   0.01  
+14                        0.05                   0.01  
+15                        0.05                   0.02  
+16                        0.04                   0.01  
+2022-07-09 04:13:43,976 - prompt.py[line:110] - INFO: relative error average :0.026015820997257116
+2022-07-09 04:13:43,976 - prompt.py[line:112] - INFO: relative error normalized average :0.025451771827895944
+2022-07-09 04:13:43,976 - prompt.py[line:116] - INFO: AQP time:0.9882918070070446
+2022-07-09 04:13:43,976 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:43,976 - test.py[line:287] - INFO: round:3
+2022-07-09 04:13:43,976 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:43,979 - prompt.py[line:66] - INFO: parse time:0.00278890086337924
+2022-07-09 04:13:43,979 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:43,979 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:44,027 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.04736050311475992
+2022-07-09 04:13:44,027 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:44,028 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:44,029 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013571870513260365
+2022-07-09 04:13:44,029 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.049484151881188154
+2022-07-09 04:13:44,029 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.08
+2022-07-09 04:13:44,063 - model_sampling.py[line:386] - INFO: sampling time:0.033847163897007704
+2022-07-09 04:13:44,064 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:44,064 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:44,071 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.006613841978833079
+2022-07-09 04:13:44,071 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:44,071 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:44,073 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0012844230514019728
+2022-07-09 04:13:44,073 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.008701783139258623
+2022-07-09 04:13:44,073 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:44,107 - model_sampling.py[line:386] - INFO: sampling time:0.03403985104523599
+2022-07-09 04:13:45,021 - model_sampling.py[line:67] - INFO: execute rewrited query time:0.9134309180080891
+2022-07-09 04:13:45,036 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.01           0.13                   0.01        0.01   
+2                      0.00           0.00                   0.01        0.00   
+3                      0.01           0.05                   0.02        0.01   
+4                      0.02           0.06                   0.01        0.02   
+5                      0.00           0.04                   0.01        0.00   
+6                      0.02           0.02                   0.01        0.02   
+7                      0.00           0.06                   0.01        0.00   
+8                      0.01           0.04                   0.02        0.01   
+9                      0.01           0.03                   0.01        0.01   
+10                     0.00           0.07                   0.00        0.00   
+11                     0.01           0.03                   0.01        0.01   
+12                     0.01           0.06                   0.01        0.01   
+13                     0.01           0.01                   0.00        0.01   
+14                     0.01           0.02                   0.02        0.01   
+15                     0.00           0.04                   0.02        0.00   
+16                     0.03           0.02                   0.01        0.03   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.13                   0.01  
+2                         0.00                   0.01  
+3                         0.05                   0.02  
+4                         0.06                   0.01  
+5                         0.04                   0.01  
+6                         0.02                   0.01  
+7                         0.06                   0.01  
+8                         0.04                   0.02  
+9                         0.03                   0.01  
+10                        0.07                   0.00  
+11                        0.03                   0.01  
+12                        0.06                   0.01  
+13                        0.01                   0.00  
+14                        0.02                   0.02  
+15                        0.04                   0.02  
+16                        0.02                   0.01  
+2022-07-09 04:13:45,036 - prompt.py[line:110] - INFO: relative error average :0.021991797506225475
+2022-07-09 04:13:45,036 - prompt.py[line:112] - INFO: relative error normalized average :0.021496403881572118
+2022-07-09 04:13:45,036 - prompt.py[line:116] - INFO: AQP time:0.9848582239355892
+2022-07-09 04:13:45,036 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:45,036 - test.py[line:283] - INFO: query:
+        select a_education_num, sum(a_age), avg(a_age), sum(a_hours_per_week), avg(a_hours_per_week), sum(a_fnlwgt), avg(a_fnlwgt)
+        from census_150k.adult_a join census_150k.adult_b on a_education_num = b_education_num
+        group by a_education_num order by a_education_num
+         with k=1 model-0.090-./config/train/census_a_torch_cvae.json model-0.1-./config/train/census_b_torch_cvae.json
+2022-07-09 04:13:45,036 - test.py[line:284] - INFO: ground_truth_path:./ground_truth/census/census_truth.csv
+2022-07-09 04:13:45,036 - test.py[line:287] - INFO: round:1
+2022-07-09 04:13:45,036 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:45,039 - prompt.py[line:66] - INFO: parse time:0.002793111139908433
+2022-07-09 04:13:45,039 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:45,039 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:45,087 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.04733325191773474
+2022-07-09 04:13:45,087 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:45,087 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:45,089 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013704400043934584
+2022-07-09 04:13:45,089 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.04946333495900035
+2022-07-09 04:13:45,089 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.09
+2022-07-09 04:13:45,125 - model_sampling.py[line:386] - INFO: sampling time:0.035911668092012405
+2022-07-09 04:13:45,126 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:45,126 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:45,132 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.006640132982283831
+2022-07-09 04:13:45,133 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:45,133 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:45,135 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.00129081797786057
+2022-07-09 04:13:45,135 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.008743733866140246
+2022-07-09 04:13:45,135 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:45,169 - model_sampling.py[line:386] - INFO: sampling time:0.03398151299916208
+2022-07-09 04:13:46,195 - model_sampling.py[line:67] - INFO: execute rewrited query time:1.0251035580877215
+2022-07-09 04:13:46,210 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.01           0.09                   0.00        0.01   
+2                      0.02           0.01                   0.01        0.02   
+3                      0.01           0.07                   0.01        0.01   
+4                      0.01           0.04                   0.00        0.01   
+5                      0.01           0.04                   0.03        0.01   
+6                      0.00           0.03                   0.01        0.00   
+7                      0.01           0.05                   0.00        0.01   
+8                      0.01           0.05                   0.03        0.01   
+9                      0.01           0.08                   0.01        0.01   
+10                     0.00           0.06                   0.01        0.00   
+11                     0.01           0.04                   0.01        0.01   
+12                     0.01           0.03                   0.01        0.01   
+13                     0.00           0.04                   0.00        0.00   
+14                     0.00           0.01                   0.02        0.00   
+15                     0.00           0.04                   0.02        0.00   
+16                     0.01           0.04                   0.01        0.01   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.09                   0.00  
+2                         0.01                   0.01  
+3                         0.07                   0.01  
+4                         0.04                   0.00  
+5                         0.04                   0.03  
+6                         0.03                   0.01  
+7                         0.05                   0.00  
+8                         0.05                   0.03  
+9                         0.08                   0.01  
+10                        0.06                   0.01  
+11                        0.04                   0.01  
+12                        0.03                   0.01  
+13                        0.04                   0.00  
+14                        0.01                   0.02  
+15                        0.04                   0.02  
+16                        0.04                   0.01  
+2022-07-09 04:13:46,210 - prompt.py[line:110] - INFO: relative error average :0.021149409927852664
+2022-07-09 04:13:46,210 - prompt.py[line:112] - INFO: relative error normalized average :0.02072142014744351
+2022-07-09 04:13:46,210 - prompt.py[line:116] - INFO: AQP time:1.098645516205579
+2022-07-09 04:13:46,210 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:46,210 - test.py[line:287] - INFO: round:2
+2022-07-09 04:13:46,210 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:46,213 - prompt.py[line:66] - INFO: parse time:0.0027631151024252176
+2022-07-09 04:13:46,213 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:46,213 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:46,260 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.047427465906366706
+2022-07-09 04:13:46,260 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:46,261 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:46,262 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013573591131716967
+2022-07-09 04:13:46,262 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.04954364406876266
+2022-07-09 04:13:46,263 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.09
+2022-07-09 04:13:46,298 - model_sampling.py[line:386] - INFO: sampling time:0.03572513512335718
+2022-07-09 04:13:46,299 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:46,299 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:46,306 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.006745999911800027
+2022-07-09 04:13:46,306 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:46,307 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:46,308 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013065210077911615
+2022-07-09 04:13:46,308 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.008847947930917144
+2022-07-09 04:13:46,308 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:46,343 - model_sampling.py[line:386] - INFO: sampling time:0.03431986295618117
+2022-07-09 04:13:47,370 - model_sampling.py[line:67] - INFO: execute rewrited query time:1.0260552349500358
+2022-07-09 04:13:47,384 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.02           0.09                   0.02        0.02   
+2                      0.01           0.03                   0.01        0.01   
+3                      0.00           0.08                   0.01        0.00   
+4                      0.02           0.05                   0.00        0.02   
+5                      0.01           0.03                   0.00        0.01   
+6                      0.03           0.02                   0.00        0.03   
+7                      0.02           0.03                   0.00        0.02   
+8                      0.01           0.06                   0.02        0.01   
+9                      0.00           0.04                   0.00        0.00   
+10                     0.01           0.03                   0.01        0.01   
+11                     0.02           0.06                   0.01        0.02   
+12                     0.02           0.04                   0.01        0.02   
+13                     0.00           0.04                   0.01        0.00   
+14                     0.01           0.03                   0.01        0.01   
+15                     0.00           0.02                   0.01        0.00   
+16                     0.02           0.02                   0.02        0.02   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.09                   0.02  
+2                         0.03                   0.01  
+3                         0.08                   0.01  
+4                         0.05                   0.00  
+5                         0.03                   0.00  
+6                         0.02                   0.00  
+7                         0.03                   0.00  
+8                         0.06                   0.02  
+9                         0.04                   0.00  
+10                        0.03                   0.01  
+11                        0.06                   0.01  
+12                        0.04                   0.01  
+13                        0.04                   0.01  
+14                        0.03                   0.01  
+15                        0.02                   0.01  
+16                        0.02                   0.02  
+2022-07-09 04:13:47,385 - prompt.py[line:110] - INFO: relative error average :0.020924348330480222
+2022-07-09 04:13:47,385 - prompt.py[line:112] - INFO: relative error normalized average :0.020512439250605734
+2022-07-09 04:13:47,385 - prompt.py[line:116] - INFO: AQP time:1.099727941211313
+2022-07-09 04:13:47,385 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:47,385 - test.py[line:287] - INFO: round:3
+2022-07-09 04:13:47,385 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:47,388 - prompt.py[line:66] - INFO: parse time:0.002764057135209441
+2022-07-09 04:13:47,388 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:47,388 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:47,435 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.0474392338655889
+2022-07-09 04:13:47,435 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:47,436 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:47,437 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013631850015372038
+2022-07-09 04:13:47,437 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.04955506697297096
+2022-07-09 04:13:47,437 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.09
+2022-07-09 04:13:47,473 - model_sampling.py[line:386] - INFO: sampling time:0.035647060023620725
+2022-07-09 04:13:47,474 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:47,474 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:47,481 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.0065392800606787205
+2022-07-09 04:13:47,481 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:47,481 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:47,483 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.001291800057515502
+2022-07-09 04:13:47,483 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.008634580997750163
+2022-07-09 04:13:47,483 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:47,517 - model_sampling.py[line:386] - INFO: sampling time:0.03400202910415828
+2022-07-09 04:13:48,544 - model_sampling.py[line:67] - INFO: execute rewrited query time:1.026554937940091
+2022-07-09 04:13:48,559 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.02           0.03                   0.04        0.02   
+2                      0.00           0.04                   0.01        0.00   
+3                      0.01           0.04                   0.01        0.01   
+4                      0.01           0.03                   0.00        0.01   
+5                      0.03           0.00                   0.01        0.03   
+6                      0.00           0.03                   0.02        0.00   
+7                      0.01           0.04                   0.01        0.01   
+8                      0.01           0.03                   0.03        0.01   
+9                      0.02           0.04                   0.01        0.02   
+10                     0.01           0.06                   0.01        0.01   
+11                     0.01           0.04                   0.01        0.01   
+12                     0.01           0.04                   0.01        0.01   
+13                     0.00           0.03                   0.00        0.00   
+14                     0.01           0.05                   0.00        0.01   
+15                     0.01           0.05                   0.00        0.01   
+16                     0.01           0.05                   0.03        0.01   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.03                   0.04  
+2                         0.04                   0.01  
+3                         0.04                   0.01  
+4                         0.03                   0.00  
+5                         0.00                   0.01  
+6                         0.03                   0.02  
+7                         0.04                   0.01  
+8                         0.03                   0.03  
+9                         0.04                   0.01  
+10                        0.06                   0.01  
+11                        0.04                   0.01  
+12                        0.04                   0.01  
+13                        0.03                   0.00  
+14                        0.05                   0.00  
+15                        0.05                   0.00  
+16                        0.05                   0.03  
+2022-07-09 04:13:48,559 - prompt.py[line:110] - INFO: relative error average :0.020181592413105374
+2022-07-09 04:13:48,559 - prompt.py[line:112] - INFO: relative error normalized average :0.01985026425098639
+2022-07-09 04:13:48,559 - prompt.py[line:116] - INFO: AQP time:1.0997867027763277
+2022-07-09 04:13:48,559 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:48,559 - test.py[line:283] - INFO: query:
+        select a_education_num, sum(a_age), avg(a_age), sum(a_hours_per_week), avg(a_hours_per_week), sum(a_fnlwgt), avg(a_fnlwgt)
+        from census_150k.adult_a join census_150k.adult_b on a_education_num = b_education_num
+        group by a_education_num order by a_education_num
+         with k=1 model-0.100-./config/train/census_a_torch_cvae.json model-0.1-./config/train/census_b_torch_cvae.json
+2022-07-09 04:13:48,560 - test.py[line:284] - INFO: ground_truth_path:./ground_truth/census/census_truth.csv
+2022-07-09 04:13:48,560 - test.py[line:287] - INFO: round:1
+2022-07-09 04:13:48,560 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:48,562 - prompt.py[line:66] - INFO: parse time:0.0027921530418097973
+2022-07-09 04:13:48,563 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:48,563 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:48,610 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.047412184067070484
+2022-07-09 04:13:48,610 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:48,611 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:48,612 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.001360015943646431
+2022-07-09 04:13:48,612 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.04951955913566053
+2022-07-09 04:13:48,612 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.1
+2022-07-09 04:13:48,650 - model_sampling.py[line:386] - INFO: sampling time:0.037521114107221365
+2022-07-09 04:13:48,651 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:48,651 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:48,657 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.00666127004660666
+2022-07-09 04:13:48,657 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:48,658 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:48,659 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0012881821021437645
+2022-07-09 04:13:48,659 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.00875945994630456
+2022-07-09 04:13:48,660 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:48,694 - model_sampling.py[line:386] - INFO: sampling time:0.03399779414758086
+2022-07-09 04:13:49,918 - model_sampling.py[line:67] - INFO: execute rewrited query time:1.223047997104004
+2022-07-09 04:13:49,933 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.03           0.06                   0.03        0.03   
+2                      0.01           0.04                   0.01        0.01   
+3                      0.01           0.06                   0.01        0.01   
+4                      0.00           0.05                   0.00        0.00   
+5                      0.00           0.05                   0.01        0.00   
+6                      0.02           0.04                   0.01        0.02   
+7                      0.00           0.01                   0.00        0.00   
+8                      0.02           0.05                   0.02        0.02   
+9                      0.01           0.05                   0.02        0.01   
+10                     0.00           0.03                   0.01        0.00   
+11                     0.01           0.06                   0.01        0.01   
+12                     0.00           0.04                   0.00        0.00   
+13                     0.00           0.05                   0.01        0.00   
+14                     0.00           0.01                   0.02        0.00   
+15                     0.00           0.04                   0.02        0.00   
+16                     0.01           0.03                   0.01        0.01   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.06                   0.03  
+2                         0.04                   0.01  
+3                         0.06                   0.01  
+4                         0.05                   0.00  
+5                         0.05                   0.01  
+6                         0.04                   0.01  
+7                         0.01                   0.00  
+8                         0.05                   0.02  
+9                         0.05                   0.02  
+10                        0.03                   0.01  
+11                        0.06                   0.01  
+12                        0.04                   0.00  
+13                        0.05                   0.01  
+14                        0.01                   0.02  
+15                        0.04                   0.02  
+16                        0.03                   0.01  
+2022-07-09 04:13:49,933 - prompt.py[line:110] - INFO: relative error average :0.020387202803790576
+2022-07-09 04:13:49,933 - prompt.py[line:112] - INFO: relative error normalized average :0.02002142010070132
+2022-07-09 04:13:49,933 - prompt.py[line:116] - INFO: AQP time:1.2982042508665472
+2022-07-09 04:13:49,933 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:49,933 - test.py[line:287] - INFO: round:2
+2022-07-09 04:13:49,933 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:49,936 - prompt.py[line:66] - INFO: parse time:0.0027751829475164413
+2022-07-09 04:13:49,936 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:49,936 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:49,983 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.04748507495969534
+2022-07-09 04:13:49,983 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:49,984 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:49,985 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013599819503724575
+2022-07-09 04:13:49,985 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.049606082029640675
+2022-07-09 04:13:49,986 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.1
+2022-07-09 04:13:50,023 - model_sampling.py[line:386] - INFO: sampling time:0.037551373010501266
+2022-07-09 04:13:50,024 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:50,024 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:50,031 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.006740292999893427
+2022-07-09 04:13:50,031 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:50,032 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:50,033 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0012879238929599524
+2022-07-09 04:13:50,033 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.008823984069749713
+2022-07-09 04:13:50,033 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:50,067 - model_sampling.py[line:386] - INFO: sampling time:0.03399907401762903
+2022-07-09 04:13:51,292 - model_sampling.py[line:67] - INFO: execute rewrited query time:1.2239547008648515
+2022-07-09 04:13:51,307 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.02           0.05                   0.03        0.02   
+2                      0.02           0.02                   0.01        0.02   
+3                      0.02           0.06                   0.01        0.02   
+4                      0.01           0.06                   0.01        0.01   
+5                      0.01           0.04                   0.02        0.01   
+6                      0.00           0.03                   0.02        0.00   
+7                      0.01           0.02                   0.00        0.01   
+8                      0.01           0.05                   0.02        0.01   
+9                      0.00           0.03                   0.01        0.00   
+10                     0.00           0.05                   0.01        0.00   
+11                     0.01           0.07                   0.02        0.01   
+12                     0.02           0.01                   0.01        0.02   
+13                     0.00           0.04                   0.01        0.00   
+14                     0.01           0.04                   0.01        0.01   
+15                     0.01           0.05                   0.01        0.01   
+16                     0.01           0.04                   0.01        0.01   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.05                   0.03  
+2                         0.02                   0.01  
+3                         0.06                   0.01  
+4                         0.06                   0.01  
+5                         0.04                   0.02  
+6                         0.03                   0.02  
+7                         0.02                   0.00  
+8                         0.05                   0.02  
+9                         0.03                   0.01  
+10                        0.05                   0.01  
+11                        0.07                   0.02  
+12                        0.01                   0.01  
+13                        0.04                   0.01  
+14                        0.04                   0.01  
+15                        0.05                   0.01  
+16                        0.04                   0.01  
+2022-07-09 04:13:51,307 - prompt.py[line:110] - INFO: relative error average :0.02135734789896705
+2022-07-09 04:13:51,307 - prompt.py[line:112] - INFO: relative error normalized average :0.020981210762031976
+2022-07-09 04:13:51,307 - prompt.py[line:116] - INFO: AQP time:1.29910894529894
+2022-07-09 04:13:51,307 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:51,307 - test.py[line:287] - INFO: round:3
+2022-07-09 04:13:51,307 - prompt.py[line:62] - INFO: Execute approximate query processing.
+2022-07-09 04:13:51,310 - prompt.py[line:66] - INFO: parse time:0.002788309007883072
+2022-07-09 04:13:51,310 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_a_torch_cvae.json successfully
+2022-07-09 04:13:51,310 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-a_a_education_num_a_fnlwgt#a_age#a_hours_per_week_a_education_num_binary_gaussian5_0
+2022-07-09 04:13:51,358 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.04744629701599479
+2022-07-09 04:13:51,358 - pytorch_cvae.py[line:275] - INFO: feature info:[('a_fnlwgt', 'numerical', 6), ('a_age', 'numerical', 6), ('a_hours_per_week', 'numerical', 6), ('a_education_num', 'categorical', 5)]
+2022-07-09 04:13:51,358 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-a_a_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:51,360 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013543360400944948
+2022-07-09 04:13:51,360 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.04956974112428725
+2022-07-09 04:13:51,360 - model_sampling.py[line:244] - INFO: statistics sampling rate:0.1
+2022-07-09 04:13:51,398 - model_sampling.py[line:386] - INFO: sampling time:0.03761018207296729
+2022-07-09 04:13:51,398 - model_sampling.py[line:48] - INFO: load train config ./config/train/census_b_torch_cvae.json successfully
+2022-07-09 04:13:51,398 - dataset_utils.py[line:564] - INFO: load existing dataset(light):census-adult-b_b_education_num__b_education_num_binary_gaussian5_0
+2022-07-09 04:13:51,405 - dataset_utils.py[line:573] - INFO: load dataset(light) time elapsed:0.0066910311579704285
+2022-07-09 04:13:51,405 - pytorch_cvae.py[line:275] - INFO: feature info:[('b_education_num', 'categorical', 5)]
+2022-07-09 04:13:51,406 - model_utils.py[line:75] - INFO: load model name:torch_cvae_census-adult-b_b_education_num_ld50_id100_bs512_ep100_0_binary_gaussian5
+2022-07-09 04:13:51,407 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0012930009979754686
+2022-07-09 04:13:51,407 - pytorch_cvae.py[line:285] - INFO: load model time elapsed:0.008789355168119073
+2022-07-09 04:13:51,407 - model_sampling.py[line:208] - INFO: house sampling rate:0.1
+2022-07-09 04:13:51,442 - model_sampling.py[line:386] - INFO: sampling time:0.03405038616620004
+2022-07-09 04:13:52,661 - model_sampling.py[line:67] - INFO: execute rewrited query time:1.2182870311662555
+2022-07-09 04:13:52,676 - prompt.py[line:107] - INFO: relative error:
+                 avg(a_age)  avg(a_fnlwgt)  avg(a_hours_per_week)  sum(a_age)  \
+a_education_num                                                                 
+1                      0.00           0.07                   0.01        0.00   
+2                      0.02           0.04                   0.01        0.02   
+3                      0.01           0.07                   0.02        0.01   
+4                      0.00           0.08                   0.00        0.00   
+5                      0.01           0.04                   0.02        0.01   
+6                      0.00           0.03                   0.02        0.00   
+7                      0.00           0.04                   0.00        0.00   
+8                      0.02           0.07                   0.01        0.02   
+9                      0.01           0.03                   0.01        0.01   
+10                     0.00           0.09                   0.00        0.00   
+11                     0.00           0.06                   0.01        0.00   
+12                     0.02           0.05                   0.01        0.02   
+13                     0.01           0.07                   0.02        0.01   
+14                     0.00           0.03                   0.02        0.00   
+15                     0.01           0.04                   0.01        0.01   
+16                     0.02           0.04                   0.01        0.02   
+
+                 sum(a_fnlwgt)  sum(a_hours_per_week)  
+a_education_num                                        
+1                         0.07                   0.01  
+2                         0.04                   0.01  
+3                         0.07                   0.02  
+4                         0.08                   0.00  
+5                         0.04                   0.02  
+6                         0.03                   0.02  
+7                         0.04                   0.00  
+8                         0.07                   0.01  
+9                         0.03                   0.01  
+10                        0.09                   0.00  
+11                        0.06                   0.01  
+12                        0.05                   0.01  
+13                        0.07                   0.02  
+14                        0.03                   0.02  
+15                        0.04                   0.01  
+16                        0.04                   0.01  
+2022-07-09 04:13:52,676 - prompt.py[line:110] - INFO: relative error average :0.024121618246908828
+2022-07-09 04:13:52,676 - prompt.py[line:112] - INFO: relative error normalized average :0.023578187096220365
+2022-07-09 04:13:52,676 - prompt.py[line:116] - INFO: AQP time:1.293597781099379
+2022-07-09 04:13:52,676 - prompt.py[line:117] - INFO: Saving info
+2022-07-09 04:13:52,676 - test.py[line:310] - INFO: dataset:census
+average running times:[0.595, 0.602, 0.4, 0.507, 0.658, 0.776, 0.877, 0.984, 1.1, 1.297]
+average query errors:[0.055644, 0.03813, 0.021914, 0.02305, 0.023191, 0.020087, 0.023329, 0.022441, 0.020361, 0.021527]

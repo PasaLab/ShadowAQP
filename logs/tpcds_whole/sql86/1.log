@@ -1,0 +1,265 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2023-06-08 15:44:53,364 - main.py[line:626] - INFO: load query config config/tpcds_whole/query/sql86.json successfully
+2023-06-08 15:44:53,365 - main.py[line:633] - INFO: load train config ./config/tpcds_whole/train/86_web_sales.json successfully
+2023-06-08 15:44:53,365 - main.py[line:633] - INFO: load train config ./config/tpcds_whole/train/3_date_dim.json successfully
+2023-06-08 15:44:53,365 - main.py[line:633] - INFO: load train config ./config/tpcds_whole/train/86_item.json successfully
+2023-06-08 15:44:53,365 - pytorch_cvae.py[line:249] - INFO: epoch:1
+2023-06-08 15:44:53,365 - pytorch_cvae.py[line:250] - INFO: batch size:128
+2023-06-08 15:44:53,365 - pytorch_cvae.py[line:251] - INFO: latent dimension:100
+2023-06-08 15:44:53,365 - pytorch_cvae.py[line:252] - INFO: intermediate dimension:50
+2023-06-08 15:44:53,365 - pytorch_cvae.py[line:253] - INFO: gpu num:0
+2023-06-08 15:44:53,373 - dataset_utils.py[line:310] - INFO: loading data:/home/lihan/train_dataset/tpcds_whole_1G/web_sales.csv
+2023-06-08 15:44:54,835 - dataset_utils.py[line:335] - INFO: data total rows:719045
+2023-06-08 15:44:54,835 - dataset_utils.py[line:371] - INFO: load data time elapsed:1.4621849581599236
+2023-06-08 15:44:55,516 - dataset_utils.py[line:43] - INFO: encode categorical columns time elapsed:0.6799430917017162
+/root/anaconda3/envs/py36/lib/python3.6/site-packages/sklearn/mixture/base.py:273: ConvergenceWarning: Initialization 1 did not converge. Try different init parameters, or increase max_iter, tol or check for degenerate data.
+  % (init + 1), ConvergenceWarning)
+2023-06-08 15:45:37,291 - dataset_utils.py[line:56] - INFO: encode numeric columnstime elapsed:41.775205676909536
+2023-06-08 15:45:37,410 - dataset_utils.py[line:107] - INFO: data shape:(719045, 34)
+2023-06-08 15:45:37,410 - dataset_utils.py[line:136] - INFO: feature info:[('ws_net_paid', 'numerical', 6), ('ws_sold_date_sk', 'categorical', 12), ('ws_item_sk', 'categorical', 16)]
+2023-06-08 15:45:37,410 - dataset_utils.py[line:137] - INFO: output info list:[(1, 'no'), (5, 'softmax'), (12, 'sigmoid'), (16, 'sigmoid')]
+2023-06-08 15:45:39,519 - dataset_utils.py[line:140] - INFO: load data successfully
+2023-06-08 15:45:39,520 - pytorch_cvae.py[line:258] - INFO: feature info:[('ws_net_paid', 'numerical', 6), ('ws_sold_date_sk', 'categorical', 12), ('ws_item_sk', 'categorical', 16)]
+2023-06-08 15:46:20,881 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.1 epoch----------------------------
+2023-06-08 15:46:20,881 - pytorch_cvae.py[line:177] - INFO: loss:2269.393510133028, numeric_loss:60.56789337913506, categorical_loss:1368.1838741023093, kld_loss:155952.8686361313, epoch_train_time:41.35879160137847
+2023-06-08 15:46:20,881 - pytorch_cvae.py[line:186] - INFO: training time elapsed:41.35962303681299
+2023-06-08 15:46:20,885 - model_utils.py[line:67] - INFO: save model successfully
+2023-06-08 15:46:22,212 - pytorch_cvae.py[line:268] - INFO: train model time elapsed:88.84725769190118
+2023-06-08 15:46:22,212 - dataset_utils.py[line:584] - INFO: load existing dataset(light):3-date_dim_d_date_sk#d_year__d_date_sk#d_year_binary_gaussian5_0
+2023-06-08 15:46:22,267 - dataset_utils.py[line:593] - INFO: load dataset(light) time elapsed:0.05511439498513937
+2023-06-08 15:46:22,267 - pytorch_cvae.py[line:280] - INFO: feature info:[('d_date_sk', 'categorical', 18), ('d_year', 'categorical', 9)]
+2023-06-08 15:46:22,268 - model_utils.py[line:75] - INFO: load model name:torch_cvae_3-date_dim_d_date_sk_d_year_ld100_id150_bs128_ep100_0_binary_gaussian5
+2023-06-08 15:46:22,270 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0017619458958506584
+2023-06-08 15:46:22,270 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:0.05782788619399071
+2023-06-08 15:46:22,270 - dataset_utils.py[line:584] - INFO: load existing dataset(light):86-item_i_item_sk#i_category#i_class__i_item_sk#i_category#i_class_binary_gaussian5_0
+2023-06-08 15:46:22,284 - dataset_utils.py[line:593] - INFO: load dataset(light) time elapsed:0.013673949055373669
+2023-06-08 15:46:22,284 - pytorch_cvae.py[line:280] - INFO: feature info:[('i_item_sk', 'categorical', 16), ('i_category', 'categorical', 5), ('i_class', 'categorical', 8)]
+2023-06-08 15:46:22,285 - model_utils.py[line:75] - INFO: load model name:torch_cvae_86-item_i_item_sk_i_category_i_class_ld100_id150_bs128_ep100_0_binary_gaussian5
+2023-06-08 15:46:22,286 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.001602347008883953
+2023-06-08 15:46:22,286 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:0.016159075312316418
+2023-06-08 15:46:22,286 - main.py[line:559] - INFO: multi_sampling No.0 epoch
+2023-06-08 15:46:31,418 - pytorch_cvae.py[line:407] - INFO: sampling time:9.095135759096593
+2023-06-08 15:46:31,418 - dataset_utils.py[line:565] - INFO: load existing dataset:3-date_dim_d_date_sk#d_year__d_date_sk#d_year_binary_gaussian5_0
+2023-06-08 15:46:31,490 - dataset_utils.py[line:577] - INFO: load dataset time elapsed:0.07128115743398666
+2023-06-08 15:46:31,490 - dataset_utils.py[line:565] - INFO: load existing dataset:86-item_i_item_sk#i_category#i_class__i_item_sk#i_category#i_class_binary_gaussian5_0
+2023-06-08 15:46:31,510 - dataset_utils.py[line:577] - INFO: load dataset time elapsed:0.020151012111455202
+2023-06-08 15:46:31,558 - main.py[line:542] - INFO: sample and aggregation time elapsed:9.271869217045605
+2023-06-08 15:46:31,564 - main.py[line:577] - INFO: sample time: 9.278061820659786
+2023-06-08 15:46:31,581 - main.py[line:104] - INFO: aqp result:
+                             avg(ws_net_paid)  sum(ws_net_paid)
+i_category  i_class                                            
+Books       arts            1962.49           4809793.67       
+            business        1819.06           4474475.64       
+            computers       2119.35           7232985.00       
+            cooking         1953.85           4864971.30       
+            entertainments  2114.79           5418671.02       
+            fiction         1974.77           7070729.82       
+            history         2089.59           7645385.51       
+            home repair     2018.26           6934991.45       
+            mystery         1950.64           4273201.47       
+            parenting       2035.74           5564015.53       
+            reference       2121.46           7216068.86       
+            romance         1980.12           6279436.32       
+            science         2116.80           5705288.12       
+            self-help       1939.68           5086589.36       
+            sports          2136.27           6711735.36       
+            travel          2172.14           6285311.90       
+Children    infants         2039.21           24709027.94      
+            newborn         2117.36           25099836.03      
+            school-uniforms 2021.85           23614671.84      
+            toddlers        1956.09           23549708.41      
+Electronics audio           2131.34           5854622.03       
+            automotive      2266.14           5681219.79       
+            camcorders      1802.08           5263497.60       
+            cameras         2148.19           5983052.13       
+            disk drives     1927.39           5611304.78       
+            dvd/vcr players 2148.76           8940310.54       
+            karoke          2069.57           7512473.57       
+            memory          2103.25           6611701.77       
+            monitors        2197.52           7192686.30       
+            musical         2134.55           5958306.40       
+            personal        2230.65           6020426.97       
+            portable        2262.19           5237750.77       
+            scanners        2012.70           6046509.18       
+            stereo          1951.24           7060567.51       
+            televisions     2289.33           8464617.48       
+            wireless        2122.11           6804421.83       
+Home        accent          2060.04           6262997.04       
+            bathroom        1995.49           6005973.62       
+            bedding         1981.49           7754473.12       
+            blinds/shades   2256.10           5082321.22       
+            curtains/drapes 2242.40           8100695.70       
+            decor           2006.55           5644316.57       
+            flatware        1805.33           5578609.13       
+            furniture       1910.14           6338464.67       
+            glassware       1924.88           7099925.80       
+            kids            2116.60           5340475.93       
+            lighting        1923.17           5839610.59       
+            mattresses      1985.57           6206168.70       
+            paint           2372.54           7894499.11       
+            rugs            1901.16           5084346.34       
+2023-06-08 15:46:31,584 - main.py[line:105] - INFO: ground truth:
+                             sum(ws_net_paid)
+i_category  i_class                          
+Books       arts             7994364         
+            business         8990101         
+            computers        12030632        
+            cooking          8923372         
+            entertainments   9408251         
+            fiction          12164909        
+            history          12298858        
+            home repair      11762345        
+            mystery          8121557         
+            parenting        9710767         
+            reference        11655890        
+            romance          11175701        
+            science          9145288         
+            self-help        9268124         
+            sports           10210697        
+            travel           10316259        
+Children    infants          41645180        
+            newborn          39475411        
+            school-uniforms  40831145        
+            toddlers         40916187        
+Electronics audio            9583931         
+            automotive       8848780         
+            camcorders       9050805         
+            cameras          9539443         
+            disk drives      9910591         
+            dvd/vcr players  12635428        
+            karoke           12538092        
+            memory           10954849        
+            monitors         11294421        
+            musical          9844085         
+            personal         9610272         
+            portable         8890011         
+            scanners         9461971         
+            stereo           11488466        
+            televisions      10404125        
+            wireless         10133727        
+Home        accent           9627379         
+            bathroom         8936159         
+            bedding          12166245        
+            blinds/shades    8490677         
+            curtains/drapes  11665322        
+            decor            9348297         
+            flatware         10950867        
+            furniture        9658305         
+            glassware        12589747        
+            kids             8607158         
+            lighting         9921687         
+            mattresses       10395856        
+            paint            11173589        
+            rugs             8729034         
+2023-06-08 15:46:31,593 - main.py[line:595] - INFO: relative error:
+                             avg(ws_net_paid)  sum(ws_net_paid)
+i_category  i_class                                            
+Books       arts            1.00              0.40             
+            business        1.00              0.50             
+            computers       1.00              0.40             
+            cooking         1.00              0.45             
+            entertainments  1.00              0.42             
+            fiction         1.00              0.42             
+            history         1.00              0.38             
+            home repair     1.00              0.41             
+            mystery         1.00              0.47             
+            parenting       1.00              0.43             
+            reference       1.00              0.38             
+            romance         1.00              0.44             
+            science         1.00              0.38             
+            self-help       1.00              0.45             
+            sports          1.00              0.34             
+            travel          1.00              0.39             
+Children    infants         1.00              0.41             
+            newborn         1.00              0.36             
+            school-uniforms 1.00              0.42             
+            toddlers        1.00              0.42             
+Electronics audio           1.00              0.39             
+            automotive      1.00              0.36             
+            camcorders      1.00              0.42             
+            cameras         1.00              0.37             
+            disk drives     1.00              0.43             
+            dvd/vcr players 1.00              0.29             
+            karoke          1.00              0.40             
+            memory          1.00              0.40             
+            monitors        1.00              0.36             
+            musical         1.00              0.39             
+            personal        1.00              0.37             
+            portable        1.00              0.41             
+            scanners        1.00              0.36             
+            stereo          1.00              0.39             
+            televisions     1.00              0.19             
+            wireless        1.00              0.33             
+Home        accent          1.00              0.35             
+            bathroom        1.00              0.33             
+            bedding         1.00              0.36             
+            blinds/shades   1.00              0.40             
+            curtains/drapes 1.00              0.31             
+            decor           1.00              0.40             
+            flatware        1.00              0.49             
+            furniture       1.00              0.34             
+            glassware       1.00              0.44             
+            kids            1.00              0.38             
+            lighting        1.00              0.41             
+            mattresses      1.00              0.40             
+            paint           1.00              0.29             
+            rugs            1.00              0.42             
+2023-06-08 15:46:31,595 - main.py[line:596] - INFO: relative error normalized:
+                             avg(ws_net_paid)  sum(ws_net_paid)
+i_category  i_class                                            
+Books       arts            1.00              0.33             
+            business        1.00              0.39             
+            computers       1.00              0.33             
+            cooking         1.00              0.37             
+            entertainments  1.00              0.35             
+            fiction         1.00              0.34             
+            history         1.00              0.32             
+            home repair     1.00              0.34             
+            mystery         1.00              0.38             
+            parenting       1.00              0.35             
+            reference       1.00              0.32             
+            romance         1.00              0.35             
+            science         1.00              0.31             
+            self-help       1.00              0.36             
+            sports          1.00              0.29             
+            travel          1.00              0.32             
+Children    infants         1.00              0.33             
+            newborn         1.00              0.31             
+            school-uniforms 1.00              0.34             
+            toddlers        1.00              0.35             
+Electronics audio           1.00              0.32             
+            automotive      1.00              0.30             
+            camcorders      1.00              0.34             
+            cameras         1.00              0.31             
+            disk drives     1.00              0.35             
+            dvd/vcr players 1.00              0.25             
+            karoke          1.00              0.33             
+            memory          1.00              0.33             
+            monitors        1.00              0.30             
+            musical         1.00              0.33             
+            personal        1.00              0.31             
+            portable        1.00              0.34             
+            scanners        1.00              0.30             
+            stereo          1.00              0.32             
+            televisions     1.00              0.17             
+            wireless        1.00              0.28             
+Home        accent          1.00              0.29             
+            bathroom        1.00              0.28             
+            bedding         1.00              0.30             
+            blinds/shades   1.00              0.33             
+            curtains/drapes 1.00              0.26             
+            decor           1.00              0.33             
+            flatware        1.00              0.39             
+            furniture       1.00              0.29             
+            glassware       1.00              0.35             
+            kids            1.00              0.32             
+            lighting        1.00              0.34             
+            mattresses      1.00              0.33             
+            paint           1.00              0.25             
+            rugs            1.00              0.34             
+2023-06-08 15:46:31,595 - main.py[line:599] - INFO: relative error average: 0.6969116346968315
+2023-06-08 15:46:31,595 - main.py[line:600] - INFO: relative error normalized average: 0.662309962171827
+2023-06-08 15:46:31,603 - main.py[line:646] - INFO: total_time:98.238333303947
+feature_names: ['ws_sold_date_sk_0', 'ws_sold_date_sk_1', 'ws_sold_date_sk_2', 'ws_sold_date_sk_3', 'ws_sold_date_sk_4', 'ws_sold_date_sk_5', 'ws_sold_date_sk_6', 'ws_sold_date_sk_7', 'ws_sold_date_sk_8', 'ws_sold_date_sk_9', 'ws_sold_date_sk_10', 'ws_sold_date_sk_11', 'ws_item_sk_0', 'ws_item_sk_1', 'ws_item_sk_2', 'ws_item_sk_3', 'ws_item_sk_4', 'ws_item_sk_5', 'ws_item_sk_6', 'ws_item_sk_7', 'ws_item_sk_8', 'ws_item_sk_9', 'ws_item_sk_10', 'ws_item_sk_11', 'ws_item_sk_12', 'ws_item_sk_13', 'ws_item_sk_14', 'ws_item_sk_15']
+feature_names: ['ws_item_sk_0', 'ws_item_sk_1', 'ws_item_sk_2', 'ws_item_sk_3', 'ws_item_sk_4', 'ws_item_sk_5', 'ws_item_sk_6', 'ws_item_sk_7', 'ws_item_sk_8', 'ws_item_sk_9', 'ws_item_sk_10', 'ws_item_sk_11', 'ws_item_sk_12', 'ws_item_sk_13', 'ws_item_sk_14', 'ws_item_sk_15']

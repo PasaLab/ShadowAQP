@@ -1,0 +1,535 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2023-02-15 18:46:52,139 - main.py[line:595] - INFO: load query config config/query/nooutlier_sdr.json successfully
+2023-02-15 18:46:52,139 - main.py[line:602] - INFO: load train config ./config/train/nooutlier_sdr_flow_torch_cvae.json successfully
+2023-02-15 18:46:52,139 - main.py[line:602] - INFO: load train config ./config/train/dim_torch_cvae.json successfully
+2023-02-15 18:46:52,139 - pytorch_cvae.py[line:249] - INFO: epoch:200
+2023-02-15 18:46:52,139 - pytorch_cvae.py[line:250] - INFO: batch size:1024
+2023-02-15 18:46:52,139 - pytorch_cvae.py[line:251] - INFO: latent dimension:150
+2023-02-15 18:46:52,139 - pytorch_cvae.py[line:252] - INFO: intermediate dimension:200
+2023-02-15 18:46:52,139 - pytorch_cvae.py[line:253] - INFO: gpu num:0
+2023-02-15 18:46:52,160 - dataset_utils.py[line:297] - INFO: loading data:/home/huangwenjie/train_datasets/sdr-1m/sdr_flow.csv
+main.py:46: DtypeWarning: Columns (6) have mixed types.Specify dtype option on import or set low_memory=False.
+  model_dataset = train_torch_cvae(param)
+2023-02-15 18:46:53,201 - dataset_utils.py[line:322] - INFO: data total rows:1196813
+2023-02-15 18:46:53,201 - dataset_utils.py[line:354] - INFO: sample the training data sample rows:1196813
+2023-02-15 18:46:53,201 - dataset_utils.py[line:358] - INFO: load data time elapsed:1.0407424550503492
+2023-02-15 18:46:53,292 - dataset_utils.py[line:43] - INFO: encode categorical columns time elapsed:0.08820973709225655
+/root/anaconda3/envs/py36/lib/python3.6/site-packages/sklearn/mixture/base.py:273: ConvergenceWarning: Initialization 1 did not converge. Try different init parameters, or increase max_iter, tol or check for degenerate data.
+  % (init + 1), ConvergenceWarning)
+/root/anaconda3/envs/py36/lib/python3.6/site-packages/sklearn/mixture/base.py:273: ConvergenceWarning: Initialization 1 did not converge. Try different init parameters, or increase max_iter, tol or check for degenerate data.
+  % (init + 1), ConvergenceWarning)
+/root/anaconda3/envs/py36/lib/python3.6/site-packages/sklearn/mixture/base.py:273: ConvergenceWarning: Initialization 1 did not converge. Try different init parameters, or increase max_iter, tol or check for degenerate data.
+  % (init + 1), ConvergenceWarning)
+/root/anaconda3/envs/py36/lib/python3.6/site-packages/sklearn/mixture/base.py:273: ConvergenceWarning: Initialization 1 did not converge. Try different init parameters, or increase max_iter, tol or check for degenerate data.
+  % (init + 1), ConvergenceWarning)
+2023-02-15 18:59:47,812 - dataset_utils.py[line:56] - INFO: encode numeric columnstime elapsed:774.5202715229243
+2023-02-15 18:59:48,263 - dataset_utils.py[line:107] - INFO: data shape:(1196813, 86)
+2023-02-15 18:59:48,263 - dataset_utils.py[line:136] - INFO: feature info:[('l4_ul_throughput', 'numerical', 21), ('l4_dw_throughput', 'numerical', 21), ('l4_ul_packets', 'numerical', 21), ('l4_dw_packets', 'numerical', 20), ('prot_category', 'categorical', 3)]
+2023-02-15 18:59:48,263 - dataset_utils.py[line:137] - INFO: output info list:[(1, 'no'), (20, 'softmax'), (1, 'no'), (20, 'softmax'), (1, 'no'), (20, 'softmax'), (1, 'no'), (19, 'softmax'), (3, 'sigmoid')]
+2023-02-15 18:59:50,610 - dataset_utils.py[line:140] - INFO: load data successfully
+2023-02-15 18:59:50,612 - pytorch_cvae.py[line:258] - INFO: feature info:[('l4_ul_throughput', 'numerical', 21), ('l4_dw_throughput', 'numerical', 21), ('l4_ul_packets', 'numerical', 21), ('l4_dw_packets', 'numerical', 20), ('prot_category', 'categorical', 3)]
+2023-02-15 19:00:06,939 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.1 epoch----------------------------
+2023-02-15 19:00:06,940 - pytorch_cvae.py[line:177] - INFO: loss:1939.5507021844387, numeric_loss:118.70249282568693, categorical_loss:1412.4700867012143, kld_loss:75760.85858631134, epoch_train_time:16.324364222586155
+2023-02-15 19:00:22,780 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.2 epoch----------------------------
+2023-02-15 19:00:22,780 - pytorch_cvae.py[line:177] - INFO: loss:609.3401392996311, numeric_loss:54.070888329297304, categorical_loss:191.74390621297061, kld_loss:61052.69355583191, epoch_train_time:15.840473420917988
+2023-02-15 19:00:38,451 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.3 epoch----------------------------
+2023-02-15 19:00:38,451 - pytorch_cvae.py[line:177] - INFO: loss:508.46384984254837, numeric_loss:45.84023585729301, categorical_loss:118.99398462288082, kld_loss:52297.714962005615, epoch_train_time:15.670782936736941
+2023-02-15 19:00:54,195 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.4 epoch----------------------------
+2023-02-15 19:00:54,195 - pytorch_cvae.py[line:177] - INFO: loss:454.7735188007355, numeric_loss:39.28088281303644, categorical_loss:85.70637463219464, kld_loss:45528.25065994263, epoch_train_time:15.743986567482352
+2023-02-15 19:01:09,916 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.5 epoch----------------------------
+2023-02-15 19:01:09,916 - pytorch_cvae.py[line:177] - INFO: loss:409.7936971783638, numeric_loss:34.759590081870556, categorical_loss:60.3072050223127, kld_loss:39452.34785079956, epoch_train_time:15.720650754868984
+2023-02-15 19:01:25,656 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.6 epoch----------------------------
+2023-02-15 19:01:25,657 - pytorch_cvae.py[line:177] - INFO: loss:381.78143334388733, numeric_loss:32.70873701758683, categorical_loss:44.93509089015424, kld_loss:34652.4525718689, epoch_train_time:15.740170896053314
+2023-02-15 19:01:41,271 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.7 epoch----------------------------
+2023-02-15 19:01:41,271 - pytorch_cvae.py[line:177] - INFO: loss:371.1541891694069, numeric_loss:32.7884834241122, categorical_loss:37.232201501727104, kld_loss:31216.349786758423, epoch_train_time:15.614345669746399
+2023-02-15 19:01:56,919 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.8 epoch----------------------------
+2023-02-15 19:01:56,919 - pytorch_cvae.py[line:177] - INFO: loss:372.4988207221031, numeric_loss:32.79158963449299, categorical_loss:33.65207612141967, kld_loss:28894.56795501709, epoch_train_time:15.647471006959677
+2023-02-15 19:02:12,556 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.9 epoch----------------------------
+2023-02-15 19:02:12,556 - pytorch_cvae.py[line:177] - INFO: loss:382.3269881308079, numeric_loss:33.37135550752282, categorical_loss:31.63128922879696, kld_loss:27311.632919311523, epoch_train_time:15.636645531281829
+2023-02-15 19:02:28,257 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.10 epoch----------------------------
+2023-02-15 19:02:28,257 - pytorch_cvae.py[line:177] - INFO: loss:399.69346794486046, numeric_loss:34.720107765868306, categorical_loss:31.036691361572593, kld_loss:26228.317443847656, epoch_train_time:15.701105747371912
+2023-02-15 19:02:43,697 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.11 epoch----------------------------
+2023-02-15 19:02:43,697 - pytorch_cvae.py[line:177] - INFO: loss:422.08209055662155, numeric_loss:36.44480635039508, categorical_loss:31.631161981262267, kld_loss:25398.813711166382, epoch_train_time:15.44004176929593
+2023-02-15 19:02:59,516 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.12 epoch----------------------------
+2023-02-15 19:02:59,516 - pytorch_cvae.py[line:177] - INFO: loss:447.5922467112541, numeric_loss:38.51895540766418, categorical_loss:32.60195362754166, kld_loss:24698.195613861084, epoch_train_time:15.818898195400834
+2023-02-15 19:03:15,214 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.13 epoch----------------------------
+2023-02-15 19:03:15,215 - pytorch_cvae.py[line:177] - INFO: loss:477.61691439151764, numeric_loss:40.394242502748966, categorical_loss:34.80552812572569, kld_loss:24164.328372955322, epoch_train_time:15.69808511249721
+2023-02-15 19:03:30,901 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.14 epoch----------------------------
+2023-02-15 19:03:30,902 - pytorch_cvae.py[line:177] - INFO: loss:507.0141239762306, numeric_loss:42.27108787558973, categorical_loss:36.21043104212731, kld_loss:23576.609996795654, epoch_train_time:15.68687565997243
+2023-02-15 19:03:46,582 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.15 epoch----------------------------
+2023-02-15 19:03:46,582 - pytorch_cvae.py[line:177] - INFO: loss:541.4673262834549, numeric_loss:44.8444791585207, categorical_loss:39.05703590065241, kld_loss:23087.908304214478, epoch_train_time:15.680380083620548
+2023-02-15 19:04:02,263 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.16 epoch----------------------------
+2023-02-15 19:04:02,264 - pytorch_cvae.py[line:177] - INFO: loss:576.9721308350563, numeric_loss:47.51918091624975, categorical_loss:41.58804722689092, kld_loss:22599.478496551514, epoch_train_time:15.681142399087548
+2023-02-15 19:04:18,011 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.17 epoch----------------------------
+2023-02-15 19:04:18,012 - pytorch_cvae.py[line:177] - INFO: loss:615.2467337846756, numeric_loss:50.42585029825568, categorical_loss:44.94687578082085, kld_loss:22130.89944267273, epoch_train_time:15.747823480516672
+2023-02-15 19:04:33,617 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.18 epoch----------------------------
+2023-02-15 19:04:33,617 - pytorch_cvae.py[line:177] - INFO: loss:655.8518106341362, numeric_loss:53.68132905289531, categorical_loss:48.19728953856975, kld_loss:21693.32435798645, epoch_train_time:15.605091113597155
+2023-02-15 19:04:49,269 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.19 epoch----------------------------
+2023-02-15 19:04:49,269 - pytorch_cvae.py[line:177] - INFO: loss:700.8669731616974, numeric_loss:57.25633706524968, categorical_loss:52.35656596533954, kld_loss:21319.75421524048, epoch_train_time:15.651945414021611
+2023-02-15 19:05:05,010 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.20 epoch----------------------------
+2023-02-15 19:05:05,010 - pytorch_cvae.py[line:177] - INFO: loss:747.6929649710655, numeric_loss:61.45524426922202, categorical_loss:56.969136483967304, kld_loss:20914.57777786255, epoch_train_time:15.740927841514349
+2023-02-15 19:05:20,718 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.21 epoch----------------------------
+2023-02-15 19:05:20,718 - pytorch_cvae.py[line:177] - INFO: loss:793.9733585119247, numeric_loss:65.4609828852117, categorical_loss:60.876094644889235, kld_loss:20473.50821876526, epoch_train_time:15.708135666325688
+2023-02-15 19:05:36,457 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.22 epoch----------------------------
+2023-02-15 19:05:36,458 - pytorch_cvae.py[line:177] - INFO: loss:845.3394377231598, numeric_loss:70.40238175913692, categorical_loss:66.0880775488913, kld_loss:20076.113461494446, epoch_train_time:15.738876650109887
+2023-02-15 19:05:52,044 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.23 epoch----------------------------
+2023-02-15 19:05:52,044 - pytorch_cvae.py[line:177] - INFO: loss:897.1321093440056, numeric_loss:76.02800301462412, categorical_loss:71.24873005412519, kld_loss:19634.115087509155, epoch_train_time:15.586605528369546
+2023-02-15 19:06:07,667 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.24 epoch----------------------------
+2023-02-15 19:06:07,668 - pytorch_cvae.py[line:177] - INFO: loss:951.3103983402252, numeric_loss:82.91188111901283, categorical_loss:76.32439635321498, kld_loss:19192.954461097717, epoch_train_time:15.623066844418645
+2023-02-15 19:06:23,516 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.25 epoch----------------------------
+2023-02-15 19:06:23,516 - pytorch_cvae.py[line:177] - INFO: loss:1006.8062807917595, numeric_loss:90.64310954883695, categorical_loss:81.531199850142, kld_loss:18734.733132362366, epoch_train_time:15.847901111468673
+2023-02-15 19:06:39,315 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.26 epoch----------------------------
+2023-02-15 19:06:39,315 - pytorch_cvae.py[line:177] - INFO: loss:1068.361328303814, numeric_loss:100.17807423323393, categorical_loss:88.26139375194907, kld_loss:18315.01766204834, epoch_train_time:15.79927472770214
+2023-02-15 19:06:55,090 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.27 epoch----------------------------
+2023-02-15 19:06:55,090 - pytorch_cvae.py[line:177] - INFO: loss:1128.4433728456497, numeric_loss:109.53174079954624, categorical_loss:94.46471982449293, kld_loss:17860.362875938416, epoch_train_time:15.774817313998938
+2023-02-15 19:07:10,674 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.28 epoch----------------------------
+2023-02-15 19:07:10,674 - pytorch_cvae.py[line:177] - INFO: loss:1193.3052639961243, numeric_loss:119.88122623413801, categorical_loss:101.1883183196187, kld_loss:17452.564229011536, epoch_train_time:15.58366871625185
+2023-02-15 19:07:26,312 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.29 epoch----------------------------
+2023-02-15 19:07:26,312 - pytorch_cvae.py[line:177] - INFO: loss:1260.5888379216194, numeric_loss:128.3353960365057, categorical_loss:109.03539264202118, kld_loss:17083.211184501648, epoch_train_time:15.637779047712684
+2023-02-15 19:07:41,974 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.30 epoch----------------------------
+2023-02-15 19:07:41,974 - pytorch_cvae.py[line:177] - INFO: loss:1330.7337031960487, numeric_loss:137.6406036093831, categorical_loss:117.95317680388689, kld_loss:16711.45409679413, epoch_train_time:15.66164192929864
+2023-02-15 19:07:57,648 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.31 epoch----------------------------
+2023-02-15 19:07:57,648 - pytorch_cvae.py[line:177] - INFO: loss:1402.032042145729, numeric_loss:147.41496494412422, categorical_loss:125.35203646868467, kld_loss:16357.894082069397, epoch_train_time:15.673767820000648
+2023-02-15 19:08:13,264 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.32 epoch----------------------------
+2023-02-15 19:08:13,264 - pytorch_cvae.py[line:177] - INFO: loss:1478.4117041826248, numeric_loss:157.75038688629866, categorical_loss:135.38396299257874, kld_loss:16016.514706611633, epoch_train_time:15.615878062322736
+2023-02-15 19:08:28,980 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.33 epoch----------------------------
+2023-02-15 19:08:28,981 - pytorch_cvae.py[line:177] - INFO: loss:1555.759386897087, numeric_loss:168.4236495643854, categorical_loss:145.17440931499004, kld_loss:15673.892099380493, epoch_train_time:15.716504631564021
+2023-02-15 19:08:44,679 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.34 epoch----------------------------
+2023-02-15 19:08:44,680 - pytorch_cvae.py[line:177] - INFO: loss:1637.6098556518555, numeric_loss:178.9969507753849, categorical_loss:156.75675835087895, kld_loss:15354.899968147278, epoch_train_time:15.698768261820078
+2023-02-15 19:09:00,246 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.35 epoch----------------------------
+2023-02-15 19:09:00,247 - pytorch_cvae.py[line:177] - INFO: loss:1718.0215194225311, numeric_loss:190.38106571137905, categorical_loss:167.8542003519833, kld_loss:15006.314049720764, epoch_train_time:15.566833635792136
+2023-02-15 19:09:16,075 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.36 epoch----------------------------
+2023-02-15 19:09:16,076 - pytorch_cvae.py[line:177] - INFO: loss:1801.304383635521, numeric_loss:201.9673023968935, categorical_loss:178.6982988640666, kld_loss:14683.877702713013, epoch_train_time:15.828764712437987
+2023-02-15 19:09:31,761 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.37 epoch----------------------------
+2023-02-15 19:09:31,761 - pytorch_cvae.py[line:177] - INFO: loss:1882.415165424347, numeric_loss:213.02709628641605, categorical_loss:189.0311651751399, kld_loss:14345.363383293152, epoch_train_time:15.68496685475111
+2023-02-15 19:09:47,562 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.38 epoch----------------------------
+2023-02-15 19:09:47,562 - pytorch_cvae.py[line:177] - INFO: loss:1968.5897454023361, numeric_loss:221.88480174541473, categorical_loss:201.67945413291454, kld_loss:14050.86454963684, epoch_train_time:15.80073599331081
+2023-02-15 19:10:03,115 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.39 epoch----------------------------
+2023-02-15 19:10:03,116 - pytorch_cvae.py[line:177] - INFO: loss:2059.5693315267563, numeric_loss:229.20745912194252, categorical_loss:215.30427264422178, kld_loss:13797.868808746338, epoch_train_time:15.553731463849545
+2023-02-15 19:10:18,969 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.40 epoch----------------------------
+2023-02-15 19:10:18,969 - pytorch_cvae.py[line:177] - INFO: loss:2151.248736143112, numeric_loss:234.090644672513, categorical_loss:229.44177763909101, kld_loss:13558.584177017212, epoch_train_time:15.853205870836973
+2023-02-15 19:10:34,787 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.41 epoch----------------------------
+2023-02-15 19:10:34,788 - pytorch_cvae.py[line:177] - INFO: loss:2241.105970621109, numeric_loss:237.2388611882925, categorical_loss:242.51293274760246, kld_loss:13319.465495109558, epoch_train_time:15.818364283069968
+2023-02-15 19:10:50,347 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.42 epoch----------------------------
+2023-02-15 19:10:50,347 - pytorch_cvae.py[line:177] - INFO: loss:2337.7690279483795, numeric_loss:239.4080167710781, categorical_loss:258.0889414176345, kld_loss:13112.382508277893, epoch_train_time:15.559560596942902
+2023-02-15 19:11:05,898 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.43 epoch----------------------------
+2023-02-15 19:11:05,898 - pytorch_cvae.py[line:177] - INFO: loss:2435.5981632471085, numeric_loss:240.61323736608028, categorical_loss:272.877656057477, kld_loss:12917.27625656128, epoch_train_time:15.550211142748594
+2023-02-15 19:11:21,632 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.44 epoch----------------------------
+2023-02-15 19:11:21,632 - pytorch_cvae.py[line:177] - INFO: loss:2541.3698415756226, numeric_loss:241.8052300810814, categorical_loss:290.7349378913641, kld_loss:12745.724389076233, epoch_train_time:15.734257908537984
+2023-02-15 19:11:37,218 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.45 epoch----------------------------
+2023-02-15 19:11:37,218 - pytorch_cvae.py[line:177] - INFO: loss:2646.440542459488, numeric_loss:242.58619584143162, categorical_loss:307.69200071692467, kld_loss:12569.229751586914, epoch_train_time:15.585307389497757
+2023-02-15 19:11:52,907 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.46 epoch----------------------------
+2023-02-15 19:11:52,907 - pytorch_cvae.py[line:177] - INFO: loss:2756.4713900089264, numeric_loss:243.13125775754452, categorical_loss:327.212475925684, kld_loss:12400.978116035461, epoch_train_time:15.689037159085274
+2023-02-15 19:12:08,593 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.47 epoch----------------------------
+2023-02-15 19:12:08,593 - pytorch_cvae.py[line:177] - INFO: loss:2871.638459444046, numeric_loss:243.7327253073454, categorical_loss:348.2457381337881, kld_loss:12245.639008522034, epoch_train_time:15.68607316724956
+2023-02-15 19:12:24,146 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.48 epoch----------------------------
+2023-02-15 19:12:24,146 - pytorch_cvae.py[line:177] - INFO: loss:2984.338693857193, numeric_loss:244.1619249880314, categorical_loss:367.8064112961292, kld_loss:12079.781836509705, epoch_train_time:15.552840244024992
+2023-02-15 19:12:39,913 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.49 epoch----------------------------
+2023-02-15 19:12:39,913 - pytorch_cvae.py[line:177] - INFO: loss:3104.075592517853, numeric_loss:244.7273591607809, categorical_loss:389.58668069541454, kld_loss:11932.492389678955, epoch_train_time:15.766714807599783
+2023-02-15 19:12:55,548 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.50 epoch----------------------------
+2023-02-15 19:12:55,548 - pytorch_cvae.py[line:177] - INFO: loss:3225.8387200832367, numeric_loss:245.06813353300095, categorical_loss:413.78571793437004, kld_loss:11779.674931526184, epoch_train_time:15.634693272411823
+2023-02-15 19:13:11,095 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.51 epoch----------------------------
+2023-02-15 19:13:11,095 - pytorch_cvae.py[line:177] - INFO: loss:3351.2165932655334, numeric_loss:245.48897299170494, categorical_loss:438.182304918766, kld_loss:11638.310117721558, epoch_train_time:15.546561872586608
+2023-02-15 19:13:26,854 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.52 epoch----------------------------
+2023-02-15 19:13:26,854 - pytorch_cvae.py[line:177] - INFO: loss:3476.0142476558685, numeric_loss:245.789261713624, categorical_loss:464.3095752000809, kld_loss:11484.694118499756, epoch_train_time:15.758535891771317
+2023-02-15 19:13:42,592 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.53 epoch----------------------------
+2023-02-15 19:13:42,592 - pytorch_cvae.py[line:177] - INFO: loss:3606.8543133735657, numeric_loss:246.09730038046837, categorical_loss:491.872648909688, kld_loss:11348.287039756775, epoch_train_time:15.737997522577643
+2023-02-15 19:13:58,370 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.54 epoch----------------------------
+2023-02-15 19:13:58,370 - pytorch_cvae.py[line:177] - INFO: loss:3738.4918551445007, numeric_loss:246.27789725363255, categorical_loss:520.5405393987894, kld_loss:11209.580145835876, epoch_train_time:15.778375459834933
+2023-02-15 19:14:14,027 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.55 epoch----------------------------
+2023-02-15 19:14:14,027 - pytorch_cvae.py[line:177] - INFO: loss:3870.084825515747, numeric_loss:246.58438862860203, categorical_loss:550.607855618, kld_loss:11064.73359489441, epoch_train_time:15.65609517507255
+2023-02-15 19:14:29,790 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.56 epoch----------------------------
+2023-02-15 19:14:29,790 - pytorch_cvae.py[line:177] - INFO: loss:4004.6239347457886, numeric_loss:246.8401082754135, categorical_loss:581.6452966332436, kld_loss:10927.796849250793, epoch_train_time:15.763365767896175
+2023-02-15 19:14:45,490 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.57 epoch----------------------------
+2023-02-15 19:14:45,490 - pytorch_cvae.py[line:177] - INFO: loss:4143.446341991425, numeric_loss:247.06476898491383, categorical_loss:614.6375840902328, kld_loss:10799.701974868774, epoch_train_time:15.699182076379657
+2023-02-15 19:15:01,118 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.58 epoch----------------------------
+2023-02-15 19:15:01,118 - pytorch_cvae.py[line:177] - INFO: loss:4276.1455514431, numeric_loss:247.39982633292675, categorical_loss:647.3636341392994, kld_loss:10653.92163181305, epoch_train_time:15.627741176635027
+2023-02-15 19:15:16,728 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.59 epoch----------------------------
+2023-02-15 19:15:16,728 - pytorch_cvae.py[line:177] - INFO: loss:4419.1546993255615, numeric_loss:247.5258473008871, categorical_loss:683.7675489485264, kld_loss:10532.147760868073, epoch_train_time:15.610257044434547
+2023-02-15 19:15:32,457 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.60 epoch----------------------------
+2023-02-15 19:15:32,457 - pytorch_cvae.py[line:177] - INFO: loss:4561.781411647797, numeric_loss:247.87025345861912, categorical_loss:722.565265327692, kld_loss:10403.794599056244, epoch_train_time:15.728642795234919
+2023-02-15 19:15:48,195 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.61 epoch----------------------------
+2023-02-15 19:15:48,195 - pytorch_cvae.py[line:177] - INFO: loss:4698.185684204102, numeric_loss:247.94884134829044, categorical_loss:759.0082866251469, kld_loss:10268.724879741669, epoch_train_time:15.737524159252644
+2023-02-15 19:16:03,714 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.62 epoch----------------------------
+2023-02-15 19:16:03,714 - pytorch_cvae.py[line:177] - INFO: loss:4842.710705757141, numeric_loss:248.15905939042568, categorical_loss:800.6351307034492, kld_loss:10145.623149871826, epoch_train_time:15.519114976748824
+2023-02-15 19:16:19,569 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.63 epoch----------------------------
+2023-02-15 19:16:19,569 - pytorch_cvae.py[line:177] - INFO: loss:4982.438963651657, numeric_loss:248.30677478015423, categorical_loss:843.1544201374054, kld_loss:10012.196966648102, epoch_train_time:15.855184588581324
+2023-02-15 19:16:35,188 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.64 epoch----------------------------
+2023-02-15 19:16:35,188 - pytorch_cvae.py[line:177] - INFO: loss:5127.806512832642, numeric_loss:248.51756876707077, categorical_loss:887.2637866437435, kld_loss:9894.135217666626, epoch_train_time:15.618634277954698
+2023-02-15 19:16:50,970 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.65 epoch----------------------------
+2023-02-15 19:16:50,970 - pytorch_cvae.py[line:177] - INFO: loss:5264.1265161037445, numeric_loss:248.79685068130493, categorical_loss:928.7765844166279, kld_loss:9765.398598194122, epoch_train_time:15.781979663297534
+2023-02-15 19:17:06,526 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.66 epoch----------------------------
+2023-02-15 19:17:06,526 - pytorch_cvae.py[line:177] - INFO: loss:5407.220001935959, numeric_loss:248.92544078826904, categorical_loss:976.8491230607033, kld_loss:9643.658197402954, epoch_train_time:15.555652484297752
+2023-02-15 19:17:22,288 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.67 epoch----------------------------
+2023-02-15 19:17:22,288 - pytorch_cvae.py[line:177] - INFO: loss:5545.952986717224, numeric_loss:249.32296654582024, categorical_loss:1022.7682086825371, kld_loss:9522.537509441376, epoch_train_time:15.761580178514123
+2023-02-15 19:17:38,046 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.68 epoch----------------------------
+2023-02-15 19:17:38,046 - pytorch_cvae.py[line:177] - INFO: loss:5683.351735115051, numeric_loss:249.450666770339, categorical_loss:1071.8186460733414, kld_loss:9398.904132843018, epoch_train_time:15.757940731942654
+2023-02-15 19:17:53,550 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.69 epoch----------------------------
+2023-02-15 19:17:53,550 - pytorch_cvae.py[line:177] - INFO: loss:5822.555411815643, numeric_loss:249.67780347168446, categorical_loss:1124.9889224171638, kld_loss:9277.323318004608, epoch_train_time:15.503356317058206
+2023-02-15 19:18:09,184 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.70 epoch----------------------------
+2023-02-15 19:18:09,185 - pytorch_cvae.py[line:177] - INFO: loss:5960.415436267853, numeric_loss:249.9566955268383, categorical_loss:1179.0447850227356, kld_loss:9158.45575761795, epoch_train_time:15.634768262505531
+2023-02-15 19:18:24,960 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.71 epoch----------------------------
+2023-02-15 19:18:24,961 - pytorch_cvae.py[line:177] - INFO: loss:6091.627962112427, numeric_loss:250.1060180515051, categorical_loss:1228.2183116674423, kld_loss:9043.875567913055, epoch_train_time:15.775769146159291
+2023-02-15 19:18:40,470 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.72 epoch----------------------------
+2023-02-15 19:18:40,470 - pytorch_cvae.py[line:177] - INFO: loss:6221.730027675629, numeric_loss:250.3771186619997, categorical_loss:1282.4658471345901, kld_loss:8924.843482971191, epoch_train_time:15.509521082043648
+2023-02-15 19:18:56,123 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.73 epoch----------------------------
+2023-02-15 19:18:56,123 - pytorch_cvae.py[line:177] - INFO: loss:6349.492031574249, numeric_loss:250.49263048171997, categorical_loss:1338.2691975831985, kld_loss:8806.980299949646, epoch_train_time:15.652189573273063
+2023-02-15 19:19:11,795 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.74 epoch----------------------------
+2023-02-15 19:19:11,795 - pytorch_cvae.py[line:177] - INFO: loss:6479.534621715546, numeric_loss:250.65300008654594, categorical_loss:1398.0863986611366, kld_loss:8694.186640262604, epoch_train_time:15.672300808131695
+2023-02-15 19:19:27,372 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.75 epoch----------------------------
+2023-02-15 19:19:27,372 - pytorch_cvae.py[line:177] - INFO: loss:6604.955241680145, numeric_loss:250.91249395906925, categorical_loss:1455.5136213898659, kld_loss:8585.532730579376, epoch_train_time:15.57669679634273
+2023-02-15 19:19:43,192 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.76 epoch----------------------------
+2023-02-15 19:19:43,192 - pytorch_cvae.py[line:177] - INFO: loss:6721.859290599823, numeric_loss:251.0896884649992, categorical_loss:1511.5975804328918, kld_loss:8472.980370998383, epoch_train_time:15.81946961581707
+2023-02-15 19:19:58,753 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.77 epoch----------------------------
+2023-02-15 19:19:58,753 - pytorch_cvae.py[line:177] - INFO: loss:6839.222041606903, numeric_loss:251.28318962454796, categorical_loss:1570.5514672994614, kld_loss:8364.971121788025, epoch_train_time:15.560939775779843
+2023-02-15 19:20:14,307 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.78 epoch----------------------------
+2023-02-15 19:20:14,307 - pytorch_cvae.py[line:177] - INFO: loss:6952.685541629791, numeric_loss:251.38923826813698, categorical_loss:1630.8402141928673, kld_loss:8257.107230186462, epoch_train_time:15.553738242015243
+2023-02-15 19:20:30,092 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.79 epoch----------------------------
+2023-02-15 19:20:30,092 - pytorch_cvae.py[line:177] - INFO: loss:7063.1809549331665, numeric_loss:251.53619857132435, categorical_loss:1690.9695661067963, kld_loss:8153.357630729675, epoch_train_time:15.785162990912795
+2023-02-15 19:20:45,888 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.80 epoch----------------------------
+2023-02-15 19:20:45,888 - pytorch_cvae.py[line:177] - INFO: loss:7169.298233032227, numeric_loss:251.6976583302021, categorical_loss:1752.3244864940643, kld_loss:8049.436419010162, epoch_train_time:15.795883972197771
+2023-02-15 19:21:01,532 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.81 epoch----------------------------
+2023-02-15 19:21:01,532 - pytorch_cvae.py[line:177] - INFO: loss:7270.1660804748535, numeric_loss:251.7964088022709, categorical_loss:1811.4926055669785, kld_loss:7949.617636680603, epoch_train_time:15.643600136041641
+2023-02-15 19:21:17,084 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.82 epoch----------------------------
+2023-02-15 19:21:17,084 - pytorch_cvae.py[line:177] - INFO: loss:7367.507630825043, numeric_loss:251.99575828015804, categorical_loss:1874.2824778556824, kld_loss:7847.536332130432, epoch_train_time:15.55203466117382
+2023-02-15 19:21:32,790 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.83 epoch----------------------------
+2023-02-15 19:21:32,790 - pytorch_cvae.py[line:177] - INFO: loss:7460.57865524292, numeric_loss:252.04718554019928, categorical_loss:1939.6129064559937, kld_loss:7744.3895745277405, epoch_train_time:15.705812418833375
+2023-02-15 19:21:48,462 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.84 epoch----------------------------
+2023-02-15 19:21:48,462 - pytorch_cvae.py[line:177] - INFO: loss:7548.003014087677, numeric_loss:252.26617093384266, categorical_loss:1997.2423409223557, kld_loss:7652.759448051453, epoch_train_time:15.67159472964704
+2023-02-15 19:22:04,074 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.85 epoch----------------------------
+2023-02-15 19:22:04,075 - pytorch_cvae.py[line:177] - INFO: loss:7635.771325588226, numeric_loss:252.2441441565752, categorical_loss:2058.721429824829, kld_loss:7564.90505361557, epoch_train_time:15.612214038148522
+2023-02-15 19:22:19,733 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.86 epoch----------------------------
+2023-02-15 19:22:19,733 - pytorch_cvae.py[line:177] - INFO: loss:7715.403491020203, numeric_loss:252.47360014915466, categorical_loss:2121.7040177583694, kld_loss:7471.5218501091, epoch_train_time:15.658374648541212
+2023-02-15 19:22:35,355 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.87 epoch----------------------------
+2023-02-15 19:22:35,355 - pytorch_cvae.py[line:177] - INFO: loss:7790.322318553925, numeric_loss:252.5043991059065, categorical_loss:2176.614781975746, kld_loss:7391.509186267853, epoch_train_time:15.621671756729484
+2023-02-15 19:22:51,124 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.88 epoch----------------------------
+2023-02-15 19:22:51,124 - pytorch_cvae.py[line:177] - INFO: loss:7862.716333389282, numeric_loss:252.48442867398262, categorical_loss:2240.363065958023, kld_loss:7304.181681156158, epoch_train_time:15.768626596778631
+2023-02-15 19:23:06,569 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.89 epoch----------------------------
+2023-02-15 19:23:06,569 - pytorch_cvae.py[line:177] - INFO: loss:7921.317023277283, numeric_loss:252.68464362621307, categorical_loss:2292.541727781296, kld_loss:7221.805840015411, epoch_train_time:15.444724759086967
+2023-02-15 19:23:22,310 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.90 epoch----------------------------
+2023-02-15 19:23:22,310 - pytorch_cvae.py[line:177] - INFO: loss:7984.530475616455, numeric_loss:252.72953893244267, categorical_loss:2347.5037999153137, kld_loss:7150.128572940826, epoch_train_time:15.741328205913305
+2023-02-15 19:23:38,009 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.91 epoch----------------------------
+2023-02-15 19:23:38,009 - pytorch_cvae.py[line:177] - INFO: loss:8038.681871891022, numeric_loss:252.9110693335533, categorical_loss:2395.0674889087677, kld_loss:7083.863349437714, epoch_train_time:15.698402117937803
+2023-02-15 19:23:53,749 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.92 epoch----------------------------
+2023-02-15 19:23:53,749 - pytorch_cvae.py[line:177] - INFO: loss:8088.471314907074, numeric_loss:252.9407803863287, categorical_loss:2446.852312684059, kld_loss:7014.249413967133, epoch_train_time:15.739657256752253
+2023-02-15 19:24:09,286 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.93 epoch----------------------------
+2023-02-15 19:24:09,287 - pytorch_cvae.py[line:177] - INFO: loss:8131.351896286011, numeric_loss:253.04468089342117, categorical_loss:2495.199172616005, kld_loss:6947.691771030426, epoch_train_time:15.537663644179702
+2023-02-15 19:24:25,010 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.94 epoch----------------------------
+2023-02-15 19:24:25,010 - pytorch_cvae.py[line:177] - INFO: loss:8170.638640403748, numeric_loss:253.07875053584576, categorical_loss:2540.608792424202, kld_loss:6887.891707420349, epoch_train_time:15.722900241613388
+2023-02-15 19:24:40,818 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.95 epoch----------------------------
+2023-02-15 19:24:40,818 - pytorch_cvae.py[line:177] - INFO: loss:8202.367415428162, numeric_loss:253.11863708496094, categorical_loss:2574.0437829494476, kld_loss:6841.043527603149, epoch_train_time:15.80827359110117
+2023-02-15 19:24:56,414 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.96 epoch----------------------------
+2023-02-15 19:24:56,415 - pytorch_cvae.py[line:177] - INFO: loss:8229.190197467804, numeric_loss:253.21269346773624, categorical_loss:2606.1913591623306, kld_loss:6796.6621017456055, epoch_train_time:15.59623372554779
+2023-02-15 19:25:12,034 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.97 epoch----------------------------
+2023-02-15 19:25:12,034 - pytorch_cvae.py[line:177] - INFO: loss:8251.573081970215, numeric_loss:253.34699158370495, categorical_loss:2636.364839196205, kld_loss:6756.160209655762, epoch_train_time:15.619352728128433
+2023-02-15 19:25:27,872 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.98 epoch----------------------------
+2023-02-15 19:25:27,872 - pytorch_cvae.py[line:177] - INFO: loss:8269.753821372986, numeric_loss:253.4329169690609, categorical_loss:2661.538907766342, kld_loss:6723.665763378143, epoch_train_time:15.83767356351018
+2023-02-15 19:25:43,454 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.99 epoch----------------------------
+2023-02-15 19:25:43,454 - pytorch_cvae.py[line:177] - INFO: loss:8276.069146633148, numeric_loss:253.315974265337, categorical_loss:2678.8321228027344, kld_loss:6693.27451133728, epoch_train_time:15.581618435680866
+2023-02-15 19:25:59,065 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.100 epoch----------------------------
+2023-02-15 19:25:59,065 - pytorch_cvae.py[line:177] - INFO: loss:8285.149196147919, numeric_loss:253.62319326400757, categorical_loss:2694.769733428955, kld_loss:6674.2814354896545, epoch_train_time:15.611061941832304
+2023-02-15 19:26:14,744 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.101 epoch----------------------------
+2023-02-15 19:26:14,744 - pytorch_cvae.py[line:177] - INFO: loss:8285.401813030243, numeric_loss:253.49485871195793, categorical_loss:2704.7319902181625, kld_loss:6658.968579292297, epoch_train_time:15.679129533469677
+2023-02-15 19:26:30,301 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.102 epoch----------------------------
+2023-02-15 19:26:30,301 - pytorch_cvae.py[line:177] - INFO: loss:8281.088408470154, numeric_loss:253.60321427881718, categorical_loss:2722.861810684204, kld_loss:6630.779082298279, epoch_train_time:15.556091234087944
+2023-02-15 19:26:46,148 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.103 epoch----------------------------
+2023-02-15 19:26:46,148 - pytorch_cvae.py[line:177] - INFO: loss:8273.634625911713, numeric_loss:253.68367429077625, categorical_loss:2720.5588986873627, kld_loss:6624.239932537079, epoch_train_time:15.847536223009229
+2023-02-15 19:27:01,721 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.104 epoch----------------------------
+2023-02-15 19:27:01,721 - pytorch_cvae.py[line:177] - INFO: loss:8255.940481185913, numeric_loss:253.78816862404346, categorical_loss:2700.572460770607, kld_loss:6626.974678993225, epoch_train_time:15.572475334629416
+2023-02-15 19:27:17,478 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.105 epoch----------------------------
+2023-02-15 19:27:17,478 - pytorch_cvae.py[line:177] - INFO: loss:8255.604405879974, numeric_loss:253.84692780673504, categorical_loss:2695.1531418561935, kld_loss:6633.255291938782, epoch_train_time:15.756781110540032
+2023-02-15 19:27:33,269 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.106 epoch----------------------------
+2023-02-15 19:27:33,269 - pytorch_cvae.py[line:177] - INFO: loss:8251.943166732788, numeric_loss:253.89317926764488, categorical_loss:2687.9265360832214, kld_loss:6637.654172420502, epoch_train_time:15.790955860167742
+2023-02-15 19:27:49,051 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.107 epoch----------------------------
+2023-02-15 19:27:49,052 - pytorch_cvae.py[line:177] - INFO: loss:8249.151458263397, numeric_loss:253.96643067896366, categorical_loss:2684.7769310474396, kld_loss:6638.009986877441, epoch_train_time:15.782069763168693
+2023-02-15 19:28:04,813 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.108 epoch----------------------------
+2023-02-15 19:28:04,813 - pytorch_cvae.py[line:177] - INFO: loss:8242.256475448608, numeric_loss:253.78081034123898, categorical_loss:2678.8985648155212, kld_loss:6636.971242904663, epoch_train_time:15.761436380445957
+2023-02-15 19:28:20,454 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.109 epoch----------------------------
+2023-02-15 19:28:20,454 - pytorch_cvae.py[line:177] - INFO: loss:8237.744059085846, numeric_loss:254.02375330030918, categorical_loss:2667.222056388855, kld_loss:6645.6226811409, epoch_train_time:15.64084505289793
+2023-02-15 19:28:36,138 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.110 epoch----------------------------
+2023-02-15 19:28:36,138 - pytorch_cvae.py[line:177] - INFO: loss:8232.124467849731, numeric_loss:253.6858181655407, categorical_loss:2659.7442722320557, kld_loss:6648.367832183838, epoch_train_time:15.683705136179924
+2023-02-15 19:28:51,744 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.111 epoch----------------------------
+2023-02-15 19:28:51,744 - pytorch_cvae.py[line:177] - INFO: loss:8230.95603466034, numeric_loss:253.67388594150543, categorical_loss:2656.0030423402786, kld_loss:6651.598749637604, epoch_train_time:15.605820633471012
+2023-02-15 19:29:07,417 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.112 epoch----------------------------
+2023-02-15 19:29:07,417 - pytorch_cvae.py[line:177] - INFO: loss:8222.890597343445, numeric_loss:253.61953142285347, categorical_loss:2649.013730287552, kld_loss:6650.321511745453, epoch_train_time:15.672832943499088
+2023-02-15 19:29:22,998 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.113 epoch----------------------------
+2023-02-15 19:29:22,998 - pytorch_cvae.py[line:177] - INFO: loss:8225.80042552948, numeric_loss:253.73377014696598, categorical_loss:2645.5849163532257, kld_loss:6658.1020522117615, epoch_train_time:15.580358803272247
+2023-02-15 19:29:38,605 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.114 epoch----------------------------
+2023-02-15 19:29:38,605 - pytorch_cvae.py[line:177] - INFO: loss:8219.992098808289, numeric_loss:253.4356292784214, categorical_loss:2633.7882190942764, kld_loss:6665.960171699524, epoch_train_time:15.607441185042262
+2023-02-15 19:29:54,373 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.115 epoch----------------------------
+2023-02-15 19:29:54,373 - pytorch_cvae.py[line:177] - INFO: loss:8218.785287857056, numeric_loss:253.46272303164005, categorical_loss:2630.7544465065002, kld_loss:6668.2100076675415, epoch_train_time:15.76762269437313
+2023-02-15 19:30:10,004 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.116 epoch----------------------------
+2023-02-15 19:30:10,004 - pytorch_cvae.py[line:177] - INFO: loss:8215.081829547882, numeric_loss:253.39925202727318, categorical_loss:2622.9083290100098, kld_loss:6673.467675685883, epoch_train_time:15.630277339369059
+2023-02-15 19:30:25,727 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.117 epoch----------------------------
+2023-02-15 19:30:25,727 - pytorch_cvae.py[line:177] - INFO: loss:8210.298778057098, numeric_loss:253.49379187822342, categorical_loss:2615.490699529648, kld_loss:6676.64271068573, epoch_train_time:15.723496731370687
+2023-02-15 19:30:41,475 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.118 epoch----------------------------
+2023-02-15 19:30:41,475 - pytorch_cvae.py[line:177] - INFO: loss:8208.110111236572, numeric_loss:253.30806803703308, categorical_loss:2608.0332144498825, kld_loss:6683.460893630981, epoch_train_time:15.747249074280262
+2023-02-15 19:30:57,223 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.119 epoch----------------------------
+2023-02-15 19:30:57,223 - pytorch_cvae.py[line:177] - INFO: loss:8206.376143932343, numeric_loss:253.47835163772106, categorical_loss:2604.1781157255173, kld_loss:6685.899476051331, epoch_train_time:15.748367132619023
+2023-02-15 19:31:12,754 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.120 epoch----------------------------
+2023-02-15 19:31:12,754 - pytorch_cvae.py[line:177] - INFO: loss:8203.190016269684, numeric_loss:253.26451513171196, categorical_loss:2601.535474538803, kld_loss:6685.487377166748, epoch_train_time:15.530644580721855
+2023-02-15 19:31:28,572 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.121 epoch----------------------------
+2023-02-15 19:31:28,572 - pytorch_cvae.py[line:177] - INFO: loss:8206.852444171906, numeric_loss:253.3997559696436, categorical_loss:2602.290289759636, kld_loss:6688.952836990356, epoch_train_time:15.817804915830493
+2023-02-15 19:31:44,379 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.122 epoch----------------------------
+2023-02-15 19:31:44,379 - pytorch_cvae.py[line:177] - INFO: loss:8193.893104076385, numeric_loss:253.2670278251171, categorical_loss:2591.8400127887726, kld_loss:6685.982436180115, epoch_train_time:15.80682123079896
+2023-02-15 19:31:59,947 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.123 epoch----------------------------
+2023-02-15 19:31:59,947 - pytorch_cvae.py[line:177] - INFO: loss:8199.166103839874, numeric_loss:253.28051635622978, categorical_loss:2589.152298927307, kld_loss:6695.916473865509, epoch_train_time:15.567247472703457
+2023-02-15 19:32:15,481 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.124 epoch----------------------------
+2023-02-15 19:32:15,481 - pytorch_cvae.py[line:177] - INFO: loss:8191.317727088928, numeric_loss:253.0488326996565, categorical_loss:2585.7427393198013, kld_loss:6690.6575627326965, epoch_train_time:15.53389204107225
+2023-02-15 19:32:31,229 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.125 epoch----------------------------
+2023-02-15 19:32:31,229 - pytorch_cvae.py[line:177] - INFO: loss:8199.458922863007, numeric_loss:253.38799802958965, categorical_loss:2590.000884413719, kld_loss:6695.08740568161, epoch_train_time:15.747661858797073
+2023-02-15 19:32:46,831 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.126 epoch----------------------------
+2023-02-15 19:32:46,831 - pytorch_cvae.py[line:177] - INFO: loss:8192.66384935379, numeric_loss:252.96890071034431, categorical_loss:2581.5786349773407, kld_loss:6697.645276069641, epoch_train_time:15.602140652015805
+2023-02-15 19:33:02,483 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.127 epoch----------------------------
+2023-02-15 19:33:02,483 - pytorch_cvae.py[line:177] - INFO: loss:8189.136066913605, numeric_loss:252.85547663271427, categorical_loss:2579.6701164245605, kld_loss:6695.762958526611, epoch_train_time:15.651894802227616
+2023-02-15 19:33:18,061 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.128 epoch----------------------------
+2023-02-15 19:33:18,061 - pytorch_cvae.py[line:177] - INFO: loss:8188.900966644287, numeric_loss:253.07212562859058, categorical_loss:2575.984808444977, kld_loss:6699.804906368256, epoch_train_time:15.577751347795129
+2023-02-15 19:33:33,632 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.129 epoch----------------------------
+2023-02-15 19:33:33,632 - pytorch_cvae.py[line:177] - INFO: loss:8187.765490055084, numeric_loss:252.84844456613064, categorical_loss:2573.1261950731277, kld_loss:6702.23842716217, epoch_train_time:15.570797143504024
+2023-02-15 19:33:49,395 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.130 epoch----------------------------
+2023-02-15 19:33:49,395 - pytorch_cvae.py[line:177] - INFO: loss:8184.553059577942, numeric_loss:253.11847481131554, categorical_loss:2564.9600940942764, kld_loss:6708.092981815338, epoch_train_time:15.76290863007307
+2023-02-15 19:34:04,967 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.131 epoch----------------------------
+2023-02-15 19:34:04,968 - pytorch_cvae.py[line:177] - INFO: loss:8182.224100589752, numeric_loss:253.0232999175787, categorical_loss:2567.015384197235, kld_loss:6702.73162984848, epoch_train_time:15.572214916348457
+2023-02-15 19:34:20,551 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.132 epoch----------------------------
+2023-02-15 19:34:20,551 - pytorch_cvae.py[line:177] - INFO: loss:8184.251010894775, numeric_loss:252.85323876142502, categorical_loss:2566.1985033750534, kld_loss:6706.49894618988, epoch_train_time:15.582939645275474
+2023-02-15 19:34:36,339 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.133 epoch----------------------------
+2023-02-15 19:34:36,339 - pytorch_cvae.py[line:177] - INFO: loss:8182.958405971527, numeric_loss:253.0270600914955, categorical_loss:2566.117307662964, kld_loss:6704.767404556274, epoch_train_time:15.788611076772213
+2023-02-15 19:34:52,089 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.134 epoch----------------------------
+2023-02-15 19:34:52,089 - pytorch_cvae.py[line:177] - INFO: loss:8176.151917457581, numeric_loss:252.89411281049252, categorical_loss:2557.646887779236, kld_loss:6707.013499736786, epoch_train_time:15.749012077227235
+2023-02-15 19:35:07,758 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.135 epoch----------------------------
+2023-02-15 19:35:07,759 - pytorch_cvae.py[line:177] - INFO: loss:8179.203188419342, numeric_loss:253.03016638755798, categorical_loss:2556.354919552803, kld_loss:6712.272474765778, epoch_train_time:15.66958487406373
+2023-02-15 19:35:23,472 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.136 epoch----------------------------
+2023-02-15 19:35:23,472 - pytorch_cvae.py[line:177] - INFO: loss:8176.044922351837, numeric_loss:252.70928759872913, categorical_loss:2554.0163600444794, kld_loss:6711.6489634513855, epoch_train_time:15.71315224841237
+2023-02-15 19:35:39,174 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.137 epoch----------------------------
+2023-02-15 19:35:39,174 - pytorch_cvae.py[line:177] - INFO: loss:8181.888094902039, numeric_loss:252.92406079173088, categorical_loss:2558.795777440071, kld_loss:6712.7101945877075, epoch_train_time:15.70180687494576
+2023-02-15 19:35:54,830 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.138 epoch----------------------------
+2023-02-15 19:35:54,830 - pytorch_cvae.py[line:177] - INFO: loss:8173.46389913559, numeric_loss:252.73233106732368, categorical_loss:2550.5496048927307, kld_loss:6712.727324008942, epoch_train_time:15.655758414417505
+2023-02-15 19:36:10,568 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.139 epoch----------------------------
+2023-02-15 19:36:10,568 - pytorch_cvae.py[line:177] - INFO: loss:8176.471354484558, numeric_loss:253.012321382761, categorical_loss:2553.573266863823, kld_loss:6712.35707616806, epoch_train_time:15.738000504672527
+2023-02-15 19:36:26,145 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.140 epoch----------------------------
+2023-02-15 19:36:26,145 - pytorch_cvae.py[line:177] - INFO: loss:8171.910914897919, numeric_loss:252.50211116671562, categorical_loss:2551.257537484169, kld_loss:6710.18893289566, epoch_train_time:15.577132239937782
+2023-02-15 19:36:41,823 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.141 epoch----------------------------
+2023-02-15 19:36:41,824 - pytorch_cvae.py[line:177] - INFO: loss:8170.3089146614075, numeric_loss:252.69707903265953, categorical_loss:2546.091866850853, kld_loss:6714.3998103141785, epoch_train_time:15.67796704173088
+2023-02-15 19:36:57,523 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.142 epoch----------------------------
+2023-02-15 19:36:57,523 - pytorch_cvae.py[line:177] - INFO: loss:8169.782004356384, numeric_loss:252.5834229439497, categorical_loss:2543.5069568157196, kld_loss:6717.114390850067, epoch_train_time:15.699730560183525
+2023-02-15 19:37:13,026 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.143 epoch----------------------------
+2023-02-15 19:37:13,026 - pytorch_cvae.py[line:177] - INFO: loss:8174.181365013123, numeric_loss:252.68279606103897, categorical_loss:2546.6005104780197, kld_loss:6718.622437477112, epoch_train_time:15.502800425514579
+2023-02-15 19:37:28,677 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.144 epoch----------------------------
+2023-02-15 19:37:28,677 - pytorch_cvae.py[line:177] - INFO: loss:8169.034767150879, numeric_loss:252.61691030859947, categorical_loss:2542.1655753850937, kld_loss:6717.81519651413, epoch_train_time:15.650657491758466
+2023-02-15 19:37:44,305 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.145 epoch----------------------------
+2023-02-15 19:37:44,305 - pytorch_cvae.py[line:177] - INFO: loss:8169.541120529175, numeric_loss:252.51157738268375, categorical_loss:2542.117338180542, kld_loss:6718.64012670517, epoch_train_time:15.627577358856797
+2023-02-15 19:38:00,129 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.146 epoch----------------------------
+2023-02-15 19:38:00,129 - pytorch_cvae.py[line:177] - INFO: loss:8164.007506370544, numeric_loss:252.55905747413635, categorical_loss:2538.085194826126, kld_loss:6716.7039251327515, epoch_train_time:15.82380224764347
+2023-02-15 19:38:15,715 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.147 epoch----------------------------
+2023-02-15 19:38:15,715 - pytorch_cvae.py[line:177] - INFO: loss:8165.833468437195, numeric_loss:252.5884314775467, categorical_loss:2535.624496102333, kld_loss:6722.025525569916, epoch_train_time:15.58566689491272
+2023-02-15 19:38:31,371 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.148 epoch----------------------------
+2023-02-15 19:38:31,371 - pytorch_cvae.py[line:177] - INFO: loss:8162.625502109528, numeric_loss:252.37569424510002, categorical_loss:2535.5258008241653, kld_loss:6718.404854774475, epoch_train_time:15.655972562730312
+2023-02-15 19:38:47,182 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.149 epoch----------------------------
+2023-02-15 19:38:47,183 - pytorch_cvae.py[line:177] - INFO: loss:8157.631670951843, numeric_loss:252.4918735921383, categorical_loss:2530.2022399902344, kld_loss:6718.671806335449, epoch_train_time:15.811293426901102
+2023-02-15 19:39:02,711 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.150 epoch----------------------------
+2023-02-15 19:39:02,711 - pytorch_cvae.py[line:177] - INFO: loss:8161.904994487762, numeric_loss:252.43429565429688, categorical_loss:2527.783825159073, kld_loss:6727.108451366425, epoch_train_time:15.528174426406622
+2023-02-15 19:39:18,237 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.151 epoch----------------------------
+2023-02-15 19:39:18,237 - pytorch_cvae.py[line:177] - INFO: loss:8160.031998157501, numeric_loss:252.29857394099236, categorical_loss:2525.968599677086, kld_loss:6727.205884933472, epoch_train_time:15.52554089948535
+2023-02-15 19:39:33,989 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.152 epoch----------------------------
+2023-02-15 19:39:33,989 - pytorch_cvae.py[line:177] - INFO: loss:8159.946626663208, numeric_loss:252.36843606829643, categorical_loss:2522.838790655136, kld_loss:6730.924115180969, epoch_train_time:15.752291640266776
+2023-02-15 19:39:49,593 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.153 epoch----------------------------
+2023-02-15 19:39:49,593 - pytorch_cvae.py[line:177] - INFO: loss:8160.623459815979, numeric_loss:252.31167471408844, categorical_loss:2523.942568540573, kld_loss:6730.461382865906, epoch_train_time:15.604092488065362
+2023-02-15 19:40:05,300 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.154 epoch----------------------------
+2023-02-15 19:40:05,300 - pytorch_cvae.py[line:177] - INFO: loss:8154.594160079956, numeric_loss:252.1987600028515, categorical_loss:2518.8193633556366, kld_loss:6729.469902515411, epoch_train_time:15.706376180052757
+2023-02-15 19:40:20,859 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.155 epoch----------------------------
+2023-02-15 19:40:20,859 - pytorch_cvae.py[line:177] - INFO: loss:8154.538230419159, numeric_loss:252.33959464728832, categorical_loss:2516.4939138889313, kld_loss:6732.1307582855225, epoch_train_time:15.558425780385733
+2023-02-15 19:40:36,388 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.156 epoch----------------------------
+2023-02-15 19:40:36,388 - pytorch_cvae.py[line:177] - INFO: loss:8156.945930957794, numeric_loss:252.2579038143158, categorical_loss:2516.2120616436005, kld_loss:6735.594802856445, epoch_train_time:15.528839562088251
+2023-02-15 19:40:52,014 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.157 epoch----------------------------
+2023-02-15 19:40:52,015 - pytorch_cvae.py[line:177] - INFO: loss:8156.383948802948, numeric_loss:252.2846641242504, categorical_loss:2515.276735663414, kld_loss:6736.028038024902, epoch_train_time:15.626510983332992
+2023-02-15 19:41:07,626 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.158 epoch----------------------------
+2023-02-15 19:41:07,626 - pytorch_cvae.py[line:177] - INFO: loss:8151.243437767029, numeric_loss:252.34716518223286, categorical_loss:2514.6227213144302, kld_loss:6730.341813087463, epoch_train_time:15.61096234433353
+2023-02-15 19:41:23,199 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.159 epoch----------------------------
+2023-02-15 19:41:23,199 - pytorch_cvae.py[line:177] - INFO: loss:8150.954652786255, numeric_loss:252.29306073486805, categorical_loss:2512.2925894260406, kld_loss:6732.9611229896545, epoch_train_time:15.573515756055713
+2023-02-15 19:41:38,970 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.160 epoch----------------------------
+2023-02-15 19:41:38,970 - pytorch_cvae.py[line:177] - INFO: loss:8151.577394962311, numeric_loss:252.31321294605732, categorical_loss:2512.6793962717056, kld_loss:6733.230851650238, epoch_train_time:15.770437123253942
+2023-02-15 19:41:54,712 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.161 epoch----------------------------
+2023-02-15 19:41:54,712 - pytorch_cvae.py[line:177] - INFO: loss:8149.131928443909, numeric_loss:252.21418975293636, categorical_loss:2511.2903847694397, kld_loss:6732.034053325653, epoch_train_time:15.741973776370287
+2023-02-15 19:42:10,392 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.162 epoch----------------------------
+2023-02-15 19:42:10,392 - pytorch_cvae.py[line:177] - INFO: loss:8144.454733371735, numeric_loss:252.24452513456345, categorical_loss:2506.8555094003677, kld_loss:6731.69324016571, epoch_train_time:15.679313192144036
+2023-02-15 19:42:25,952 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.163 epoch----------------------------
+2023-02-15 19:42:25,952 - pytorch_cvae.py[line:177] - INFO: loss:8146.218190193176, numeric_loss:251.99431283771992, categorical_loss:2506.8451286554337, kld_loss:6734.223295211792, epoch_train_time:15.56044534407556
+2023-02-15 19:42:41,593 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.164 epoch----------------------------
+2023-02-15 19:42:41,593 - pytorch_cvae.py[line:177] - INFO: loss:8142.2166628837585, numeric_loss:252.15326644480228, categorical_loss:2500.427327275276, kld_loss:6737.044938087463, epoch_train_time:15.640543483197689
+2023-02-15 19:42:57,277 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.165 epoch----------------------------
+2023-02-15 19:42:57,278 - pytorch_cvae.py[line:177] - INFO: loss:8138.84028673172, numeric_loss:252.12994860112667, categorical_loss:2500.223653435707, kld_loss:6733.1082191467285, epoch_train_time:15.684270814061165
+2023-02-15 19:43:12,821 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.166 epoch----------------------------
+2023-02-15 19:43:12,821 - pytorch_cvae.py[line:177] - INFO: loss:8139.315763950348, numeric_loss:252.1635808646679, categorical_loss:2497.1791801452637, kld_loss:6737.466118812561, epoch_train_time:15.543689912185073
+2023-02-15 19:43:28,348 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.167 epoch----------------------------
+2023-02-15 19:43:28,348 - pytorch_cvae.py[line:177] - INFO: loss:8139.537926197052, numeric_loss:252.1524249613285, categorical_loss:2493.466120362282, kld_loss:6742.3990960121155, epoch_train_time:15.526222616434097
+2023-02-15 19:43:43,933 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.168 epoch----------------------------
+2023-02-15 19:43:43,933 - pytorch_cvae.py[line:177] - INFO: loss:8138.744903564453, numeric_loss:252.13909009099007, categorical_loss:2494.2173216342926, kld_loss:6740.485474586487, epoch_train_time:15.584941372275352
+2023-02-15 19:43:59,661 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.169 epoch----------------------------
+2023-02-15 19:43:59,661 - pytorch_cvae.py[line:177] - INFO: loss:8133.7115750312805, numeric_loss:252.0531855970621, categorical_loss:2488.7893233299255, kld_loss:6741.08620595932, epoch_train_time:15.727825919166207
+2023-02-15 19:44:15,118 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.170 epoch----------------------------
+2023-02-15 19:44:15,118 - pytorch_cvae.py[line:177] - INFO: loss:8133.908711433411, numeric_loss:251.88947044312954, categorical_loss:2488.7643333673477, kld_loss:6741.568476200104, epoch_train_time:15.45652324706316
+2023-02-15 19:44:30,751 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.171 epoch----------------------------
+2023-02-15 19:44:30,751 - pytorch_cvae.py[line:177] - INFO: loss:8132.511742115021, numeric_loss:252.1165362894535, categorical_loss:2486.18449819088, kld_loss:6742.7632513046265, epoch_train_time:15.632982755079865
+2023-02-15 19:44:46,280 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.172 epoch----------------------------
+2023-02-15 19:44:46,281 - pytorch_cvae.py[line:177] - INFO: loss:8131.80140542984, numeric_loss:252.27158831059933, categorical_loss:2485.8272815942764, kld_loss:6742.128053188324, epoch_train_time:15.529493659734726
+2023-02-15 19:45:01,894 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.173 epoch----------------------------
+2023-02-15 19:45:01,894 - pytorch_cvae.py[line:177] - INFO: loss:8130.933002948761, numeric_loss:251.95248375833035, categorical_loss:2483.940644264221, kld_loss:6743.7997217178345, epoch_train_time:15.613033091649413
+2023-02-15 19:45:17,274 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.174 epoch----------------------------
+2023-02-15 19:45:17,274 - pytorch_cvae.py[line:177] - INFO: loss:8131.961241722107, numeric_loss:252.1480444073677, categorical_loss:2479.8620569705963, kld_loss:6749.938801288605, epoch_train_time:15.380322854965925
+2023-02-15 19:45:33,025 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.175 epoch----------------------------
+2023-02-15 19:45:33,025 - pytorch_cvae.py[line:177] - INFO: loss:8130.948246955872, numeric_loss:251.835643902421, categorical_loss:2479.4131960868835, kld_loss:6749.624112129211, epoch_train_time:15.750120190903544
+2023-02-15 19:45:48,723 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.176 epoch----------------------------
+2023-02-15 19:45:48,723 - pytorch_cvae.py[line:177] - INFO: loss:8133.151991844177, numeric_loss:252.07689851522446, categorical_loss:2478.0748502016068, kld_loss:6753.750156879425, epoch_train_time:15.697789961472154
+2023-02-15 19:46:04,207 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.177 epoch----------------------------
+2023-02-15 19:46:04,207 - pytorch_cvae.py[line:177] - INFO: loss:8127.022879123688, numeric_loss:251.91469284892082, categorical_loss:2475.634498357773, kld_loss:6749.341967582703, epoch_train_time:15.484607215970755
+2023-02-15 19:46:19,722 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.178 epoch----------------------------
+2023-02-15 19:46:19,722 - pytorch_cvae.py[line:177] - INFO: loss:8127.2319531440735, numeric_loss:252.2277115136385, categorical_loss:2476.439989566803, kld_loss:6748.205154418945, epoch_train_time:15.5146789457649
+2023-02-15 19:46:35,342 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.179 epoch----------------------------
+2023-02-15 19:46:35,342 - pytorch_cvae.py[line:177] - INFO: loss:8129.173946380615, numeric_loss:252.01346258819103, categorical_loss:2478.4613745212555, kld_loss:6748.373747825623, epoch_train_time:15.619568111374974
+2023-02-15 19:46:50,889 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.180 epoch----------------------------
+2023-02-15 19:46:50,889 - pytorch_cvae.py[line:177] - INFO: loss:8132.429496765137, numeric_loss:252.28126330673695, categorical_loss:2475.7871457338333, kld_loss:6755.451221466064, epoch_train_time:15.546317972242832
+2023-02-15 19:47:06,399 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.181 epoch----------------------------
+2023-02-15 19:47:06,399 - pytorch_cvae.py[line:177] - INFO: loss:8127.225344657898, numeric_loss:251.85000923275948, categorical_loss:2472.1557245254517, kld_loss:6754.024365901947, epoch_train_time:15.50991895608604
+2023-02-15 19:47:22,046 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.182 epoch----------------------------
+2023-02-15 19:47:22,046 - pytorch_cvae.py[line:177] - INFO: loss:8127.309246063232, numeric_loss:251.91370552778244, categorical_loss:2471.264566898346, kld_loss:6755.163576602936, epoch_train_time:15.647232560440898
+2023-02-15 19:47:37,637 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.183 epoch----------------------------
+2023-02-15 19:47:37,638 - pytorch_cvae.py[line:177] - INFO: loss:8123.950151443481, numeric_loss:252.02157635986805, categorical_loss:2470.6632997989655, kld_loss:6751.581456184387, epoch_train_time:15.591171136125922
+2023-02-15 19:47:53,885 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.184 epoch----------------------------
+2023-02-15 19:47:53,886 - pytorch_cvae.py[line:177] - INFO: loss:8125.428505897522, numeric_loss:251.90818771719933, categorical_loss:2470.4673941135406, kld_loss:6753.816018104553, epoch_train_time:16.24778190255165
+2023-02-15 19:48:09,447 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.185 epoch----------------------------
+2023-02-15 19:48:09,447 - pytorch_cvae.py[line:177] - INFO: loss:8126.863920688629, numeric_loss:251.86527082324028, categorical_loss:2472.78596162796, kld_loss:6752.765735626221, epoch_train_time:15.561099486425519
+2023-02-15 19:48:25,044 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.186 epoch----------------------------
+2023-02-15 19:48:25,044 - pytorch_cvae.py[line:177] - INFO: loss:8121.716922283173, numeric_loss:251.88469122350216, categorical_loss:2468.2396836280823, kld_loss:6751.99054145813, epoch_train_time:15.596850644797087
+2023-02-15 19:48:40,975 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.187 epoch----------------------------
+2023-02-15 19:48:40,975 - pytorch_cvae.py[line:177] - INFO: loss:8122.463036060333, numeric_loss:251.9701545238495, categorical_loss:2468.334613442421, kld_loss:6752.6976952552795, epoch_train_time:15.930915303528309
+2023-02-15 19:48:56,926 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.188 epoch----------------------------
+2023-02-15 19:48:56,926 - pytorch_cvae.py[line:177] - INFO: loss:8123.99996471405, numeric_loss:251.9009944051504, categorical_loss:2466.8653132915497, kld_loss:6756.5419363975525, epoch_train_time:15.950649410486221
+2023-02-15 19:49:13,052 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.189 epoch----------------------------
+2023-02-15 19:49:13,052 - pytorch_cvae.py[line:177] - INFO: loss:8122.398028373718, numeric_loss:251.99756778776646, categorical_loss:2470.2226864099503, kld_loss:6750.222087860107, epoch_train_time:16.12630335241556
+2023-02-15 19:49:28,801 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.190 epoch----------------------------
+2023-02-15 19:49:28,801 - pytorch_cvae.py[line:177] - INFO: loss:8120.76336812973, numeric_loss:251.8836401104927, categorical_loss:2464.929081559181, kld_loss:6754.938156604767, epoch_train_time:15.748867249116302
+2023-02-15 19:49:45,699 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.191 epoch----------------------------
+2023-02-15 19:49:45,699 - pytorch_cvae.py[line:177] - INFO: loss:8120.775616645813, numeric_loss:251.8306394070387, categorical_loss:2466.2184351682663, kld_loss:6753.408020019531, epoch_train_time:16.8973520565778
+2023-02-15 19:50:02,207 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.192 epoch----------------------------
+2023-02-15 19:50:02,207 - pytorch_cvae.py[line:177] - INFO: loss:8123.768183231354, numeric_loss:252.01596131920815, categorical_loss:2465.657733440399, kld_loss:6757.617972373962, epoch_train_time:16.50808198750019
+2023-02-15 19:50:19,361 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.193 epoch----------------------------
+2023-02-15 19:50:19,361 - pytorch_cvae.py[line:177] - INFO: loss:8120.7528467178345, numeric_loss:252.07527947425842, categorical_loss:2465.0304079055786, kld_loss:6754.558822154999, epoch_train_time:17.153281630948186
+2023-02-15 19:50:35,023 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.194 epoch----------------------------
+2023-02-15 19:50:35,023 - pytorch_cvae.py[line:177] - INFO: loss:8119.339736461639, numeric_loss:251.81168811023235, categorical_loss:2460.8035881519318, kld_loss:6758.4054408073425, epoch_train_time:15.661716865375638
+2023-02-15 19:50:51,664 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.195 epoch----------------------------
+2023-02-15 19:50:51,664 - pytorch_cvae.py[line:177] - INFO: loss:8121.7457094192505, numeric_loss:252.14913377165794, categorical_loss:2465.1904648542404, kld_loss:6755.507487773895, epoch_train_time:16.641090476885438
+2023-02-15 19:51:07,189 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.196 epoch----------------------------
+2023-02-15 19:51:07,189 - pytorch_cvae.py[line:177] - INFO: loss:8117.446041584015, numeric_loss:251.91037425398827, categorical_loss:2464.8498507738113, kld_loss:6750.857130527496, epoch_train_time:15.525313310325146
+2023-02-15 19:51:21,365 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.197 epoch----------------------------
+2023-02-15 19:51:21,365 - pytorch_cvae.py[line:177] - INFO: loss:8116.523770809174, numeric_loss:252.06932431459427, categorical_loss:2460.479254245758, kld_loss:6754.9688630104065, epoch_train_time:14.175098748877645
+2023-02-15 19:51:36,879 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.198 epoch----------------------------
+2023-02-15 19:51:36,879 - pytorch_cvae.py[line:177] - INFO: loss:8117.329135894775, numeric_loss:251.8951503932476, categorical_loss:2465.0318925380707, kld_loss:6750.502477169037, epoch_train_time:15.51411240361631
+2023-02-15 19:51:52,096 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.199 epoch----------------------------
+2023-02-15 19:51:52,096 - pytorch_cvae.py[line:177] - INFO: loss:8114.074819087982, numeric_loss:252.0279857814312, categorical_loss:2459.1310892105103, kld_loss:6753.644533634186, epoch_train_time:15.216950187459588
+2023-02-15 19:52:08,159 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.200 epoch----------------------------
+2023-02-15 19:52:08,159 - pytorch_cvae.py[line:177] - INFO: loss:8118.320511341095, numeric_loss:251.91238769888878, categorical_loss:2458.823166370392, kld_loss:6759.48105764389, epoch_train_time:16.062274731695652
+2023-02-15 19:52:08,159 - pytorch_cvae.py[line:186] - INFO: training time elapsed:3137.54431627132
+2023-02-15 19:52:08,161 - model_utils.py[line:67] - INFO: save model successfully
+2023-02-15 19:52:12,651 - pytorch_cvae.py[line:268] - INFO: train model time elapsed:3920.5115273613483
+2023-02-15 19:52:12,651 - dataset_utils.py[line:571] - INFO: load existing dataset(light):dim_sub_prot-new_protocol_id#protocol__protocol_id_binary_mm_0
+2023-02-15 19:52:12,653 - dataset_utils.py[line:580] - INFO: load dataset(light) time elapsed:0.001987980678677559
+2023-02-15 19:52:12,653 - pytorch_cvae.py[line:280] - INFO: feature info:[('protocol_id', 'categorical', 5), ('protocol', 'categorical', 5)]
+2023-02-15 19:52:12,654 - model_utils.py[line:75] - INFO: load model name:torch_cvae_dim_sub_prot-new_protocol_id_ld100_id100_bs128_ep100_0_binary_mm
+2023-02-15 19:52:12,656 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0017508100718259811
+2023-02-15 19:52:12,656 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:0.004648128524422646
+2023-02-15 19:52:12,656 - main.py[line:535] - INFO: multi_sampling No.0 epoch
+2023-02-15 19:52:12,691 - pytorch_cvae.py[line:404] - INFO: sampling time:0.0347420871257782
+2023-02-15 19:52:12,691 - dataset_utils.py[line:552] - INFO: load existing dataset:dim_sub_prot-new_protocol_id#protocol__protocol_id_binary_mm_0
+2023-02-15 19:52:12,693 - dataset_utils.py[line:564] - INFO: load dataset time elapsed:0.002395397052168846
+2023-02-15 19:52:12,755 - main.py[line:519] - INFO: sample and aggregation time elapsed:0.09942035004496574
+2023-02-15 19:52:12,758 - main.py[line:552] - INFO: sample time: 0.10251500457525253
+2023-02-15 19:52:12,771 - main.py[line:99] - INFO: aqp result:
+               avg(l4_ul_throughput)  avg(l4_dw_throughput)  \
+prot_category                                                 
+2             15020.12               15216.88                 
+4             36428.48               19021.09                 
+6             27545.18               27896.58                 
+17            19014.50               19212.49                 
+
+               avg(l4_ul_packets)  avg(l4_dw_packets)  sum(l4_ul_throughput)  \
+prot_category                                                                  
+2             262.85              250.82              32034650817.71           
+4             245.47              274.38              1245509342898.82         
+6             649.99              527.70              1957210919877.69         
+17            229.50              134.53              1209301266739.79         
+
+               sum(l4_dw_throughput)  sum(l4_ul_packets)  sum(l4_dw_packets)  
+prot_category                                                                 
+2             32454278862.64         560595406.39        534944770.92         
+4             650341409680.22        8392678853.68       9381183261.22        
+6             1982179122848.60       46184879900.07      37495453524.36       
+17            1221893266155.04       14596014284.70      8555849563.90        
+2023-02-15 19:52:12,775 - main.py[line:100] - INFO: ground truth:
+               avg(l4_ul_throughput)  avg(l4_dw_throughput)  \
+prot_category                                                 
+2             14152.46               14152.46                 
+4             40798.47               17874.05                 
+6             28428.89               28429.12                 
+17            20991.12               20996.25                 
+
+               avg(l4_ul_packets)  avg(l4_dw_packets)  sum(l4_ul_throughput)  \
+prot_category                                                                  
+2             250.33              236.64               30275359958             
+4             251.55              263.84               1397737978224           
+6             662.27              423.15               2023587415728           
+17            273.93              142.25               1337268152236           
+
+               sum(l4_dw_throughput)  sum(l4_ul_packets)  sum(l4_dw_packets)  
+prot_category                                                                 
+2              30275359958            535509791           506217929           
+4              612357266304           8618155392          9039179184          
+6              2023603696660          47141151512         30120077256         
+17             1337595176600          17451084200         9061943574          
+2023-02-15 19:52:12,783 - main.py[line:564] - INFO: relative error:
+               avg(l4_ul_throughput)  avg(l4_dw_throughput)  \
+prot_category                                                 
+2             0.06                   0.08                     
+4             0.11                   0.06                     
+6             0.03                   0.02                     
+17            0.09                   0.08                     
+
+               avg(l4_ul_packets)  avg(l4_dw_packets)  sum(l4_ul_throughput)  \
+prot_category                                                                  
+2             0.05                0.06                0.06                     
+4             0.02                0.04                0.11                     
+6             0.02                0.25                0.03                     
+17            0.16                0.05                0.10                     
+
+               sum(l4_dw_throughput)  sum(l4_ul_packets)  sum(l4_dw_packets)  
+prot_category                                                                 
+2             0.07                   0.05                0.06                 
+4             0.06                   0.03                0.04                 
+6             0.02                   0.02                0.24                 
+17            0.09                   0.16                0.06                 
+2023-02-15 19:52:12,785 - main.py[line:565] - INFO: relative error normalized:
+               avg(l4_ul_throughput)  avg(l4_dw_throughput)  \
+prot_category                                                 
+2             0.06                   0.07                     
+4             0.10                   0.06                     
+6             0.03                   0.02                     
+17            0.09                   0.08                     
+
+               avg(l4_ul_packets)  avg(l4_dw_packets)  sum(l4_ul_throughput)  \
+prot_category                                                                  
+2             0.05                0.06                0.06                     
+4             0.02                0.04                0.10                     
+6             0.02                0.22                0.03                     
+17            0.15                0.05                0.09                     
+
+               sum(l4_dw_throughput)  sum(l4_ul_packets)  sum(l4_dw_packets)  
+prot_category                                                                 
+2             0.07                   0.05                0.06                 
+4             0.06                   0.03                0.04                 
+6             0.02                   0.02                0.22                 
+17            0.08                   0.15                0.05                 
+2023-02-15 19:52:12,785 - main.py[line:568] - INFO: relative error average: 0.07442395825480003
+2023-02-15 19:52:12,785 - main.py[line:569] - INFO: relative error normalized average: 0.07025754762138911
+2023-02-15 19:52:12,787 - main.py[line:615] - INFO: total_time:3920.6483087949455
+feature_names: ['prot_category_0', 'prot_category_1', 'prot_category_2']
+feature_names: ['prot_category_0', 'prot_category_1', 'prot_category_2']

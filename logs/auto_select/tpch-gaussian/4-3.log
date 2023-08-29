@@ -1,0 +1,138 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2023-05-19 14:03:18,598 - main.py[line:600] - INFO: load query config config/query/customer_join_nation.json successfully
+2023-05-19 14:03:18,598 - main.py[line:607] - INFO: load train config ./config/train/tpch_customer_torch_cvae.json successfully
+2023-05-19 14:03:18,598 - main.py[line:607] - INFO: load train config ./config/train/tpch_nation_torch_cvae.json successfully
+2023-05-19 14:03:18,598 - dataset_utils.py[line:571] - INFO: load existing dataset(light):tpch-20g-customer_c_nationkey_c_acctbal_c_nationkey_binary_gaussian5_0
+2023-05-19 14:03:19,182 - dataset_utils.py[line:580] - INFO: load dataset(light) time elapsed:0.5838187299668789
+2023-05-19 14:03:19,182 - pytorch_cvae.py[line:280] - INFO: feature info:[('c_acctbal', 'numerical', 6), ('c_nationkey', 'categorical', 6)]
+2023-05-19 14:03:19,184 - model_utils.py[line:75] - INFO: load model name:torch_cvae_tpch-20g-customer_c_nationkey_ld50_id100_bs1024_ep150_0_binary_gaussian5
+2023-05-19 14:03:21,272 - model_utils.py[line:86] - INFO: load torch model time elapsed:2.088140817009844
+2023-05-19 14:03:21,272 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:2.6735367260407656
+2023-05-19 14:03:21,272 - dataset_utils.py[line:571] - INFO: load existing dataset(light):tpch-35g-nation_n_nationkey#n_name__n_nationkey_binary_mm_0
+2023-05-19 14:03:21,274 - dataset_utils.py[line:580] - INFO: load dataset(light) time elapsed:0.001562802935950458
+2023-05-19 14:03:21,274 - pytorch_cvae.py[line:280] - INFO: feature info:[('n_nationkey', 'categorical', 6), ('n_name', 'categorical', 6)]
+2023-05-19 14:03:21,274 - model_utils.py[line:75] - INFO: load model name:torch_cvae_tpch-35g-nation_n_nationkey_ld100_id150_bs128_ep100_0_binary_mm
+2023-05-19 14:03:21,276 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0013805250637233257
+2023-05-19 14:03:21,276 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:0.00372156105004251
+2023-05-19 14:03:21,276 - main.py[line:540] - INFO: multi_sampling No.0 epoch
+2023-05-19 14:03:21,799 - pytorch_cvae.py[line:407] - INFO: sampling time:0.5222229990176857
+2023-05-19 14:03:21,799 - dataset_utils.py[line:552] - INFO: load existing dataset:tpch-35g-nation_n_nationkey#n_name__n_nationkey_binary_mm_0
+2023-05-19 14:03:21,801 - dataset_utils.py[line:564] - INFO: load dataset time elapsed:0.0019813230028375983
+2023-05-19 14:03:21,819 - main.py[line:524] - INFO: sample and aggregation time elapsed:0.5427855750313029
+2023-05-19 14:03:21,824 - main.py[line:557] - INFO: sample time: 0.5480980180436745
+2023-05-19 14:03:21,837 - main.py[line:101] - INFO: aqp result:
+                avg(c_acctbal)  sum(c_acctbal)
+n_name                                        
+ALGERIA        4690.96         562234730.27   
+ARGENTINA      4523.28         541970088.13   
+BRAZIL         4409.33         528925327.76   
+CANADA         4496.45         539385346.63   
+CHINA          4436.63         531747640.70   
+EGYPT          4387.49         526537832.70   
+ETHIOPIA       4691.31         564997482.65   
+FRANCE         4421.21         532265618.57   
+GERMANY        4310.95         517758301.16   
+INDIA          4382.78         528155577.84   
+INDONESIA      4720.35         567745225.93   
+IRAN           4496.00         540496126.00   
+IRAQ           4443.35         533308282.45   
+JAPAN          4482.12         535021787.50   
+JORDAN         4350.21         518954011.35   
+KENYA          4547.23         543257072.03   
+MOROCCO        4685.85         562189912.24   
+MOZAMBIQUE     4414.92         528466117.60   
+PERU           4725.28         566466375.78   
+ROMANIA        4530.68         543563766.58   
+RUSSIA         4548.10         545244735.55   
+SAUDI ARABIA   4628.23         556701474.68   
+UNITED KINGDOM 4755.80         573934991.31   
+UNITED STATES  4495.25         539775980.80   
+VIETNAM        4517.44         542142640.62   
+2023-05-19 14:03:21,839 - main.py[line:102] - INFO: ground truth:
+                avg(c_acctbal)  sum(c_acctbal)
+n_name                                        
+ALGERIA        4498.60         539179132.56   
+ARGENTINA      4487.74         537712316.92   
+BRAZIL         4502.58         540111208.72   
+CANADA         4497.83         539550781.18   
+CHINA          4498.16         539122418.82   
+EGYPT          4499.53         539984141.53   
+ETHIOPIA       4498.32         541755384.74   
+FRANCE         4494.25         541057901.35   
+GERMANY        4493.81         539720485.08   
+INDIA          4510.40         543534349.52   
+INDONESIA      4497.02         540883690.44   
+IRAN           4504.83         541557576.78   
+IRAQ           4509.38         541234034.38   
+JAPAN          4495.17         536578990.22   
+JORDAN         4503.11         537193552.56   
+KENYA          4503.27         538005946.84   
+MOROCCO        4494.62         539246776.35   
+MOZAMBIQUE     4507.15         539505894.77   
+PERU           4496.58         539050477.33   
+ROMANIA        4484.52         538026061.76   
+RUSSIA         4515.14         541292914.28   
+SAUDI ARABIA   4511.07         542610117.90   
+UNITED KINGDOM 4493.32         542258002.88   
+UNITED STATES  4500.03         540349688.07   
+VIETNAM        4499.61         540002514.42   
+2023-05-19 14:03:21,845 - main.py[line:569] - INFO: relative error:
+                avg(c_acctbal)  sum(c_acctbal)
+n_name                                        
+ALGERIA        0.04            0.04           
+ARGENTINA      0.01            0.01           
+BRAZIL         0.02            0.02           
+CANADA         0.00            0.00           
+CHINA          0.01            0.01           
+EGYPT          0.02            0.02           
+ETHIOPIA       0.04            0.04           
+FRANCE         0.02            0.02           
+GERMANY        0.04            0.04           
+INDIA          0.03            0.03           
+INDONESIA      0.05            0.05           
+IRAN           0.00            0.00           
+IRAQ           0.01            0.01           
+JAPAN          0.00            0.00           
+JORDAN         0.03            0.03           
+KENYA          0.01            0.01           
+MOROCCO        0.04            0.04           
+MOZAMBIQUE     0.02            0.02           
+PERU           0.05            0.05           
+ROMANIA        0.01            0.01           
+RUSSIA         0.01            0.01           
+SAUDI ARABIA   0.03            0.03           
+UNITED KINGDOM 0.06            0.06           
+UNITED STATES  0.00            0.00           
+VIETNAM        0.00            0.00           
+2023-05-19 14:03:21,847 - main.py[line:570] - INFO: relative error normalized:
+                avg(c_acctbal)  sum(c_acctbal)
+n_name                                        
+ALGERIA        0.04            0.04           
+ARGENTINA      0.01            0.01           
+BRAZIL         0.02            0.02           
+CANADA         0.00            0.00           
+CHINA          0.01            0.01           
+EGYPT          0.02            0.02           
+ETHIOPIA       0.04            0.04           
+FRANCE         0.02            0.02           
+GERMANY        0.04            0.04           
+INDIA          0.03            0.03           
+INDONESIA      0.05            0.05           
+IRAN           0.00            0.00           
+IRAQ           0.01            0.01           
+JAPAN          0.00            0.00           
+JORDAN         0.03            0.03           
+KENYA          0.01            0.01           
+MOROCCO        0.04            0.04           
+MOZAMBIQUE     0.02            0.02           
+PERU           0.05            0.05           
+ROMANIA        0.01            0.01           
+RUSSIA         0.01            0.01           
+SAUDI ARABIA   0.03            0.03           
+UNITED KINGDOM 0.06            0.06           
+UNITED STATES  0.00            0.00           
+VIETNAM        0.00            0.00           
+2023-05-19 14:03:21,847 - main.py[line:573] - INFO: relative error average: 0.022886776371883202
+2023-05-19 14:03:21,847 - main.py[line:574] - INFO: relative error normalized average: 0.022478413941923615
+2023-05-19 14:03:21,849 - main.py[line:620] - INFO: total_time:3.250630125985481

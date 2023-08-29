@@ -1,0 +1,15 @@
+{
+    "name": "sql86",
+    "train_config_files": [
+      "./config/tpcds_whole/train/86_web_sales.json",
+      "./config/tpcds_whole/train/3_date_dim.json",
+      "./config/tpcds_whole/train/86_item.json"
+    ],
+    "multi_sample_times": 1,
+    "operation": "aqp",
+    "join_cols": ["ws_sold_date_sk","d_date_sk","ws_item_sk","i_item_sk"],
+    "groupby_cols": ["i_category", "i_class"],
+    "sum_cols": ["ws_net_paid"],
+    "avg_cols": ["ws_net_paid"],
+    "ground_truth": "./ground_truth/tpcds_whole/sql86.csv"
+}  

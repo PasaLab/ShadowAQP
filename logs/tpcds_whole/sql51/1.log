@@ -1,0 +1,58 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2023-06-12 08:53:55,680 - main.py[line:626] - INFO: load query config config/tpcds_whole/query/sql51.json successfully
+2023-06-12 08:53:55,680 - main.py[line:633] - INFO: load train config ./config/tpcds_whole/train/51_web_sales.json successfully
+2023-06-12 08:53:55,680 - main.py[line:633] - INFO: load train config ./config/tpcds_whole/train/51_date_dim.json successfully
+2023-06-12 08:53:55,680 - pytorch_cvae.py[line:249] - INFO: epoch:1
+2023-06-12 08:53:55,680 - pytorch_cvae.py[line:250] - INFO: batch size:128
+2023-06-12 08:53:55,680 - pytorch_cvae.py[line:251] - INFO: latent dimension:100
+2023-06-12 08:53:55,680 - pytorch_cvae.py[line:252] - INFO: intermediate dimension:100
+2023-06-12 08:53:55,680 - pytorch_cvae.py[line:253] - INFO: gpu num:0
+2023-06-12 08:53:55,702 - dataset_utils.py[line:310] - INFO: loading data:/home/lihan/train_dataset/tpcds_whole_1G/web_sales.csv
+2023-06-12 08:53:57,159 - dataset_utils.py[line:335] - INFO: data total rows:719035
+2023-06-12 08:53:57,159 - dataset_utils.py[line:371] - INFO: load data time elapsed:1.4567070030607283
+2023-06-12 08:53:57,371 - dataset_utils.py[line:43] - INFO: encode categorical columns time elapsed:0.211280127055943
+/root/anaconda3/envs/py36/lib/python3.6/site-packages/sklearn/mixture/base.py:273: ConvergenceWarning: Initialization 1 did not converge. Try different init parameters, or increase max_iter, tol or check for degenerate data.
+  % (init + 1), ConvergenceWarning)
+2023-06-12 08:54:37,546 - dataset_utils.py[line:56] - INFO: encode numeric columnstime elapsed:40.17467253468931
+2023-06-12 08:54:37,602 - dataset_utils.py[line:107] - INFO: data shape:(719035, 18)
+2023-06-12 08:54:37,603 - dataset_utils.py[line:136] - INFO: feature info:[('ws_sales_price', 'numerical', 6), ('ws_sold_date_sk', 'categorical', 12)]
+2023-06-12 08:54:37,603 - dataset_utils.py[line:137] - INFO: output info list:[(1, 'no'), (5, 'softmax'), (12, 'sigmoid')]
+2023-06-12 08:54:39,645 - dataset_utils.py[line:140] - INFO: load data successfully
+2023-06-12 08:54:39,645 - pytorch_cvae.py[line:258] - INFO: feature info:[('ws_sales_price', 'numerical', 6), ('ws_sold_date_sk', 'categorical', 12)]
+2023-06-12 08:55:20,131 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.1 epoch----------------------------
+2023-06-12 08:55:20,131 - pytorch_cvae.py[line:177] - INFO: loss:816.250917904079, numeric_loss:47.33952654234599, categorical_loss:393.48287242726656, kld_loss:69648.16449725628, epoch_train_time:40.48300895607099
+2023-06-12 08:55:20,131 - pytorch_cvae.py[line:186] - INFO: training time elapsed:40.48384911194444
+2023-06-12 08:55:20,133 - model_utils.py[line:67] - INFO: save model successfully
+2023-06-12 08:55:20,986 - pytorch_cvae.py[line:268] - INFO: train model time elapsed:85.30583708779886
+2023-06-12 08:55:20,986 - dataset_utils.py[line:585] - INFO: load existing dataset(light):51-date_dim_d_date_sk#d_day_name__d_date_sk#d_day_name_binary_gaussian5_0
+2023-06-12 08:55:20,986 - pytorch_cvae.py[line:278] - ERROR: dataset file not found
+2023-06-12 08:55:20,986 - main.py[line:559] - INFO: multi_sampling No.0 epoch
+2023-06-12 08:55:21,905 - pytorch_cvae.py[line:407] - INFO: sampling time:0.9116260609589517
+2023-06-12 08:55:21,905 - dataset_utils.py[line:566] - INFO: load existing dataset:51-date_dim_d_date_sk#d_day_name__d_date_sk#d_day_name_binary_gaussian5_0
+Exception in thread Thread-1:
+Traceback (most recent call last):
+  File "/root/anaconda3/envs/py36/lib/python3.6/threading.py", line 916, in _bootstrap_inner
+    self.run()
+  File "/root/anaconda3/envs/py36/lib/python3.6/threading.py", line 864, in run
+    self._target(*self._args, **self._kwargs)
+  File "main.py", line 537, in sample_generation_and_aggregation
+    sample_list = generate_sample_list(model_dataset_list, query_config, train_config_list)
+  File "main.py", line 83, in generate_sample_list
+    full_dataset = load_dataset(train_config_list[i])
+  File "/home/lihan/table_cvae_aqp/utils/dataset_utils.py", line 568, in load_dataset
+    with open(path, 'rb') as file:
+FileNotFoundError: [Errno 2] No such file or directory: './saved_datasets/51-date_dim_d_date_sk#d_day_name__d_date_sk#d_day_name_binary_gaussian5_0'
+
+feature_names: ['ws_sold_date_sk_0', 'ws_sold_date_sk_1', 'ws_sold_date_sk_2', 'ws_sold_date_sk_3', 'ws_sold_date_sk_4', 'ws_sold_date_sk_5', 'ws_sold_date_sk_6', 'ws_sold_date_sk_7', 'ws_sold_date_sk_8', 'ws_sold_date_sk_9', 'ws_sold_date_sk_10', 'ws_sold_date_sk_11']
+feature_names: ['ws_sold_date_sk_0', 'ws_sold_date_sk_1', 'ws_sold_date_sk_2', 'ws_sold_date_sk_3', 'ws_sold_date_sk_4', 'ws_sold_date_sk_5', 'ws_sold_date_sk_6', 'ws_sold_date_sk_7', 'ws_sold_date_sk_8', 'ws_sold_date_sk_9', 'ws_sold_date_sk_10', 'ws_sold_date_sk_11']
+Traceback (most recent call last):
+  File "main.py", line 644, in <module>
+    model_aqp(query_config, train_config_list)
+  File "main.py", line 574, in model_aqp
+    sample_agg = pd.concat(sample_agg_list).groupby(groupby_cols).mean()
+  File "/root/anaconda3/envs/py36/lib/python3.6/site-packages/pandas/core/reshape/concat.py", line 284, in concat
+    sort=sort,
+  File "/root/anaconda3/envs/py36/lib/python3.6/site-packages/pandas/core/reshape/concat.py", line 331, in __init__
+    raise ValueError("No objects to concatenate")
+ValueError: No objects to concatenate

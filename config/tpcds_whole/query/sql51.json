@@ -1,0 +1,18 @@
+{
+    "name": "sql51",
+    "train_config_files": [
+      "./config/tpcds_whole/train/51_web_sales.json",
+      "./config/tpcds_whole/train/51_date_dim.json"
+    ],
+    "multi_sample_times": 3,
+    "operation": "aqp",
+    "join_cols": ["ws_sold_date_sk","d_date_sk"],
+    "groupby_cols": ["ws_sold_date_sk","d_day_name"],
+    "result_path": "./output/aqp_result/ss_res.csv",
+    "diff_path": "./output/diff/ss_diff.csv",
+    "sum_cols": ["ws_sales_price"],
+    "avg_cols": ["ws_sales_price"],
+    "var": "./var/tpcds-1m/sw_var.csv",
+    "ground_truth": "./ground_truth/tpcds_whole/sql51.csv"
+  }
+  

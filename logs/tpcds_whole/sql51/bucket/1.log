@@ -1,0 +1,256 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2023-06-11 12:02:34,070 - main.py[line:626] - INFO: load query config config/tpcds_whole/query/sql51.json successfully
+2023-06-11 12:02:34,070 - main.py[line:633] - INFO: load train config ./config/tpcds_whole/train/51_web_sales.json successfully
+2023-06-11 12:02:34,070 - main.py[line:633] - INFO: load train config ./config/tpcds_whole/train/51_date_dim.json successfully
+2023-06-11 12:02:34,070 - pytorch_cvae.py[line:249] - INFO: epoch:1
+2023-06-11 12:02:34,070 - pytorch_cvae.py[line:250] - INFO: batch size:128
+2023-06-11 12:02:34,070 - pytorch_cvae.py[line:251] - INFO: latent dimension:100
+2023-06-11 12:02:34,070 - pytorch_cvae.py[line:252] - INFO: intermediate dimension:100
+2023-06-11 12:02:34,070 - pytorch_cvae.py[line:253] - INFO: gpu num:0
+2023-06-11 12:02:34,093 - dataset_utils.py[line:310] - INFO: loading data:/home/lihan/train_dataset/tpcds_whole_1G/web_sales.csv
+2023-06-11 12:03:00,229 - dataset_utils.py[line:335] - INFO: data total rows:719035
+2023-06-11 12:03:00,229 - dataset_utils.py[line:371] - INFO: load data time elapsed:26.13640031311661
+feature_names: ['ws_sold_date_sk_0', 'ws_sold_date_sk_1', 'ws_sold_date_sk_2', 'ws_sold_date_sk_3', 'ws_sold_date_sk_4', 'ws_sold_date_sk_5', 'ws_sold_date_sk_6', 'ws_sold_date_sk_7', 'ws_sold_date_sk_8', 'ws_sold_date_sk_9', 'ws_sold_date_sk_10', 'ws_sold_date_sk_11', 'ws_web_page_sk_0', 'ws_web_page_sk_1', 'ws_web_page_sk_2', 'ws_web_page_sk_3', 'ws_web_page_sk_4', 'ws_web_page_sk_5', 'ws_web_page_sk_6']
+feature_names: ['ws_sold_date_sk_bucket-ws_web_page_sk_0', 'ws_sold_date_sk_bucket-ws_web_page_sk_1', 'ws_sold_date_sk_bucket-ws_web_page_sk_2', 'ws_sold_date_sk_bucket-ws_web_page_sk_3', 'ws_sold_date_sk_bucket-ws_web_page_sk_4', 'ws_sold_date_sk_bucket-ws_web_page_sk_5', 'ws_sold_date_sk_bucket-ws_web_page_sk_6', 'ws_sold_date_sk_bucket-ws_web_page_sk_7', 'ws_sold_date_sk_bucket-ws_web_page_sk_8', 'ws_sold_date_sk_bucket-ws_web_page_sk_9']
+2023-06-11 12:03:00,592 - dataset_utils.py[line:43] - INFO: encode categorical columns time elapsed:0.36234027799218893
+/root/anaconda3/envs/py36/lib/python3.6/site-packages/sklearn/mixture/base.py:273: ConvergenceWarning: Initialization 1 did not converge. Try different init parameters, or increase max_iter, tol or check for degenerate data.
+  % (init + 1), ConvergenceWarning)
+2023-06-11 12:03:41,739 - dataset_utils.py[line:56] - INFO: encode numeric columnstime elapsed:41.14674439886585
+2023-06-11 12:03:41,857 - dataset_utils.py[line:107] - INFO: data shape:(719035, 25)
+2023-06-11 12:03:41,857 - dataset_utils.py[line:136] - INFO: feature info:[('ws_sales_price', 'numerical', 6), ('ws_sold_date_sk', 'categorical', 12), ('ws_web_page_sk', 'categorical', 7)]
+2023-06-11 12:03:41,857 - dataset_utils.py[line:137] - INFO: output info list:[(1, 'no'), (5, 'softmax'), (12, 'sigmoid'), (7, 'sigmoid')]
+2023-06-11 12:03:43,936 - dataset_utils.py[line:140] - INFO: load data successfully
+2023-06-11 12:03:43,937 - pytorch_cvae.py[line:258] - INFO: feature info:[('ws_sales_price', 'numerical', 6), ('ws_sold_date_sk', 'categorical', 12), ('ws_web_page_sk', 'categorical', 7)]
+2023-06-11 12:04:24,564 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.1 epoch----------------------------
+2023-06-11 12:04:24,565 - pytorch_cvae.py[line:177] - INFO: loss:1944.1197922974825, numeric_loss:58.26231850218028, categorical_loss:808.1717827664688, kld_loss:199928.4192687273, epoch_train_time:40.62535943184048
+2023-06-11 12:04:24,565 - pytorch_cvae.py[line:186] - INFO: training time elapsed:40.62630427395925
+2023-06-11 12:04:24,568 - model_utils.py[line:67] - INFO: save model successfully
+2023-06-11 12:04:25,832 - pytorch_cvae.py[line:268] - INFO: train model time elapsed:111.76182968029752
+2023-06-11 12:04:25,832 - dataset_utils.py[line:585] - INFO: load existing dataset(light):51-date_dim_d_date_sk#d_day_name__d_date_sk#d_day_name_binary_gaussian5_0
+2023-06-11 12:04:25,883 - dataset_utils.py[line:594] - INFO: load dataset(light) time elapsed:0.05099394265562296
+2023-06-11 12:04:25,883 - pytorch_cvae.py[line:280] - INFO: feature info:[('d_date_sk', 'categorical', 18), ('d_day_name', 'categorical', 4)]
+2023-06-11 12:04:25,884 - model_utils.py[line:75] - INFO: load model name:torch_cvae_51-date_dim_d_date_sk_d_day_name_ld100_id150_bs128_ep100_0_binary_gaussian5
+2023-06-11 12:04:25,886 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0017605572938919067
+2023-06-11 12:04:25,886 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:0.05371520621702075
+2023-06-11 12:04:25,886 - main.py[line:559] - INFO: multi_sampling No.0 epoch
+2023-06-11 12:04:26,388 - pytorch_cvae.py[line:407] - INFO: sampling time:0.49985714303329587
+2023-06-11 12:04:26,388 - dataset_utils.py[line:566] - INFO: load existing dataset:51-date_dim_d_date_sk#d_day_name__d_date_sk#d_day_name_binary_gaussian5_0
+2023-06-11 12:04:26,460 - dataset_utils.py[line:578] - INFO: load dataset time elapsed:0.07171960501000285
+2023-06-11 12:04:26,484 - main.py[line:542] - INFO: sample and aggregation time elapsed:0.5982482940889895
+2023-06-11 12:04:26,491 - main.py[line:577] - INFO: sample time: 0.6051525478251278
+2023-06-11 12:04:26,512 - main.py[line:104] - INFO: aqp result:
+                           avg(ws_sales_price)  sum(ws_sales_price)
+ws_web_page_sk d_day_name                                          
+1.00           Friday     35.79                117608.11           
+               Monday     72.18                58752.21            
+               Saturday   64.55                79411.17            
+               Sunday     64.79                148097.46           
+               Thursday   49.26                182681.62           
+               Tuesday    41.69                104146.54           
+               Wednesday  57.21                130041.29           
+2.00           Friday     41.85                46599.60            
+               Monday     61.46                105602.90           
+               Saturday   43.04                57733.28            
+               Sunday     44.70                43745.98            
+               Thursday   51.12                74970.49            
+               Tuesday    43.93                91947.55            
+               Wednesday  40.80                45404.48            
+3.00           Friday     55.59                82984.41            
+               Monday     45.77                56606.91            
+               Saturday   41.50                27601.25            
+               Sunday     40.85                47451.25            
+               Thursday   60.47                74452.37            
+               Tuesday    37.55                40383.61            
+               Wednesday  34.04                39044.64            
+4.00           Friday     42.94                41588.14            
+               Monday     53.40                43977.23            
+               Saturday   57.40                56144.27            
+               Sunday     69.57                68999.49            
+               Thursday   35.13                26012.20            
+               Tuesday    44.25                29299.15            
+               Wednesday  68.00                44576.83            
+5.00           Friday     38.26                40704.84            
+               Monday     36.39                47247.19            
+               Saturday   67.77                77417.36            
+               Sunday     59.81                63965.12            
+               Thursday   42.18                85736.55            
+               Tuesday    63.52                82696.87            
+               Wednesday  46.43                50246.37            
+6.00           Friday     32.05                21416.48            
+               Monday     35.54                22019.41            
+               Saturday   39.95                27958.81            
+               Sunday     56.33                32648.26            
+               Thursday   52.11                27944.32            
+               Tuesday    39.77                16624.50            
+               Wednesday  55.38                37085.34            
+7.00           Friday     45.08                157688.88           
+               Monday     27.91                98717.10            
+               Saturday   46.12                198621.51           
+               Sunday     45.82                122076.19           
+               Thursday   54.62                237646.05           
+               Tuesday    58.99                205963.36           
+               Wednesday  42.77                140354.06           
+8.00           Friday     31.48                38951.17            
+2023-06-11 12:04:26,515 - main.py[line:105] - INFO: ground truth:
+                           sum(ws_sales_price)  avg(ws_sales_price)
+ws_web_page_sk d_day_name                                          
+1.00           Friday      170460              49.93               
+               Monday      179227              51.37               
+               Saturday    177961              51.57               
+               Sunday      171951              50.12               
+               Thursday    176067              52.23               
+               Tuesday     170930              50.69               
+               Wednesday   177108              50.33               
+2.00           Friday      102178              50.76               
+               Monday      99241               50.33               
+               Saturday    104180              50.16               
+               Sunday      99178               49.27               
+               Thursday    101319              49.38               
+               Tuesday     98162               48.24               
+               Wednesday   104501              49.41               
+3.00           Friday      68943               51.53               
+               Monday      70648               52.49               
+               Saturday    67839               50.25               
+               Sunday      72658               49.60               
+               Thursday    68056               49.14               
+               Tuesday     72752               51.52               
+               Wednesday   69572               50.67               
+4.00           Friday      67746               49.63               
+               Monday      70207               50.73               
+               Saturday    71211               49.35               
+               Sunday      68582               53.16               
+               Thursday    70436               51.00               
+               Tuesday     69338               52.09               
+               Wednesday   71421               51.79               
+5.00           Friday      66926               49.50               
+               Monday      70050               49.65               
+               Saturday    64979               48.82               
+               Sunday      72533               49.31               
+               Thursday    64185               50.14               
+               Tuesday     69225               52.68               
+               Wednesday   73503               52.32               
+6.00           Friday      33062               48.98               
+               Monday      34888               48.12               
+               Saturday    32791               50.37               
+               Sunday      35494               49.64               
+               Thursday    33815               51.00               
+               Tuesday     41101               54.58               
+               Wednesday   35468               53.34               
+7.00           Friday      173205              51.11               
+               Monday      172827              50.08               
+               Saturday    172492              50.27               
+               Sunday      171434              49.88               
+               Thursday    172885              50.79               
+               Tuesday     171340              50.81               
+               Wednesday   171717              49.63               
+8.00           Friday      99754               50.77               
+2023-06-11 12:04:26,526 - main.py[line:595] - INFO: relative error:
+                           avg(ws_sales_price)  sum(ws_sales_price)
+ws_web_page_sk d_day_name                                          
+1.00           Friday     0.28                 0.31                
+               Monday     0.41                 0.67                
+               Saturday   0.25                 0.55                
+               Sunday     0.29                 0.14                
+               Thursday   0.06                 0.04                
+               Tuesday    0.18                 0.39                
+               Wednesday  0.14                 0.27                
+2.00           Friday     0.18                 0.54                
+               Monday     0.22                 0.06                
+               Saturday   0.14                 0.45                
+               Sunday     0.09                 0.56                
+               Thursday   0.04                 0.26                
+               Tuesday    0.09                 0.06                
+               Wednesday  0.17                 0.57                
+3.00           Friday     0.08                 0.20                
+               Monday     0.13                 0.20                
+               Saturday   0.17                 0.59                
+               Sunday     0.18                 0.35                
+               Thursday   0.23                 0.09                
+               Tuesday    0.27                 0.44                
+               Wednesday  0.33                 0.44                
+4.00           Friday     0.13                 0.39                
+               Monday     0.05                 0.37                
+               Saturday   0.16                 0.21                
+               Sunday     0.31                 0.01                
+               Thursday   0.31                 0.63                
+               Tuesday    0.15                 0.58                
+               Wednesday  0.31                 0.38                
+5.00           Friday     0.23                 0.39                
+               Monday     0.27                 0.33                
+               Saturday   0.39                 0.19                
+               Sunday     0.21                 0.12                
+               Thursday   0.16                 0.34                
+               Tuesday    0.21                 0.19                
+               Wednesday  0.11                 0.32                
+6.00           Friday     0.35                 0.35                
+               Monday     0.26                 0.37                
+               Saturday   0.21                 0.15                
+               Sunday     0.13                 0.08                
+               Thursday   0.02                 0.17                
+               Tuesday    0.27                 0.60                
+               Wednesday  0.04                 0.05                
+7.00           Friday     0.12                 0.09                
+               Monday     0.44                 0.43                
+               Saturday   0.08                 0.15                
+               Sunday     0.08                 0.29                
+               Thursday   0.08                 0.37                
+               Tuesday    0.16                 0.20                
+               Wednesday  0.14                 0.18                
+8.00           Friday     0.38                 0.61                
+2023-06-11 12:04:26,527 - main.py[line:596] - INFO: relative error normalized:
+                           avg(ws_sales_price)  sum(ws_sales_price)
+ws_web_page_sk d_day_name                                          
+1.00           Friday     0.25                 0.27                
+               Monday     0.33                 0.49                
+               Saturday   0.22                 0.43                
+               Sunday     0.25                 0.13                
+               Thursday   0.06                 0.04                
+               Tuesday    0.16                 0.32                
+               Wednesday  0.13                 0.23                
+2.00           Friday     0.16                 0.42                
+               Monday     0.20                 0.06                
+               Saturday   0.13                 0.36                
+               Sunday     0.09                 0.43                
+               Thursday   0.03                 0.23                
+               Tuesday    0.09                 0.06                
+               Wednesday  0.16                 0.43                
+3.00           Friday     0.08                 0.18                
+               Monday     0.12                 0.18                
+               Saturday   0.16                 0.45                
+               Sunday     0.16                 0.29                
+               Thursday   0.21                 0.09                
+               Tuesday    0.24                 0.36                
+               Wednesday  0.28                 0.36                
+4.00           Friday     0.13                 0.32                
+               Monday     0.05                 0.31                
+               Saturday   0.15                 0.19                
+               Sunday     0.27                 0.01                
+               Thursday   0.27                 0.47                
+               Tuesday    0.14                 0.44                
+               Wednesday  0.27                 0.31                
+5.00           Friday     0.20                 0.32                
+               Monday     0.23                 0.28                
+               Saturday   0.32                 0.17                
+               Sunday     0.19                 0.11                
+               Thursday   0.15                 0.29                
+               Tuesday    0.19                 0.18                
+               Wednesday  0.11                 0.27                
+6.00           Friday     0.29                 0.30                
+               Monday     0.23                 0.31                
+               Saturday   0.19                 0.14                
+               Sunday     0.13                 0.08                
+               Thursday   0.02                 0.16                
+               Tuesday    0.24                 0.45                
+               Wednesday  0.04                 0.04                
+7.00           Friday     0.11                 0.09                
+               Monday     0.36                 0.35                
+               Saturday   0.08                 0.14                
+               Sunday     0.08                 0.25                
+               Thursday   0.07                 0.31                
+               Tuesday    0.15                 0.18                
+               Wednesday  0.13                 0.17                
+8.00           Friday     0.32                 0.46                
+2023-06-11 12:04:26,528 - main.py[line:599] - INFO: relative error average: 0.266850220551179
+2023-06-11 12:04:26,528 - main.py[line:600] - INFO: relative error normalized average: 0.218003700376422
+2023-06-11 12:04:26,545 - main.py[line:646] - INFO: total_time:112.4748978218995

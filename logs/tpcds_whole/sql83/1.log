@@ -1,0 +1,80 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2023-06-08 14:34:49,352 - main.py[line:626] - INFO: load query config config/tpcds_whole/query/sql83.json successfully
+2023-06-08 14:34:49,352 - main.py[line:633] - INFO: load train config ./config/tpcds_whole/train/83_store_returns.json successfully
+2023-06-08 14:34:49,352 - main.py[line:633] - INFO: load train config ./config/tpcds_whole/train/3_date_dim.json successfully
+2023-06-08 14:34:49,352 - pytorch_cvae.py[line:249] - INFO: epoch:1
+2023-06-08 14:34:49,352 - pytorch_cvae.py[line:250] - INFO: batch size:128
+2023-06-08 14:34:49,352 - pytorch_cvae.py[line:251] - INFO: latent dimension:100
+2023-06-08 14:34:49,352 - pytorch_cvae.py[line:252] - INFO: intermediate dimension:100
+2023-06-08 14:34:49,352 - pytorch_cvae.py[line:253] - INFO: gpu num:0
+2023-06-08 14:34:49,360 - dataset_utils.py[line:310] - INFO: loading data:/home/lihan/train_dataset/tpcds_whole_1G/store_returns.csv
+2023-06-08 14:34:58,795 - dataset_utils.py[line:335] - INFO: data total rows:269873
+2023-06-08 14:34:58,795 - dataset_utils.py[line:371] - INFO: load data time elapsed:9.435661783907562
+2023-06-08 14:34:58,924 - dataset_utils.py[line:43] - INFO: encode categorical columns time elapsed:0.1278085713274777
+/root/anaconda3/envs/py36/lib/python3.6/site-packages/sklearn/mixture/base.py:273: ConvergenceWarning: Initialization 1 did not converge. Try different init parameters, or increase max_iter, tol or check for degenerate data.
+  % (init + 1), ConvergenceWarning)
+2023-06-08 14:35:15,839 - dataset_utils.py[line:56] - INFO: encode numeric columnstime elapsed:16.914904271718115
+2023-06-08 14:35:15,881 - dataset_utils.py[line:107] - INFO: data shape:(269873, 22)
+2023-06-08 14:35:15,881 - dataset_utils.py[line:136] - INFO: feature info:[('sr_return_quantity', 'numerical', 6), ('sr_returned_date_sk', 'categorical', 12), ('sr_store_sk', 'categorical', 4)]
+2023-06-08 14:35:15,881 - dataset_utils.py[line:137] - INFO: output info list:[(1, 'no'), (5, 'softmax'), (12, 'sigmoid'), (4, 'sigmoid')]
+2023-06-08 14:35:17,931 - dataset_utils.py[line:140] - INFO: load data successfully
+2023-06-08 14:35:17,931 - pytorch_cvae.py[line:258] - INFO: feature info:[('sr_return_quantity', 'numerical', 6), ('sr_returned_date_sk', 'categorical', 12), ('sr_store_sk', 'categorical', 4)]
+2023-06-08 14:35:33,674 - pytorch_cvae.py[line:170] - INFO: ----------------------------No.1 epoch----------------------------
+2023-06-08 14:35:33,674 - pytorch_cvae.py[line:177] - INFO: loss:929.9638040661812, numeric_loss:34.607326585799456, categorical_loss:507.70104981586337, kld_loss:71916.45718181133, epoch_train_time:15.740796549245715
+2023-06-08 14:35:33,674 - pytorch_cvae.py[line:186] - INFO: training time elapsed:15.741671009920537
+2023-06-08 14:35:33,677 - model_utils.py[line:67] - INFO: save model successfully
+2023-06-08 14:35:34,122 - pytorch_cvae.py[line:268] - INFO: train model time elapsed:44.77003273786977
+2023-06-08 14:35:34,122 - dataset_utils.py[line:584] - INFO: load existing dataset(light):3-date_dim_d_date_sk#d_year__d_date_sk#d_year_binary_gaussian5_0
+2023-06-08 14:35:34,174 - dataset_utils.py[line:593] - INFO: load dataset(light) time elapsed:0.05196729768067598
+2023-06-08 14:35:34,174 - pytorch_cvae.py[line:280] - INFO: feature info:[('d_date_sk', 'categorical', 18), ('d_year', 'categorical', 9)]
+2023-06-08 14:35:34,175 - model_utils.py[line:75] - INFO: load model name:torch_cvae_3-date_dim_d_date_sk_d_year_ld100_id150_bs128_ep100_0_binary_gaussian5
+2023-06-08 14:35:34,177 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0017926590517163277
+2023-06-08 14:35:34,177 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:0.05472090793773532
+2023-06-08 14:35:34,177 - main.py[line:559] - INFO: multi_sampling No.0 epoch
+2023-06-08 14:35:34,325 - pytorch_cvae.py[line:407] - INFO: sampling time:0.14701074175536633
+2023-06-08 14:35:34,325 - dataset_utils.py[line:565] - INFO: load existing dataset:3-date_dim_d_date_sk#d_year__d_date_sk#d_year_binary_gaussian5_0
+2023-06-08 14:35:34,402 - dataset_utils.py[line:577] - INFO: load dataset time elapsed:0.0771668222732842
+2023-06-08 14:35:34,424 - main.py[line:542] - INFO: sample and aggregation time elapsed:0.24722479423508048
+2023-06-08 14:35:34,427 - main.py[line:577] - INFO: sample time: 0.24971616780385375
+2023-06-08 14:35:34,436 - main.py[line:104] - INFO: aqp result:
+             avg(sr_return_quantity)  sum(sr_return_quantity)
+sr_store_sk                                                  
+1.00        24.88                    980999.38               
+2.00        26.84                    956954.39               
+4.00        26.66                    1260398.31              
+7.00        26.07                    930564.94               
+8.00        26.48                    1344093.14              
+10.00       23.71                    980004.02               
+2023-06-08 14:35:34,438 - main.py[line:105] - INFO: ground truth:
+             avg(sr_return_quantity)  sum(sr_return_quantity)
+sr_store_sk                                                  
+1           25.65                     1153357                
+2           25.91                     1165156                
+4           25.84                     1163278                
+7           25.68                     1150028                
+8           25.82                     1158089                
+10          25.80                     1168339                
+2023-06-08 14:35:34,446 - main.py[line:595] - INFO: relative error:
+             avg(sr_return_quantity)  sum(sr_return_quantity)
+sr_store_sk                                                  
+1           0.03                     0.15                    
+2           0.04                     0.18                    
+4           0.03                     0.08                    
+7           0.01                     0.19                    
+8           0.03                     0.16                    
+10          0.08                     0.16                    
+2023-06-08 14:35:34,448 - main.py[line:596] - INFO: relative error normalized:
+             avg(sr_return_quantity)  sum(sr_return_quantity)
+sr_store_sk                                                  
+1           0.03                     0.14                    
+2           0.04                     0.16                    
+4           0.03                     0.08                    
+7           0.01                     0.17                    
+8           0.03                     0.15                    
+10          0.08                     0.15                    
+2023-06-08 14:35:34,448 - main.py[line:599] - INFO: relative error average: 0.09528450475250132
+2023-06-08 14:35:34,448 - main.py[line:600] - INFO: relative error normalized average: 0.08895653879715042
+2023-06-08 14:35:34,459 - main.py[line:646] - INFO: total_time:45.107279459014535
+feature_names: ['sr_returned_date_sk_0', 'sr_returned_date_sk_1', 'sr_returned_date_sk_2', 'sr_returned_date_sk_3', 'sr_returned_date_sk_4', 'sr_returned_date_sk_5', 'sr_returned_date_sk_6', 'sr_returned_date_sk_7', 'sr_returned_date_sk_8', 'sr_returned_date_sk_9', 'sr_returned_date_sk_10', 'sr_returned_date_sk_11', 'sr_store_sk_0', 'sr_store_sk_1', 'sr_store_sk_2', 'sr_store_sk_3']
+feature_names: ['sr_returned_date_sk_bucket-sr_store_sk_0', 'sr_returned_date_sk_bucket-sr_store_sk_1', 'sr_returned_date_sk_bucket-sr_store_sk_2', 'sr_returned_date_sk_bucket-sr_store_sk_3', 'sr_returned_date_sk_bucket-sr_store_sk_4', 'sr_returned_date_sk_bucket-sr_store_sk_5', 'sr_returned_date_sk_bucket-sr_store_sk_6']

@@ -169,20 +169,21 @@ class TabularDataset(Dataset):
             df = pd.read_csv(filename, header=None, delimiter=delimiter)
 
         self.inc_df = df[self.all_columns]  # .copy(deep=True)
-        print("label group counts before:{}".format(self.label_group_counts))
+        self.inc_label_df = self.inc_df.copy(deep=True)
+        # print("label group counts before:{}".format(self.label_group_counts))
         self.inc_rows = len(df)
 
         label_columns = train_config['label_columns']
         if len(label_columns) > 1:
-            self.inc_df[self.label_column_name] = self.inc_df[label_columns].astype(str).agg('-'.join, axis=1)
+            self.inc_label_df[self.label_column_name] = self.inc_label_df[label_columns].astype(str).agg('-'.join, axis=1)
         if self.label_column_name != None:
-            self.inc_label_group_counts = self.inc_df[self.label_column_name].value_counts().to_dict()
+            self.inc_label_group_counts = self.inc_label_df[self.label_column_name].value_counts().to_dict()
             for label in self.inc_label_group_counts:
                 if label in self.label_group_counts:
                     self.label_group_counts[label] += self.inc_label_group_counts[label]
                 else:
                     self.label_group_counts[label] = self.inc_label_group_counts[label]
-        print("label group counts after:{}".format(self.label_group_counts))
+        # print("label group counts after:{}".format(self.label_group_counts))
         encoded_categorical = None
         encoded_numeric = None
         start_cat_time = time.perf_counter()
@@ -190,9 +191,11 @@ class TabularDataset(Dataset):
             categorical_data = self.inc_df[self.all_categorical_columns]
             if self.categorical_encoding == 'binary':
                 encoded_categorical = self.bce.transform(categorical_data)
+                self.inc_label = self.encode_label_binary(self.inc_label_df[[self.label_column_name]])
             else:
                 onehot_encoded = self.ohe.transform(categorical_data).todense()
                 encoded_categorical = pd.DataFrame(onehot_encoded, columns=self.onehot_encoded_columns)
+                self.inc_label = self.encode_label_binary(self.inc_label_df[[self.label_column_name]])
         end_cat_time = time.perf_counter()
         logger.info('encode incremental data categorical columns time elapsed:{}'.format(end_cat_time - start_cat_time))
 
@@ -221,10 +224,10 @@ class TabularDataset(Dataset):
         else:
             self.inc_data = pd.concat([encoded_numeric, encoded_categorical], axis=1)
 
-        if self.label_column_name is not None:
-            self.inc_label = self.inc_data.iloc[:, self.inc_data.columns.str.contains(self.label_column_name)]
-        else:
-            self.inc_label = pd.DataFrame(np.zeros((self.inc_rows, 1)))
+        # if self.label_column_name is not None:
+        #     self.inc_label = self.inc_data.iloc[:, self.inc_data.columns.str.contains(self.label_column_name)]
+        # else:
+        #     self.inc_label = pd.DataFrame(np.zeros((self.inc_rows, 1)))
 
         self.inc_raw_data = torch.from_numpy(self.inc_data.values.astype("float32")).to(self.device)
         self.inc_raw_label_data = torch.from_numpy(self.inc_label.values.astype("float32")).to(self.device)
@@ -233,14 +236,38 @@ class TabularDataset(Dataset):
         self.inc_old_data = pd.concat([self.inc_data, self.data], axis=0)
         self.inc_old_rows = len(self.inc_old_data)
 
-        if self.label_column_name is not None:
-            self.inc_old_label = self.inc_old_data.iloc[:,
-                                 self.inc_old_data.columns.str.contains(self.label_column_name)]
-        else:
-            self.inc_old_label = pd.DataFrame(np.zeros((self.inc_old_rows, 1)))
+        # if self.label_column_name is not None:
+        #     self.inc_old_label = self.inc_old_data.iloc[:,
+        #                          self.inc_old_data.columns.str.contains(self.label_column_name)]
+        # else:
+        #     self.inc_old_label = pd.DataFrame(np.zeros((self.inc_old_rows, 1)))
+
+        self.inc_old_label = pd.concat([self.inc_label, self.label], axis=0)
 
         self.inc_old_raw_data = torch.from_numpy(self.inc_old_data.values.astype("float32")).to(self.device)
         self.inc_old_raw_label_data = torch.from_numpy(self.inc_old_label.values.astype("float32")).to(self.device)
+
+        # ### strategy three:  use sample of incremental data and old data to train (update after, line251-270)
+        # self.inc_sample_data = self.inc_old_data.sample(frac=0.2)
+        # self.inc_sample_rows = len(self.inc_sample_data)
+
+        # # if self.label_column_name is not None:
+        # #     self.inc_sample_label = self.inc_sample_data.iloc[:,
+        # #                             self.inc_sample_data.columns.str.contains(self.label_column_name)]
+        # # else:
+        # #     self.inc_sample_label = pd.DataFrame(np.zeros((self.inc_sample_rows, 1)))
+
+        # # print("=====self.inc_sample_data.index: ", self.inc_sample_data.index)
+        # # print("=====type(self.inc_sample_data.index)", type(self.inc_sample_data.index))
+        # # print("=====self.inc_old_data.index: ", self.inc_old_data.index)
+        # # print("=====type(self.inc_old_data.index)", type(self.inc_old_data.index))
+        # # inc_sample_data_indices = [self.inc_old_data.index.get_loc(idx) for idx in self.inc_sample_data.index]
+        # inc_sample_data_indices = [idx for idx in self.inc_sample_data.index]
+        # self.inc_sample_label = self.inc_old_label.iloc[inc_sample_data_indices, :]
+
+        # self.inc_sample_raw_data = torch.from_numpy(self.inc_sample_data.values.astype("float32")).to(self.device)
+        # self.inc_sample_raw_label_data = torch.from_numpy(self.inc_sample_label.values.astype("float32")).to(
+        #     self.device)
 
         ### strategy three:  use sample of incremental data and old data to train
         self.inc_sample_data = self.inc_old_data.sample(frac=0.2)
@@ -363,6 +390,7 @@ class TabularDataset(Dataset):
         if len(bucket_columns)>0:
             for col in bucket_columns:
                 label_df[col+"_bucket"]=(label_df[col]).mod(8)
+                # label_df[col+"_bucket"]=(label_df[col]).mod(4)
                 col_idx=label_columns_copy.index(col)
                 label_columns_copy[col_idx]=label_columns_copy[col_idx]+"_bucket"
 

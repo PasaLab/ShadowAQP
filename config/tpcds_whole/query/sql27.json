@@ -1,0 +1,17 @@
+{
+    "name": "sql27",
+    "train_config_files": [
+      "./config/tpcds_whole/train/27_store_sales.json",
+      "./config/tpcds_whole/train/13_customer_demographics.json",
+      "./config/tpcds_whole/train/3_date_dim.json",
+      "./config/tpcds_whole/train/70_store.json",
+      "./config/tpcds_whole/train/86_item.json"
+    ],
+    "multi_sample_times": 1,
+    "operation": "aqp",
+    "join_cols": ["ss_cdemo_sk","cd_demo_sk","ss_sold_date_sk","d_date_sk","ss_store_sk","s_store_sk","ss_item_sk","i_item_sk"],
+    "groupby_cols": ["i_item_id", "s_state"],
+    "sum_cols": ["ss_quantity", "ss_list_price", "ss_coupon_amt", "ss_sales_price"],
+    "avg_cols": ["ss_quantity", "ss_list_price", "ss_coupon_amt", "ss_sales_price"],
+    "ground_truth": "./ground_truth/tpcds_whole/sql27.csv"
+}  

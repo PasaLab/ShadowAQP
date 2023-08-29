@@ -1,0 +1,15 @@
+{
+    "name": "sql31",
+    "train_config_files": [
+      "./config/tpcds_whole/train/31_store_sales.json",
+      "./config/tpcds_whole/train/3_date_dim.json",
+      "./config/tpcds_whole/train/94_customer_address.json"
+    ],
+    "multi_sample_times": 1,
+    "operation": "aqp",
+    "join_cols": ["ss_sold_date_sk","d_date_sk","ss_addr_sk","ca_address_sk"],
+    "groupby_cols": ["ca_county", "d_qoy", "d_year"],
+    "sum_cols": ["ss_ext_sales_price"],
+    "avg_cols": ["ss_ext_sales_price"],
+    "ground_truth": "./ground_truth/tpcds_whole/sql31.csv"
+}  

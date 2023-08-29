@@ -1,0 +1,88 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2023-06-26 06:34:38,023 - main.py[line:642] - INFO: load query config config/tpcds_whole/query/sql13.json successfully
+2023-06-26 06:34:38,023 - main.py[line:649] - INFO: load train config ./config/tpcds_whole/train/13_store_sales.json successfully
+2023-06-26 06:34:38,024 - main.py[line:649] - INFO: load train config ./config/tpcds_whole/train/70_store.json successfully
+2023-06-26 06:34:38,033 - main.py[line:649] - INFO: load train config ./config/tpcds_whole/train/3_date_dim.json successfully
+2023-06-26 06:34:38,034 - main.py[line:649] - INFO: load train config ./config/tpcds_whole/train/13_household_demographics.json successfully
+2023-06-26 06:34:38,042 - main.py[line:649] - INFO: load train config ./config/tpcds_whole/train/13_customer_demographics.json successfully
+2023-06-26 06:34:38,043 - main.py[line:649] - INFO: load train config ./config/tpcds_whole/train/94_customer_address.json successfully
+2023-06-26 06:34:38,043 - dataset_utils.py[line:585] - INFO: load existing dataset(light):13-store_sales_ss_store_sk#ss_sold_date_sk#ss_hdemo_sk#ss_cdemo_sk#ss_addr_sk_ss_quantity#ss_ext_sales_price#ss_ext_wholesale_cost_ss_sold_date_sk_binary_mm_0
+2023-06-26 06:34:49,541 - dataset_utils.py[line:594] - INFO: load dataset(light) time elapsed:11.497818480012938
+2023-06-26 06:34:49,541 - pytorch_cvae.py[line:280] - INFO: feature info:[('ss_quantity', 'numerical', 1), ('ss_ext_sales_price', 'numerical', 1), ('ss_ext_wholesale_cost', 'numerical', 1), ('ss_store_sk', 'categorical', 4), ('ss_sold_date_sk', 'categorical', 12), ('ss_hdemo_sk', 'categorical', 14), ('ss_cdemo_sk', 'categorical', 19), ('ss_addr_sk', 'categorical', 17)]
+2023-06-26 06:34:49,545 - model_utils.py[line:75] - INFO: load model name:torch_cvae_13-store_sales_ss_sold_date_sk_ld100_id100_bs256_ep150_0_binary_mm
+2023-06-26 06:34:51,638 - model_utils.py[line:86] - INFO: load torch model time elapsed:2.0934106258209795
+2023-06-26 06:34:51,638 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:13.595277747139335
+2023-06-26 06:34:51,638 - dataset_utils.py[line:585] - INFO: load existing dataset(light):70-store_s_store_sk#s_store_id#s_store_name#s_state#s_county__s_store_sk#s_store_id#s_store_name#s_state#s_county_binary_gaussian5_0
+2023-06-26 06:34:51,645 - dataset_utils.py[line:594] - INFO: load dataset(light) time elapsed:0.006857132771983743
+2023-06-26 06:34:51,645 - pytorch_cvae.py[line:280] - INFO: feature info:[('s_store_sk', 'categorical', 5), ('s_store_id', 'categorical', 4), ('s_store_name', 'categorical', 4), ('s_state', 'categorical', 1), ('s_county', 'categorical', 1)]
+2023-06-26 06:34:51,647 - model_utils.py[line:75] - INFO: load model name:torch_cvae_70-store_s_store_sk_s_store_id_s_store_name_s_state_s_county_ld100_id150_bs128_ep100_0_binary_gaussian5
+2023-06-26 06:34:51,651 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0037917369045317173
+2023-06-26 06:34:51,651 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:0.012900565052405
+2023-06-26 06:34:51,651 - dataset_utils.py[line:585] - INFO: load existing dataset(light):3-date_dim_d_date_sk#d_year__d_date_sk#d_year_binary_gaussian5_0
+2023-06-26 06:34:51,736 - dataset_utils.py[line:594] - INFO: load dataset(light) time elapsed:0.08453770005144179
+2023-06-26 06:34:51,736 - pytorch_cvae.py[line:280] - INFO: feature info:[('d_date_sk', 'categorical', 18), ('d_year', 'categorical', 9)]
+2023-06-26 06:34:51,737 - model_utils.py[line:75] - INFO: load model name:torch_cvae_3-date_dim_d_date_sk_d_year_ld100_id150_bs128_ep100_0_binary_gaussian5
+2023-06-26 06:34:51,738 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0016241350676864386
+2023-06-26 06:34:51,738 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:0.08709584502503276
+2023-06-26 06:34:51,739 - dataset_utils.py[line:585] - INFO: load existing dataset(light):13-household_demographics_hd_demo_sk__hd_demo_sk_binary_gaussian5_0
+2023-06-26 06:34:51,743 - dataset_utils.py[line:594] - INFO: load dataset(light) time elapsed:0.004431451205164194
+2023-06-26 06:34:51,743 - pytorch_cvae.py[line:280] - INFO: feature info:[('hd_demo_sk', 'categorical', 14)]
+2023-06-26 06:34:51,744 - model_utils.py[line:75] - INFO: load model name:torch_cvae_13-household_demographics_hd_demo_sk_ld100_id150_bs128_ep100_0_binary_gaussian5
+2023-06-26 06:34:51,745 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0014531651977449656
+2023-06-26 06:34:51,745 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:0.006683974992483854
+2023-06-26 06:34:51,745 - dataset_utils.py[line:585] - INFO: load existing dataset(light):13-customer_demographics_cd_demo_sk__cd_demo_sk_binary_gaussian5_0
+2023-06-26 06:34:53,947 - dataset_utils.py[line:594] - INFO: load dataset(light) time elapsed:2.2017505639232695
+2023-06-26 06:34:53,947 - pytorch_cvae.py[line:280] - INFO: feature info:[('cd_demo_sk', 'categorical', 22)]
+2023-06-26 06:34:53,948 - model_utils.py[line:75] - INFO: load model name:torch_cvae_13-customer_demographics_cd_demo_sk_ld100_id150_bs128_ep100_0_binary_gaussian5
+2023-06-26 06:34:53,950 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0017830280121415854
+2023-06-26 06:34:53,950 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:2.204614422051236
+2023-06-26 06:34:53,950 - dataset_utils.py[line:585] - INFO: load existing dataset(light):86-customer_address_ca_address_sk__ca_address_sk_binary_gaussian5_0
+2023-06-26 06:34:53,976 - dataset_utils.py[line:594] - INFO: load dataset(light) time elapsed:0.02578555908985436
+2023-06-26 06:34:53,976 - pytorch_cvae.py[line:280] - INFO: feature info:[('ca_address_sk', 'categorical', 17)]
+2023-06-26 06:34:53,977 - model_utils.py[line:75] - INFO: load model name:torch_cvae_86-customer_address_ca_address_sk_ld100_id150_bs128_ep100_0_binary_gaussian5
+2023-06-26 06:34:53,978 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.001546371029689908
+2023-06-26 06:34:53,978 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:0.028224584879353642
+2023-06-26 06:34:53,978 - main.py[line:572] - INFO: multi_sampling No.0 epoch
+2023-06-26 06:34:55,940 - pytorch_cvae.py[line:407] - INFO: sampling time:1.954387571895495
+2023-06-26 06:34:55,941 - dataset_utils.py[line:566] - INFO: load existing dataset:70-store_s_store_sk#s_store_id#s_store_name#s_state#s_county__s_store_sk#s_store_id#s_store_name#s_state#s_county_binary_gaussian5_0
+2023-06-26 06:34:55,943 - dataset_utils.py[line:578] - INFO: load dataset time elapsed:0.0025299349799752235
+2023-06-26 06:34:55,943 - dataset_utils.py[line:566] - INFO: load existing dataset:3-date_dim_d_date_sk#d_year__d_date_sk#d_year_binary_gaussian5_0
+2023-06-26 06:34:56,033 - dataset_utils.py[line:578] - INFO: load dataset time elapsed:0.08984938310459256
+2023-06-26 06:34:56,034 - dataset_utils.py[line:566] - INFO: load existing dataset:13-household_demographics_hd_demo_sk__hd_demo_sk_binary_gaussian5_0
+2023-06-26 06:34:56,040 - dataset_utils.py[line:578] - INFO: load dataset time elapsed:0.006179434945806861
+2023-06-26 06:34:56,044 - dataset_utils.py[line:566] - INFO: load existing dataset:13-customer_demographics_cd_demo_sk__cd_demo_sk_binary_gaussian5_0
+2023-06-26 06:34:59,007 - dataset_utils.py[line:578] - INFO: load dataset time elapsed:2.962996575050056
+2023-06-26 06:34:59,009 - dataset_utils.py[line:566] - INFO: load existing dataset:86-customer_address_ca_address_sk__ca_address_sk_binary_gaussian5_0
+2023-06-26 06:34:59,045 - dataset_utils.py[line:578] - INFO: load dataset time elapsed:0.03608109802007675
+2023-06-26 06:34:59,450 - main.py[line:555] - INFO: sample and aggregation time elapsed:5.471939875977114
+2023-06-26 06:34:59,455 - main.py[line:593] - INFO: sample time: 5.476407910929993
+2023-06-26 06:34:59,472 - main.py[line:104] - INFO: aqp result:
+sum(ss_quantity)             129441662.87 
+sum(ss_ext_sales_price)      5203661417.81
+sum(ss_ext_wholesale_cost)   6529492187.78
+avg(ss_quantity)             50.06        
+avg(ss_ext_sales_price)      1933.78      
+avg(ss_ext_wholesale_cost)   2525.16      
+dtype: float64
+2023-06-26 06:34:59,475 - main.py[line:105] - INFO: ground truth:
+   avg(ss_quantity)  sum(ss_quantity)  avg(ss_ext_sales_price)  \
+0 50.51              132368134        1914.66                    
+
+   sum(ss_ext_sales_price)  avg(ss_ext_wholesale_cost)  \
+0  5017501836              2551.10                       
+
+   sum(ss_ext_wholesale_cost)  
+0  6685345904                  
+2023-06-26 06:34:59,482 - main.py[line:611] - INFO: relative error:
+   avg(ss_ext_sales_price)  avg(ss_ext_wholesale_cost)  avg(ss_quantity)  \
+0 0.01                     0.01                        0.01                
+
+   sum(ss_ext_sales_price)  sum(ss_ext_wholesale_cost)  sum(ss_quantity)  
+0 0.04                     0.02                        0.02               
+2023-06-26 06:34:59,484 - main.py[line:612] - INFO: relative error normalized:
+   avg(ss_quantity)  avg(ss_ext_sales_price)  avg(ss_ext_wholesale_cost)
+0 0.01              0.01                     0.01                       
+2023-06-26 06:34:59,484 - main.py[line:615] - INFO: relative error average: 0.009986107193966495
+2023-06-26 06:34:59,484 - main.py[line:616] - INFO: relative error normalized average: 0.009640870524332601
+2023-06-26 06:34:59,619 - main.py[line:662] - INFO: total_time:21.596034107962623

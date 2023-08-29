@@ -1,0 +1,15 @@
+{
+    "name": "sql32",
+    "train_config_files": [
+      "./config/tpcds_whole/train/32_catalog_sales.json",
+      "./config/tpcds_whole/train/86_item.json",
+      "./config/tpcds_whole/train/3_date_dim.json"
+    ],
+    "multi_sample_times": 1,
+    "operation": "aqp",
+    "join_cols": ["cs_item_sk","i_item_sk","cs_sold_date_sk","d_date_sk"],
+    "groupby_cols": [],
+    "sum_cols": ["cs_ext_discount_amt"],
+    "avg_cols": ["cs_ext_discount_amt"],
+    "ground_truth": "./ground_truth/tpcds_whole/sql32.csv"
+}  

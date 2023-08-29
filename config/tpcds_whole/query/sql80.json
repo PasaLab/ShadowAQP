@@ -1,0 +1,18 @@
+{
+    "name": "sql80",
+    "train_config_files": [
+      "./config/tpcds_whole/train/80_store_sales.json",
+      "./config/tpcds_whole/train/80_store_returns.json",
+      "./config/tpcds_whole/train/3_date_dim.json",
+      "./config/tpcds_whole/train/70_store.json",
+      "./config/tpcds_whole/train/86_item.json",
+      "./config/tpcds_whole/train/80_promotion.json"
+    ],
+    "multi_sample_times": 1,
+    "operation": "aqp",
+    "join_cols": ["ss_item_sk","sr_item_sk","ss_sold_date_sk","d_date_sk","ss_store_sk","s_store_sk","ss_item_sk","i_item_sk","ss_promo_sk","p_promo_sk"],
+    "groupby_cols": ["s_store_id"],
+    "sum_cols": ["ss_ext_sales_price"],
+    "avg_cols": ["ss_ext_sales_price"],
+    "ground_truth": "./ground_truth/tpcds_whole/sql80.csv"
+}  

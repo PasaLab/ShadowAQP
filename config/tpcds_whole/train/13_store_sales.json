@@ -1,0 +1,39 @@
+{
+    "name": "13-store_sales",
+    "data": "/home/lihan/train_dataset/tpcds_whole_1G/store_sales.csv",
+    "categorical_columns": [
+        "ss_store_sk",
+        "ss_sold_date_sk",
+        "ss_hdemo_sk",
+        "ss_cdemo_sk",
+        "ss_addr_sk"
+    ],
+    "numeric_columns": [
+        "ss_quantity",
+        "ss_ext_sales_price",
+        "ss_ext_wholesale_cost"
+    ],
+    "label_columns": [
+        "ss_sold_date_sk"
+    ],
+    "bucket_columns": [],
+    "categorical_encoding": "binary",
+    "numeric_encoding": "mm",
+    "max_clusters": 5,
+    "model_type": "torch_cvae",
+    "lr": 0.001,
+    "optimizer_type": "adam",
+    "loss_agg_type": "mean",
+    "gpu_num": 0,
+    "epochs": 150,
+    "batch_size": 256,
+    "latent_dim": 100,
+    "intermediate_dim": 100,
+    "train_flag": "load",
+    "operation": "aqp",
+    "sample_method": "statistics",
+    "sample_rate": 0.1,
+    "sample_for_train": 1,
+    "header": 1,
+    "delimiter": "|"
+}

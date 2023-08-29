@@ -1,0 +1,71 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2023-06-18 13:22:47,261 - main.py[line:642] - INFO: load query config config/tpcds_whole/query/sql43.json successfully
+2023-06-18 13:22:47,261 - main.py[line:649] - INFO: load train config ./config/tpcds_whole/train/77_store_sales.json successfully
+2023-06-18 13:22:47,261 - main.py[line:649] - INFO: load train config ./config/tpcds_whole/train/3_date_dim.json successfully
+2023-06-18 13:22:47,261 - main.py[line:649] - INFO: load train config ./config/tpcds_whole/train/70_store.json successfully
+2023-06-18 13:22:47,261 - dataset_utils.py[line:585] - INFO: load existing dataset(light):77-store_sales_ss_sold_date_sk#ss_store_sk_ss_ext_sales_price#ss_net_profit#ss_sales_price#ss_quantity_ss_sold_date_sk#ss_store_sk_binary_gaussian5_0
+2023-06-18 13:22:49,197 - dataset_utils.py[line:594] - INFO: load dataset(light) time elapsed:1.935914486006368
+2023-06-18 13:22:49,197 - pytorch_cvae.py[line:280] - INFO: feature info:[('ss_ext_sales_price', 'numerical', 6), ('ss_net_profit', 'numerical', 6), ('ss_sales_price', 'numerical', 6), ('ss_quantity', 'numerical', 6), ('ss_sold_date_sk', 'categorical', 12), ('ss_store_sk', 'categorical', 4)]
+2023-06-18 13:22:49,198 - model_utils.py[line:75] - INFO: load model name:torch_cvae_77-store_sales_ss_sold_date_sk_ss_store_sk_ld100_id100_bs256_ep5_0_binary_gaussian5
+2023-06-18 13:22:51,262 - model_utils.py[line:86] - INFO: load torch model time elapsed:2.0639220500015654
+2023-06-18 13:22:51,262 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:4.001401174988132
+2023-06-18 13:22:51,262 - dataset_utils.py[line:585] - INFO: load existing dataset(light):3-date_dim_d_date_sk#d_year__d_date_sk#d_year_binary_gaussian5_0
+2023-06-18 13:22:51,322 - dataset_utils.py[line:594] - INFO: load dataset(light) time elapsed:0.059073575015645474
+2023-06-18 13:22:51,322 - pytorch_cvae.py[line:280] - INFO: feature info:[('d_date_sk', 'categorical', 18), ('d_year', 'categorical', 9)]
+2023-06-18 13:22:51,323 - model_utils.py[line:75] - INFO: load model name:torch_cvae_3-date_dim_d_date_sk_d_year_ld100_id150_bs128_ep100_0_binary_gaussian5
+2023-06-18 13:22:51,324 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.001673298014793545
+2023-06-18 13:22:51,324 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:0.06186847202479839
+2023-06-18 13:22:51,324 - dataset_utils.py[line:585] - INFO: load existing dataset(light):70-store_s_store_sk#s_store_id#s_store_name#s_state#s_county__s_store_sk#s_store_id#s_store_name#s_state#s_county_binary_gaussian5_0
+2023-06-18 13:22:51,326 - dataset_utils.py[line:594] - INFO: load dataset(light) time elapsed:0.0020390560384839773
+2023-06-18 13:22:51,326 - pytorch_cvae.py[line:280] - INFO: feature info:[('s_store_sk', 'categorical', 5), ('s_store_id', 'categorical', 4), ('s_store_name', 'categorical', 4), ('s_state', 'categorical', 1), ('s_county', 'categorical', 1)]
+2023-06-18 13:22:51,327 - model_utils.py[line:75] - INFO: load model name:torch_cvae_70-store_s_store_sk_s_store_id_s_store_name_s_state_s_county_ld100_id150_bs128_ep100_0_binary_gaussian5
+2023-06-18 13:22:51,329 - model_utils.py[line:86] - INFO: load torch model time elapsed:0.0014094420475885272
+2023-06-18 13:22:51,329 - pytorch_cvae.py[line:290] - INFO: load model time elapsed:0.004214013984892517
+2023-06-18 13:22:51,329 - main.py[line:572] - INFO: multi_sampling No.0 epoch
+2023-06-18 13:22:58,787 - pytorch_cvae.py[line:407] - INFO: sampling time:7.43052454298595
+2023-06-18 13:22:58,787 - dataset_utils.py[line:566] - INFO: load existing dataset:3-date_dim_d_date_sk#d_year__d_date_sk#d_year_binary_gaussian5_0
+2023-06-18 13:22:58,860 - dataset_utils.py[line:578] - INFO: load dataset time elapsed:0.07285092299571261
+2023-06-18 13:22:58,861 - dataset_utils.py[line:566] - INFO: load existing dataset:70-store_s_store_sk#s_store_id#s_store_name#s_state#s_county__s_store_sk#s_store_id#s_store_name#s_state#s_county_binary_gaussian5_0
+2023-06-18 13:22:58,864 - dataset_utils.py[line:578] - INFO: load dataset time elapsed:0.0025914469733834267
+2023-06-18 13:22:58,907 - main.py[line:555] - INFO: sample and aggregation time elapsed:7.578095587028656
+2023-06-18 13:22:58,913 - main.py[line:593] - INFO: sample time: 7.584213516965974
+2023-06-18 13:22:58,928 - main.py[line:104] - INFO: aqp result:
+                               avg(ss_sales_price)  sum(ss_sales_price)
+s_store_name s_store_id                                                
+able         AAAAAAAACAAAAAAA 38.92                18186463.28         
+ation        AAAAAAAAHAAAAAAA 39.22                14838048.18         
+bar          AAAAAAAAKAAAAAAA 40.61                11673586.60         
+eing         AAAAAAAAIAAAAAAA 38.61                18160482.45         
+ese          AAAAAAAAEAAAAAAA 40.35                15083034.77         
+ought        AAAAAAAABAAAAAAA 38.89                11529303.17         
+2023-06-18 13:22:58,931 - main.py[line:105] - INFO: ground truth:
+                               avg(ss_sales_price)  sum(ss_sales_price)
+s_store_name s_store_id                                                
+able         AAAAAAAACAAAAAAA 37.98                 16577800           
+ation        AAAAAAAAHAAAAAAA 37.85                 16525562           
+bar          AAAAAAAAKAAAAAAA 37.85                 16569398           
+eing         AAAAAAAAIAAAAAAA 37.88                 16577836           
+ese          AAAAAAAAEAAAAAAA 37.91                 16551923           
+ought        AAAAAAAABAAAAAAA 37.91                 16504651           
+2023-06-18 13:22:58,939 - main.py[line:611] - INFO: relative error:
+                               avg(ss_sales_price)  sum(ss_sales_price)
+s_store_name s_store_id                                                
+able         AAAAAAAACAAAAAAA 0.02                 0.10                
+ation        AAAAAAAAHAAAAAAA 0.04                 0.10                
+bar          AAAAAAAAKAAAAAAA 0.07                 0.30                
+eing         AAAAAAAAIAAAAAAA 0.02                 0.10                
+ese          AAAAAAAAEAAAAAAA 0.06                 0.09                
+ought        AAAAAAAABAAAAAAA 0.03                 0.30                
+2023-06-18 13:22:58,940 - main.py[line:612] - INFO: relative error normalized:
+                               avg(ss_sales_price)
+s_store_name s_store_id                           
+able         AAAAAAAACAAAAAAA 0.02                
+ation        AAAAAAAAHAAAAAAA 0.04                
+bar          AAAAAAAAKAAAAAAA 0.07                
+eing         AAAAAAAAIAAAAAAA 0.02                
+ese          AAAAAAAAEAAAAAAA 0.06                
+ought        AAAAAAAABAAAAAAA 0.03                
+2023-06-18 13:22:58,940 - main.py[line:615] - INFO: relative error average: 0.1019938752494869
+2023-06-18 13:22:58,940 - main.py[line:616] - INFO: relative error normalized average: 0.039589195112246456
+2023-06-18 13:22:58,982 - main.py[line:662] - INFO: total_time:11.721565535990521

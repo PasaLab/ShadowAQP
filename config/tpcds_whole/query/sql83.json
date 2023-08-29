@@ -1,0 +1,14 @@
+{
+    "name": "sql83",
+    "train_config_files": [
+      "./config/tpcds_whole/train/83_store_returns.json",
+      "./config/tpcds_whole/train/3_date_dim.json"
+    ],
+    "multi_sample_times": 1,
+    "operation": "aqp",
+    "join_cols": ["sr_returned_date_sk","d_date_sk"],
+    "groupby_cols": ["sr_store_sk"],
+    "sum_cols": ["sr_return_quantity"],
+    "avg_cols": ["sr_return_quantity"],
+    "ground_truth": "./ground_truth/tpcds_whole/sql83.csv"
+}  

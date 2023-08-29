@@ -1,0 +1,52 @@
+main.py:19: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option('max_colwidth', -1)
+2023-06-11 14:26:58,340 - main.py[line:626] - INFO: load query config config/tpcds_whole/query/sql51.json successfully
+2023-06-11 14:26:58,340 - main.py[line:633] - INFO: load train config ./config/tpcds_whole/train/51_web_sales.json successfully
+2023-06-11 14:26:58,340 - main.py[line:633] - INFO: load train config ./config/tpcds_whole/train/51_date_dim.json successfully
+2023-06-11 14:26:58,340 - pytorch_cvae.py[line:249] - INFO: epoch:100
+2023-06-11 14:26:58,340 - pytorch_cvae.py[line:250] - INFO: batch size:128
+2023-06-11 14:26:58,340 - pytorch_cvae.py[line:251] - INFO: latent dimension:100
+2023-06-11 14:26:58,340 - pytorch_cvae.py[line:252] - INFO: intermediate dimension:150
+2023-06-11 14:26:58,340 - pytorch_cvae.py[line:253] - INFO: gpu num:0
+2023-06-11 14:26:58,364 - dataset_utils.py[line:310] - INFO: loading data:/home/lihan/train_dataset/tpcds_whole_1G/web_sales.csv
+Traceback (most recent call last):
+  File "main.py", line 644, in <module>
+    model_aqp(query_config, train_config_list)
+  File "main.py", line 552, in model_aqp
+    model_dataset_list = train_load_models(train_config_list)
+  File "main.py", line 46, in train_load_models
+    model_dataset = train_torch_cvae(param)
+  File "/home/lihan/table_cvae_aqp/models/pytorch_cvae.py", line 257, in train_torch_cvae
+    dataset = TabularDataset(train_config)
+  File "/home/lihan/table_cvae_aqp/utils/dataset_utils.py", line 29, in __init__
+    self.load_data(param)
+  File "/home/lihan/table_cvae_aqp/utils/dataset_utils.py", line 326, in load_data
+    self.label_df=self.generate_label_data(param['label_columns'],param['bucket_columns'])
+  File "/home/lihan/table_cvae_aqp/utils/dataset_utils.py", line 393, in generate_label_data
+    label_df[self.label_column_name] = label_df[label_columns_copy].astype(str).agg('-'.join, axis=1)
+  File "/root/anaconda3/envs/py36/lib/python3.6/site-packages/pandas/core/frame.py", line 7366, in aggregate
+    result, how = self._aggregate(func, axis, *args, **kwargs)
+  File "/root/anaconda3/envs/py36/lib/python3.6/site-packages/pandas/core/frame.py", line 7388, in _aggregate
+    result, how = self.T._aggregate(arg, *args, **kwargs)
+  File "/root/anaconda3/envs/py36/lib/python3.6/site-packages/pandas/core/frame.py", line 2811, in T
+    return self.transpose()
+  File "/root/anaconda3/envs/py36/lib/python3.6/site-packages/pandas/core/frame.py", line 2804, in transpose
+    new_values, index=self.columns, columns=self.index
+  File "/root/anaconda3/envs/py36/lib/python3.6/site-packages/pandas/core/frame.py", line 497, in __init__
+    mgr = init_ndarray(data, index, columns, dtype=dtype, copy=copy)
+  File "/root/anaconda3/envs/py36/lib/python3.6/site-packages/pandas/core/internals/construction.py", line 225, in init_ndarray
+    make_block(dvals_list[n], placement=[n]) for n in range(len(dvals_list))
+  File "/root/anaconda3/envs/py36/lib/python3.6/site-packages/pandas/core/internals/construction.py", line 225, in <listcomp>
+    make_block(dvals_list[n], placement=[n]) for n in range(len(dvals_list))
+  File "/root/anaconda3/envs/py36/lib/python3.6/site-packages/pandas/core/internals/blocks.py", line 2744, in make_block
+    return klass(values, ndim=ndim, placement=placement)
+  File "/root/anaconda3/envs/py36/lib/python3.6/site-packages/pandas/core/internals/blocks.py", line 2400, in __init__
+    super().__init__(values, ndim=ndim, placement=placement)
+  File "/root/anaconda3/envs/py36/lib/python3.6/site-packages/pandas/core/internals/blocks.py", line 126, in __init__
+    self.mgr_locs = placement
+  File "/root/anaconda3/envs/py36/lib/python3.6/site-packages/pandas/core/internals/blocks.py", line 240, in mgr_locs
+    new_mgr_locs = libinternals.BlockPlacement(new_mgr_locs)
+  File "pandas/_libs/internals.pyx", line 55, in pandas._libs.internals.BlockPlacement.__init__
+  File "/root/anaconda3/envs/py36/lib/python3.6/site-packages/numpy/core/_asarray.py", line 316, in require
+    arr = array(a, dtype=dtype, order=order, copy=False, subok=subok)
+KeyboardInterrupt

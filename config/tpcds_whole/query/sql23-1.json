@@ -1,0 +1,17 @@
+{
+    "name": "sql23-1",
+    "train_config_files": [
+      "./config/tpcds_whole/train/23_store_sales.json",
+      "./config/tpcds_whole/train/23_customer.json"
+    ],
+    "multi_sample_times": 1,
+    "operation": "aqp",
+    "join_cols": ["ss_customer_sk","c_customer_sk"],
+    "groupby_cols": ["c_customer_sk"],
+    "result_path": "./output/aqp_result/ss_res.csv",
+    "diff_path": "./output/diff/ss_diff.csv",
+    "sum_cols": ["ss_quantity", "ss_sales_price"],
+    "avg_cols": ["ss_quantity", "ss_sales_price"],
+    "var": "./var/tpcds-1m/sw_var.csv",
+    "ground_truth": "./ground_truth/tpcds_whole/sql23-1.csv"
+}  

@@ -1,0 +1,15 @@
+{
+    "name": "sql55",
+    "train_config_files": [
+      "./config/tpcds_whole/train/58_store_sales.json",
+      "./config/tpcds_whole/train/3_date_dim.json",
+      "./config/tpcds_whole/train/86_item.json"
+    ],
+    "multi_sample_times": 1,
+    "operation": "aqp",
+    "join_cols": ["ss_sold_date_sk","d_date_sk","ss_item_sk","i_item_sk"],
+    "groupby_cols": ["i_brand_id", "i_brand"],
+    "sum_cols": ["ss_ext_sales_price"],
+    "avg_cols": ["ss_ext_sales_price"],
+    "ground_truth": "./ground_truth/tpcds_whole/sql55.csv"
+}  
